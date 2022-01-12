@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=!, initial-scale=1.0">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=1, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Калькулятор</title>
+    </head>
+
+    <body>
+        <h1>Кнопка</h1>
+        <label for="name"> Как тебя зовут?
+            <input type="text" id="name">
+        </label>
+        <button onClick="showMessage()">Ответить</button>
+        <div class="result" id="nameResult" onclick="divColor()"></div>
+
+
+        <div class="result" id="sumResult"></div>
+        <h1>Калькулятор</h1>
+
+        <input type="number" id="sum1"> + <input type="number" id="sum2"> <button onclick="sum()">=</button>
+        <div class="result" id="sumResult"></div>
+        <br>
+        <input type="number" id="sub1"> – <input type="number" id="sub2"> <button onclick="sub()">=</button>
+        <div class="result" id="subResult"></div>
+        <br>
+        <input type="number" id="div1"> / <input type="number" id="div2"> <button onclick="div()">=</button>
+        <div class="result" id="divResult"></div>
+        <br>
+        <input type="number" id="mult1"> * <input type="number" id="mult2"> <button onclick="mult()">=</button>
+        <div class="result" id="multResult"></div>
+
+        <script src="script.js"></script>
+    </body>
+
+    </html>
+
+</body>
+
+</html>
