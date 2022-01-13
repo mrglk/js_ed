@@ -45,14 +45,33 @@ const mult = (a, b) => {
 
 const divColor = sender => sender.classList.add('column_color');
 
-// галерея
+// галерея: старое решение
 
-const frw = () => {
-    let img = document.querySelector('.photo');
-    img.src = "img/dog.jpeg";
-};
+// const frw = () => {
+//     let img = document.querySelector('.photo');
+//     img.src = "img/dog.jpeg";
+// };
 
-const bck = () => {
-    let img = document.querySelector('.photo');
-    img.src = "img/cat.jpeg";
-};
+// const bck = () => {
+//     let img = document.querySelector('.photo');
+//     img.src = "img/cat.jpeg";
+// };
+
+// галерея: новое решение
+
+const img = document.querySelector('.photo');
+const photos = [
+    "img/cat.jpeg",
+    "img/dog.jpeg",
+    "img/duck.jpeg",
+];
+let currentIndex = 0;
+
+const slide = (step) => {
+    if (currentIndex + step < 0 || currentIndex + step >= photos.length) {
+        return
+    }
+    currentIndex = currentIndex + step;
+    const newSlide = photos[currentIndex];
+    img.setAttribute("src", newSlide);
+}
