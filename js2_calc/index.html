@@ -4,37 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
-
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=1, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>Калькулятор</title>
-    </head>
-
-    <body>
+    <section>
         <h1>Кнопка</h1>
         <label for="name"> Как тебя зовут?
             <input type="text" id="name">
         </label>
         <button onClick="showMessage()">Ответить</button>
-        <div class="result" id="nameResult" onclick="divColor()"></div>
+        <div class="result" id="nameResult"></div>
+    </section>
 
-
-        <div class="result" id="sumResult"></div>
+    <section>
         <h1>Калькулятор</h1>
-
         <input type="number" id="sum1"> + <input type="number" id="sum2"> <button onclick="sum()">=</button>
         <div class="result" id="sumResult"></div>
         <br>
@@ -46,12 +33,42 @@
         <br>
         <input type="number" id="mult1"> * <input type="number" id="mult2"> <button onclick="mult()">=</button>
         <div class="result" id="multResult"></div>
+    </section>
 
-        <script src="script.js"></script>
-    </body>
-
-    </html>
-
+    <section>
+        <h1>Дивы</h1>
+        <div class="row">
+            <div class="column" onclick="divColor(this)">
+                <h2>Мяу</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit voluptas nesciunt
+                    praesentium officia facilis dolore fuga. Recusandae quibusdam repellat aspernatur necessitatibus
+                    pariatur tempore dolores labore nostrum harum, molestiae exercitationem?</p>
+            </div>
+            <div class="column" onclick="divColor(this)">
+                <h2>Гав</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit voluptas nesciunt
+                    praesentium officia facilis dolore fuga. Recusandae quibusdam repellat aspernatur necessitatibus
+                    pariatur tempore dolores labore nostrum harum, molestiae exercitationem?</p>
+            </div>
+            <div class="column" onclick="divColor(this)">
+                <h2>Кря</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit voluptas nesciunt
+                    praesentium officia facilis dolore fuga. Recusandae quibusdam repellat aspernatur necessitatibus
+                    pariatur tempore dolores labore nostrum harum, molestiae exercitationem?</p>
+            </div>
+        </div>
+    </section>
+    <section class="container">
+        <h1>Галерея</h1>
+        <div class="gallery">
+            <img src="img/cat.jpeg" class="photo" alt="Котик">
+            <div>
+                <button onclick="bck()">Назад</button>
+                <button onclick="frw()">Вперед</button>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
 </body>
 
 </html>
