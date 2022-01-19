@@ -9,33 +9,39 @@ const showMessage = () => {
 
 // калькулятор
 
-const sum = (a, b) => {
-    a = document.getElementById('sum1').value;
-    b = document.getElementById('sum2').value;
+const getValues = (x) => {
+    const a = document.getElementById(x + "1").value;
+    const b = document.getElementById(x + "2").value;
+    return [a, b];
+};
+
+const sum = () => {
+    const [a, b] = getValues('sum');
     let result = Number(a) + Number(b);
     let sumResult = document.getElementById('sumResult');
     return sumResult.textContent = result;
 };
 
-const sub = (a, b) => {
-    a = document.getElementById('sub1').value;
-    b = document.getElementById('sub2').value;
+const sub = () => {
+    const [a, b] = getValues('sub');
     let result = Number(a) - Number(b);
     let subResult = document.getElementById('subResult');
     return subResult.textContent = result;
 };
 
-const div = (a, b) => {
-    a = document.getElementById('div1').value;
-    b = document.getElementById('div2').value;
-    let result = Number(a) / Number(b);
-    let divResult = document.getElementById('divResult');
-    return divResult.textContent = result;
+const div = () => {
+    const [a, b] = getValues('div');
+    if (b == 0) {
+        return divResult.textContent = "На ноль делить нельзя!";
+    } else {
+        let result = Number(a) / Number(b);
+        let divResult = document.getElementById('divResult');
+        return divResult.textContent = result;
+    }
 };
 
-const mult = (a, b) => {
-    a = document.getElementById('mult1').value;
-    b = document.getElementById('mult2').value;
+const mult = () => {
+    const [a, b] = getValue('mult');
     let result = Number(a) * Number(b);
     let multResult = document.getElementById('multResult');
     return multResult.textContent = result;
@@ -45,33 +51,14 @@ const mult = (a, b) => {
 
 const divColor = sender => sender.classList.add('column_color');
 
-// галерея: старое решение
+// галерея
 
-// const frw = () => {
-//     let img = document.querySelector('.photo');
-//     img.src = "img/dog.jpeg";
-// };
+const frw = () => {
+    let img = document.querySelector('.photo');
+    img.src = "img/dog.jpeg";
+};
 
-// const bck = () => {
-//     let img = document.querySelector('.photo');
-//     img.src = "img/cat.jpeg";
-// };
-
-// галерея: новое решение
-
-const img = document.querySelector('.photo');
-const photos = [
-    "img/cat.jpeg",
-    "img/dog.jpeg",
-    "img/duck.jpeg",
-];
-let currentIndex = 0;
-
-const slide = (step) => {
-    if (currentIndex + step < 0 || currentIndex + step >= photos.length) {
-        return
-    }
-    currentIndex = currentIndex + step;
-    const newSlide = photos[currentIndex];
-    img.setAttribute("src", newSlide);
-}
+const bck = () => {
+    let img = document.querySelector('.photo');
+    img.src = "img/cat.jpeg";
+};
