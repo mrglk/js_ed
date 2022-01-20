@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
     <title>Регистрация</title>
@@ -14,42 +17,53 @@
     <section class="container">
         <div class="container__inner">
             <h1>Регистрация</h1>
-            <form>
+            <form name="form">
                 <label>
-                    <input type="text" id="name" class="form__input" required>
+                    <input type="text" id="name" placeholder=" " class="form__input">
                     <div class="label-text">Имя</div>
+                    <div class="form__error">Пожалуйста, укажите имя</div>
                 </label>
                 <label>
-                    <input type="text" id="surname" class="form__input" required>
+                    <input type="text" id="surname" placeholder=" " class="form__input">
                     <div class="label-text">Фамилия</div>
+                    <div class="form__error">Пожалуйста, укажите фамилию</div>
                 </label>
                 <label>
-                    <input type="text" id="login" class="form__input" required>
+                    <input type="text" id="login" placeholder=" " class="form__input">
                     <div class="label-text">Придумайте логин</div>
+                    <div class="form__error">Необходимо выбрать логин</div>
                 </label>
                 <label>
-                    <input type="password" id="password1" class="form__input" required>
+                    <input type="password" id="password1" placeholder=" " autocomplete="off" class="form__input">
                     <div class="label-text">Придумайте пароль</div>
+                    <div class="form__error">Необходимо выбрать пароль</div>
                 </label>
                 <label>
-                    <input type="password" id="password1" class="form__input" required>
+                    <input type="password" id="password2" placeholder=" " autocomplete="off" class="form__input">
                     <div class="label-text">Повторите пароль</div>
+                    <div class="form__error">Необходимо ввести пароль еще раз</div>
                 </label>
                 <label>
-                    <input type="tel" id="password1" class="form__input" required>
+                    <input type="tel" id="tel" placeholder=" " class="form__input">
                     <div class="label-text">Номер мобильного телефона</div>
+                    <div class="form__error">Пожалуйста, подтвердите номер телефона</div>
                 </label>
-                <button type="submit">Зарегистрироваться</button>
-                <p>Нажимая кнопку «Зарегистрироваться»:</p>
+                <button type="button">Зарегистрироваться</button>
+                <p class="button__caption">Нажимая кнопку «Зарегистрироваться»:</p>
                 <div class="checkbox__container">
                     <div class="checkbox__item">
-                        <input type="checkbox" id="eula" checked>
-                        <p>Я принимаю условия Пользовательского соглашения и даю своё согласие Яндексу на обработку моей
-                            персональной информации на условиях, определенных Политикой конфиденциальности.</p>
+                        <input type="checkbox" id="eula" class="checkbox" checked>
+                        <p class="checkbox__text">Я принимаю условия <a
+                                href="https://yandex.ru/legal/rules/">Пользовательского соглашения</a> и даю своё
+                            согласие
+                            Яндексу на обработку моей
+                            персональной информации на условиях, определенных <a
+                                href="https://yandex.ru/legal/confidential/">Политикой конфиденциальности</a>.</p>
                     </div>
                     <div class="checkbox__item">
-                        <input type="checkbox" id="promo">
-                        <p>Я не хочу получать рекламу и другие предложения данного сервиса Яндекса</p>
+                        <input type="checkbox" class="checkbox" id="promo">
+                        <p class="checkbox__text">Я не хочу получать рекламу и другие предложения данного сервиса
+                            Яндекса</p>
                     </div>
                 </div>
         </div>
