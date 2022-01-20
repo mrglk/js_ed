@@ -7,11 +7,54 @@
     <meta name="viewport" content="width=!, initial-scale=1.0">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Регистрация</title>
 </head>
 
 <body>
-
+    <section class="container">
+        <div class="container__inner">
+            <h1>Регистрация</h1>
+            <form>
+                <label>
+                    <input type="text" id="name" class="form__input" required>
+                    <div class="label-text">Имя</div>
+                </label>
+                <label>
+                    <input type="text" id="surname" class="form__input" required>
+                    <div class="label-text">Фамилия</div>
+                </label>
+                <label>
+                    <input type="text" id="login" class="form__input" required>
+                    <div class="label-text">Придумайте логин</div>
+                </label>
+                <label>
+                    <input type="password" id="password1" class="form__input" required>
+                    <div class="label-text">Придумайте пароль</div>
+                </label>
+                <label>
+                    <input type="password" id="password1" class="form__input" required>
+                    <div class="label-text">Повторите пароль</div>
+                </label>
+                <label>
+                    <input type="tel" id="password1" class="form__input" required>
+                    <div class="label-text">Номер мобильного телефона</div>
+                </label>
+                <button type="submit">Зарегистрироваться</button>
+                <p>Нажимая кнопку «Зарегистрироваться»:</p>
+                <div class="checkbox__container">
+                    <div class="checkbox__item">
+                        <input type="checkbox" id="eula" checked>
+                        <p>Я принимаю условия Пользовательского соглашения и даю своё согласие Яндексу на обработку моей
+                            персональной информации на условиях, определенных Политикой конфиденциальности.</p>
+                    </div>
+                    <div class="checkbox__item">
+                        <input type="checkbox" id="promo">
+                        <p>Я не хочу получать рекламу и другие предложения данного сервиса Яндекса</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+    </form>
     <script src="script.js"></script>
 </body>
 
