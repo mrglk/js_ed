@@ -41,7 +41,7 @@ const div = () => {
 };
 
 const mult = () => {
-    const [a, b] = getValue('mult');
+    const [a, b] = getValues('mult');
     let result = Number(a) * Number(b);
     let multResult = document.getElementById('multResult');
     return multResult.textContent = result;
@@ -49,16 +49,34 @@ const mult = () => {
 
 // дивы
 
-const divColor = sender => sender.classList.add('column_color');
+const divColor = sender => sender.classList.toggle('column_color');
 
-// галерея
+// галерея старое решение
 
-const frw = () => {
-    let img = document.querySelector('.photo');
-    img.src = "img/dog.jpeg";
-};
+// const frw = () => {
+//     let img = document.querySelector('.photo');
+//     img.src = "img/dog.jpeg";
+// };
 
-const bck = () => {
-    let img = document.querySelector('.photo');
-    img.src = "img/cat.jpeg";
-};
+// const bck = () => {
+//     let img = document.querySelector('.photo');
+//     img.src = "img/cat.jpeg";
+// };
+
+
+const img = document.querySelector('.photo');
+const photos = [
+    "img/cat.jpeg",
+    "img/dog.jpeg",
+    "img/duck.jpeg",
+];
+let currentIndex = 0;
+
+const slide = (step) => {
+    if (currentIndex + step < 0 || currentIndex + step >= photos.length) {
+        return
+    }
+    currentIndex = currentIndex + step;
+    const newSlide = photos[currentIndex];
+    img.setAttribute("src", newSlide);
+} 
