@@ -74,29 +74,12 @@ label {
     border-bottom: #fc0 solid 2px;
 }
 
-
-/* position: absolute;
-left: 0;
-bottom: -2px;
-content: "";
-height: 2px;
-background: red;
-width: 0;
-transition: width .3s ease-in-out; */
-
 .form__input:focus+.label-text,
 .form__input:not(:placeholder-shown)+.label-text {
     font-size: 13px;
     transform: translateY(-42px);
     transition: all 0.3s;
 }
-
-/* .form__input.value-exists+.label-text {
-    font-size: 13px;
-    transform: translateY(-42px);
-    transition: all 0.3s;
-} */
-
 
 button {
     width: 300px;
@@ -140,8 +123,3 @@ a {
     color: #3d71bd;
     text-decoration: none;
 }
-
-/* input:valid+.label-text {
-    font-size: 13px;
-    transform: (translateY(-1000px));
-} */

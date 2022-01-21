@@ -1,19 +1,3 @@
-// всплытие плейсхолдеров
-
-
-// const formInput = document.getElementById('name');
-
-// formInput.addEventListener ("blur", function(event) {
-//     const inputVal = formInput.value;
-    
-//     if (inputVal) {
-//         formInput.classList.add('value-exists');
-//     } else {
-//         formInput.classList.remove('value-exists');
-//     }
-// });
-
-
 const button = document.querySelector('button');
 
 button.addEventListener("click", function() {
@@ -24,11 +8,45 @@ button.addEventListener("click", function() {
         const input = inputs[i];
         const label = input.closest("label");
         const error = label.querySelector(".form__error");
-        if (error) {
-            const isEmpty = input.value == "";
-            input.classList.toggle('form__input_error', isEmpty);
-            error.classList.toggle('form__error_active', isEmpty);
+
+         // выдача ошибок
+        const isEmpty = input.value == "";
+        input.classList.toggle('form__input_error', isEmpty);
+        error.classList.toggle('form__error_active', isEmpty);
+
+        // проверка логина (только латинские буквы от 2 до 20 символов)
+
+        if(input.id=="login" && input.value) {
+            const regexLogin = /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/;
+            if (!regexLogin.test(input.value)) {
+                error.innerText = "Недопустимый формат логина";
+                input.classList.add('form__input_error');
+                error.classList.add('form__error_active');
+            } else {
+                console.log("логин соответствует");
+                input.classList.remove('form__input_error');
+                error.classList.remove('form__error_active');
+                error.innetText = "Необходимо выбрать логин";
+            }
         }
+
+        // проверка пароля (только латинские буквы от 2 до 20 символов)
+
+        if(input.id=="password1" && input.value) {
+            const regexPas = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
+            if (!regexPas.test(input.value)) {
+                error.innerText = "Пароль должен состоять из символов латинского алфавита, содержать цифры, заглавные и строчные буквы";
+                input.classList.add('form__input_error');
+                error.classList.add('form__error_active');
+            } else {
+                console.log("пароль соответствует");
+                input.classList.remove('form__input_error');
+                error.classList.remove('form__error_active');
+                error.innetText = "Необходимо выбрать пароль";
+            }
+        }
+
+         // проверка повторного ввода пароля
 
         if (input.id=="password2" && input.value) {
             const pas1 = form.querySelector('#password1');
@@ -37,11 +55,29 @@ button.addEventListener("click", function() {
                 input.classList.add('form__input_error');
             error.classList.add('form__error_active');
             } else {
+                console.log("пароли совпадают");
                 input.classList.remove('form__input_error');
             error.classList.remove('form__error_active');
             error.innetText = "Необходимо ввести пароль еще раз";
             }
         }
+
+        // проверка телефона
+
+        if(input.id=="tel" && input.value) {
+            const regexTel = /(\+7|8)[- _]*\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})/;
+            if (!regexTel.test(input.value)) {
+                error.innerText = "Недопустимый формат номера";
+                input.classList.add('form__input_error');
+                error.classList.add('form__error_active');
+            } else {
+                console.log("телефон соответствует");
+                input.classList.remove('form__input_error');
+                error.classList.remove('form__error_active');
+                error.innetText = "Пожалуйста, укажите номер телефона";
+            }
+        }
+
     }
 });
 
@@ -59,25 +95,17 @@ checkbox.addEventListener('change', function() {
 
 
 
+// всплытие плейсхолдеров через js (сохраняю код на будушее)
 
+// const formInput = document.getElementById('name');
 
-// button.addEventListener("click", function() {
-//     errorName.textContent = "";
-//     errorSurname.textContent = "";
-
-//     if(!document.forms["form"]["name"].value) {
-//         document.forms["form"]["name"].classList.add('form__input-error');
-//         errorName.textContent += "Пожалуйста, укажите имя";
-//         return;
+// formInput.addEventListener ("blur", function(event) {
+//     const inputVal = formInput.value;
+    
+//     if (inputVal) {
+//         formInput.classList.add('value-exists');
+//     } else {
+//         formInput.classList.remove('value-exists');
 //     }
-
-//     if(!document.forms["form"]["surname"].value) {
-//         errorSurname.textContent += "Пожалуйста, укажите фамилию";
-//         return;
-//     }
-
-
-// let name = document.getElementById('name').value;
-//     console.log(`Добро пожаловать, $(name)!`);
 // });
 
