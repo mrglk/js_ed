@@ -1,3 +1,28 @@
+// цвет фона
+
+const color = document.getElementById('color');
+const body = document.querySelector('body');
+
+color.addEventListener("change", function() {
+
+    switch(color.value) {
+        case "pink": body.style.backgroundColor = "rgb(209, 158, 186)";
+        console.log("розовый")
+        break;
+        case "blue": body.style.backgroundColor = "rgb(134, 188, 219)";
+        console.log("голубой")
+        break;
+        case "green": body.style.backgroundColor = "rgb(158, 209, 181)";
+        console.log("белый")
+        break;
+        case "white": body.style.backgroundColor = "white";
+        console.log("белый")
+        break;
+        
+    }
+
+})
+
 // приветствие
 
 const showMessage = () => {
