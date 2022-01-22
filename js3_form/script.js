@@ -3,6 +3,7 @@ const button = document.querySelector('button');
 button.addEventListener("click", function() {
     const form = button.closest("form");
     const inputs = form.querySelectorAll(".form__input");
+    let isValid = true;
 
     for (let i=0; i<inputs.length; i++) {
         const input = inputs[i];
@@ -14,6 +15,10 @@ button.addEventListener("click", function() {
         input.classList.toggle('form__input_error', isEmpty);
         error.classList.toggle('form__error_active', isEmpty);
 
+         // проверка на пустоту полей
+        if(isEmpty) {
+            isValid = false;
+        }
         // проверка логина (только латинские буквы от 2 до 20 символов)
 
         if(input.id=="login" && input.value) {
@@ -22,6 +27,7 @@ button.addEventListener("click", function() {
                 error.innerText = "Недопустимый формат логина";
                 input.classList.add('form__input_error');
                 error.classList.add('form__error_active');
+                isValid = false;
             } else {
                 console.log("логин соответствует");
                 input.classList.remove('form__input_error');
@@ -30,7 +36,7 @@ button.addEventListener("click", function() {
             }
         }
 
-        // проверка пароля (только латинские буквы от 2 до 20 символов)
+        // проверка пароля (символы латинского алфавита, цифры, заглавные и строчные буквы)
 
         if(input.id=="password1" && input.value) {
             const regexPas = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
@@ -38,6 +44,7 @@ button.addEventListener("click", function() {
                 error.innerText = "Пароль должен состоять из символов латинского алфавита, содержать цифры, заглавные и строчные буквы";
                 input.classList.add('form__input_error');
                 error.classList.add('form__error_active');
+                isValid = false;
             } else {
                 console.log("пароль соответствует");
                 input.classList.remove('form__input_error');
@@ -53,12 +60,13 @@ button.addEventListener("click", function() {
             if (pas1.value != input.value) {
                 error.innerText = "Пароли не совпадают";
                 input.classList.add('form__input_error');
-            error.classList.add('form__error_active');
+                error.classList.add('form__error_active');
+                isValid = false;
             } else {
                 console.log("пароли совпадают");
                 input.classList.remove('form__input_error');
-            error.classList.remove('form__error_active');
-            error.innetText = "Необходимо ввести пароль еще раз";
+                error.classList.remove('form__error_active');
+                error.innetText = "Необходимо ввести пароль еще раз";
             }
         }
 
@@ -70,6 +78,7 @@ button.addEventListener("click", function() {
                 error.innerText = "Недопустимый формат номера";
                 input.classList.add('form__input_error');
                 error.classList.add('form__error_active');
+                isValid = false;
             } else {
                 console.log("телефон соответствует");
                 input.classList.remove('form__input_error');
@@ -77,8 +86,14 @@ button.addEventListener("click", function() {
                 error.innetText = "Пожалуйста, укажите номер телефона";
             }
         }
-
     }
+
+    let name = document.getElementById('name').value;
+
+    if(isValid) {
+        alert(`Добро пожаловать, ${name}!`);
+    }
+
 });
 
 const checkbox = document.getElementById('eula');
@@ -92,20 +107,3 @@ checkbox.addEventListener('change', function() {
         button.classList.remove('button_disabled');
     }
 });
-
-
-
-// всплытие плейсхолдеров через js (сохраняю код на будушее)
-
-// const formInput = document.getElementById('name');
-
-// formInput.addEventListener ("blur", function(event) {
-//     const inputVal = formInput.value;
-    
-//     if (inputVal) {
-//         formInput.classList.add('value-exists');
-//     } else {
-//         formInput.classList.remove('value-exists');
-//     }
-// });
-
