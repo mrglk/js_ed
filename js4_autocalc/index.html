@@ -13,16 +13,27 @@
 <body>
 
     <main>
-        <h1>Рассчет стоимость автомобиля Hundai Sonata</h1>
+        <h1>Рассчет стоимости автомобиля Hundai</h1>
         <form class="form">
+            <div class="inputSection__wrapper">
+                <div class="inputSection__title">
+                    <label for="modif">Модель</label>
+                </div>
+                <div class="inputSection__input">
+                    <select name="model" id="model">
+                        <option selected disabled>Выбрать модель</option>
+                        <option value="sonata">Sonata</option>
+                        <option value="solaris">Solaris</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="inputSection__wrapper">
                 <div class="inputSection__title">
                     <label for="modif">Модификация</label>
                 </div>
                 <div class="inputSection__input">
-                    <select name="modif" id="modif">
-                        <option value="1924000" selected>2.0 MPI - 6AT</option>
-                        <option value="2174000">2.5 MPI - 6AT</option>
+                    <select name="modif" id="modif" disabled>
                     </select>
                 </div>
             </div>
@@ -34,15 +45,15 @@
                 <div class="inputSection__input inputSection__input_color">
                     <div>
                         <label for="color_salon_0"><input type="radio" name="color_salon" id="color_salon_0" value="0"
-                                checked>Черный</label>
+                                checked disabled>Черный</label>
                     </div>
                     <div>
-                        <label for="color_salon_1"><input type="radio" name="color_salon" id="color_salon_1"
-                                value="0">Серый</label>
+                        <label for="color_salon_1"><input type="radio" name="color_salon" id="color_salon_1" value="0"
+                                disabled>Серый</label>
                     </div>
                     <div>
-                        <label for="color_salon_2"><input type="radio" name="color_salon" id="color_salon_2"
-                                value="0">Бежевый</label></div>
+                        <label for="color_salon_2"><input type="radio" name="color_salon" id="color_salon_2" value="0"
+                                disabled>Бежевый</label></div>
                 </div>
             </div>
 
@@ -52,34 +63,36 @@
                 </div>
                 <div class="inputSection__input inputSection__input_color">
                     <div>
-                        <label for="color_ex_0"><input type="radio" name="color_ex" id="color_ex_0" value="0"
-                                checked>Базовый,
+                        <label for="color_ex_0"><input type="radio" name="color_ex" id="color_ex_0" value="0" checked
+                                disabled>Базовый,
                             Clear White</label>
                     </div>
                     <div>
-                        <label for="color_ex_1"><input type="radio" name="color_ex" id="color_ex_1" value="18000">Серый,
+                        <label for="color_ex_1"><input type="radio" name="color_ex" id="color_ex_1" value="18000"
+                                disabled>Серый,
                             Nocturne
                             Gray</label>
                     </div>
                     <div>
-                        <label for="color_ex_2"><input type="radio" name="color_ex" id="color_ex_2"
-                                value="18000">Красный, Runway
+                        <label for="color_ex_2"><input type="radio" name="color_ex" id="color_ex_2" value="18000"
+                                disabled>Красный, Runway
                             Red</label>
                     </div>
                     <div>
-                        <label for="color_ex_3"><input type="radio" name="color_ex" id="color_ex_3"
-                                value="18000">Серебристый, Silky
+                        <label for="color_ex_3"><input type="radio" name="color_ex" id="color_ex_3" value="18000"
+                                disabled>Серебристый, Silky
                             Silver</label>
                     </div>
                     <div>
-                        <label for="color_ex_4"><input type="radio" name="color_ex" id="color_ex_4" value="18000">Синий,
+                        <label for="color_ex_4"><input type="radio" name="color_ex" id="color_ex_4" value="18000"
+                                disabled>Синий,
                             Oxford Blue
                         </label>
                     </div>
 
                     <div>
-                        <label for="color_ex_5"><input type="radio" name="color_ex" id="color_ex_5"
-                                value="18000">Черный, Aurora Black
+                        <label for="color_ex_5"><input type="radio" name="color_ex" id="color_ex_5" value="18000"
+                                disabled>Черный, Aurora Black
                         </label>
                     </div>
                 </div>
@@ -92,27 +105,32 @@
                 </div>
                 <div class="inputSection__input inputSection__input_equipment">
                     <div>
-                        <input class="equipment__input" type="checkbox" id="climat" name="climat" value="40000">
+                        <input class="equipment__input" type="checkbox" id="climat" name="climat" value="40000"
+                            disabled>
                         <label for="climat">Климат-контроль</label>
                     </div>
                     <div>
-                        <input class="equipment__input" type="checkbox" id="cruise" name="cruise" value="70000">
+                        <input class="equipment__input" type="checkbox" id="cruise" name="cruise" value="70000"
+                            disabled>
                         <label for="cruise">Круиз-контроль</label>
                     </div>
                     <div>
-                        <input class="equipment__input" type="checkbox" id="heating" name="heating" value="60000">
+                        <input class="equipment__input" type="checkbox" id="heating" name="heating" value="60000"
+                            disabled>
                         <label for="heating">Подогрев сидений</label>
                     </div>
                     <div>
-                        <input class="equipment__input" type="checkbox" id="power" name="power" value="10000">
+                        <input class="equipment__input" type="checkbox" id="power" name="power" value="10000" disabled>
                         <label for="power">Гидроусилитель руля</label>
                     </div>
                     <div>
-                        <input class="equipment__input" type="checkbox" id="sensor" name="sensor" value="15000">
+                        <input class="equipment__input" type="checkbox" id="sensor" name="sensor" value="15000"
+                            disabled>
                         <label for="sensor">Задние датчики парковки</label>
                     </div>
                     <div>
-                        <input class="equipment__input" type="checkbox" id="camera" name="camera" value="15000">
+                        <input class="equipment__input" type="checkbox" id="camera" name="camera" value="15000"
+                            disabled>
                         <label for="camera">Камера заднего вида</label>
                     </div>
                 </div>
@@ -120,7 +138,7 @@
 
         </form>
 
-        <div class="price">Итого: 1 924 000 руб.</div>
+        <div class="price"></div>
 
     </main>
 

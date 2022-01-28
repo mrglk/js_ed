@@ -5,6 +5,10 @@ main {
     align-items: center;
 }
 
+select {
+    width: 250px;
+}
+
 .inputSection__wrapper {
     display: flex;
     gap: 20px;
@@ -21,4 +25,8 @@ main {
 
 .inputSection__input_equipment label {
     margin-left: 2px;
+}
+
+.display__hidden {
+    display: none;
 }
