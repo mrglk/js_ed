@@ -4,13 +4,125 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Рассчет стоимость автомобиля</title>
 </head>
 
 <body>
+
+    <main>
+        <h1>Рассчет стоимость автомобиля Hundai Sonata</h1>
+        <form class="form">
+            <div class="inputSection__wrapper">
+                <div class="inputSection__title">
+                    <label for="modif">Модификация</label>
+                </div>
+                <div class="inputSection__input">
+                    <select name="modif" id="modif">
+                        <option value="1924000" selected>2.0 MPI - 6AT</option>
+                        <option value="2174000">2.5 MPI - 6AT</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="inputSection__wrapper">
+                <div class="inputSection__title">
+                    <label>Цвет салона</label>
+                </div>
+                <div class="inputSection__input inputSection__input_color">
+                    <div>
+                        <label for="color_salon_0"><input type="radio" name="color_salon" id="color_salon_0" value="0"
+                                checked>Черный</label>
+                    </div>
+                    <div>
+                        <label for="color_salon_1"><input type="radio" name="color_salon" id="color_salon_1"
+                                value="0">Серый</label>
+                    </div>
+                    <div>
+                        <label for="color_salon_2"><input type="radio" name="color_salon" id="color_salon_2"
+                                value="0">Бежевый</label></div>
+                </div>
+            </div>
+
+            <div class="inputSection__wrapper">
+                <div class="inputSection__title">
+                    <label>Экстерьер</label>
+                </div>
+                <div class="inputSection__input inputSection__input_color">
+                    <div>
+                        <label for="color_ex_0"><input type="radio" name="color_ex" id="color_ex_0" value="0"
+                                checked>Базовый,
+                            Clear White</label>
+                    </div>
+                    <div>
+                        <label for="color_ex_1"><input type="radio" name="color_ex" id="color_ex_1" value="18000">Серый,
+                            Nocturne
+                            Gray</label>
+                    </div>
+                    <div>
+                        <label for="color_ex_2"><input type="radio" name="color_ex" id="color_ex_2"
+                                value="18000">Красный, Runway
+                            Red</label>
+                    </div>
+                    <div>
+                        <label for="color_ex_3"><input type="radio" name="color_ex" id="color_ex_3"
+                                value="18000">Серебристый, Silky
+                            Silver</label>
+                    </div>
+                    <div>
+                        <label for="color_ex_4"><input type="radio" name="color_ex" id="color_ex_4" value="18000">Синий,
+                            Oxford Blue
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="color_ex_5"><input type="radio" name="color_ex" id="color_ex_5"
+                                value="18000">Черный, Aurora Black
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="inputSection__wrapper">
+                <div class="inputSection__title">
+                    <label>Комплектация</label>
+                </div>
+                <div class="inputSection__input inputSection__input_equipment">
+                    <div>
+                        <input class="equipment__input" type="checkbox" id="climat" name="climat" value="40000">
+                        <label for="climat">Климат-контроль</label>
+                    </div>
+                    <div>
+                        <input class="equipment__input" type="checkbox" id="cruise" name="cruise" value="70000">
+                        <label for="cruise">Круиз-контроль</label>
+                    </div>
+                    <div>
+                        <input class="equipment__input" type="checkbox" id="heating" name="heating" value="60000">
+                        <label for="heating">Подогрев сидений</label>
+                    </div>
+                    <div>
+                        <input class="equipment__input" type="checkbox" id="power" name="power" value="10000">
+                        <label for="power">Гидроусилитель руля</label>
+                    </div>
+                    <div>
+                        <input class="equipment__input" type="checkbox" id="sensor" name="sensor" value="15000">
+                        <label for="sensor">Задние датчики парковки</label>
+                    </div>
+                    <div>
+                        <input class="equipment__input" type="checkbox" id="camera" name="camera" value="15000">
+                        <label for="camera">Камера заднего вида</label>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="price">Итого: 1 924 000 руб.</div>
+
+    </main>
 
     <script src="script.js"></script>
 </body>

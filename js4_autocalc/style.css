@@ -1,0 +1,24 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputSection__wrapper {
+    display: flex;
+    gap: 20px;
+    margin: 15px;
+}
+
+.inputSection__title {
+    width: 100px;
+}
+
+.inputSection__input_color input {
+    margin-right: 5px;
+}
+
+.inputSection__input_equipment label {
+    margin-left: 2px;
+}
