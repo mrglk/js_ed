@@ -3,17 +3,17 @@ const model = document.getElementById('model');
 const modif = document.getElementById('modif');
 const colors1 = document.querySelectorAll('input[name=color_salon]');
 const colors2 = document.querySelectorAll('input[name=color_ex]');
-const equipments = document.querySelectorAll('.equipment__input')
+const equipments = document.querySelectorAll('.equipment__input');
 
 model.addEventListener("change", function() {
     if (model.value != "0") {
-        for (i = 0; i < colors1.length; i++) {
+        for (let i = 0; i < colors1.length; i++) {
             colors1[i].removeAttribute('disabled');
         }
-        for (i = 0; i < colors2.length; i++) {
+        for (let i = 0; i < colors2.length; i++) {
             colors2[i].removeAttribute('disabled');
         }
-        for (i = 0; i < equipments.length; i++) {
+        for (let i = 0; i < equipments.length; i++) {
             equipments[i].removeAttribute('disabled');
         }
     }
@@ -39,7 +39,7 @@ model.addEventListener("change", function() {
         modif.appendChild(option);
     }
 
-})
+});
 
 form.addEventListener("change", function() {
     const price = document.querySelector('.price');
@@ -59,7 +59,7 @@ form.addEventListener("change", function() {
     }
     
     let equipmentsValue = 0;
-    for (i = 0; i < equipments.length; i++) {
+    for (let i = 0; i < equipments.length; i++) {
         if (equipments[i].checked) {
             equipmentsValue += Number(equipments[i].value);
         }
@@ -70,4 +70,4 @@ form.addEventListener("change", function() {
     }
     
     price.innerHTML = `Цена: ${numberWithSpaces(Number(modifValue) + Number(colorsValue) + equipmentsValue)} ₽`;
-})
+});
