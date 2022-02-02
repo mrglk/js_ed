@@ -1,8 +1,8 @@
 const button = document.querySelector("button");
 
 const checkSpam = (str) => {
-return str.replace(/viagra/i,"***" )
-.replace(/xxx/i,"***" );
+return str.replace(/viagra/gi,"***" )
+.replace(/xxx/gi,"***" );
 };
 
 button.addEventListener("click", function(event) {
@@ -10,7 +10,7 @@ button.addEventListener("click", function(event) {
     let value = document.querySelector("textarea").value;
     let container = document.querySelector(".form__area");
     let comment = document.createElement("div");
-    comment.value = value;
+    comment.classList.add('comment');
     comment.textContent = checkSpam(value);
     container.appendChild(comment);
 });
