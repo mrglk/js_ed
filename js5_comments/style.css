@@ -1,0 +1,46 @@
+main {
+    height: 100%;
+    margin: 20px;
+}
+
+.form {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+}
+
+.form__area {
+    height: 50vh;
+    width: 420px;
+    flex: 1 1 auto;
+    word-wrap: break-word;
+}
+
+.form__comment {
+    flex: 0 0 auto;
+}
+
+
+/* body {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+header {
+    flex: 0 0 auto;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex: 0 0 auto;
+} */
