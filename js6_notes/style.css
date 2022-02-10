@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 100%;
+    width: 50%;
+}
+
+.form__area {
+    width: 420px;
+    flex: 1 1 auto;
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+
+.form__note {
+    flex: 0 0 auto;
+}
+
+.form__area {
+    width: 420px;
+    flex: 1 1 auto;
+    word-wrap: break-word;
+}
+
+.form__comment {
+    flex: 0 0 auto;
+    margin-bottom: 20px;
+}
+
+.form__description {
+    padding-bottom: 0;
+    margin-bottom: 7px;
+}
+
+.img {
+    width: 50px;
+}
