@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Опросник для обладателей котиков</h1>
+        <form>
+            <div>
+                <label>Кличка питомца: <input type="text" name="petName" minlength="2" maxlength="20"
+                        required /></label>
+            </div>
+            <fieldset>
+                <legend>Информация о хозяине</legend>
+                <div>
+                    <label>Имя: <input type="text" name="ownerName" minlength="2" maxlength="20" required /></label>
+                </div>
+                <div>
+                    <label>Телефон: <input type="tel" name="telephone"
+                            pattern="(\+7|8)[- _]*\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})"
+                            minlength="10" maxlength="20" required /></label>
+                </div>
+                <div>
+                    <label>Почта: <input type="email" name="email"
+                            pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                            required /></label>
+                </div>
+            </fieldset>
+            <div>Порода питомца:
+                <select required>
+                    <option disabled selected value=''>Выберите породу</option>
+                    <option value="1">Мейн-кун</option>
+                    <option value="2">Сфинкс</option>
+                    <option value="3">Манчкин</option>
+                    <option value="3">Другая</option>
+                </select>
+            </div>
+            <div>Чем питается ваш питомец:<br>
+                <div>
+                    <label><input type="checkbox" name="petFood" value="1" /> Сухой корм</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" name="petFood" value="2" /> Влажный корм</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" name="petFood" value="3" /> Натуральный корм</label>
+                </div>
+            </div>
+            <div>Пол питомца:<br>
+                <div>
+                    <label><input type="radio" name="sex" value="m" checked />Самец</label>
+                </div>
+                <div>
+                    <label><input type="radio" name="sex" value="f" />Самка</label>
+                </div>
+            </div>
+            <div>
+                <label for="comment">Комментарий:</label><br>
+                <textarea rows="5" cols="50" id="comment"></textarea>
+            </div>
+            <div>
+                <label>Фото питомца: <input type="file" /></label>
+            </div>
+            <div>
+                <button type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
