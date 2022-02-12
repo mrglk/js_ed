@@ -1,30 +1,10 @@
-
-
-document.addEventListener("DOMContentLoaded", function(event) {
-    let username = localStorage.getItem('name');
-    if (username != null) {
-        document.querySelector("#name").value = username;
-    }
-
-    let comm = localStorage.getItem('comments');
-    if (comm != null) {
-        let items = comm.split(", ");
-
-        for (let i = 0; i <= items.length; i++) {
-            let comment = document.createElement("div");
-            comment.classList.add('comment');
-            comment.textContent = items[i];
-            document.querySelector(".form__area").appendChild(comment);
-        }
-        // document.querySelector(".form__area").innerHTML += comm.split(", ")
-        // console.log(comm.split(", "))
-    }
-
-});
-
-
 const button = document.querySelector("button");
-const comments = [];
+
+let comm = localStorage.getItem('comments');
+let comments = comm != null ? comm.split(", ") : [];
+
+let ava = localStorage.getItem('ava');
+let avatars = ava != null ? ava.split(", ") : [];
 
 const checkSpam = (str) => {
     return str.replace(/viagra/gi,"***" )
@@ -39,57 +19,80 @@ button.addEventListener("click", function(event) {
     let container = document.querySelector(".form__area");
     let comment = document.createElement("div");
 
-    // let avatar = document.createElement("img");
-    // let photo = document.querySelector("#photo").value;
-    // avatar.classList.add("img");
-    // avatar.src = "https://cdn-icons-png.flaticon.com/512/893/893815.png"; 
 
-    // if(photo) {
-    //     avatar.src = photo; 
-    // };
+    // загрузка аватарки
+
+    let avatar = document.createElement("img");
+    avatar.classList.add("img");
+
+    let file = document.querySelector("#file");
+    if (file.value) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                avatar.src = e.target.result;
+
+                avatars.push(avatar.src);
+                localStorage.setItem('ava', avatars.join(", "));
+            };
+            reader.readAsDataURL(file.files[0]);
+
+    } else {
+        avatar.src = "https://cdn0.iconfinder.com/data/icons/clearicons/789/anonim-512.png";
+        avatars.push(avatar.src);
+        localStorage.setItem('ava', avatars.join(", "));
+    };
+
+// сохранение имени
 
     localStorage.setItem('name', name);
+
+// вывод комментария
 
     if (textarea.value) {
         comment.classList.add('comment');
         comment.textContent = `${name}: ${checkSpam(textarea.value)}`;
-        // comment.appendChild(avatar);
+        comment.appendChild(avatar);
         container.appendChild(comment);
         comments.push(comment.textContent);
         textarea.value = '';
     } else return;
 
-    localStorage.setItem('comments', (localStorage.getItem('comments') || '') + ", " + comments.join(", "));
 
+// сохранение коммента
+
+    localStorage.setItem('comments', comments.join(", "));
 
 });
 
-// другой вариант
+// 
 
+document.addEventListener("DOMContentLoaded", function(event) {
+    let username = localStorage.getItem('name');
+    if (username != null) {
+        document.querySelector("#name").value = username;
+    }
 
+    let comm = localStorage.getItem('comments');
+    let ava = localStorage.getItem('ava');
 
-// button.onclick = function(user, text) {
-//     let container = document.querySelector(".form__area");
+    if (comm != null) {
+        let items = comm.split(", ");
+        let photos = ava.split(", ");
 
-//     if (text) {
-//         comment.classList.add('comment');
-//         comment.textContent = `${user}: ${checkSpam(text)}`;
-//         container.appendChild(comment);
-//         comments.push(comment.textContent);
-//         textarea.value = '';
-//     } else return;
+        for (let i = 0; i <= items.length - 1; i++) {
+            let comment = document.createElement("div");
+            comment.classList.add('comment');
+            comment.textContent = items[i];
 
-// };
+            let avatar = document.createElement("img");
+            avatar.classList.add("img");
+            avatar.src = photos[i];
 
+            comment.appendChild(avatar);
+            
 
+            document.querySelector(".form__area").appendChild(comment);
+        };
+    };
 
-
-// const addComment = () => {
-//     let textarea = document.querySelector("textarea");
-//     user = document.querySelector("#name").value;
-//     let container = document.querySelector(".form__area");
-//     let comment = document.createElement("div");
-//     text = textarea.value;
-//     comment.classList.add('comment');
-//     comment.textContent = `${user}: ${checkSpam(text)}`;
-// };
+});
