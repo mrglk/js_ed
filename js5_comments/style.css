@@ -41,7 +41,6 @@ body {
     margin-right: 7px;
 }
 
-
 .comment {
     display: flex;
     flex-direction: row-reverse;
@@ -53,4 +52,6 @@ body {
 
 .comment__inner {
     overflow-wrap: break-word;
+    overflow-y: scroll;
+    margin-right: 7px;
 }

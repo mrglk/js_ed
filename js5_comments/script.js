@@ -26,11 +26,14 @@ form.addEventListener("submit", function(event) {
 
 const createComment = (username, image, text) => {
     let comment = document.createElement("div");
+    let p = document.createElement("p");
     comment.classList.add('comment');
-    comment.textContent = `${username}: ${checkSpam(text)}`;
-    comment.appendChild(image); 
+    p.classList.add("comment__inner");
+    p.textContent = `${username}: ${checkSpam(text)}`;
+    comment.appendChild(p);
+    comment.appendChild(image);
     container.appendChild(comment);
-    comments.push(comment.textContent);
+    comments.push(p.textContent);
 };
 
 const getAvatar = () => {
@@ -77,15 +80,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         for (let i = 0; i <= items.length - 1; i++) {
             let comment = document.createElement("div");
+            let p = document.createElement("p");
             comment.classList.add('comment');
-            comment.textContent = items[i];
+            p.classList.add("comment__inner");
+            p.textContent = items[i];
+            comment.appendChild(p);
 
             let avatar = document.createElement("img");
             avatar.classList.add("img");
             avatar.src = photos[i];
 
             comment.appendChild(avatar);
-            document.querySelector(".form__area").appendChild(comment);
+            container.appendChild(comment);
         };
     }
 
