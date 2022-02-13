@@ -1,4 +1,6 @@
-const button = document.querySelector("button");
+const form = document.querySelector("form");
+let textarea = document.querySelector("textarea");
+let container = document.querySelector(".form__area");
 
 let comm = localStorage.getItem('comments');
 let comments = comm != null ? comm.split(", ") : [];
@@ -6,65 +8,56 @@ let comments = comm != null ? comm.split(", ") : [];
 let ava = localStorage.getItem('ava');
 let avatars = ava != null ? ava.split(", ") : [];
 
-const checkSpam = (str) => {
-    return str.replace(/viagra/gi,"***" )
-    .replace(/xxx/gi,"***" );
-    };
-
-
-button.addEventListener("click", function(event) {
+form.addEventListener("submit", function(event) {
     event.preventDefault()
-    let textarea = document.querySelector("textarea");
-    let name = document.querySelector("#name").value;
-    let container = document.querySelector(".form__area");
     let comment = document.createElement("div");
-
-
-    // загрузка аватарки
-
-    let avatar = document.createElement("img");
-    avatar.classList.add("img");
-
-    let file = document.querySelector("#file");
-    if (file.value) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                avatar.src = e.target.result;
-
-                avatars.push(avatar.src);
-                localStorage.setItem('ava', avatars.join(", "));
-            };
-            reader.readAsDataURL(file.files[0]);
-
-    } else {
-        avatar.src = "https://cdn0.iconfinder.com/data/icons/clearicons/789/anonim-512.png";
-        avatars.push(avatar.src);
-        localStorage.setItem('ava', avatars.join(", "));
-    };
-
-// сохранение имени
-
+    let name = document.querySelector("#name").value;
     localStorage.setItem('name', name);
 
-// вывод комментария
-
-    if (textarea.value) {
-        comment.classList.add('comment');
-        comment.textContent = `${name}: ${checkSpam(textarea.value)}`;
-        comment.appendChild(avatar);
-        container.appendChild(comment);
-        comments.push(comment.textContent);
-        textarea.value = '';
-    } else return;
-
-
-// сохранение коммента
+    if (!textarea.value) {
+        return;
+    }
+    
+    let avatar = getAvatar();
+    comment.classList.add('comment');
+    comment.textContent = `${name}: ${checkSpam(textarea.value)}`;
+    comment.appendChild(avatar);
+    container.appendChild(comment);
+    comments.push(comment.textContent);
+    textarea.value = '';
 
     localStorage.setItem('comments', comments.join(", "));
 
 });
 
-// 
+const getAvatar = () => {
+    let avatar = document.createElement("img");
+    let file = document.querySelector("#file");
+    
+    avatar.classList.add("img");
+
+    if (file.value) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                addAvatar(avatar, e.target.result);
+            };
+            reader.readAsDataURL(file.files[0]);
+    } else {
+        addAvatar(avatar, "https://cdn0.iconfinder.com/data/icons/clearicons/789/anonim-512.png");
+    }
+
+    return avatar;
+};
+
+const addAvatar = (avatar, src) => {
+    avatar.src = src;
+    avatars.push(avatar.src);
+    localStorage.setItem('ava', avatars.join(", "));
+};
+
+const checkSpam = (str) => {
+    return str.replace(/viagra|xxx/ig, "***");
+    };
 
 document.addEventListener("DOMContentLoaded", function(event) {
     let username = localStorage.getItem('name');
@@ -89,10 +82,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             avatar.src = photos[i];
 
             comment.appendChild(avatar);
-            
-
             document.querySelector(".form__area").appendChild(comment);
         };
-    };
+    }
 
 });
