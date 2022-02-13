@@ -10,25 +10,28 @@ let avatars = ava != null ? ava.split(", ") : [];
 
 form.addEventListener("submit", function(event) {
     event.preventDefault()
-    let comment = document.createElement("div");
     let name = document.querySelector("#name").value;
+    let avatar = getAvatar();
     localStorage.setItem('name', name);
 
     if (!textarea.value) {
         return;
     }
     
-    let avatar = getAvatar();
-    comment.classList.add('comment');
-    comment.textContent = `${name}: ${checkSpam(textarea.value)}`;
-    comment.appendChild(avatar);
-    container.appendChild(comment);
-    comments.push(comment.textContent);
+    createComment(name, avatar, textarea.value);
     textarea.value = '';
-
     localStorage.setItem('comments', comments.join(", "));
 
 });
+
+const createComment = (username, image, text) => {
+    let comment = document.createElement("div");
+    comment.classList.add('comment');
+    comment.textContent = `${username}: ${checkSpam(text)}`;
+    comment.appendChild(image); 
+    container.appendChild(comment);
+    comments.push(comment.textContent);
+};
 
 const getAvatar = () => {
     let avatar = document.createElement("img");
