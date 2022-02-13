@@ -4,41 +4,45 @@ body {
     margin: 0;
 }
 
+body {
+    font-family: "Montserrat", Arial, sans-serif;
+    background-color: rgb(243, 224, 200);
+}
+
 .form {
     display: flex;
     flex-direction: column;
     margin: auto;
     height: 100%;
-    width: 50%;
+    width: 70%;
 }
 
 .form__area {
-    width: 420px;
     flex: 1 1 auto;
     word-wrap: break-word;
     overflow-y: scroll;
 }
 
-.form__note {
+.form__notearea {
     flex: 0 0 auto;
+    padding-bottom: 40px;
 }
 
-.form__area {
-    width: 420px;
-    flex: 1 1 auto;
-    word-wrap: break-word;
+.form__textarea {
+    margin-bottom: 10px;
+    width: 99.5%;
 }
 
-.form__comment {
-    flex: 0 0 auto;
-    margin-bottom: 20px;
+.form__button {
+    display: flex;
+    justify-content: space-between;
 }
 
-.form__description {
-    padding-bottom: 0;
-    margin-bottom: 7px;
+.form__error {
+    color: red;
 }
 
-.img {
-    width: 50px;
+button {
+    padding: 20px;
+    width: 150px;
 }
