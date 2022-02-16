@@ -13,9 +13,9 @@
 <body>
     <div class="container">
         <h1>Опросник для обладателей котиков</h1>
-        <form>
+        <form class="petForm">
             <div>
-                <label>Кличка питомца: <input type="text" name="petName" minlength="2" maxlength="20"
+                <label>Кличка питомца: <input type="text" class="petName" name="petName" minlength="2" maxlength="20"
                         required /></label>
             </div>
             <fieldset>
@@ -35,31 +35,32 @@
                 </div>
             </fieldset>
             <div>Порода питомца:
-                <select required>
+                <select class="petBreed" required>
                     <option disabled selected value=''>Выберите породу</option>
-                    <option value="1">Мейн-кун</option>
-                    <option value="2">Сфинкс</option>
-                    <option value="3">Манчкин</option>
-                    <option value="3">Другая</option>
+                    <option value="Мейн-кун">Мейн-кун</option>
+                    <option value="Сфинкс">Сфинкс</option>
+                    <option value="Манчкин">Манчкин</option>
+                    <option value="Другая">Другая</option>
                 </select>
             </div>
             <div>Чем питается ваш питомец:<br>
                 <div>
-                    <label><input type="checkbox" name="petFood" value="1" /> Сухой корм</label>
+                    <label><input type="checkbox" name="petFood" value="Сухой корм" /> Сухой корм</label>
                 </div>
                 <div>
-                    <label><input type="checkbox" name="petFood" value="2" /> Влажный корм</label>
+                    <label><input type="checkbox" name="petFood" value="Влажный корм" /> Влажный корм</label>
                 </div>
                 <div>
-                    <label><input type="checkbox" name="petFood" value="3" /> Натуральный корм</label>
+                    <label><input type="checkbox" name="petFood" value="Натуральный корм" /> Натуральный
+                        корм</label>
                 </div>
             </div>
             <div>Пол питомца:<br>
                 <div>
-                    <label><input type="radio" name="sex" value="m" checked />Самец</label>
+                    <label><input type="radio" name="sex" value="Самец" checked />Самец</label>
                 </div>
                 <div>
-                    <label><input type="radio" name="sex" value="f" />Самка</label>
+                    <label><input type="radio" name="sex" value="Самка" />Самка</label>
                 </div>
             </div>
             <div>
