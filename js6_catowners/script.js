@@ -9,7 +9,7 @@ class Cat {
 
 let petForm = document.querySelector(".petForm");
 
-petForm.addEventListener("submit", function(e) { // почему не работает с submit
+petForm.addEventListener("submit", function(e) {
     e.preventDefault()
     let petName = document.querySelector(".petName").value;
     let petBreed = document.querySelector(".petBreed").value;
