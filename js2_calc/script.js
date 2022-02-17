@@ -40,7 +40,7 @@ class Calculator {
     }
 
     static div(a, b) {
-        return (a === "" || b === "") ? "Введите оба значения" : (b == 0) ? "На ноль делить нельзя!" : Number(a) / Number(b);
+        return (a === "" || b === "") ? "Введите оба значения" : (+b === 0) ? "На ноль делить нельзя!" : Number(a) / Number(b);
     }
 
     static mult(a, b) {
@@ -104,7 +104,7 @@ const mult = () => {
 // const div = () => {
 //     const [a, b] = getValues('div');
 // let divResult = document.getElementById('divResult');
-//     if (b === 0) {
+//     if (+b === 0) {
 //         return divResult.textContent = "На ноль делить нельзя!";
 //     } else {
 //         let result = Number(a) / Number(b);
