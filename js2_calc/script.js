@@ -79,7 +79,6 @@ const mult = () => {
     return multResult.textContent = Calculator.mult(a, b);;
 };
 
-
 //  старый калькулятор
 
 // const getValues = (x) => {
@@ -105,7 +104,7 @@ const mult = () => {
 // const div = () => {
 //     const [a, b] = getValues('div');
 // let divResult = document.getElementById('divResult');
-//     if (!b) {
+//     if (b === 0) {
 //         return divResult.textContent = "На ноль делить нельзя!";
 //     } else {
 //         let result = Number(a) / Number(b);
@@ -124,18 +123,7 @@ const mult = () => {
 
 const divColor = sender => sender.classList.toggle('column_color');
 
-// галерея старое решение
-
-// const frw = () => {
-//     let img = document.querySelector('.photo');
-//     img.src = "img/dog.jpeg";
-// };
-
-// const bck = () => {
-//     let img = document.querySelector('.photo');
-//     img.src = "img/cat.jpeg";
-// };
-
+// галерея
 
 const img = document.querySelector('.photo');
 const photos = [
