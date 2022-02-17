@@ -7,16 +7,12 @@ color.addEventListener("change", function() {
 
     switch(color.value) {
         case "pink": body.style.backgroundColor = "rgb(209, 158, 186)";
-        console.log("розовый")
         break;
         case "blue": body.style.backgroundColor = "rgb(134, 188, 219)";
-        console.log("голубой")
         break;
         case "green": body.style.backgroundColor = "rgb(158, 209, 181)";
-        console.log("белый")
         break;
         case "white": body.style.backgroundColor = "white";
-        console.log("белый")
         break;
         
     }
@@ -34,6 +30,25 @@ const showMessage = () => {
 
 // калькулятор
 
+class Calculator {
+    static sum(a, b) {
+        return (a === "" || b === "") ? "Введите оба значения" : Number(a) + Number(b);
+    }
+
+    static sub(a, b) {
+        return (a === "" || b === "") ? "Введите оба значения" : Number(a) - Number(b);
+    }
+
+    static div(a, b) {
+        return (a === "" || b === "") ? "Введите оба значения" : (b == 0) ? "На ноль делить нельзя!" : Number(a) / Number(b);
+    }
+
+    static mult(a, b) {
+        return (a === "" || b === "") ? "Введите оба значения" : Number(a) * Number(b);
+    }
+};
+
+
 const getValues = (x) => {
     const a = document.getElementById(x + "1").value;
     const b = document.getElementById(x + "2").value;
@@ -42,35 +57,68 @@ const getValues = (x) => {
 
 const sum = () => {
     const [a, b] = getValues('sum');
-    let result = Number(a) + Number(b);
     let sumResult = document.getElementById('sumResult');
-    return sumResult.textContent = result;
+    return sumResult.textContent = Calculator.sum(a, b);
 };
 
 const sub = () => {
     const [a, b] = getValues('sub');
-    let result = Number(a) - Number(b);
     let subResult = document.getElementById('subResult');
-    return subResult.textContent = result;
+    return subResult.textContent = Calculator.sub(a, b);;
 };
 
 const div = () => {
     const [a, b] = getValues('div');
-    if (b == 0) {
-        return divResult.textContent = "На ноль делить нельзя!";
-    } else {
-        let result = Number(a) / Number(b);
-        let divResult = document.getElementById('divResult');
-        return divResult.textContent = result;
-    }
+    let divResult = document.getElementById('divResult');
+    return divResult.textContent = Calculator.div(a, b);
 };
 
 const mult = () => {
     const [a, b] = getValues('mult');
-    let result = Number(a) * Number(b);
     let multResult = document.getElementById('multResult');
-    return multResult.textContent = result;
+    return multResult.textContent = Calculator.mult(a, b);;
 };
+
+
+//  старый калькулятор
+
+// const getValues = (x) => {
+//     const a = document.getElementById(x + "1").value;
+//     const b = document.getElementById(x + "2").value;
+//     return [a, b];
+// };
+
+// const sum = () => {
+//     const [a, b] = getValues('sum');
+//     let result = Number(a) + Number(b);
+//     let sumResult = document.getElementById('sumResult');
+//     return sumResult.textContent = result;
+// };
+
+// const sub = () => {
+//     const [a, b] = getValues('sub');
+//     let result = Number(a) - Number(b);
+//     let subResult = document.getElementById('subResult');
+//     return subResult.textContent = result;
+// };
+
+// const div = () => {
+//     const [a, b] = getValues('div');
+// let divResult = document.getElementById('divResult');
+//     if (!b) {
+//         return divResult.textContent = "На ноль делить нельзя!";
+//     } else {
+//         let result = Number(a) / Number(b);
+//         return divResult.textContent = result;
+//     }
+// };
+
+// const mult = () => {
+//     const [a, b] = getValues('mult');
+//     let result = Number(a) * Number(b);
+//     let multResult = document.getElementById('multResult');
+//     return multResult.textContent = result;
+// };
 
 // дивы
 
