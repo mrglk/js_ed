@@ -9,6 +9,8 @@ button.addEventListener("click", function () {
        return
    }
 
+   gifContainer.innerHTML = "";
+   
    fetch("https://api.giphy.com/v1/gifs/search?api_key=" + key + "&q=" + input.value + "&limit=25&offset=0&rating=g&lang=en")
    .then(response => response.json())
    .then(data => {
