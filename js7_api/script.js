@@ -11,10 +11,10 @@ button.addEventListener("click", function () {
 
    gifContainer.innerHTML = "";
 
-   fetch("https://api.giphy.com/v1/gifs/search?api_key=" + key + "&q=" + input.value + "&limit=25&offset=0&rating=g&lang=en")
+   fetch("https://api.giphy.com/v1/gifs/search?api_key=" + key + "&q=" + input.value + "&limit=5&offset=0&rating=g&lang=en")
    .then(response => response.json())
    .then(data => {
-       for (let i = 0; i < data.data.length - 1; i++) {
+       for (let i = 0; i < data.data.length; i++) {
         const img = document.createElement("img");
         img.src = data.data[i].images.original.url;;
         gifContainer.appendChild(img);
