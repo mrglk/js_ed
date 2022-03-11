@@ -1,10 +1,7 @@
 const button = document.querySelector('button');
-const formValues = {
-    name: document.getElementById("name").value,
-    surname: document.getElementById("surname").value,
-};
 
 button.addEventListener("click", function() {
+    
     const form = button.closest("form");
     const inputs = form.querySelectorAll(".form__input");
     let isValid = true;
@@ -95,6 +92,7 @@ button.addEventListener("click", function() {
     let name = document.getElementById('name').value;
 
     if(isValid) {
+        submitForm();
         alert(`Добро пожаловать, ${name}!`);
     }
 
@@ -112,16 +110,28 @@ checkbox.addEventListener('change', function() {
     }
 });
 
-submitForm = (event) => {
+submitForm = () => {
+
+    const user = {
+        name: document.getElementById("name").value,
+        surname: document.getElementById("surname").value,
+        login: document.getElementById("login").value,
+        password1: document.getElementById("password1").value,
+        password2: document.getElementById("password2").value,
+        tel: document.getElementById("tel").value,
+        eula: document.getElementById("eula").checked,
+        promo: document.getElementById("promo").checked
+    };
 
     fetch("https://httpbin.org/post", {
         method: "POST",
+        body: JSON.stringify(user),
         headers: {
             "Content-Type": 'application/json;charset=utf-8'
         },
-        mode: "corse",
-        body: JSON.stringify(formValues)
+        mode: "cors"
     })
+    .then(response => response.json())
     .then(message => console.log(message))
-    .catche(error => console.log(error))
+    .catch(error => console.log(error))
 }
