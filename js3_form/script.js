@@ -1,4 +1,8 @@
 const button = document.querySelector('button');
+const formValues = {
+    name: document.getElementById("name").value,
+    surname: document.getElementById("surname").value,
+};
 
 button.addEventListener("click", function() {
     const form = button.closest("form");
@@ -107,3 +111,17 @@ checkbox.addEventListener('change', function() {
         button.classList.remove('button_disabled');
     }
 });
+
+submitForm = (event) => {
+
+    fetch("https://httpbin.org/post", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json;charset=utf-8'
+        },
+        mode: "corse",
+        body: JSON.stringify(formValues)
+    })
+    .then(message => console.log(message))
+    .catche(error => console.log(error))
+}
