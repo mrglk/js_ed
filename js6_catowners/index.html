@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h1>Опросник для обладателей котиков</h1>
-        <form class="petForm">
+        <form class="petForm" id="formHolder">
             <div>
                 <label>Кличка питомца: <input type="text" class="petName" name="petName" minlength="2" maxlength="20"
                         required /></label>
@@ -65,10 +65,10 @@
             </div>
             <div>
                 <label for="comment">Комментарий:</label><br>
-                <textarea rows="5" cols="50" id="comment"></textarea>
+                <textarea rows="5" cols="50" name="comment" id="comment"></textarea>
             </div>
             <div>
-                <label>Фото питомца: <input type="file" /></label>
+                <label>Фото питомца: <input id="file" name="file" type="file" /></label>
             </div>
             <div>
                 <button type="submit">Сохранить</button>

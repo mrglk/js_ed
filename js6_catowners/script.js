@@ -31,5 +31,36 @@ petForm.addEventListener("submit", function(e) {
     }
 
     let cat = new Cat(petName, petBreed, petFood, petSex);
-    console.log(cat);
+
+    const image = document.querySelector('input[type=file]')['files'][0];
+
+    const formData = new FormData(document.getElementById('formHolder'));
+    // formData.append("photo", `data:image/jpg;base64,${base64String}`);
+
+    fetch("https://httpbin.org/post", {
+        method: 'POST',
+        mode: 'cors',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(user => console.log(user))
+    .catch(error => console.log(error))
 });
+
+// let base64String = "";
+
+// document.getElementById("file").addEventListener("change", function() {
+//     const file = document.querySelector(
+//         'input[type=file]')['files'][0];
+//     const reader = new FileReader();
+//     console.log("next");
+
+//     reader.onload = function () {
+//         base64String = reader.result.replace("data:", "")
+//             .replace(/^.+,/, "");
+//         const imageBase64Stringsep = base64String;
+
+//         console.log(base64String);
+//     }
+//     reader.readAsDataURL(file);
+// });
