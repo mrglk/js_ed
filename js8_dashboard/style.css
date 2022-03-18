@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+}
+
+.section1 {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+/* .weekChart {
+    width: 40%;
+    padding-right: 300px;
+} */
+
+.section2 {
+    display: flex;
+    justify-content: center;
+}
+
+.section3 {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 70px;
+}

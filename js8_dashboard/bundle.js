@@ -1,4 +1,14338 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["animated-numbers"] = factory();
+	else
+		root["animated-numbers"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	function hotDisposeChunk(chunkId) {
+/******/ 		delete installedChunks[chunkId];
+/******/ 	}
+/******/ 	var parentHotUpdateCallback = window["webpackHotUpdateanimated_numbers"];
+/******/ 	window["webpackHotUpdateanimated_numbers"] = // eslint-disable-next-line no-unused-vars
+/******/ 	function webpackHotUpdateCallback(chunkId, moreModules) {
+/******/ 		hotAddUpdateChunk(chunkId, moreModules);
+/******/ 		if (parentHotUpdateCallback) parentHotUpdateCallback(chunkId, moreModules);
+/******/ 	} ;
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotDownloadUpdateChunk(chunkId) {
+/******/ 		var script = document.createElement("script");
+/******/ 		script.charset = "utf-8";
+/******/ 		script.src = __webpack_require__.p + "" + chunkId + "." + hotCurrentHash + ".hot-update.js";
+/******/ 		if (null) script.crossOrigin = null;
+/******/ 		document.head.appendChild(script);
+/******/ 	}
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotDownloadManifest(requestTimeout) {
+/******/ 		requestTimeout = requestTimeout || 10000;
+/******/ 		return new Promise(function(resolve, reject) {
+/******/ 			if (typeof XMLHttpRequest === "undefined") {
+/******/ 				return reject(new Error("No browser support"));
+/******/ 			}
+/******/ 			try {
+/******/ 				var request = new XMLHttpRequest();
+/******/ 				var requestPath = __webpack_require__.p + "" + hotCurrentHash + ".hot-update.json";
+/******/ 				request.open("GET", requestPath, true);
+/******/ 				request.timeout = requestTimeout;
+/******/ 				request.send(null);
+/******/ 			} catch (err) {
+/******/ 				return reject(err);
+/******/ 			}
+/******/ 			request.onreadystatechange = function() {
+/******/ 				if (request.readyState !== 4) return;
+/******/ 				if (request.status === 0) {
+/******/ 					// timeout
+/******/ 					reject(
+/******/ 						new Error("Manifest request to " + requestPath + " timed out.")
+/******/ 					);
+/******/ 				} else if (request.status === 404) {
+/******/ 					// no update available
+/******/ 					resolve();
+/******/ 				} else if (request.status !== 200 && request.status !== 304) {
+/******/ 					// other failure
+/******/ 					reject(new Error("Manifest request to " + requestPath + " failed."));
+/******/ 				} else {
+/******/ 					// success
+/******/ 					try {
+/******/ 						var update = JSON.parse(request.responseText);
+/******/ 					} catch (e) {
+/******/ 						reject(e);
+/******/ 						return;
+/******/ 					}
+/******/ 					resolve(update);
+/******/ 				}
+/******/ 			};
+/******/ 		});
+/******/ 	}
+/******/
+/******/ 	var hotApplyOnUpdate = true;
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentHash = "af6309dac729499daaa7";
+/******/ 	var hotRequestTimeout = 10000;
+/******/ 	var hotCurrentModuleData = {};
+/******/ 	var hotCurrentChildModule;
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentParents = [];
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentParentsTemp = [];
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotCreateRequire(moduleId) {
+/******/ 		var me = installedModules[moduleId];
+/******/ 		if (!me) return __webpack_require__;
+/******/ 		var fn = function(request) {
+/******/ 			if (me.hot.active) {
+/******/ 				if (installedModules[request]) {
+/******/ 					if (installedModules[request].parents.indexOf(moduleId) === -1) {
+/******/ 						installedModules[request].parents.push(moduleId);
+/******/ 					}
+/******/ 				} else {
+/******/ 					hotCurrentParents = [moduleId];
+/******/ 					hotCurrentChildModule = request;
+/******/ 				}
+/******/ 				if (me.children.indexOf(request) === -1) {
+/******/ 					me.children.push(request);
+/******/ 				}
+/******/ 			} else {
+/******/ 				console.warn(
+/******/ 					"[HMR] unexpected require(" +
+/******/ 						request +
+/******/ 						") from disposed module " +
+/******/ 						moduleId
+/******/ 				);
+/******/ 				hotCurrentParents = [];
+/******/ 			}
+/******/ 			return __webpack_require__(request);
+/******/ 		};
+/******/ 		var ObjectFactory = function ObjectFactory(name) {
+/******/ 			return {
+/******/ 				configurable: true,
+/******/ 				enumerable: true,
+/******/ 				get: function() {
+/******/ 					return __webpack_require__[name];
+/******/ 				},
+/******/ 				set: function(value) {
+/******/ 					__webpack_require__[name] = value;
+/******/ 				}
+/******/ 			};
+/******/ 		};
+/******/ 		for (var name in __webpack_require__) {
+/******/ 			if (
+/******/ 				Object.prototype.hasOwnProperty.call(__webpack_require__, name) &&
+/******/ 				name !== "e" &&
+/******/ 				name !== "t"
+/******/ 			) {
+/******/ 				Object.defineProperty(fn, name, ObjectFactory(name));
+/******/ 			}
+/******/ 		}
+/******/ 		fn.e = function(chunkId) {
+/******/ 			if (hotStatus === "ready") hotSetStatus("prepare");
+/******/ 			hotChunksLoading++;
+/******/ 			return __webpack_require__.e(chunkId).then(finishChunkLoading, function(err) {
+/******/ 				finishChunkLoading();
+/******/ 				throw err;
+/******/ 			});
+/******/
+/******/ 			function finishChunkLoading() {
+/******/ 				hotChunksLoading--;
+/******/ 				if (hotStatus === "prepare") {
+/******/ 					if (!hotWaitingFilesMap[chunkId]) {
+/******/ 						hotEnsureUpdateChunk(chunkId);
+/******/ 					}
+/******/ 					if (hotChunksLoading === 0 && hotWaitingFiles === 0) {
+/******/ 						hotUpdateDownloaded();
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 		fn.t = function(value, mode) {
+/******/ 			if (mode & 1) value = fn(value);
+/******/ 			return __webpack_require__.t(value, mode & ~1);
+/******/ 		};
+/******/ 		return fn;
+/******/ 	}
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotCreateModule(moduleId) {
+/******/ 		var hot = {
+/******/ 			// private stuff
+/******/ 			_acceptedDependencies: {},
+/******/ 			_declinedDependencies: {},
+/******/ 			_selfAccepted: false,
+/******/ 			_selfDeclined: false,
+/******/ 			_selfInvalidated: false,
+/******/ 			_disposeHandlers: [],
+/******/ 			_main: hotCurrentChildModule !== moduleId,
+/******/
+/******/ 			// Module API
+/******/ 			active: true,
+/******/ 			accept: function(dep, callback) {
+/******/ 				if (dep === undefined) hot._selfAccepted = true;
+/******/ 				else if (typeof dep === "function") hot._selfAccepted = dep;
+/******/ 				else if (typeof dep === "object")
+/******/ 					for (var i = 0; i < dep.length; i++)
+/******/ 						hot._acceptedDependencies[dep[i]] = callback || function() {};
+/******/ 				else hot._acceptedDependencies[dep] = callback || function() {};
+/******/ 			},
+/******/ 			decline: function(dep) {
+/******/ 				if (dep === undefined) hot._selfDeclined = true;
+/******/ 				else if (typeof dep === "object")
+/******/ 					for (var i = 0; i < dep.length; i++)
+/******/ 						hot._declinedDependencies[dep[i]] = true;
+/******/ 				else hot._declinedDependencies[dep] = true;
+/******/ 			},
+/******/ 			dispose: function(callback) {
+/******/ 				hot._disposeHandlers.push(callback);
+/******/ 			},
+/******/ 			addDisposeHandler: function(callback) {
+/******/ 				hot._disposeHandlers.push(callback);
+/******/ 			},
+/******/ 			removeDisposeHandler: function(callback) {
+/******/ 				var idx = hot._disposeHandlers.indexOf(callback);
+/******/ 				if (idx >= 0) hot._disposeHandlers.splice(idx, 1);
+/******/ 			},
+/******/ 			invalidate: function() {
+/******/ 				this._selfInvalidated = true;
+/******/ 				switch (hotStatus) {
+/******/ 					case "idle":
+/******/ 						hotUpdate = {};
+/******/ 						hotUpdate[moduleId] = modules[moduleId];
+/******/ 						hotSetStatus("ready");
+/******/ 						break;
+/******/ 					case "ready":
+/******/ 						hotApplyInvalidatedModule(moduleId);
+/******/ 						break;
+/******/ 					case "prepare":
+/******/ 					case "check":
+/******/ 					case "dispose":
+/******/ 					case "apply":
+/******/ 						(hotQueuedInvalidatedModules =
+/******/ 							hotQueuedInvalidatedModules || []).push(moduleId);
+/******/ 						break;
+/******/ 					default:
+/******/ 						// ignore requests in error states
+/******/ 						break;
+/******/ 				}
+/******/ 			},
+/******/
+/******/ 			// Management API
+/******/ 			check: hotCheck,
+/******/ 			apply: hotApply,
+/******/ 			status: function(l) {
+/******/ 				if (!l) return hotStatus;
+/******/ 				hotStatusHandlers.push(l);
+/******/ 			},
+/******/ 			addStatusHandler: function(l) {
+/******/ 				hotStatusHandlers.push(l);
+/******/ 			},
+/******/ 			removeStatusHandler: function(l) {
+/******/ 				var idx = hotStatusHandlers.indexOf(l);
+/******/ 				if (idx >= 0) hotStatusHandlers.splice(idx, 1);
+/******/ 			},
+/******/
+/******/ 			//inherit from previous dispose call
+/******/ 			data: hotCurrentModuleData[moduleId]
+/******/ 		};
+/******/ 		hotCurrentChildModule = undefined;
+/******/ 		return hot;
+/******/ 	}
+/******/
+/******/ 	var hotStatusHandlers = [];
+/******/ 	var hotStatus = "idle";
+/******/
+/******/ 	function hotSetStatus(newStatus) {
+/******/ 		hotStatus = newStatus;
+/******/ 		for (var i = 0; i < hotStatusHandlers.length; i++)
+/******/ 			hotStatusHandlers[i].call(null, newStatus);
+/******/ 	}
+/******/
+/******/ 	// while downloading
+/******/ 	var hotWaitingFiles = 0;
+/******/ 	var hotChunksLoading = 0;
+/******/ 	var hotWaitingFilesMap = {};
+/******/ 	var hotRequestedFilesMap = {};
+/******/ 	var hotAvailableFilesMap = {};
+/******/ 	var hotDeferred;
+/******/
+/******/ 	// The update info
+/******/ 	var hotUpdate, hotUpdateNewHash, hotQueuedInvalidatedModules;
+/******/
+/******/ 	function toModuleId(id) {
+/******/ 		var isNumber = +id + "" === id;
+/******/ 		return isNumber ? +id : id;
+/******/ 	}
+/******/
+/******/ 	function hotCheck(apply) {
+/******/ 		if (hotStatus !== "idle") {
+/******/ 			throw new Error("check() is only allowed in idle status");
+/******/ 		}
+/******/ 		hotApplyOnUpdate = apply;
+/******/ 		hotSetStatus("check");
+/******/ 		return hotDownloadManifest(hotRequestTimeout).then(function(update) {
+/******/ 			if (!update) {
+/******/ 				hotSetStatus(hotApplyInvalidatedModules() ? "ready" : "idle");
+/******/ 				return null;
+/******/ 			}
+/******/ 			hotRequestedFilesMap = {};
+/******/ 			hotWaitingFilesMap = {};
+/******/ 			hotAvailableFilesMap = update.c;
+/******/ 			hotUpdateNewHash = update.h;
+/******/
+/******/ 			hotSetStatus("prepare");
+/******/ 			var promise = new Promise(function(resolve, reject) {
+/******/ 				hotDeferred = {
+/******/ 					resolve: resolve,
+/******/ 					reject: reject
+/******/ 				};
+/******/ 			});
+/******/ 			hotUpdate = {};
+/******/ 			var chunkId = "main";
+/******/ 			// eslint-disable-next-line no-lone-blocks
+/******/ 			{
+/******/ 				hotEnsureUpdateChunk(chunkId);
+/******/ 			}
+/******/ 			if (
+/******/ 				hotStatus === "prepare" &&
+/******/ 				hotChunksLoading === 0 &&
+/******/ 				hotWaitingFiles === 0
+/******/ 			) {
+/******/ 				hotUpdateDownloaded();
+/******/ 			}
+/******/ 			return promise;
+/******/ 		});
+/******/ 	}
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotAddUpdateChunk(chunkId, moreModules) {
+/******/ 		if (!hotAvailableFilesMap[chunkId] || !hotRequestedFilesMap[chunkId])
+/******/ 			return;
+/******/ 		hotRequestedFilesMap[chunkId] = false;
+/******/ 		for (var moduleId in moreModules) {
+/******/ 			if (Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				hotUpdate[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if (--hotWaitingFiles === 0 && hotChunksLoading === 0) {
+/******/ 			hotUpdateDownloaded();
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotEnsureUpdateChunk(chunkId) {
+/******/ 		if (!hotAvailableFilesMap[chunkId]) {
+/******/ 			hotWaitingFilesMap[chunkId] = true;
+/******/ 		} else {
+/******/ 			hotRequestedFilesMap[chunkId] = true;
+/******/ 			hotWaitingFiles++;
+/******/ 			hotDownloadUpdateChunk(chunkId);
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotUpdateDownloaded() {
+/******/ 		hotSetStatus("ready");
+/******/ 		var deferred = hotDeferred;
+/******/ 		hotDeferred = null;
+/******/ 		if (!deferred) return;
+/******/ 		if (hotApplyOnUpdate) {
+/******/ 			// Wrap deferred object in Promise to mark it as a well-handled Promise to
+/******/ 			// avoid triggering uncaught exception warning in Chrome.
+/******/ 			// See https://bugs.chromium.org/p/chromium/issues/detail?id=465666
+/******/ 			Promise.resolve()
+/******/ 				.then(function() {
+/******/ 					return hotApply(hotApplyOnUpdate);
+/******/ 				})
+/******/ 				.then(
+/******/ 					function(result) {
+/******/ 						deferred.resolve(result);
+/******/ 					},
+/******/ 					function(err) {
+/******/ 						deferred.reject(err);
+/******/ 					}
+/******/ 				);
+/******/ 		} else {
+/******/ 			var outdatedModules = [];
+/******/ 			for (var id in hotUpdate) {
+/******/ 				if (Object.prototype.hasOwnProperty.call(hotUpdate, id)) {
+/******/ 					outdatedModules.push(toModuleId(id));
+/******/ 				}
+/******/ 			}
+/******/ 			deferred.resolve(outdatedModules);
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotApply(options) {
+/******/ 		if (hotStatus !== "ready")
+/******/ 			throw new Error("apply() is only allowed in ready status");
+/******/ 		options = options || {};
+/******/ 		return hotApplyInternal(options);
+/******/ 	}
+/******/
+/******/ 	function hotApplyInternal(options) {
+/******/ 		hotApplyInvalidatedModules();
+/******/
+/******/ 		var cb;
+/******/ 		var i;
+/******/ 		var j;
+/******/ 		var module;
+/******/ 		var moduleId;
+/******/
+/******/ 		function getAffectedStuff(updateModuleId) {
+/******/ 			var outdatedModules = [updateModuleId];
+/******/ 			var outdatedDependencies = {};
+/******/
+/******/ 			var queue = outdatedModules.map(function(id) {
+/******/ 				return {
+/******/ 					chain: [id],
+/******/ 					id: id
+/******/ 				};
+/******/ 			});
+/******/ 			while (queue.length > 0) {
+/******/ 				var queueItem = queue.pop();
+/******/ 				var moduleId = queueItem.id;
+/******/ 				var chain = queueItem.chain;
+/******/ 				module = installedModules[moduleId];
+/******/ 				if (
+/******/ 					!module ||
+/******/ 					(module.hot._selfAccepted && !module.hot._selfInvalidated)
+/******/ 				)
+/******/ 					continue;
+/******/ 				if (module.hot._selfDeclined) {
+/******/ 					return {
+/******/ 						type: "self-declined",
+/******/ 						chain: chain,
+/******/ 						moduleId: moduleId
+/******/ 					};
+/******/ 				}
+/******/ 				if (module.hot._main) {
+/******/ 					return {
+/******/ 						type: "unaccepted",
+/******/ 						chain: chain,
+/******/ 						moduleId: moduleId
+/******/ 					};
+/******/ 				}
+/******/ 				for (var i = 0; i < module.parents.length; i++) {
+/******/ 					var parentId = module.parents[i];
+/******/ 					var parent = installedModules[parentId];
+/******/ 					if (!parent) continue;
+/******/ 					if (parent.hot._declinedDependencies[moduleId]) {
+/******/ 						return {
+/******/ 							type: "declined",
+/******/ 							chain: chain.concat([parentId]),
+/******/ 							moduleId: moduleId,
+/******/ 							parentId: parentId
+/******/ 						};
+/******/ 					}
+/******/ 					if (outdatedModules.indexOf(parentId) !== -1) continue;
+/******/ 					if (parent.hot._acceptedDependencies[moduleId]) {
+/******/ 						if (!outdatedDependencies[parentId])
+/******/ 							outdatedDependencies[parentId] = [];
+/******/ 						addAllToSet(outdatedDependencies[parentId], [moduleId]);
+/******/ 						continue;
+/******/ 					}
+/******/ 					delete outdatedDependencies[parentId];
+/******/ 					outdatedModules.push(parentId);
+/******/ 					queue.push({
+/******/ 						chain: chain.concat([parentId]),
+/******/ 						id: parentId
+/******/ 					});
+/******/ 				}
+/******/ 			}
+/******/
+/******/ 			return {
+/******/ 				type: "accepted",
+/******/ 				moduleId: updateModuleId,
+/******/ 				outdatedModules: outdatedModules,
+/******/ 				outdatedDependencies: outdatedDependencies
+/******/ 			};
+/******/ 		}
+/******/
+/******/ 		function addAllToSet(a, b) {
+/******/ 			for (var i = 0; i < b.length; i++) {
+/******/ 				var item = b[i];
+/******/ 				if (a.indexOf(item) === -1) a.push(item);
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// at begin all updates modules are outdated
+/******/ 		// the "outdated" status can propagate to parents if they don't accept the children
+/******/ 		var outdatedDependencies = {};
+/******/ 		var outdatedModules = [];
+/******/ 		var appliedUpdate = {};
+/******/
+/******/ 		var warnUnexpectedRequire = function warnUnexpectedRequire() {
+/******/ 			console.warn(
+/******/ 				"[HMR] unexpected require(" + result.moduleId + ") to disposed module"
+/******/ 			);
+/******/ 		};
+/******/
+/******/ 		for (var id in hotUpdate) {
+/******/ 			if (Object.prototype.hasOwnProperty.call(hotUpdate, id)) {
+/******/ 				moduleId = toModuleId(id);
+/******/ 				/** @type {TODO} */
+/******/ 				var result;
+/******/ 				if (hotUpdate[id]) {
+/******/ 					result = getAffectedStuff(moduleId);
+/******/ 				} else {
+/******/ 					result = {
+/******/ 						type: "disposed",
+/******/ 						moduleId: id
+/******/ 					};
+/******/ 				}
+/******/ 				/** @type {Error|false} */
+/******/ 				var abortError = false;
+/******/ 				var doApply = false;
+/******/ 				var doDispose = false;
+/******/ 				var chainInfo = "";
+/******/ 				if (result.chain) {
+/******/ 					chainInfo = "\nUpdate propagation: " + result.chain.join(" -> ");
+/******/ 				}
+/******/ 				switch (result.type) {
+/******/ 					case "self-declined":
+/******/ 						if (options.onDeclined) options.onDeclined(result);
+/******/ 						if (!options.ignoreDeclined)
+/******/ 							abortError = new Error(
+/******/ 								"Aborted because of self decline: " +
+/******/ 									result.moduleId +
+/******/ 									chainInfo
+/******/ 							);
+/******/ 						break;
+/******/ 					case "declined":
+/******/ 						if (options.onDeclined) options.onDeclined(result);
+/******/ 						if (!options.ignoreDeclined)
+/******/ 							abortError = new Error(
+/******/ 								"Aborted because of declined dependency: " +
+/******/ 									result.moduleId +
+/******/ 									" in " +
+/******/ 									result.parentId +
+/******/ 									chainInfo
+/******/ 							);
+/******/ 						break;
+/******/ 					case "unaccepted":
+/******/ 						if (options.onUnaccepted) options.onUnaccepted(result);
+/******/ 						if (!options.ignoreUnaccepted)
+/******/ 							abortError = new Error(
+/******/ 								"Aborted because " + moduleId + " is not accepted" + chainInfo
+/******/ 							);
+/******/ 						break;
+/******/ 					case "accepted":
+/******/ 						if (options.onAccepted) options.onAccepted(result);
+/******/ 						doApply = true;
+/******/ 						break;
+/******/ 					case "disposed":
+/******/ 						if (options.onDisposed) options.onDisposed(result);
+/******/ 						doDispose = true;
+/******/ 						break;
+/******/ 					default:
+/******/ 						throw new Error("Unexception type " + result.type);
+/******/ 				}
+/******/ 				if (abortError) {
+/******/ 					hotSetStatus("abort");
+/******/ 					return Promise.reject(abortError);
+/******/ 				}
+/******/ 				if (doApply) {
+/******/ 					appliedUpdate[moduleId] = hotUpdate[moduleId];
+/******/ 					addAllToSet(outdatedModules, result.outdatedModules);
+/******/ 					for (moduleId in result.outdatedDependencies) {
+/******/ 						if (
+/******/ 							Object.prototype.hasOwnProperty.call(
+/******/ 								result.outdatedDependencies,
+/******/ 								moduleId
+/******/ 							)
+/******/ 						) {
+/******/ 							if (!outdatedDependencies[moduleId])
+/******/ 								outdatedDependencies[moduleId] = [];
+/******/ 							addAllToSet(
+/******/ 								outdatedDependencies[moduleId],
+/******/ 								result.outdatedDependencies[moduleId]
+/******/ 							);
+/******/ 						}
+/******/ 					}
+/******/ 				}
+/******/ 				if (doDispose) {
+/******/ 					addAllToSet(outdatedModules, [result.moduleId]);
+/******/ 					appliedUpdate[moduleId] = warnUnexpectedRequire;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Store self accepted outdated modules to require them later by the module system
+/******/ 		var outdatedSelfAcceptedModules = [];
+/******/ 		for (i = 0; i < outdatedModules.length; i++) {
+/******/ 			moduleId = outdatedModules[i];
+/******/ 			if (
+/******/ 				installedModules[moduleId] &&
+/******/ 				installedModules[moduleId].hot._selfAccepted &&
+/******/ 				// removed self-accepted modules should not be required
+/******/ 				appliedUpdate[moduleId] !== warnUnexpectedRequire &&
+/******/ 				// when called invalidate self-accepting is not possible
+/******/ 				!installedModules[moduleId].hot._selfInvalidated
+/******/ 			) {
+/******/ 				outdatedSelfAcceptedModules.push({
+/******/ 					module: moduleId,
+/******/ 					parents: installedModules[moduleId].parents.slice(),
+/******/ 					errorHandler: installedModules[moduleId].hot._selfAccepted
+/******/ 				});
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Now in "dispose" phase
+/******/ 		hotSetStatus("dispose");
+/******/ 		Object.keys(hotAvailableFilesMap).forEach(function(chunkId) {
+/******/ 			if (hotAvailableFilesMap[chunkId] === false) {
+/******/ 				hotDisposeChunk(chunkId);
+/******/ 			}
+/******/ 		});
+/******/
+/******/ 		var idx;
+/******/ 		var queue = outdatedModules.slice();
+/******/ 		while (queue.length > 0) {
+/******/ 			moduleId = queue.pop();
+/******/ 			module = installedModules[moduleId];
+/******/ 			if (!module) continue;
+/******/
+/******/ 			var data = {};
+/******/
+/******/ 			// Call dispose handlers
+/******/ 			var disposeHandlers = module.hot._disposeHandlers;
+/******/ 			for (j = 0; j < disposeHandlers.length; j++) {
+/******/ 				cb = disposeHandlers[j];
+/******/ 				cb(data);
+/******/ 			}
+/******/ 			hotCurrentModuleData[moduleId] = data;
+/******/
+/******/ 			// disable module (this disables requires from this module)
+/******/ 			module.hot.active = false;
+/******/
+/******/ 			// remove module from cache
+/******/ 			delete installedModules[moduleId];
+/******/
+/******/ 			// when disposing there is no need to call dispose handler
+/******/ 			delete outdatedDependencies[moduleId];
+/******/
+/******/ 			// remove "parents" references from all children
+/******/ 			for (j = 0; j < module.children.length; j++) {
+/******/ 				var child = installedModules[module.children[j]];
+/******/ 				if (!child) continue;
+/******/ 				idx = child.parents.indexOf(moduleId);
+/******/ 				if (idx >= 0) {
+/******/ 					child.parents.splice(idx, 1);
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// remove outdated dependency from module children
+/******/ 		var dependency;
+/******/ 		var moduleOutdatedDependencies;
+/******/ 		for (moduleId in outdatedDependencies) {
+/******/ 			if (
+/******/ 				Object.prototype.hasOwnProperty.call(outdatedDependencies, moduleId)
+/******/ 			) {
+/******/ 				module = installedModules[moduleId];
+/******/ 				if (module) {
+/******/ 					moduleOutdatedDependencies = outdatedDependencies[moduleId];
+/******/ 					for (j = 0; j < moduleOutdatedDependencies.length; j++) {
+/******/ 						dependency = moduleOutdatedDependencies[j];
+/******/ 						idx = module.children.indexOf(dependency);
+/******/ 						if (idx >= 0) module.children.splice(idx, 1);
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Now in "apply" phase
+/******/ 		hotSetStatus("apply");
+/******/
+/******/ 		if (hotUpdateNewHash !== undefined) {
+/******/ 			hotCurrentHash = hotUpdateNewHash;
+/******/ 			hotUpdateNewHash = undefined;
+/******/ 		}
+/******/ 		hotUpdate = undefined;
+/******/
+/******/ 		// insert new code
+/******/ 		for (moduleId in appliedUpdate) {
+/******/ 			if (Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
+/******/ 				modules[moduleId] = appliedUpdate[moduleId];
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// call accept handlers
+/******/ 		var error = null;
+/******/ 		for (moduleId in outdatedDependencies) {
+/******/ 			if (
+/******/ 				Object.prototype.hasOwnProperty.call(outdatedDependencies, moduleId)
+/******/ 			) {
+/******/ 				module = installedModules[moduleId];
+/******/ 				if (module) {
+/******/ 					moduleOutdatedDependencies = outdatedDependencies[moduleId];
+/******/ 					var callbacks = [];
+/******/ 					for (i = 0; i < moduleOutdatedDependencies.length; i++) {
+/******/ 						dependency = moduleOutdatedDependencies[i];
+/******/ 						cb = module.hot._acceptedDependencies[dependency];
+/******/ 						if (cb) {
+/******/ 							if (callbacks.indexOf(cb) !== -1) continue;
+/******/ 							callbacks.push(cb);
+/******/ 						}
+/******/ 					}
+/******/ 					for (i = 0; i < callbacks.length; i++) {
+/******/ 						cb = callbacks[i];
+/******/ 						try {
+/******/ 							cb(moduleOutdatedDependencies);
+/******/ 						} catch (err) {
+/******/ 							if (options.onErrored) {
+/******/ 								options.onErrored({
+/******/ 									type: "accept-errored",
+/******/ 									moduleId: moduleId,
+/******/ 									dependencyId: moduleOutdatedDependencies[i],
+/******/ 									error: err
+/******/ 								});
+/******/ 							}
+/******/ 							if (!options.ignoreErrored) {
+/******/ 								if (!error) error = err;
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// Load self accepted modules
+/******/ 		for (i = 0; i < outdatedSelfAcceptedModules.length; i++) {
+/******/ 			var item = outdatedSelfAcceptedModules[i];
+/******/ 			moduleId = item.module;
+/******/ 			hotCurrentParents = item.parents;
+/******/ 			hotCurrentChildModule = moduleId;
+/******/ 			try {
+/******/ 				__webpack_require__(moduleId);
+/******/ 			} catch (err) {
+/******/ 				if (typeof item.errorHandler === "function") {
+/******/ 					try {
+/******/ 						item.errorHandler(err);
+/******/ 					} catch (err2) {
+/******/ 						if (options.onErrored) {
+/******/ 							options.onErrored({
+/******/ 								type: "self-accept-error-handler-errored",
+/******/ 								moduleId: moduleId,
+/******/ 								error: err2,
+/******/ 								originalError: err
+/******/ 							});
+/******/ 						}
+/******/ 						if (!options.ignoreErrored) {
+/******/ 							if (!error) error = err2;
+/******/ 						}
+/******/ 						if (!error) error = err;
+/******/ 					}
+/******/ 				} else {
+/******/ 					if (options.onErrored) {
+/******/ 						options.onErrored({
+/******/ 							type: "self-accept-errored",
+/******/ 							moduleId: moduleId,
+/******/ 							error: err
+/******/ 						});
+/******/ 					}
+/******/ 					if (!options.ignoreErrored) {
+/******/ 						if (!error) error = err;
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		// handle errors in accept handlers and self accepted module load
+/******/ 		if (error) {
+/******/ 			hotSetStatus("fail");
+/******/ 			return Promise.reject(error);
+/******/ 		}
+/******/
+/******/ 		if (hotQueuedInvalidatedModules) {
+/******/ 			return hotApplyInternal(options).then(function(list) {
+/******/ 				outdatedModules.forEach(function(moduleId) {
+/******/ 					if (list.indexOf(moduleId) < 0) list.push(moduleId);
+/******/ 				});
+/******/ 				return list;
+/******/ 			});
+/******/ 		}
+/******/
+/******/ 		hotSetStatus("idle");
+/******/ 		return new Promise(function(resolve) {
+/******/ 			resolve(outdatedModules);
+/******/ 		});
+/******/ 	}
+/******/
+/******/ 	function hotApplyInvalidatedModules() {
+/******/ 		if (hotQueuedInvalidatedModules) {
+/******/ 			if (!hotUpdate) hotUpdate = {};
+/******/ 			hotQueuedInvalidatedModules.forEach(hotApplyInvalidatedModule);
+/******/ 			hotQueuedInvalidatedModules = undefined;
+/******/ 			return true;
+/******/ 		}
+/******/ 	}
+/******/
+/******/ 	function hotApplyInvalidatedModule(moduleId) {
+/******/ 		if (!Object.prototype.hasOwnProperty.call(hotUpdate, moduleId))
+/******/ 			hotUpdate[moduleId] = modules[moduleId];
+/******/ 	}
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {},
+/******/ 			hot: hotCreateModule(moduleId),
+/******/ 			parents: (hotCurrentParentsTemp = hotCurrentParents, hotCurrentParents = [], hotCurrentParentsTemp),
+/******/ 			children: []
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, hotCreateRequire(moduleId));
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// __webpack_hash__
+/******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return hotCreateRequire(0)(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/ansi-html/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/ansi-html/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = ansiHTML; // Reference to https://github.com/sindresorhus/ansi-regex\n\nvar _regANSI = /(?:(?:\\u001b\\[)|\\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\\u001b[A-M]/;\nvar _defColors = {\n  reset: ['fff', '000'],\n  // [FOREGROUD_COLOR, BACKGROUND_COLOR]\n  black: '000',\n  red: 'ff0000',\n  green: '209805',\n  yellow: 'e8bf03',\n  blue: '0000ff',\n  magenta: 'ff00ff',\n  cyan: '00ffee',\n  lightgrey: 'f0f0f0',\n  darkgrey: '888'\n};\nvar _styles = {\n  30: 'black',\n  31: 'red',\n  32: 'green',\n  33: 'yellow',\n  34: 'blue',\n  35: 'magenta',\n  36: 'cyan',\n  37: 'lightgrey'\n};\nvar _openTags = {\n  '1': 'font-weight:bold',\n  // bold\n  '2': 'opacity:0.5',\n  // dim\n  '3': '<i>',\n  // italic\n  '4': '<u>',\n  // underscore\n  '8': 'display:none',\n  // hidden\n  '9': '<del>' // delete\n\n};\nvar _closeTags = {\n  '23': '</i>',\n  // reset italic\n  '24': '</u>',\n  // reset underscore\n  '29': '</del>' // reset delete\n\n};\n[0, 21, 22, 27, 28, 39, 49].forEach(function (n) {\n  _closeTags[n] = '</span>';\n});\n/**\n * Converts text with ANSI color codes to HTML markup.\n * @param {String} text\n * @returns {*}\n */\n\nfunction ansiHTML(text) {\n  // Returns the text if the string has no ANSI escape code.\n  if (!_regANSI.test(text)) {\n    return text;\n  } // Cache opened sequence.\n\n\n  var ansiCodes = []; // Replace with markup.\n\n  var ret = text.replace(/\\033\\[(\\d+)*m/g, function (match, seq) {\n    var ot = _openTags[seq];\n\n    if (ot) {\n      // If current sequence has been opened, close it.\n      if (!!~ansiCodes.indexOf(seq)) {\n        // eslint-disable-line no-extra-boolean-cast\n        ansiCodes.pop();\n        return '</span>';\n      } // Open tag.\n\n\n      ansiCodes.push(seq);\n      return ot[0] === '<' ? ot : '<span style=\"' + ot + ';\">';\n    }\n\n    var ct = _closeTags[seq];\n\n    if (ct) {\n      // Pop sequence\n      ansiCodes.pop();\n      return ct;\n    }\n\n    return '';\n  }); // Make sure tags are closed.\n\n  var l = ansiCodes.length;\n  l > 0 && (ret += Array(l + 1).join('</span>'));\n  return ret;\n}\n/**\n * Customize colors.\n * @param {Object} colors reference to _defColors\n */\n\n\nansiHTML.setColors = function (colors) {\n  if (typeof colors !== 'object') {\n    throw new Error('`colors` parameter must be an Object.');\n  }\n\n  var _finalColors = {};\n\n  for (var key in _defColors) {\n    var hex = colors.hasOwnProperty(key) ? colors[key] : null;\n\n    if (!hex) {\n      _finalColors[key] = _defColors[key];\n      continue;\n    }\n\n    if ('reset' === key) {\n      if (typeof hex === 'string') {\n        hex = [hex];\n      }\n\n      if (!Array.isArray(hex) || hex.length === 0 || hex.some(function (h) {\n        return typeof h !== 'string';\n      })) {\n        throw new Error('The value of `' + key + '` property must be an Array and each item could only be a hex string, e.g.: FF0000');\n      }\n\n      var defHexColor = _defColors[key];\n\n      if (!hex[0]) {\n        hex[0] = defHexColor[0];\n      }\n\n      if (hex.length === 1 || !hex[1]) {\n        hex = [hex[0]];\n        hex.push(defHexColor[1]);\n      }\n\n      hex = hex.slice(0, 2);\n    } else if (typeof hex !== 'string') {\n      throw new Error('The value of `' + key + '` property must be a hex string, e.g.: FF0000');\n    }\n\n    _finalColors[key] = hex;\n  }\n\n  _setTags(_finalColors);\n};\n/**\n * Reset colors.\n */\n\n\nansiHTML.reset = function () {\n  _setTags(_defColors);\n};\n/**\n * Expose tags, including open and close.\n * @type {Object}\n */\n\n\nansiHTML.tags = {};\n\nif (Object.defineProperty) {\n  Object.defineProperty(ansiHTML.tags, 'open', {\n    get: function () {\n      return _openTags;\n    }\n  });\n  Object.defineProperty(ansiHTML.tags, 'close', {\n    get: function () {\n      return _closeTags;\n    }\n  });\n} else {\n  ansiHTML.tags.open = _openTags;\n  ansiHTML.tags.close = _closeTags;\n}\n\nfunction _setTags(colors) {\n  // reset all\n  _openTags['0'] = 'font-weight:normal;opacity:1;color:#' + colors.reset[0] + ';background:#' + colors.reset[1]; // inverse\n\n  _openTags['7'] = 'color:#' + colors.reset[1] + ';background:#' + colors.reset[0]; // dark grey\n\n  _openTags['90'] = 'color:#' + colors.darkgrey;\n\n  for (var code in _styles) {\n    var color = _styles[code];\n    var oriColor = colors[color] || '000';\n    _openTags[code] = 'color:#' + oriColor;\n    code = parseInt(code);\n    _openTags[(code + 10).toString()] = 'background:#' + oriColor;\n  }\n}\n\nansiHTML.reset();//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2Fuc2ktaHRtbC9pbmRleC5qcz80ZTFjIl0sIm5hbWVzIjpbIm1vZHVsZSIsImV4cG9ydHMiLCJhbnNpSFRNTCIsIl9yZWdBTlNJIiwiX2RlZkNvbG9ycyIsInJlc2V0IiwiYmxhY2siLCJyZWQiLCJncmVlbiIsInllbGxvdyIsImJsdWUiLCJtYWdlbnRhIiwiY3lhbiIsImxpZ2h0Z3JleSIsImRhcmtncmV5IiwiX3N0eWxlcyIsIl9vcGVuVGFncyIsIl9jbG9zZVRhZ3MiLCJmb3JFYWNoIiwibiIsInRleHQiLCJ0ZXN0IiwiYW5zaUNvZGVzIiwicmV0IiwicmVwbGFjZSIsIm1hdGNoIiwic2VxIiwib3QiLCJpbmRleE9mIiwicG9wIiwicHVzaCIsImN0IiwibCIsImxlbmd0aCIsIkFycmF5Iiwiam9pbiIsInNldENvbG9ycyIsImNvbG9ycyIsIkVycm9yIiwiX2ZpbmFsQ29sb3JzIiwia2V5IiwiaGV4IiwiaGFzT3duUHJvcGVydHkiLCJpc0FycmF5Iiwic29tZSIsImgiLCJkZWZIZXhDb2xvciIsInNsaWNlIiwiX3NldFRhZ3MiLCJ0YWdzIiwiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJnZXQiLCJvcGVuIiwiY2xvc2UiLCJjb2RlIiwiY29sb3IiLCJvcmlDb2xvciIsInBhcnNlSW50IiwidG9TdHJpbmciXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBQSxNQUFNLENBQUNDLE9BQVAsR0FBaUJDLFFBQWpCLEMsQ0FFQTs7QUFDQSxJQUFJQyxRQUFRLEdBQUcsc0ZBQWY7QUFFQSxJQUFJQyxVQUFVLEdBQUc7QUFDZkMsT0FBSyxFQUFFLENBQUMsS0FBRCxFQUFRLEtBQVIsQ0FEUTtBQUNRO0FBQ3ZCQyxPQUFLLEVBQUUsS0FGUTtBQUdmQyxLQUFHLEVBQUUsUUFIVTtBQUlmQyxPQUFLLEVBQUUsUUFKUTtBQUtmQyxRQUFNLEVBQUUsUUFMTztBQU1mQyxNQUFJLEVBQUUsUUFOUztB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M0QsR0FBNkVnQyxNQUFNLENBQUNoQyxLQUFQLENBQWEsQ0FBYixDQUE5RixDQUZ5QixDQUd6Qjs7QUFDQVcsV0FBUyxDQUFDLEdBQUQsQ0FBVCxHQUFpQixZQUFZcUIsTUFBTSxDQUFDaEMsS0FBUCxDQUFhLENBQWIsQ0FBWixHQUE4QixlQUE5QixHQUFnRGdDLE1BQU0sQ0FBQ2hDLEtBQVAsQ0FBYSxDQUFiLENBQWpFLENBSnlCLENBS3pCOztBQUNBVyxXQUFTLENBQUMsSUFBRCxDQUFULEdBQWtCLFlBQVlxQixNQUFNLENBQUN2QixRQUFyQzs7QUFFQSxPQUFLLElBQUl5QyxJQUFULElBQWlCeEMsT0FBakIsRUFBMEI7QUFDeEIsUUFBSXlDLEtBQUssR0FBR3pDLE9BQU8sQ0FBQ3dDLElBQUQsQ0FBbkI7QUFDQSxRQUFJRSxRQUFRLEdBQUdwQixNQUFNLENBQUNtQixLQUFELENBQU4sSUFBaUIsS0FBaEM7QUFDQXhDLGFBQVMsQ0FBQ3VDLElBQUQsQ0FBVCxHQUFrQixZQUFZRSxRQUE5QjtBQUNBRixRQUFJLEdBQUdHLFFBQVEsQ0FBQ0gsSUFBRCxDQUFmO0FBQ0F2QyxhQUFTLENBQUMsQ0FBQ3VDLElBQUksR0FBRyxFQUFSLEVBQVlJLFFBQVosRUFBRCxDQUFULEdBQW9DLGlCQUFpQkYsUUFBckQ7QUFDRDtBQUNGOztBQUVEdkQsUUFBUSxDQUFDRyxLQUFUIiwiZmlsZSI6Ii4vbm9kZV9tb2R1bGVzL2Fuc2ktaHRtbC9pbmRleC5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0J1xuXG5tb2R1bGUuZXhwb3J0cyA9IGFuc2lIVE1MXG5cbi8vIFJlZmVyZW5jZSB0byBodHRwczovL2dpdGh1Yi5jb20vc2luZHJlc29yaHVzL2Fuc2ktcmVnZXhcbnZhciBfcmVnQU5TSSA9IC8oPzooPzpcXHUwMDFiXFxbKXxcXHUwMDliKSg/Oig/OlswLTldezEsM30pPyg/Oig/OjtbMC05XXswLDN9KSopP1tBLU18Zi1tXSl8XFx1MDAxYltBLU1dL1xuXG52YXIgX2RlZkNvbG9ycyA9IHtcbiAgcmVzZXQ6IFsnZmZmJywgJzAwMCddLCAvLyBbRk9SRUdST1VEX0NPTE9SLCBCQUNLR1JPVU5EX0NPTE9SXVxuICBibGFjazogJzAwMCcsXG4gIHJlZDogJ2ZmMDAwMCcsXG4gIGdyZWVuOiAnMjA5ODA1JyxcbiAgeWVsbG93OiAnZThiZjAzJyxcbiAgYmx1ZTogJzAwMDBmZicsXG4gIG1hZ2VudGE6ICdmZjAwZmYnLFxuICBjeWFuOiAnMDBmZmVlJyxcbiAgbGlnaHRncmV5OiAnZjBmMGYwJyxcbiAgZGFya2dyZXk6ICc4ODgnXG59XG52YXIgX3N0eWxlcyA9IHtcbiAgMzA6ICdibGFjaycsXG4gIDMxOiAncmVkJyxcbiAgMzI6ICdncmVlbicsXG4gIDMzOiAneWVsbG93JyxcbiAgMzQ6ICdibHVlJyxcbiAgMzU6ICdtYWdlbnRhJyxcbiAgMzY6ICdjeWFuJyxcbiAgMzc6ICdsaWdodGdyZXknXG59XG52YXIgX29wZW5UYWdzID0ge1xuICAnMSc6ICdmb250LXdlaWdodDpib2xkJywgLy8gYm9sZFxuICAnMic6ICdvcGFjaXR5OjAuNScsIC8vIGRpbVxuICAnMyc6ICc8aT4nLCAvLyBpdGFsaWNcbiAgJzQnOiAnPHU+JywgLy8gdW5kZXJzY29yZVxuICAnOCc6ICdkaXNwbGF5Om5vbmUnLCAvLyBoaWRkZW5cbiAgJzknOiAnPGRlbD4nIC8vIGRlbGV0ZVxufVxudmFyIF9jbG9zZVRhZ3MgPSB7XG4gICcyMyc6ICc8L2k+JywgLy8gcmVzZXQgaXRhbGljXG4gICcyNCc6ICc8L3U+JywgLy8gcmVzZXQgdW5kZXJzY29yZVxuICAnMjknOiAnPC9kZWw+JyAvLyByZXNldCBkZWxldGVcbn1cblxuO1swLCAyMSwgMjIsIDI3LCAyOCwgMzksIDQ5XS5mb3JFYWNoKGZ1bmN0aW9uIChuKSB7XG4gIF9jbG9zZVRhZ3Nbbl0gPSAnPC9zcGFuPidcbn0pXG5cbi8qKlxuICogQ29udmVydHMgdGV4dCB3aXRoIEFOU0kgY29sb3IgY29kZXMgdG8gSFRNTCBtYXJrdXAuXG4gKiBAcGFyYW0ge1N0cmluZ30gdGV4dFxuICogQHJldHVybnMgeyp9XG4gKi9cbmZ1bmN0aW9uIGFuc2lIVE1MICh0ZXh0KSB7XG4gIC8vIFJldHVybnMgdGhlIHRleHQgaWYgdGhlIHN0cmluZyBoYXMgbm8gQU5TSSBlc2NhcGUgY29kZS5cbiAgaWYgKCFfcmVnQU5TSS50ZXN0KHRleHQpKSB7XG4gICAgcmV0dXJuIHRleHRcbiAgfVxuXG4gIC8vIENhY2hlIG9wZW5lZCBzZXF1ZW5jZS5cbiAgdmFyIGFuc2lDb2RlcyA9IFtdXG4gIC8vIFJlcGxhY2Ugd2l0aCBtYXJrdXAuXG4gIHZhciByZXQgPSB0ZXh0LnJlcGxhY2UoL1xcMDMzXFxbKFxcZCspKm0vZywgZnVuY3Rpb24gKG1hdGNoLCBzZXEpIHtcbiAgICB2YXIgb3QgPSBfb3BlblRhZ3Nbc2VxXVxuICAgIGlmIChvdCkge1xuICAgICAgLy8gSWYgY3VycmVudCBzZXF1ZW5jZSBoYXMgYmVlbiBvcGVuZWQsIGNsb3NlIGl0LlxuICAgICAgaWYgKCEhfmFuc2lDb2Rlcy5pbmRleE9mKHNlcSkpIHsgLy8gZXNsaW50LWRpc2FibGUtbGluZSBuby1leHRyYS1ib29sZWFuLWNhc3RcbiAgICAgICAgYW5zaUNvZGVzLnBvcCgpXG4gICAgICAgIHJldHVybiAnPC9zcGFuPidcbiAgICAgIH1cbiAgICAgIC8vIE9wZW4gdGFnLlxuICAgICAgYW5zaUNvZGVzLnB1c2goc2VxKVxuICAgICAgcmV0dXJuIG90WzBdID09PSAnPCcgPyBvdCA6ICc8c3BhbiBzdHlsZT1cIicgKyBvdCArICc7XCI+J1xuICAgIH1cblxuICAgIHZhciBjdCA9IF9jbG9zZVRhZ3Nbc2VxXVxuICAgIGlmIChjdCkge1xuICAgICAgLy8gUG9wIHNlcXVlbmNlXG4gICAgICBhbnNpQ29kZXMucG9wKClcbiAgICAgIHJldHVybiBjdFxuICAgIH1cbiAgICByZXR1cm4gJydcbiAgfSlcblxuICAvLyBNYWtlIHN1cmUgdGFncyBhcmUgY2xvc2VkLlxuICB2YXIgbCA9IGFuc2lDb2Rlcy5sZW5ndGhcbiAgOyhsID4gMCkgJiYgKHJldCArPSBBcnJheShsICsgMSkuam9pbignPC9zcGFuPicpKVxuXG4gIHJldHVybiByZXRcbn1cblxuLyoqXG4gKiBDdXN0b21pemUgY29sb3JzLlxuICogQHBhcmFtIHtPYmplY3R9IGNvbG9ycyByZWZlcmVuY2UgdG8gX2RlZkNvbG9yc1xuICovXG5hbnNpSFRNTC5zZXRDb2xvcnMgPSBmdW5jdGlvbiAoY29sb3JzKSB7XG4gIGlmICh0eXBlb2YgY29sb3JzICE9PSAnb2JqZWN0Jykge1xuICAgIHRocm93IG5ldyBFcnJvcignYGNvbG9yc2AgcGFyYW1ldGVyIG11c3QgYmUgYW4gT2JqZWN0LicpXG4gIH1cblxuICB2YXIgX2ZpbmFsQ29sb3JzID0ge31cbiAgZm9yICh2YXIga2V5IGluIF9kZWZDb2xvcnMpIHtcbiAgICB2YXIgaGV4ID0gY29sb3JzLmhhc093blByb3BlcnR5KGtleSkgPyBjb2xvcnNba2V5XSA6IG51bGxcbiAgICBpZiAoIWhleCkge1xuICAgICAgX2ZpbmFsQ29sb3JzW2tleV0gPSBfZGVmQ29sb3JzW2tleV1cbiAgICAgIGNvbnRpbnVlXG4gICAgfVxuICAgIGlmICgncmVzZXQnID09PSBrZXkpIHtcbiAgICAgIGlmICh0eXBlb2YgaGV4ID09PSAnc3RyaW5nJykge1xuICAgICAgICBoZXggPSBbaGV4XVxuICAgICAgfVxuICAgICAgaWYgKCFBcnJheS5pc0FycmF5KGhleCkgfHwgaGV4Lmxlbmd0aCA9PT0gMCB8fCBoZXguc29tZShmdW5jdGlvbiAoaCkge1xuICAgICAgICByZXR1cm4gdHlwZW9mIGggIT09ICdzdHJpbmcnXG4gICAgICB9KSkge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoJ1RoZSB2YWx1ZSBvZiBgJyArIGtleSArICdgIHByb3BlcnR5IG11c3QgYmUgYW4gQXJyYXkgYW5kIGVhY2ggaXRlbSBjb3VsZCBvbmx5IGJlIGEgaGV4IHN0cmluZywgZS5nLjogRkYwMDAwJylcbiAgICAgIH1cbiAgICAgIHZhciBkZWZIZXhDb2xvciA9IF9kZWZDb2xvcnNba2V5XVxuICAgICAgaWYgKCFoZXhbMF0pIHtcbiAgICAgICAgaGV4WzBdID0gZGVmSGV4Q29sb3JbMF1cbiAgICAgIH1cbiAgICAgIGlmIChoZXgubGVuZ3RoID09PSAxIHx8ICFoZXhbMV0pIHtcbiAgICAgICAgaGV4ID0gW2hleFswXV1cbiAgICAgICAgaGV4LnB1c2goZGVmSGV4Q29sb3JbMV0pXG4gICAgICB9XG5cbiAgICAgIGhleCA9IGhleC5zbGljZSgwLCAyKVxuICAgIH0gZWxzZSBpZiAodHlwZW9mIGhleCAhPT0gJ3N0cmluZycpIHtcbiAgICAgIHRocm93IG5ldyBFcnJvcignVGhlIHZhbHVlIG9mIGAnICsga2V5ICsgJ2AgcHJvcGVydHkgbXVzdCBiZSBhIGhleCBzdHJpbmcsIGUuZy46IEZGMDAwMCcpXG4gICAgfVxuICAgIF9maW5hbENvbG9yc1trZXldID0gaGV4XG4gIH1cbiAgX3NldFRhZ3MoX2ZpbmFsQ29sb3JzKVxufVxuXG4vKipcbiAqIFJlc2V0IGNvbG9ycy5cbiAqL1xuYW5zaUhUTUwucmVzZXQgPSBmdW5jdGlvbiAoKSB7XG4gIF9zZXRUYWdzKF9kZWZDb2xvcnMpXG59XG5cbi8qKlxuICogRXhwb3NlIHRhZ3MsIGluY2x1ZGluZyBvcGVuIGFuZCBjbG9zZS5cbiAqIEB0eXBlIHtPYmplY3R9XG4gKi9cbmFuc2lIVE1MLnRhZ3MgPSB7fVxuXG5pZiAoT2JqZWN0LmRlZmluZVByb3BlcnR5KSB7XG4gIE9iamVjdC5kZWZpbmVQcm9wZXJ0eShhbnNpSFRNTC50YWdzLCAnb3BlbicsIHtcbiAgICBnZXQ6IGZ1bmN0aW9uICgpIHsgcmV0dXJuIF9vcGVuVGFncyB9XG4gIH0pXG4gIE9iamVjdC5kZWZpbmVQcm9wZXJ0eShhbnNpSFRNTC50YWdzLCAnY2xvc2UnLCB7XG4gICAgZ2V0OiBmdW5jdGlvbiAoKSB7IHJldHVybiBfY2xvc2VUYWdzIH1cbiAgfSlcbn0gZWxzZSB7XG4gIGFuc2lIVE1MLnRhZ3Mub3BlbiA9IF9vcGVuVGFnc1xuICBhbnNpSFRNTC50YWdzLmNsb3NlID0gX2Nsb3NlVGFnc1xufVxuXG5mdW5jdGlvbiBfc2V0VGFncyAoY29sb3JzKSB7XG4gIC8vIHJlc2V0IGFsbFxuICBfb3BlblRhZ3NbJzAnXSA9ICdmb250LXdlaWdodDpub3JtYWw7b3BhY2l0eToxO2NvbG9yOiMnICsgY29sb3JzLnJlc2V0WzBdICsgJztiYWNrZ3JvdW5kOiMnICsgY29sb3JzLnJlc2V0WzFdXG4gIC8vIGludmVyc2VcbiAgX29wZW5UYWdzWyc3J10gPSAnY29sb3I6IycgKyBjb2xvcnMucmVzZXRbMV0gKyAnO2JhY2tncm91bmQ6IycgKyBjb2xvcnMucmVzZXRbMF1cbiAgLy8gZGFyayBncmV5XG4gIF9vcGVuVGFnc1snOTAnXSA9ICdjb2xvcjojJyArIGNvbG9ycy5kYXJrZ3JleVxuXG4gIGZvciAodmFyIGNvZGUgaW4gX3N0eWxlcykge1xuICAgIHZhciBjb2xvciA9IF9zdHlsZXNbY29kZV1cbiAgICB2YXIgb3JpQ29sb3IgPSBjb2xvcnNbY29sb3JdIHx8ICcwMDAnXG4gICAgX29wZW5UYWdzW2NvZGVdID0gJ2NvbG9yOiMnICsgb3JpQ29sb3JcbiAgICBjb2RlID0gcGFyc2VJbnQoY29kZSlcbiAgICBfb3BlblRhZ3NbKGNvZGUgKyAxMCkudG9TdHJpbmcoKV0gPSAnYmFja2dyb3VuZDojJyArIG9yaUNvbG9yXG4gIH1cbn1cblxuYW5zaUhUTUwucmVzZXQoKVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/ansi-html/index.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/ansi-regex/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/ansi-regex/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function () {\n  return /[\\u001b\\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g;\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2Fuc2ktcmVnZXgvaW5kZXguanM/OWVlZSJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiQUFBYTs7QUFDYkEsTUFBTSxDQUFDQyxPQUFQLEdBQWlCLFlBQVk7QUFDNUIsU0FBTyw2RUFBUDtBQUNBLENBRkQiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvYW5zaS1yZWdleC9pbmRleC5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0Jztcbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gKCkge1xuXHRyZXR1cm4gL1tcXHUwMDFiXFx1MDA5Yl1bWygpIzs/XSooPzpbMC05XXsxLDR9KD86O1swLTldezAsNH0pKik/WzAtOUEtUFJaY2YtbnFyeT0+PF0vZztcbn07XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/ansi-regex/index.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/html4-entities.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/html-entities/lib/html4-entities.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar surrogate_pairs_1 = __webpack_require__(/*! ./surrogate-pairs */ \"./node_modules/html-entities/lib/surrogate-pairs.js\");\n\nvar HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'AElig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];\nvar HTML_CODES = [39, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 34, 38, 60, 62, 338, 339, 352, 353, 376, 710, 732, 8194, 8195, 8201, 8204, 8205, 8206, 8207, 8211, 8212, 8216, 8217, 8218, 8220, 8221, 8222, 8224, 8225, 8240, 8249, 8250, 8364, 402, 913, 914, 915, 916, 917, 918, 919, 920, 921, 922, 923, 924, 925, 926, 927, 928, 929, 931, 932, 933, 934, 935, 936, 937, 945, 946, 947, 948, 949, 950, 951, 952, 953, 954, 955, 956, 957, 958, 959, 960, 961, 962, 963, 964, 965, 966, 967, 968, 969, 977, 978, 982, 8226, 8230, 8242, 8243, 8254, 8260, 8472, 8465, 8476, 8482, 8501, 8592, 8593, 8594, 8595, 8596, 8629, 8656, 8657, 8658, 8659, 8660, 8704, 8706, 8707, 8709, 8711, 8712, 8713, 8715, 8719, 8721, 8722, 8727, 8730, 8733, 8734, 8736, 8743, 8744, 8745, 8746, 8747, 8756, 8764, 8773, 8776, 8800, 8801, 8804, 8805, 8834, 8835, 8836, 8838, 8839, 8853, 8855, 8869, 8901, 8968, 8969, 8970, 8971, 9001, 9002, 9674, 9824, 9827, 9829, 9830];\nvar alphaIndex = {};\nvar numIndex = {};\n\n(function () {\n  var i = 0;\n  var length = HTML_ALPHA.length;\n\n  while (i < length) {\n    var a = HTML_ALPHA[i];\n    var c = HTML_CODES[i];\n    alphaIndex[a] = String.fromCharCode(c);\n    numIndex[c] = a;\n    i++;\n  }\n})();\n\nvar Html4Entities =\n/** @class */\nfunction () {\n  function Html4Entities() {}\n\n  Html4Entities.prototype.decode = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    return str.replace(/&(#?[\\w\\d]+);?/g, function (s, entity) {\n      var chr;\n\n      if (entity.charAt(0) === \"#\") {\n        var code = entity.charAt(1).toLowerCase() === 'x' ? parseInt(entity.substr(2), 16) : parseInt(entity.substr(1));\n\n        if (!isNaN(code) || code >= -32768) {\n          if (code <= 65535) {\n            chr = String.fromCharCode(code);\n          } else {\n            chr = surrogate_pairs_1.fromCodePoint(code);\n          }\n        }\n      } else {\n        chr = alphaIndex[entity];\n      }\n\n      return chr || s;\n    });\n  };\n\n  Html4Entities.decode = function (str) {\n    return new Html4Entities().decode(str);\n  };\n\n  Html4Entities.prototype.encode = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var alpha = numIndex[str.charCodeAt(i)];\n      result += alpha ? \"&\" + alpha + \";\" : str.charAt(i);\n      i++;\n    }\n\n    return result;\n  };\n\n  Html4Entities.encode = function (str) {\n    return new Html4Entities().encode(str);\n  };\n\n  Html4Entities.prototype.encodeNonUTF = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var cc = str.charCodeAt(i);\n      var alpha = numIndex[cc];\n\n      if (alpha) {\n        result += \"&\" + alpha + \";\";\n      } else if (cc < 32 || cc > 126) {\n        if (cc >= surrogate_pairs_1.highSurrogateFrom && cc <= surrogate_pairs_1.highSurrogateTo) {\n          result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';\n          i++;\n        } else {\n          result += '&#' + cc + ';';\n        }\n      } else {\n        result += str.charAt(i);\n      }\n\n      i++;\n    }\n\n    return result;\n  };\n\n  Html4Entities.encodeNonUTF = function (str) {\n    return new Html4Entities().encodeNonUTF(str);\n  };\n\n  Html4Entities.prototype.encodeNonASCII = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var c = str.charCodeAt(i);\n\n      if (c <= 255) {\n        result += str[i++];\n        continue;\n      }\n\n      if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {\n        result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';\n        i++;\n      } else {\n        result += '&#' + c + ';';\n      }\n\n      i++;\n    }\n\n    return result;\n  };\n\n  Html4Entities.encodeNonASCII = function (str) {\n    return new Html4Entities().encodeNonASCII(str);\n  };\n\n  return Html4Entities;\n}();\n\nexports.Html4Entities = Html4Entities;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL2h0bWw0LWVudGl0aWVzLmpzPzFmMDUiXSwibmFtZXMiOlsiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJleHBvcnRzIiwidmFsdWUiLCJzdXJyb2dhdGVfcGFpcnNfMSIsInJlcXVpcmUiLCJIVE1MX0FMUEhBIiwiSFRNTF9DT0RFUyIsImFscGhhSW5kZXgiLCJudW1JbmRleCIsImkiLCJsZW5ndGgiLCJhIiwiYyIsIlN0cmluZyIsImZyb21DaGFyQ29kZSIsIkh0bWw0RW50aXRpZXMiLCJwcm90b3R5cGUiLCJkZWNvZGUiLCJzdHIiLCJyZXBsYWNlIiwicyIsImVudGl0eSIsImNociIsImNoYXJBdCIsImNvZGUiLCJ0b0xvd2VyQ2FzZSIsInBhcnNlSW50Iiwic3Vic3RyIiwiaXNOYU4iLCJmcm9tQ29kZVBvaW50IiwiZW5jb2RlIiwic3RyTGVuZ3RoIiwicmVzdWx0IiwiYWxwaGEiLCJjaGFyQ29kZUF0IiwiZW5jb2RlTm9uVVRGIiwiY2MiLCJoaWdoU3Vycm9nYXRlRnJvbSIsImhpZ2hTdXJyb2dhdGVUbyIsImdldENvZGVQb2ludCIsImVuY29kZU5vbkFTQ0lJIl0sIm1hcHBpbmdzIjoiQUFBYTs7QUFDYkEsTUFBTSxDQUFDQyxjQUFQLENBQXNCQyxPQUF0QixFQUErQixZQUEvQixFQUE2QztBQUFFQyxPQUFLLEVBQUU7QUFBVCxDQUE3Qzs7QUFDQSxJQUFJQyxpQkFBaUIsR0FBR0MsbUJBQU8sQ0FBQyw4RUFBRCxDQUEvQjs7QUFDQSxJQUFJQyxVQUFVLEdBQUcsQ0FBQyxNQUFELEVBQVMsTUFBVCxFQUFpQixPQUFqQixFQUEwQixNQUExQixFQUFrQyxPQUFsQyxFQUEyQyxRQUEzQyxFQUFxRCxLQUFyRCxFQUE0RCxRQUE1RCxFQUFzRSxNQUF0RSxFQUE4RSxLQUE5RSxFQUFxRixNQUFyRixFQUE2RixNQUE3RixFQUFxRyxPQUFyRyxFQUE4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a0ksR0FBbEksRUFBdUksR0FBdkksRUFBNEksR0FBNUksRUFBaUosR0FBakosRUFBc0osR0FBdEosRUFBMkosR0FBM0osRUFBZ0ssR0FBaEssRUFBcUssR0FBckssRUFBMEssR0FBMUssRUFBK0ssR0FBL0ssRUFBb0wsR0FBcEwsRUFBeUwsR0FBekwsRUFBOEwsR0FBOUwsRUFBbU0sR0FBbk0sRUFBd00sR0FBeE0sRUFBNk0sR0FBN00sRUFBa04sR0FBbE4sRUFBdU4sR0FBdk4sRUFBNE4sR0FBNU4sRUFBaU8sR0FBak8sRUFBc08sR0FBdE8sRUFBMk8sR0FBM08sRUFBZ1AsR0FBaFAsRUFBcVAsR0FBclAsRUFBMFAsR0FBMVAsRUFBK1AsR0FBL1AsRUFBb1EsR0FBcFEsRUFBeVEsR0FBelEsRUFBOFEsR0FBOVEsRUFBbVIsR0FBblIsRUFBd1IsR0FBeFIsRUFBNlIsR0FBN1IsRUFBa1MsR0FBbFMsRUFBdVMsR0FBdlMsRUFBNFMsR0FBNVMsRUFBaVQsR0FBalQsRUFBc1QsR0FBdFQsRUFBMlQsR0FBM1QsRUFBZ1UsR0FBaFUsRUFBcVUsR0FBclUsRUFBMFUsR0FBMVUsRUFBK1UsR0FBL1UsRUFBb1YsR0FBcFYsRUFBeVYsR0FBelYsRUFBOFYsR0FBOVYsRUFBbVcsR0FBblcsRUFBd1csR0FBeFcsRUFBNlcsR0FBN1csRUFBa1gsR0FBbFgsRUFBdVgsR0FBdlgsRUFBNFgsR0FBNVgsRUFBaVksR0FBalksRUFBc1ksR0FBdFksRUFBMlksR0FBM1ksRUFBZ1osR0FBaFosRUFBcVosR0FBclosRUFBMFosR0FBMVosRUFBK1osR0FBL1osRUFBb2EsR0FBcGEsRUFBeWEsR0FBemEsRUFBOGEsR0FBOWEsRUFBbWIsR0FBbmIsRUFBd2IsR0FBeGIsRUFBNmIsR0FBN2IsRUFBa2MsR0FBbGMsRUFBdWMsR0FBdmMsRUFBNGMsR0FBNWMsRUFBaWQsR0FBamQsRUFBc2QsR0FBdGQsRUFBMmQsR0FBM2QsRUFBZ2UsR0FBaGUsRUFBcWUsRUFBcmUsRUFBeWUsRUFBemUsRUFBNmUsRUFBN2UsRUFBaWYsRUFBamYsRUFB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QUlHLENBQUMsSUFBSSxHQUFULEVBQWM7QUFDVm9CLGNBQU0sSUFBSWQsR0FBRyxDQUFDVCxDQUFDLEVBQUYsQ0FBYjtBQUNBO0FBQ0g7O0FBQ0QsVUFBSUcsQ0FBQyxJQUFJVCxpQkFBaUIsQ0FBQ2tDLGlCQUF2QixJQUE0Q3pCLENBQUMsSUFBSVQsaUJBQWlCLENBQUNtQyxlQUF2RSxFQUF3RjtBQUNwRk4sY0FBTSxJQUFJLE9BQU83QixpQkFBaUIsQ0FBQ29DLFlBQWxCLENBQStCckIsR0FBL0IsRUFBb0NULENBQXBDLENBQVAsR0FBZ0QsR0FBMUQ7QUFDQUEsU0FBQztBQUNKLE9BSEQsTUFJSztBQUNEdUIsY0FBTSxJQUFJLE9BQU9wQixDQUFQLEdBQVcsR0FBckI7QUFDSDs7QUFDREgsT0FBQztBQUNKOztBQUNELFdBQU91QixNQUFQO0FBQ0gsR0F2QkQ7O0FBd0JBakIsZUFBYSxDQUFDeUIsY0FBZCxHQUErQixVQUFVdEIsR0FBVixFQUFlO0FBQzFDLFdBQU8sSUFBSUgsYUFBSixHQUFvQnlCLGNBQXBCLENBQW1DdEIsR0FBbkMsQ0FBUDtBQUNILEdBRkQ7O0FBR0EsU0FBT0gsYUFBUDtBQUNILENBNUdrQyxFQUFuQzs7QUE2R0FkLE9BQU8sQ0FBQ2MsYUFBUixHQUF3QkEsYUFBeEIiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvaHRtbC1lbnRpdGllcy9saWIvaHRtbDQtZW50aXRpZXMuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcInVzZSBzdHJpY3RcIjtcbk9iamVjdC5kZWZpbmVQcm9wZXJ0eShleHBvcnRzLCBcIl9fZXNNb2R1bGVcIiwgeyB2YWx1ZTogdHJ1ZSB9KTtcbnZhciBzdXJyb2dhdGVfcGFpcnNfMSA9IHJlcXVpcmUoXCIuL3N1cnJvZ2F0ZS1wYWlyc1wiKTtcbnZhciBIVE1MX0FMUEhBID0gWydhcG9zJywgJ25ic3AnLCAnaWV4Y2wnLCAnY2VudCcsICdwb3VuZCcsICdjdXJyZW4nLCAneWVuJywgJ2JydmJhcicsICdzZWN0JywgJ3VtbCcsICdjb3B5JywgJ29yZGYnLCAnbGFxdW8nLCAnbm90JywgJ3NoeScsICdyZWcnLCAnbWFjcicsICdkZWcnLCAncGx1c21uJywgJ3N1cDInLCAnc3VwMycsICdhY3V0ZScsICdtaWNybycsICdwYXJhJywgJ21pZGRvdCcsICdjZWRpbCcsICdzdXAxJywgJ29yZG0nLCAncmFxdW8nLCAnZnJhYzE0JywgJ2ZyYWMxMicsICdmcmFjMzQnLCAnaXF1ZXN0JywgJ0FncmF2ZScsICdBYWN1dGUnLCAnQWNpcmMnLCAnQXRpbGRlJywgJ0F1bWwnLCAnQXJpbmcnLCAnQUVsaWcnLCAnQ2NlZGlsJywgJ0VncmF2ZScsICdFYWN1dGUnLCAnRWNpcmMnLCAnRXVtbCcsICdJZ3JhdmUnLCAnSWFjdXRlJywgJ0ljaXJjJywgJ0l1bWwnLCAnRVRIJywgJ050aWxkZScsICdPZ3JhdmUnLCAnT2FjdXRlJywgJ09jaXJjJywgJ090aWxkZScsICdPdW1sJywgJ3RpbWVzJywgJ09zbGFzaCcsICdVZ3JhdmUnLCAnVWFjdXRlJywgJ1VjaXJjJywgJ1V1bWwnLCAnWWFjdXRlJywgJ1RIT1JOJywgJ3N6bGlnJywgJ2FncmF2ZScsICdhYWN1dGUnLCAnYWNpcmMnLCAnYXRpbGRlJywgJ2F1bWwnLCAnYXJpbmcnLCAnYWVsaWcnLCAnY2NlZGlsJywgJ2VncmF2ZScsICdlYWN1dGUnLCAnZWNpcmMnLCAnZXVtbCcsICdpZ3JhdmUnLCAnaWFjdXRlJywgJ2ljaXJjJywgJ2l1bWwnLCAnZXRoJywgJ250aWxkZScsICdvZ3JhdmUnLCAnb2FjdXRlJywgJ29jaXJjJywgJ290aWxkZScsICdvdW1sJywgJ2RpdmlkZScsICdvc2xhc2gnLCAndWdyYXZlJywgJ3VhY3V0ZScsICd1Y2lyYycsICd1dW1sJywgJ3lhY3V0ZScsICd0aG9ybicsICd5dW1sJywgJ3F1b3QnLCAnYW1wJywgJ2x0JywgJ2d0JywgJ09FbGlnJywgJ29lbGlnJywgJ1NjYXJvbicsICdzY2Fyb24nLCAnWXVtbCcsICdjaXJjJywgJ3RpbGRlJywgJ2Vuc3AnLCAnZW1zcCcsICd0aGluc3AnLCAnenduaicsICd6d2onLCAnbHJtJywgJ3JsbScsICduZGFzaCcsICdtZGFzaCcsICdsc3F1bycsICdyc3F1bycsICdzYnF1bycsICdsZHF1bycsICdyZHF1bycsICdiZHF1bycsICdkYWdnZXInLCAnRGFnZ2VyJywgJ3Blcm1pbCcsICdsc2FxdW8nLCAncnNhcXVvJywgJ2V1cm8nLCAnZm5vZicsICdBbHBoYScsICdCZXRhJywgJ0dhbW1hJywgJ0RlbHRhJywgJ0Vwc2lsb24nLCAnWmV0YScsICdFdGEnLCAnVGhldGEnLCAnSW90YScsICdLYXBwYScsICdMYW1iZGEnLCAnTXUnLCAnTnUnLCAnWGknLCAnT21pY3JvbicsICdQaScsICdSaG8nLCAnU2lnbWEnLCAnVGF1JywgJ1Vwc2lsb24nLCAnUGhpJywgJ0NoaScsICdQc2knLCAnT21lZ2EnLCAnYWxwaGEnLCAnYmV0YScsICdnYW1tYScsICdkZWx0YScsICdlcHNpbG9uJywgJ3pldGEnLCAnZXRhJywgJ3RoZXRhJywgJ2lvdGEnLCAna2FwcGEnLCAnbGFtYmRhJywgJ211JywgJ251JywgJ3hpJywgJ29taWNyb24nLCAncGknLCAncmhvJywgJ3NpZ21hZicsICdzaWdtYScsICd0YXUnLCAndXBzaWxvbicsICdwaGknLCAnY2hpJywgJ3BzaScsICdvbWVnYScsICd0aGV0YXN5bScsICd1cHNpaCcsICdwaXYnLCAnYnVsbCcsICdoZWxsaXAnLCAncHJpbWUnLCAnUHJpbWUnLCAnb2xpbmUnLCAnZnJhc2wnLCAnd2VpZXJwJywgJ2ltYWdlJywgJ3JlYWwnLCAndHJhZGUnLCAnYWxlZnN5bScsICdsYXJyJywgJ3VhcnInLCAncmFycicsICdkYXJyJywgJ2hhcnInLCAnY3JhcnInLCAnbEFycicsICd1QXJyJywgJ3JBcnInLCAnZEFycicsICdoQXJyJywgJ2ZvcmFsbCcsICdwYXJ0JywgJ2V4aXN0JywgJ2VtcHR5JywgJ25hYmxhJywgJ2lzaW4nLCAnbm90aW4nLCAnbmknLCAncHJvZCcsICdzdW0nLCAnbWludXMnLCAnbG93YXN0JywgJ3JhZGljJywgJ3Byb3AnLCAnaW5maW4nLCAnYW5nJywgJ2FuZCcsICdvcicsICdjYXAnLCAnY3VwJywgJ2ludCcsICd0aGVyZTQnLCAnc2ltJywgJ2NvbmcnLCAnYXN5bXAnLCAnbmUnLCAnZXF1aXYnLCAnbGUnLCAnZ2UnLCAnc3ViJywgJ3N1cCcsICduc3ViJywgJ3N1YmUnLCAnc3VwZScsICdvcGx1cycsICdvdGltZXMnLCAncGVycCcsICdzZG90JywgJ2xjZWlsJywgJ3JjZWlsJywgJ2xmbG9vcicsICdyZmxvb3InLCAnbGFuZycsICdyYW5nJywgJ2xveicsICdzcGFkZXMnLCAnY2x1YnMnLCAnaGVhcnRzJywgJ2RpYW1zJ107XG52YXIgSFRNTF9DT0RFUyA9IFszOSwgMTYwLCAxNjEsIDE2MiwgMTYzLCAxNjQsIDE2NSwgMTY2LCAxNjcsIDE2OCwgMTY5LCAxNzAsIDE3MSwgMTcyLCAxNzMsIDE3NCwgMTc1LCAxNzYsIDE3NywgMTc4LCAxNzksIDE4MCwgMTgxLCAxODIsIDE4MywgMTg0LCAxODUsIDE4NiwgMTg3LCAxODgsIDE4OSwgMTkwLCAxOTEsIDE5MiwgMTkzLCAxOTQsIDE5NSwgMTk2LCAxOTcsIDE5OCwgMTk5LCAyMDAsIDIwMSwgMjAyLCAyMDMsIDIwNCwgMjA1LCAyMDYsIDIwNywgMjA4LCAyMDksIDIxMCwgMjExLCAyMTIsIDIxMywgMjE0LCAyMTUsIDIxNiwgMjE3LCAyMTgsIDIxOSwgMjIwLCAyMjEsIDIyMiwgMjIzLCAyMjQsIDIyNSwgMjI2LCAyMjcsIDIyOCwgMjI5LCAyMzAsIDIzMSwgMjMyLCAyMzMsIDIzNCwgMjM1LCAyMzYsIDIzNywgMjM4LCAyMzksIDI0MCwgMjQxLCAyNDIsIDI0MywgMjQ0LCAyNDUsIDI0NiwgMjQ3LCAyNDgsIDI0OSwgMjUwLCAyNTEsIDI1MiwgMjUzLCAyNTQsIDI1NSwgMzQsIDM4LCA2MCwgNjIsIDMzOCwgMzM5LCAzNTIsIDM1MywgMzc2LCA3MTAsIDczMiwgODE5NCwgODE5NSwgODIwMSwgODIwNCwgODIwNSwgODIwNiwgODIwNywgODIxMSwgODIxMiwgODIxNiwgODIxNywgODIxOCwgODIyMCwgODIyMSwgODIyMiwgODIyNCwgODIyNSwgODI0MCwgODI0OSwgODI1MCwgODM2NCwgNDAyLCA5MTMsIDkxNCwgOTE1LCA5MTYsIDkxNywgOTE4LCA5MTksIDkyMCwgOTIxLCA5MjIsIDkyMywgOTI0LCA5MjUsIDkyNiwgOTI3LCA5MjgsIDkyOSwgOTMxLCA5MzIsIDkzMywgOTM0LCA5MzUsIDkzNiwgOTM3LCA5NDUsIDk0NiwgOTQ3LCA5NDgsIDk0OSwgOTUwLCA5NTEsIDk1MiwgOTUzLCA5NTQsIDk1NSwgOTU2LCA5NTcsIDk1OCwgOTU5LCA5NjAsIDk2MSwgOTYyLCA5NjMsIDk2NCwgOTY1LCA5NjYsIDk2NywgOTY4LCA5NjksIDk3NywgOTc4LCA5ODIsIDgyMjYsIDgyMzAsIDgyNDIsIDgyNDMsIDgyNTQsIDgyNjAsIDg0NzIsIDg0NjUsIDg0NzYsIDg0ODIsIDg1MDEsIDg1OTIsIDg1OTMsIDg1OTQsIDg1OTUsIDg1OTYsIDg2MjksIDg2NTYsIDg2NTcsIDg2NTgsIDg2NTksIDg2NjAsIDg3MDQsIDg3MDYsIDg3MDcsIDg3MDksIDg3MTEsIDg3MTIsIDg3MTMsIDg3MTUsIDg3MTksIDg3MjEsIDg3MjIsIDg3MjcsIDg3MzAsIDg3MzMsIDg3MzQsIDg3MzYsIDg3NDMsIDg3NDQsIDg3NDUsIDg3NDYsIDg3NDcsIDg3NTYsIDg3NjQsIDg3NzMsIDg3NzYsIDg4MDAsIDg4MDEsIDg4MDQsIDg4MDUsIDg4MzQsIDg4MzUsIDg4MzYsIDg4MzgsIDg4MzksIDg4NTMsIDg4NTUsIDg4NjksIDg5MDEsIDg5NjgsIDg5NjksIDg5NzAsIDg5NzEsIDkwMDEsIDkwMDIsIDk2NzQsIDk4MjQsIDk4MjcsIDk4MjksIDk4MzBdO1xudmFyIGFscGhhSW5kZXggPSB7fTtcbnZhciBudW1JbmRleCA9IHt9O1xuKGZ1bmN0aW9uICgpIHtcbiAgICB2YXIgaSA9IDA7XG4gICAgdmFyIGxlbmd0aCA9IEhUTUxfQUxQSEEubGVuZ3RoO1xuICAgIHdoaWxlIChpIDwgbGVuZ3RoKSB7XG4gICAgICAgIHZhciBhID0gSFRNTF9BTFBIQVtpXTtcbiAgICAgICAgdmFyIGMgPSBIVE1MX0NPREVTW2ldO1xuICAgICAgICBhbHBoYUluZGV4W2FdID0gU3RyaW5nLmZyb21DaGFyQ29kZShjKTtcbiAgICAgICAgbnVtSW5kZXhbY10gPSBhO1xuICAgICAgICBpKys7XG4gICAgfVxufSkoKTtcbnZhciBIdG1sNEVudGl0aWVzID0gLyoqIEBjbGFzcyAqLyAoZnVuY3Rpb24gKCkge1xuICAgIGZ1bmN0aW9uIEh0bWw0RW50aXRpZXMoKSB7XG4gICAgfVxuICAgIEh0bWw0RW50aXRpZXMucHJvdG90eXBlLmRlY29kZSA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgaWYgKCFzdHIgfHwgIXN0ci5sZW5ndGgpIHtcbiAgICAgICAgICAgIHJldHVybiAnJztcbiAgICAgICAgfVxuICAgICAgICByZXR1cm4gc3RyLnJlcGxhY2UoLyYoIz9bXFx3XFxkXSspOz8vZywgZnVuY3Rpb24gKHMsIGVudGl0eSkge1xuICAgICAgICAgICAgdmFyIGNocjtcbiAgICAgICAgICAgIGlmIChlbnRpdHkuY2hhckF0KDApID09PSBcIiNcIikge1xuICAgICAgICAgICAgICAgIHZhciBjb2RlID0gZW50aXR5LmNoYXJBdCgxKS50b0xvd2VyQ2FzZSgpID09PSAneCcgP1xuICAgICAgICAgICAgICAgICAgICBwYXJzZUludChlbnRpdHkuc3Vic3RyKDIpLCAxNikgOlxuICAgICAgICAgICAgICAgICAgICBwYXJzZUludChlbnRpdHkuc3Vic3RyKDEpKTtcbiAgICAgICAgICAgICAgICBpZiAoIWlzTmFOKGNvZGUpIHx8IGNvZGUgPj0gLTMyNzY4KSB7XG4gICAgICAgICAgICAgICAgICAgIGlmIChjb2RlIDw9IDY1NTM1KSB7XG4gICAgICAgICAgICAgICAgICAgICAgICBjaHIgPSBTdHJpbmcuZnJvbUNoYXJDb2RlKGNvZGUpO1xuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgICAgICAgICAgY2hyID0gc3Vycm9nYXRlX3BhaXJzXzEuZnJvbUNvZGVQb2ludChjb2RlKTtcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgIGNociA9IGFscGhhSW5kZXhbZW50aXR5XTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIHJldHVybiBjaHIgfHwgcztcbiAgICAgICAgfSk7XG4gICAgfTtcbiAgICBIdG1sNEVudGl0aWVzLmRlY29kZSA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgcmV0dXJuIG5ldyBIdG1sNEVudGl0aWVzKCkuZGVjb2RlKHN0cik7XG4gICAgfTtcbiAgICBIdG1sNEVudGl0aWVzLnByb3RvdHlwZS5lbmNvZGUgPSBmdW5jdGlvbiAoc3RyKSB7XG4gICAgICAgIGlmICghc3RyIHx8ICFzdHIubGVuZ3RoKSB7XG4gICAgICAgICAgICByZXR1cm4gJyc7XG4gICAgICAgIH1cbiAgICAgICAgdmFyIHN0ckxlbmd0aCA9IHN0ci5sZW5ndGg7XG4gICAgICAgIHZhciByZXN1bHQgPSAnJztcbiAgICAgICAgdmFyIGkgPSAwO1xuICAgICAgICB3aGlsZSAoaSA8IHN0ckxlbmd0aCkge1xuICAgICAgICAgICAgdmFyIGFscGhhID0gbnVtSW5kZXhbc3RyLmNoYXJDb2RlQXQoaSldO1xuICAgICAgICAgICAgcmVzdWx0ICs9IGFscGhhID8gXCImXCIgKyBhbHBoYSArIFwiO1wiIDogc3RyLmNoYXJBdChpKTtcbiAgICAgICAgICAgIGkrKztcbiAgICAgICAgfVxuICAgICAgICByZXR1cm4gcmVzdWx0O1xuICAgIH07XG4gICAgSHRtbDRFbnRpdGllcy5lbmNvZGUgPSBmdW5jdGlvbiAoc3RyKSB7XG4gICAgICAgIHJldHVybiBuZXcgSHRtbDRFbnRpdGllcygpLmVuY29kZShzdHIpO1xuICAgIH07XG4gICAgSHRtbDRFbnRpdGllcy5wcm90b3R5cGUuZW5jb2RlTm9uVVRGID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHZhciBzdHJMZW5ndGggPSBzdHIubGVuZ3RoO1xuICAgICAgICB2YXIgcmVzdWx0ID0gJyc7XG4gICAgICAgIHZhciBpID0gMDtcbiAgICAgICAgd2hpbGUgKGkgPCBzdHJMZW5ndGgpIHtcbiAgICAgICAgICAgIHZhciBjYyA9IHN0ci5jaGFyQ29kZUF0KGkpO1xuICAgICAgICAgICAgdmFyIGFscGhhID0gbnVtSW5kZXhbY2NdO1xuICAgICAgICAgICAgaWYgKGFscGhhKSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9IFwiJlwiICsgYWxwaGEgKyBcIjtcIjtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGVsc2UgaWYgKGNjIDwgMzIgfHwgY2MgPiAxMjYpIHtcbiAgICAgICAgICAgICAgICBpZiAoY2MgPj0gc3Vycm9nYXRlX3BhaXJzXzEuaGlnaFN1cnJvZ2F0ZUZyb20gJiYgY2MgPD0gc3Vycm9nYXRlX3BhaXJzXzEuaGlnaFN1cnJvZ2F0ZVRvKSB7XG4gICAgICAgICAgICAgICAgICAgIHJlc3VsdCArPSAnJiMnICsgc3Vycm9nYXRlX3BhaXJzXzEuZ2V0Q29kZVBvaW50KHN0ciwgaSkgKyAnOyc7XG4gICAgICAgICAgICAgICAgICAgIGkrKztcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgICAgIHJlc3VsdCArPSAnJiMnICsgY2MgKyAnOyc7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9IHN0ci5jaGFyQXQoaSk7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpKys7XG4gICAgICAgIH1cbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9O1xuICAgIEh0bWw0RW50aXRpZXMuZW5jb2RlTm9uVVRGID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICByZXR1cm4gbmV3IEh0bWw0RW50aXRpZXMoKS5lbmNvZGVOb25VVEYoc3RyKTtcbiAgICB9O1xuICAgIEh0bWw0RW50aXRpZXMucHJvdG90eXBlLmVuY29kZU5vbkFTQ0lJID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHZhciBzdHJMZW5ndGggPSBzdHIubGVuZ3RoO1xuICAgICAgICB2YXIgcmVzdWx0ID0gJyc7XG4gICAgICAgIHZhciBpID0gMDtcbiAgICAgICAgd2hpbGUgKGkgPCBzdHJMZW5ndGgpIHtcbiAgICAgICAgICAgIHZhciBjID0gc3RyLmNoYXJDb2RlQXQoaSk7XG4gICAgICAgICAgICBpZiAoYyA8PSAyNTUpIHtcbiAgICAgICAgICAgICAgICByZXN1bHQgKz0gc3RyW2krK107XG4gICAgICAgICAgICAgICAgY29udGludWU7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpZiAoYyA+PSBzdXJyb2dhdGVfcGFpcnNfMS5oaWdoU3Vycm9nYXRlRnJvbSAmJiBjIDw9IHN1cnJvZ2F0ZV9wYWlyc18xLmhpZ2hTdXJyb2dhdGVUbykge1xuICAgICAgICAgICAgICAgIHJlc3VsdCArPSAnJiMnICsgc3Vycm9nYXRlX3BhaXJzXzEuZ2V0Q29kZVBvaW50KHN0ciwgaSkgKyAnOyc7XG4gICAgICAgICAgICAgICAgaSsrO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9ICcmIycgKyBjICsgJzsnO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaSsrO1xuICAgICAgICB9XG4gICAgICAgIHJldHVybiByZXN1bHQ7XG4gICAgfTtcbiAgICBIdG1sNEVudGl0aWVzLmVuY29kZU5vbkFTQ0lJID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICByZXR1cm4gbmV3IEh0bWw0RW50aXRpZXMoKS5lbmNvZGVOb25BU0NJSShzdHIpO1xuICAgIH07XG4gICAgcmV0dXJuIEh0bWw0RW50aXRpZXM7XG59KCkpO1xuZXhwb3J0cy5IdG1sNEVudGl0aWVzID0gSHRtbDRFbnRpdGllcztcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/html-entities/lib/html4-entities.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/html5-entities.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/html-entities/lib/html5-entities.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar surrogate_pairs_1 = __webpack_require__(/*! ./surrogate-pairs */ \"./node_modules/html-entities/lib/surrogate-pairs.js\");\n\nvar ENTITIES = [['Aacute', [193]], ['aacute', [225]], ['Abreve', [258]], ['abreve', [259]], ['ac', [8766]], ['acd', [8767]], ['acE', [8766, 819]], ['Acirc', [194]], ['acirc', [226]], ['acute', [180]], ['Acy', [1040]], ['acy', [1072]], ['AElig', [198]], ['aelig', [230]], ['af', [8289]], ['Afr', [120068]], ['afr', [120094]], ['Agrave', [192]], ['agrave', [224]], ['alefsym', [8501]], ['aleph', [8501]], ['Alpha', [913]], ['alpha', [945]], ['Amacr', [256]], ['amacr', [257]], ['amalg', [10815]], ['amp', [38]], ['AMP', [38]], ['andand', [10837]], ['And', [10835]], ['and', [8743]], ['andd', [10844]], ['andslope', [10840]], ['andv', [10842]], ['ang', [8736]], ['ange', [10660]], ['angle', [8736]], ['angmsdaa', [10664]], ['angmsdab', [10665]], ['angmsdac', [10666]], ['angmsdad', [10667]], ['angmsdae', [10668]], ['angmsdaf', [10669]], ['angmsdag', [10670]], ['angmsdah', [10671]], ['angmsd', [8737]], ['angrt', [8735]], ['angrtvb', [8894]], ['angrtvbd', [10653]], ['angsph', [8738]], ['angst', [197]], ['angzarr', [9084]], ['Aogon', [260]], ['aogon', [261]], ['Aopf', [120120]], ['aopf', [120146]], ['apacir', [10863]], ['ap', [8776]], ['apE', [10864]], ['ape', [8778]], ['apid', [8779]], ['apos', [39]], ['ApplyFunction', [8289]], ['approx', [8776]], ['approxeq', [8778]], ['Aring', [197]], ['aring', [229]], ['Ascr', [119964]], ['ascr', [119990]], ['Assign', [8788]], ['ast', [42]], ['asymp', [8776]], ['asympeq', [8781]], ['Atilde', [195]], ['atilde', [227]], ['Auml', [196]], ['auml', [228]], ['awconint', [8755]], ['awint', [10769]], ['backcong', [8780]], ['backepsilon', [1014]], ['backprime', [8245]], ['backsim', [8765]], ['backsimeq', [8909]], ['Backslash', [8726]], ['Barv', [10983]], ['barvee', [8893]], ['barwed', [8965]], ['Barwed', [8966]], ['barwedge', [8965]], ['bbrk', [9141]], ['bbrktbrk', [9142]], ['bcong', [8780]], ['Bcy', [1041]], ['bcy', [1073]], ['bdquo', [8222]], ['becaus', [8757]], ['because', [8757]], ['Because', [8757]], ['bemptyv', [10672]], ['bepsi', [1014]], ['bernou', [8492]], ['Bernoullis', [8492]], ['Beta', [914]], ['beta', [946]], ['beth', [8502]], ['between', [8812]], ['Bfr', [120069]], ['bfr', [120095]], ['bigcap', [8898]], ['bigcirc', [9711]], ['bigcup', [8899]], ['bigodot', [10752]], ['bigoplus', [10753]], ['bigotimes', [10754]], ['bigsqcup', [10758]], ['bigstar', [9733]], ['bigtriangledown', [9661]], ['bigtriangleup', [9651]], ['biguplus', [10756]], ['bigvee', [8897]], ['bigwedge', [8896]], ['bkarow', [10509]], ['blacklozenge', [10731]], ['blacksquare', [9642]], ['blacktriangle', [9652]], ['blacktriangledown', [9662]], ['blacktriangleleft', [9666]], ['blacktriangleright', [9656]], ['blank', [9251]], ['blk12', [9618]], ['blk14', [9617]], ['blk34', [9619]], ['block', [9608]], ['bne', [61, 8421]], ['bnequiv', [8801, 8421]], ['bNot', [10989]], ['bnot', [8976]], ['Bopf', [120121]], ['bopf', [120147]], ['bot', [8869]], ['bottom', [8869]], ['bowtie', [8904]], ['boxbox', [10697]], ['boxdl', [9488]], ['boxdL', [9557]], ['boxDl', [9558]], ['boxDL', [9559]], ['boxdr', [9484]], ['boxdR', [9554]], ['boxDr', [9555]], ['boxDR', [9556]], ['boxh', [9472]], ['boxH', [9552]], ['boxhd', [9516]], ['boxHd', [9572]], ['boxhD', [9573]], ['boxHD', [9574]], ['boxhu', [9524]], ['boxHu', [9575]], ['boxhU', [9576]], ['boxHU', [9577]], ['boxminus', [8863]], ['boxplus', [8862]], ['boxtimes', [8864]], ['boxul', [9496]], ['boxuL', [9563]], ['boxUl', [9564]], ['boxUL', [9565]], ['boxur', [9492]], ['boxuR', [9560]], ['boxUr', [9561]], ['boxUR', [9562]], ['boxv', [9474]], ['boxV', [9553]], ['boxvh', [9532]], ['boxvH', [9578]], ['boxVh', [9579]], ['boxVH', [9580]], ['boxvl', [9508]], ['boxvL', [9569]], ['boxVl', [9570]], ['boxVL', [9571]], ['boxvr', [9500]], ['boxvR', [9566]], ['boxVr', [9567]], ['boxVR', [9568]], ['bprime', [8245]], ['breve', [728]], ['Breve', [728]], ['brvbar', [166]], ['bscr', [119991]], ['Bscr', [8492]], ['bsemi', [8271]], ['bsim', [8765]], ['bsime', [8909]], ['bsolb', [10693]], ['bsol', [92]], ['bsolhsub', [10184]], ['bull', [8226]], ['bullet', [8226]], ['bump', [8782]], ['bumpE', [10926]], ['bumpe', [8783]], ['Bumpeq', [8782]], ['bumpeq', [8783]], ['Cacute', [262]], ['cacute', [263]], ['capand', [10820]], ['capbrcup', [10825]], ['capcap', [10827]], ['cap', [8745]], ['Cap', [8914]], ['capcup', [10823]], ['capdot', [10816]], ['CapitalDifferentialD', [8517]], ['caps', [8745, 65024]], ['caret', [8257]], ['caron', [711]], ['Cayleys', [8493]], ['ccaps', [10829]], ['Ccaron', [268]], ['ccaron', [269]], ['Ccedil', [199]], ['ccedil', [231]], ['Ccirc', [264]], ['ccirc', [265]], ['Cconint', [8752]], ['ccups', [10828]], ['ccupssm', [10832]], ['Cdot', [266]], ['cdot', [267]], ['cedil', [184]], ['Cedilla', [184]], ['cemptyv', [10674]], ['cent', [162]], ['centerdot', [183]], ['CenterDot', [183]], ['cfr', [120096]], ['Cfr', [8493]], ['CHcy', [1063]], ['chcy', [1095]], ['check', [10003]], ['checkmark', [10003]], ['Chi', [935]], ['chi', [967]], ['circ', [710]], ['circeq', [8791]], ['circlearrowleft', [8634]], ['circlearrowright', [8635]], ['circledast', [8859]], ['circledcirc', [8858]], ['circleddash', [8861]], ['CircleDot', [8857]], ['circledR', [174]], ['circledS', [9416]], ['CircleMinus', [8854]], ['CirclePlus', [8853]], ['CircleTimes', [8855]], ['cir', [9675]], ['cirE', [10691]], ['cire', [8791]], ['cirfnint', [10768]], ['cirmid', [10991]], ['cirscir', [10690]], ['ClockwiseContourIntegral', [8754]], ['clubs', [9827]], ['clubsuit', [9827]], ['colon', [58]], ['Colon', [8759]], ['Colone', [10868]], ['colone', [8788]], ['coloneq', [8788]], ['comma', [44]], ['commat', [64]], ['comp', [8705]], ['compfn', [8728]], ['complement', [8705]], ['complexes', [8450]], ['cong', [8773]], ['congdot', [10861]], ['Congruent', [8801]], ['conint', [8750]], ['Conint', [8751]], ['ContourIntegral', [8750]], ['copf', [120148]], ['Copf', [8450]], ['coprod', [8720]], ['Coproduct', [8720]], ['copy', [169]], ['COPY', [169]], ['copysr', [8471]], ['CounterClockwiseContourIntegral', [8755]], ['crarr', [8629]], ['cross', [10007]], ['Cross', [10799]], ['Cscr', [119966]], ['cscr', [119992]], ['csub', [10959]], ['csube', [10961]], ['csup', [10960]], ['csupe', [10962]], ['ctdot', [8943]], ['cudarrl', [10552]], ['cudarrr', [10549]], ['cuepr', [8926]], ['cuesc', [8927]], ['cularr', [8630]], ['cularrp', [10557]], ['cupbrcap', [10824]], ['cupcap', [10822]], ['CupCap', [8781]], ['cup', [8746]], ['Cup', [8915]], ['cupcup', [10826]], ['cupdot', [8845]], ['cupor', [10821]], ['cups', [8746, 65024]], ['curarr', [8631]], ['curarrm', [10556]], ['curlyeqprec', [8926]], ['curlyeqsucc', [8927]], ['curlyvee', [8910]], ['curlywedge', [8911]], ['curren', [164]], ['curvearrowleft', [8630]], ['curvearrowright', [8631]], ['cuvee', [8910]], ['cuwed', [8911]], ['cwconint', [8754]], ['cwint', [8753]], ['cylcty', [9005]], ['dagger', [8224]], ['Dagger', [8225]], ['daleth', [8504]], ['darr', [8595]], ['Darr', [8609]], ['dArr', [8659]], ['dash', [8208]], ['Dashv', [10980]], ['dashv', [8867]], ['dbkarow', [10511]], ['dblac', [733]], ['Dcaron', [270]], ['dcaron', [271]], ['Dcy', [1044]], ['dcy', [1076]], ['ddagger', [8225]], ['ddarr', [8650]], ['DD', [8517]], ['dd', [8518]], ['DDotrahd', [10513]], ['ddotseq', [10871]], ['deg', [176]], ['Del', [8711]], ['Delta', [916]], ['delta', [948]], ['demptyv', [10673]], ['dfisht', [10623]], ['Dfr', [120071]], ['dfr', [120097]], ['dHar', [10597]], ['dharl', [8643]], ['dharr', [8642]], ['DiacriticalAcute', [180]], ['DiacriticalDot', [729]], ['DiacriticalDoubleAcute', [733]], ['DiacriticalGrave', [96]], ['DiacriticalTilde', [732]], ['diam', [8900]], ['diamond', [8900]], ['Diamond', [8900]], ['diamondsuit', [9830]], ['diams', [9830]], ['die', [168]], ['DifferentialD', [8518]], ['digamma', [989]], ['disin', [8946]], ['div', [247]], ['divide', [247]], ['divideontimes', [8903]], ['divonx', [8903]], ['DJcy', [1026]], ['djcy', [1106]], ['dlcorn', [8990]], ['dlcrop', [8973]], ['dollar', [36]], ['Dopf', [120123]], ['dopf', [120149]], ['Dot', [168]], ['dot', [729]], ['DotDot', [8412]], ['doteq', [8784]], ['doteqdot', [8785]], ['DotEqual', [8784]], ['dotminus', [8760]], ['dotplus', [8724]], ['dotsquare', [8865]], ['doublebarwedge', [8966]], ['DoubleContourIntegral', [8751]], ['DoubleDot', [168]], ['DoubleDownArrow', [8659]], ['DoubleLeftArrow', [8656]], ['DoubleLeftRightArrow', [8660]], ['DoubleLeftTee', [10980]], ['DoubleLongLeftArrow', [10232]], ['DoubleLongLeftRightArrow', [10234]], ['DoubleLongRightArrow', [10233]], ['DoubleRightArrow', [8658]], ['DoubleRightTee', [8872]], ['DoubleUpArrow', [8657]], ['DoubleUpDownArrow', [8661]], ['DoubleVerticalBar', [8741]], ['DownArrowBar', [10515]], ['downarrow', [8595]], ['DownArrow', [8595]], ['Downarrow', [8659]], ['DownArrowUpArrow', [8693]], ['DownBreve', [785]], ['downdownarrows', [8650]], ['downharpoonleft', [8643]], ['downharpoonright', [8642]], ['DownLeftRightVector', [10576]], ['DownLeftTeeVector', [10590]], ['DownLeftVectorBar', [10582]], ['DownLeftVector', [8637]], ['DownRightTeeVector', [10591]], ['DownRightVectorBar', [10583]], ['DownRightVector', [8641]], ['DownTeeArrow', [8615]], ['DownTee', [8868]], ['drbkarow', [10512]], ['drcorn', [8991]], ['drcrop', [8972]], ['Dscr', [119967]], ['dscr', [119993]], ['DScy', [1029]], ['dscy', [1109]], ['dsol', [10742]], ['Dstrok', [272]], ['dstrok', [273]], ['dtdot', [8945]], ['dtri', [9663]], ['dtrif', [9662]], ['duarr', [8693]], ['duhar', [10607]], ['dwangle', [10662]], ['DZcy', [1039]], ['dzcy', [1119]], ['dzigrarr', [10239]], ['Eacute', [201]], ['eacute', [233]], ['easter', [10862]], ['Ecaron', [282]], ['ecaron', [283]], ['Ecirc', [202]], ['ecirc', [234]], ['ecir', [8790]], ['ecolon', [8789]], ['Ecy', [1069]], ['ecy', [1101]], ['eDDot', [10871]], ['Edot', [278]], ['edot', [279]], ['eDot', [8785]], ['ee', [8519]], ['efDot', [8786]], ['Efr', [120072]], ['efr', [120098]], ['eg', [10906]], ['Egrave', [200]], ['egrave', [232]], ['egs', [10902]], ['egsdot', [10904]], ['el', [10905]], ['Element', [8712]], ['elinters', [9191]], ['ell', [8467]], ['els', [10901]], ['elsdot', [10903]], ['Emacr', [274]], ['emacr', [275]], ['empty', [8709]], ['emptyset', [8709]], ['EmptySmallSquare', [9723]], ['emptyv', [8709]], ['EmptyVerySmallSquare', [9643]], ['emsp13', [8196]], ['emsp14', [8197]], ['emsp', [8195]], ['ENG', [330]], ['eng', [331]], ['ensp', [8194]], ['Eogon', [280]], ['eogon', [281]], ['Eopf', [120124]], ['eopf', [120150]], ['epar', [8917]], ['eparsl', [10723]], ['eplus', [10865]], ['epsi', [949]], ['Epsilon', [917]], ['epsilon', [949]], ['epsiv', [1013]], ['eqcirc', [8790]], ['eqcolon', [8789]], ['eqsim', [8770]], ['eqslantgtr', [10902]], ['eqslantless', [10901]], ['Equal', [10869]], ['equals', [61]], ['EqualTilde', [8770]], ['equest', [8799]], ['Equilibrium', [8652]], ['equiv', [8801]], ['equivDD', [10872]], ['eqvparsl', [10725]], ['erarr', [10609]], ['erDot', [8787]], ['escr', [8495]], ['Escr', [8496]], ['esdot', [8784]], ['Esim', [10867]], ['esim', [8770]], ['Eta', [919]], ['eta', [951]], ['ETH', [208]], ['eth', [240]], ['Euml', [203]], ['euml', [235]], ['euro', [8364]], ['excl', [33]], ['exist', [8707]], ['Exists', [8707]], ['expectation', [8496]], ['exponentiale', [8519]], ['ExponentialE', [8519]], ['fallingdotseq', [8786]], ['Fcy', [1060]], ['fcy', [1092]], ['female', [9792]], ['ffilig', [64259]], ['fflig', [64256]], ['ffllig', [64260]], ['Ffr', [120073]], ['ffr', [120099]], ['filig', [64257]], ['FilledSmallSquare', [9724]], ['FilledVerySmallSquare', [9642]], ['fjlig', [102, 106]], ['flat', [9837]], ['fllig', [64258]], ['fltns', [9649]], ['fnof', [402]], ['Fopf', [120125]], ['fopf', [120151]], ['forall', [8704]], ['ForAll', [8704]], ['fork', [8916]], ['forkv', [10969]], ['Fouriertrf', [8497]], ['fpartint', [10765]], ['frac12', [189]], ['frac13', [8531]], ['frac14', [188]], ['frac15', [8533]], ['frac16', [8537]], ['frac18', [8539]], ['frac23', [8532]], ['frac25', [8534]], ['frac34', [190]], ['frac35', [8535]], ['frac38', [8540]], ['frac45', [8536]], ['frac56', [8538]], ['frac58', [8541]], ['frac78', [8542]], ['frasl', [8260]], ['frown', [8994]], ['fscr', [119995]], ['Fscr', [8497]], ['gacute', [501]], ['Gamma', [915]], ['gamma', [947]], ['Gammad', [988]], ['gammad', [989]], ['gap', [10886]], ['Gbreve', [286]], ['gbreve', [287]], ['Gcedil', [290]], ['Gcirc', [284]], ['gcirc', [285]], ['Gcy', [1043]], ['gcy', [1075]], ['Gdot', [288]], ['gdot', [289]], ['ge', [8805]], ['gE', [8807]], ['gEl', [10892]], ['gel', [8923]], ['geq', [8805]], ['geqq', [8807]], ['geqslant', [10878]], ['gescc', [10921]], ['ges', [10878]], ['gesdot', [10880]], ['gesdoto', [10882]], ['gesdotol', [10884]], ['gesl', [8923, 65024]], ['gesles', [10900]], ['Gfr', [120074]], ['gfr', [120100]], ['gg', [8811]], ['Gg', [8921]], ['ggg', [8921]], ['gimel', [8503]], ['GJcy', [1027]], ['gjcy', [1107]], ['gla', [10917]], ['gl', [8823]], ['glE', [10898]], ['glj', [10916]], ['gnap', [10890]], ['gnapprox', [10890]], ['gne', [10888]], ['gnE', [8809]], ['gneq', [10888]], ['gneqq', [8809]], ['gnsim', [8935]], ['Gopf', [120126]], ['gopf', [120152]], ['grave', [96]], ['GreaterEqual', [8805]], ['GreaterEqualLess', [8923]], ['GreaterFullEqual', [8807]], ['GreaterGreater', [10914]], ['GreaterLess', [8823]], ['GreaterSlantEqual', [10878]], ['GreaterTilde', [8819]], ['Gscr', [119970]], ['gscr', [8458]], ['gsim', [8819]], ['gsime', [10894]], ['gsiml', [10896]], ['gtcc', [10919]], ['gtcir', [10874]], ['gt', [62]], ['GT', [62]], ['Gt', [8811]], ['gtdot', [8919]], ['gtlPar', [10645]], ['gtquest', [10876]], ['gtrapprox', [10886]], ['gtrarr', [10616]], ['gtrdot', [8919]], ['gtreqless', [8923]], ['gtreqqless', [10892]], ['gtrless', [8823]], ['gtrsim', [8819]], ['gvertneqq', [8809, 65024]], ['gvnE', [8809, 65024]], ['Hacek', [711]], ['hairsp', [8202]], ['half', [189]], ['hamilt', [8459]], ['HARDcy', [1066]], ['hardcy', [1098]], ['harrcir', [10568]], ['harr', [8596]], ['hArr', [8660]], ['harrw', [8621]], ['Hat', [94]], ['hbar', [8463]], ['Hcirc', [292]], ['hcirc', [293]], ['hearts', [9829]], ['heartsuit', [9829]], ['hellip', [8230]], ['hercon', [8889]], ['hfr', [120101]], ['Hfr', [8460]], ['HilbertSpace', [8459]], ['hksearow', [10533]], ['hkswarow', [10534]], ['hoarr', [8703]], ['homtht', [8763]], ['hookleftarrow', [8617]], ['hookrightarrow', [8618]], ['hopf', [120153]], ['Hopf', [8461]], ['horbar', [8213]], ['HorizontalLine', [9472]], ['hscr', [119997]], ['Hscr', [8459]], ['hslash', [8463]], ['Hstrok', [294]], ['hstrok', [295]], ['HumpDownHump', [8782]], ['HumpEqual', [8783]], ['hybull', [8259]], ['hyphen', [8208]], ['Iacute', [205]], ['iacute', [237]], ['ic', [8291]], ['Icirc', [206]], ['icirc', [238]], ['Icy', [1048]], ['icy', [1080]], ['Idot', [304]], ['IEcy', [1045]], ['iecy', [1077]], ['iexcl', [161]], ['iff', [8660]], ['ifr', [120102]], ['Ifr', [8465]], ['Igrave', [204]], ['igrave', [236]], ['ii', [8520]], ['iiiint', [10764]], ['iiint', [8749]], ['iinfin', [10716]], ['iiota', [8489]], ['IJlig', [306]], ['ijlig', [307]], ['Imacr', [298]], ['imacr', [299]], ['image', [8465]], ['ImaginaryI', [8520]], ['imagline', [8464]], ['imagpart', [8465]], ['imath', [305]], ['Im', [8465]], ['imof', [8887]], ['imped', [437]], ['Implies', [8658]], ['incare', [8453]], ['in', [8712]], ['infin', [8734]], ['infintie', [10717]], ['inodot', [305]], ['intcal', [8890]], ['int', [8747]], ['Int', [8748]], ['integers', [8484]], ['Integral', [8747]], ['intercal', [8890]], ['Intersection', [8898]], ['intlarhk', [10775]], ['intprod', [10812]], ['InvisibleComma', [8291]], ['InvisibleTimes', [8290]], ['IOcy', [1025]], ['iocy', [1105]], ['Iogon', [302]], ['iogon', [303]], ['Iopf', [120128]], ['iopf', [120154]], ['Iota', [921]], ['iota', [953]], ['iprod', [10812]], ['iquest', [191]], ['iscr', [119998]], ['Iscr', [8464]], ['isin', [8712]], ['isindot', [8949]], ['isinE', [8953]], ['isins', [8948]], ['isinsv', [8947]], ['isinv', [8712]], ['it', [8290]], ['Itilde', [296]], ['itilde', [297]], ['Iukcy', [1030]], ['iukcy', [1110]], ['Iuml', [207]], ['iuml', [239]], ['Jcirc', [308]], ['jcirc', [309]], ['Jcy', [1049]], ['jcy', [1081]], ['Jfr', [120077]], ['jfr', [120103]], ['jmath', [567]], ['Jopf', [120129]], ['jopf', [120155]], ['Jscr', [119973]], ['jscr', [119999]], ['Jsercy', [1032]], ['jsercy', [1112]], ['Jukcy', [1028]], ['jukcy', [1108]], ['Kappa', [922]], ['kappa', [954]], ['kappav', [1008]], ['Kcedil', [310]], ['kcedil', [311]], ['Kcy', [1050]], ['kcy', [1082]], ['Kfr', [120078]], ['kfr', [120104]], ['kgreen', [312]], ['KHcy', [1061]], ['khcy', [1093]], ['KJcy', [1036]], ['kjcy', [1116]], ['Kopf', [120130]], ['kopf', [120156]], ['Kscr', [119974]], ['kscr', [120000]], ['lAarr', [8666]], ['Lacute', [313]], ['lacute', [314]], ['laemptyv', [10676]], ['lagran', [8466]], ['Lambda', [923]], ['lambda', [955]], ['lang', [10216]], ['Lang', [10218]], ['langd', [10641]], ['langle', [10216]], ['lap', [10885]], ['Laplacetrf', [8466]], ['laquo', [171]], ['larrb', [8676]], ['larrbfs', [10527]], ['larr', [8592]], ['Larr', [8606]], ['lArr', [8656]], ['larrfs', [10525]], ['larrhk', [8617]], ['larrlp', [8619]], ['larrpl', [10553]], ['larrsim', [10611]], ['larrtl', [8610]], ['latail', [10521]], ['lAtail', [10523]], ['lat', [10923]], ['late', [10925]], ['lates', [10925, 65024]], ['lbarr', [10508]], ['lBarr', [10510]], ['lbbrk', [10098]], ['lbrace', [123]], ['lbrack', [91]], ['lbrke', [10635]], ['lbrksld', [10639]], ['lbrkslu', [10637]], ['Lcaron', [317]], ['lcaron', [318]], ['Lcedil', [315]], ['lcedil', [316]], ['lceil', [8968]], ['lcub', [123]], ['Lcy', [1051]], ['lcy', [1083]], ['ldca', [10550]], ['ldquo', [8220]], ['ldquor', [8222]], ['ldrdhar', [10599]], ['ldrushar', [10571]], ['ldsh', [8626]], ['le', [8804]], ['lE', [8806]], ['LeftAngleBracket', [10216]], ['LeftArrowBar', [8676]], ['leftarrow', [8592]], ['LeftArrow', [8592]], ['Leftarrow', [8656]], ['LeftArrowRightArrow', [8646]], ['leftarrowtail', [8610]], ['LeftCeiling', [8968]], ['LeftDoubleBracket', [10214]], ['LeftDownTeeVector', [10593]], ['LeftDownVectorBar', [10585]], ['LeftDownVector', [8643]], ['LeftFloor', [8970]], ['leftharpoondown', [8637]], ['leftharpoonup', [8636]], ['leftleftarrows', [8647]], ['leftrightarrow', [8596]], ['LeftRightArrow', [8596]], ['Leftrightarrow', [8660]], ['leftrightarrows', [8646]], ['leftrightharpoons', [8651]], ['leftrightsquigarrow', [8621]], ['LeftRightVector', [10574]], ['LeftTeeArrow', [8612]], ['LeftTee', [8867]], ['LeftTeeVector', [10586]], ['leftthreetimes', [8907]], ['LeftTriangleBar', [10703]], ['LeftTriangle', [8882]], ['LeftTriangleEqual', [8884]], ['LeftUpDownVector', [10577]], ['LeftUpTeeVector', [10592]], ['LeftUpVectorBar', [10584]], ['LeftUpVector', [8639]], ['LeftVectorBar', [10578]], ['LeftVector', [8636]], ['lEg', [10891]], ['leg', [8922]], ['leq', [8804]], ['leqq', [8806]], ['leqslant', [10877]], ['lescc', [10920]], ['les', [10877]], ['lesdot', [10879]], ['lesdoto', [10881]], ['lesdotor', [10883]], ['lesg', [8922, 65024]], ['lesges', [10899]], ['lessapprox', [10885]], ['lessdot', [8918]], ['lesseqgtr', [8922]], ['lesseqqgtr', [10891]], ['LessEqualGreater', [8922]], ['LessFullEqual', [8806]], ['LessGreater', [8822]], ['lessgtr', [8822]], ['LessLess', [10913]], ['lesssim', [8818]], ['LessSlantEqual', [10877]], ['LessTilde', [8818]], ['lfisht', [10620]], ['lfloor', [8970]], ['Lfr', [120079]], ['lfr', [120105]], ['lg', [8822]], ['lgE', [10897]], ['lHar', [10594]], ['lhard', [8637]], ['lharu', [8636]], ['lharul', [10602]], ['lhblk', [9604]], ['LJcy', [1033]], ['ljcy', [1113]], ['llarr', [8647]], ['ll', [8810]], ['Ll', [8920]], ['llcorner', [8990]], ['Lleftarrow', [8666]], ['llhard', [10603]], ['lltri', [9722]], ['Lmidot', [319]], ['lmidot', [320]], ['lmoustache', [9136]], ['lmoust', [9136]], ['lnap', [10889]], ['lnapprox', [10889]], ['lne', [10887]], ['lnE', [8808]], ['lneq', [10887]], ['lneqq', [8808]], ['lnsim', [8934]], ['loang', [10220]], ['loarr', [8701]], ['lobrk', [10214]], ['longleftarrow', [10229]], ['LongLeftArrow', [10229]], ['Longleftarrow', [10232]], ['longleftrightarrow', [10231]], ['LongLeftRightArrow', [10231]], ['Longleftrightarrow', [10234]], ['longmapsto', [10236]], ['longrightarrow', [10230]], ['LongRightArrow', [10230]], ['Longrightarrow', [10233]], ['looparrowleft', [8619]], ['looparrowright', [8620]], ['lopar', [10629]], ['Lopf', [120131]], ['lopf', [120157]], ['loplus', [10797]], ['lotimes', [10804]], ['lowast', [8727]], ['lowbar', [95]], ['LowerLeftArrow', [8601]], ['LowerRightArrow', [8600]], ['loz', [9674]], ['lozenge', [9674]], ['lozf', [10731]], ['lpar', [40]], ['lparlt', [10643]], ['lrarr', [8646]], ['lrcorner', [8991]], ['lrhar', [8651]], ['lrhard', [10605]], ['lrm', [8206]], ['lrtri', [8895]], ['lsaquo', [8249]], ['lscr', [120001]], ['Lscr', [8466]], ['lsh', [8624]], ['Lsh', [8624]], ['lsim', [8818]], ['lsime', [10893]], ['lsimg', [10895]], ['lsqb', [91]], ['lsquo', [8216]], ['lsquor', [8218]], ['Lstrok', [321]], ['lstrok', [322]], ['ltcc', [10918]], ['ltcir', [10873]], ['lt', [60]], ['LT', [60]], ['Lt', [8810]], ['ltdot', [8918]], ['lthree', [8907]], ['ltimes', [8905]], ['ltlarr', [10614]], ['ltquest', [10875]], ['ltri', [9667]], ['ltrie', [8884]], ['ltrif', [9666]], ['ltrPar', [10646]], ['lurdshar', [10570]], ['luruhar', [10598]], ['lvertneqq', [8808, 65024]], ['lvnE', [8808, 65024]], ['macr', [175]], ['male', [9794]], ['malt', [10016]], ['maltese', [10016]], ['Map', [10501]], ['map', [8614]], ['mapsto', [8614]], ['mapstodown', [8615]], ['mapstoleft', [8612]], ['mapstoup', [8613]], ['marker', [9646]], ['mcomma', [10793]], ['Mcy', [1052]], ['mcy', [1084]], ['mdash', [8212]], ['mDDot', [8762]], ['measuredangle', [8737]], ['MediumSpace', [8287]], ['Mellintrf', [8499]], ['Mfr', [120080]], ['mfr', [120106]], ['mho', [8487]], ['micro', [181]], ['midast', [42]], ['midcir', [10992]], ['mid', [8739]], ['middot', [183]], ['minusb', [8863]], ['minus', [8722]], ['minusd', [8760]], ['minusdu', [10794]], ['MinusPlus', [8723]], ['mlcp', [10971]], ['mldr', [8230]], ['mnplus', [8723]], ['models', [8871]], ['Mopf', [120132]], ['mopf', [120158]], ['mp', [8723]], ['mscr', [120002]], ['Mscr', [8499]], ['mstpos', [8766]], ['Mu', [924]], ['mu', [956]], ['multimap', [8888]], ['mumap', [8888]], ['nabla', [8711]], ['Nacute', [323]], ['nacute', [324]], ['nang', [8736, 8402]], ['nap', [8777]], ['napE', [10864, 824]], ['napid', [8779, 824]], ['napos', [329]], ['napprox', [8777]], ['natural', [9838]], ['naturals', [8469]], ['natur', [9838]], ['nbsp', [160]], ['nbump', [8782, 824]], ['nbumpe', [8783, 824]], ['ncap', [10819]], ['Ncaron', [327]], ['ncaron', [328]], ['Ncedil', [325]], ['ncedil', [326]], ['ncong', [8775]], ['ncongdot', [10861, 824]], ['ncup', [10818]], ['Ncy', [1053]], ['ncy', [1085]], ['ndash', [8211]], ['nearhk', [10532]], ['nearr', [8599]], ['neArr', [8663]], ['nearrow', [8599]], ['ne', [8800]], ['nedot', [8784, 824]], ['NegativeMediumSpace', [8203]], ['NegativeThickSpace', [8203]], ['NegativeThinSpace', [8203]], ['NegativeVeryThinSpace', [8203]], ['nequiv', [8802]], ['nesear', [10536]], ['nesim', [8770, 824]], ['NestedGreaterGreater', [8811]], ['NestedLessLess', [8810]], ['nexist', [8708]], ['nexists', [8708]], ['Nfr', [120081]], ['nfr', [120107]], ['ngE', [8807, 824]], ['nge', [8817]], ['ngeq', [8817]], ['ngeqq', [8807, 824]], ['ngeqslant', [10878, 824]], ['nges', [10878, 824]], ['nGg', [8921, 824]], ['ngsim', [8821]], ['nGt', [8811, 8402]], ['ngt', [8815]], ['ngtr', [8815]], ['nGtv', [8811, 824]], ['nharr', [8622]], ['nhArr', [8654]], ['nhpar', [10994]], ['ni', [8715]], ['nis', [8956]], ['nisd', [8954]], ['niv', [8715]], ['NJcy', [1034]], ['njcy', [1114]], ['nlarr', [8602]], ['nlArr', [8653]], ['nldr', [8229]], ['nlE', [8806, 824]], ['nle', [8816]], ['nleftarrow', [8602]], ['nLeftarrow', [8653]], ['nleftrightarrow', [8622]], ['nLeftrightarrow', [8654]], ['nleq', [8816]], ['nleqq', [8806, 824]], ['nleqslant', [10877, 824]], ['nles', [10877, 824]], ['nless', [8814]], ['nLl', [8920, 824]], ['nlsim', [8820]], ['nLt', [8810, 8402]], ['nlt', [8814]], ['nltri', [8938]], ['nltrie', [8940]], ['nLtv', [8810, 824]], ['nmid', [8740]], ['NoBreak', [8288]], ['NonBreakingSpace', [160]], ['nopf', [120159]], ['Nopf', [8469]], ['Not', [10988]], ['not', [172]], ['NotCongruent', [8802]], ['NotCupCap', [8813]], ['NotDoubleVerticalBar', [8742]], ['NotElement', [8713]], ['NotEqual', [8800]], ['NotEqualTilde', [8770, 824]], ['NotExists', [8708]], ['NotGreater', [8815]], ['NotGreaterEqual', [8817]], ['NotGreaterFullEqual', [8807, 824]], ['NotGreaterGreater', [8811, 824]], ['NotGreaterLess', [8825]], ['NotGreaterSlantEqual', [10878, 824]], ['NotGreaterTilde', [8821]], ['NotHumpDownHump', [8782, 824]], ['NotHumpEqual', [8783, 824]], ['notin', [8713]], ['notindot', [8949, 824]], ['notinE', [8953, 824]], ['notinva', [8713]], ['notinvb', [8951]], ['notinvc', [8950]], ['NotLeftTriangleBar', [10703, 824]], ['NotLeftTriangle', [8938]], ['NotLeftTriangleEqual', [8940]], ['NotLess', [8814]], ['NotLessEqual', [8816]], ['NotLessGreater', [8824]], ['NotLessLess', [8810, 824]], ['NotLessSlantEqual', [10877, 824]], ['NotLessTilde', [8820]], ['NotNestedGreaterGreater', [10914, 824]], ['NotNestedLessLess', [10913, 824]], ['notni', [8716]], ['notniva', [8716]], ['notnivb', [8958]], ['notnivc', [8957]], ['NotPrecedes', [8832]], ['NotPrecedesEqual', [10927, 824]], ['NotPrecedesSlantEqual', [8928]], ['NotReverseElement', [8716]], ['NotRightTriangleBar', [10704, 824]], ['NotRightTriangle', [8939]], ['NotRightTriangleEqual', [8941]], ['NotSquareSubset', [8847, 824]], ['NotSquareSubsetEqual', [8930]], ['NotSquareSuperset', [8848, 824]], ['NotSquareSupersetEqual', [8931]], ['NotSubset', [8834, 8402]], ['NotSubsetEqual', [8840]], ['NotSucceeds', [8833]], ['NotSucceedsEqual', [10928, 824]], ['NotSucceedsSlantEqual', [8929]], ['NotSucceedsTilde', [8831, 824]], ['NotSuperset', [8835, 8402]], ['NotSupersetEqual', [8841]], ['NotTilde', [8769]], ['NotTildeEqual', [8772]], ['NotTildeFullEqual', [8775]], ['NotTildeTilde', [8777]], ['NotVerticalBar', [8740]], ['nparallel', [8742]], ['npar', [8742]], ['nparsl', [11005, 8421]], ['npart', [8706, 824]], ['npolint', [10772]], ['npr', [8832]], ['nprcue', [8928]], ['nprec', [8832]], ['npreceq', [10927, 824]], ['npre', [10927, 824]], ['nrarrc', [10547, 824]], ['nrarr', [8603]], ['nrArr', [8655]], ['nrarrw', [8605, 824]], ['nrightarrow', [8603]], ['nRightarrow', [8655]], ['nrtri', [8939]], ['nrtrie', [8941]], ['nsc', [8833]], ['nsccue', [8929]], ['nsce', [10928, 824]], ['Nscr', [119977]], ['nscr', [120003]], ['nshortmid', [8740]], ['nshortparallel', [8742]], ['nsim', [8769]], ['nsime', [8772]], ['nsimeq', [8772]], ['nsmid', [8740]], ['nspar', [8742]], ['nsqsube', [8930]], ['nsqsupe', [8931]], ['nsub', [8836]], ['nsubE', [10949, 824]], ['nsube', [8840]], ['nsubset', [8834, 8402]], ['nsubseteq', [8840]], ['nsubseteqq', [10949, 824]], ['nsucc', [8833]], ['nsucceq', [10928, 824]], ['nsup', [8837]], ['nsupE', [10950, 824]], ['nsupe', [8841]], ['nsupset', [8835, 8402]], ['nsupseteq', [8841]], ['nsupseteqq', [10950, 824]], ['ntgl', [8825]], ['Ntilde', [209]], ['ntilde', [241]], ['ntlg', [8824]], ['ntriangleleft', [8938]], ['ntrianglelefteq', [8940]], ['ntriangleright', [8939]], ['ntrianglerighteq', [8941]], ['Nu', [925]], ['nu', [957]], ['num', [35]], ['numero', [8470]], ['numsp', [8199]], ['nvap', [8781, 8402]], ['nvdash', [8876]], ['nvDash', [8877]], ['nVdash', [8878]], ['nVDash', [8879]], ['nvge', [8805, 8402]], ['nvgt', [62, 8402]], ['nvHarr', [10500]], ['nvinfin', [10718]], ['nvlArr', [10498]], ['nvle', [8804, 8402]], ['nvlt', [60, 8402]], ['nvltrie', [8884, 8402]], ['nvrArr', [10499]], ['nvrtrie', [8885, 8402]], ['nvsim', [8764, 8402]], ['nwarhk', [10531]], ['nwarr', [8598]], ['nwArr', [8662]], ['nwarrow', [8598]], ['nwnear', [10535]], ['Oacute', [211]], ['oacute', [243]], ['oast', [8859]], ['Ocirc', [212]], ['ocirc', [244]], ['ocir', [8858]], ['Ocy', [1054]], ['ocy', [1086]], ['odash', [8861]], ['Odblac', [336]], ['odblac', [337]], ['odiv', [10808]], ['odot', [8857]], ['odsold', [10684]], ['OElig', [338]], ['oelig', [339]], ['ofcir', [10687]], ['Ofr', [120082]], ['ofr', [120108]], ['ogon', [731]], ['Ograve', [210]], ['ograve', [242]], ['ogt', [10689]], ['ohbar', [10677]], ['ohm', [937]], ['oint', [8750]], ['olarr', [8634]], ['olcir', [10686]], ['olcross', [10683]], ['oline', [8254]], ['olt', [10688]], ['Omacr', [332]], ['omacr', [333]], ['Omega', [937]], ['omega', [969]], ['Omicron', [927]], ['omicron', [959]], ['omid', [10678]], ['ominus', [8854]], ['Oopf', [120134]], ['oopf', [120160]], ['opar', [10679]], ['OpenCurlyDoubleQuote', [8220]], ['OpenCurlyQuote', [8216]], ['operp', [10681]], ['oplus', [8853]], ['orarr', [8635]], ['Or', [10836]], ['or', [8744]], ['ord', [10845]], ['order', [8500]], ['orderof', [8500]], ['ordf', [170]], ['ordm', [186]], ['origof', [8886]], ['oror', [10838]], ['orslope', [10839]], ['orv', [10843]], ['oS', [9416]], ['Oscr', [119978]], ['oscr', [8500]], ['Oslash', [216]], ['oslash', [248]], ['osol', [8856]], ['Otilde', [213]], ['otilde', [245]], ['otimesas', [10806]], ['Otimes', [10807]], ['otimes', [8855]], ['Ouml', [214]], ['ouml', [246]], ['ovbar', [9021]], ['OverBar', [8254]], ['OverBrace', [9182]], ['OverBracket', [9140]], ['OverParenthesis', [9180]], ['para', [182]], ['parallel', [8741]], ['par', [8741]], ['parsim', [10995]], ['parsl', [11005]], ['part', [8706]], ['PartialD', [8706]], ['Pcy', [1055]], ['pcy', [1087]], ['percnt', [37]], ['period', [46]], ['permil', [8240]], ['perp', [8869]], ['pertenk', [8241]], ['Pfr', [120083]], ['pfr', [120109]], ['Phi', [934]], ['phi', [966]], ['phiv', [981]], ['phmmat', [8499]], ['phone', [9742]], ['Pi', [928]], ['pi', [960]], ['pitchfork', [8916]], ['piv', [982]], ['planck', [8463]], ['planckh', [8462]], ['plankv', [8463]], ['plusacir', [10787]], ['plusb', [8862]], ['pluscir', [10786]], ['plus', [43]], ['plusdo', [8724]], ['plusdu', [10789]], ['pluse', [10866]], ['PlusMinus', [177]], ['plusmn', [177]], ['plussim', [10790]], ['plustwo', [10791]], ['pm', [177]], ['Poincareplane', [8460]], ['pointint', [10773]], ['popf', [120161]], ['Popf', [8473]], ['pound', [163]], ['prap', [10935]], ['Pr', [10939]], ['pr', [8826]], ['prcue', [8828]], ['precapprox', [10935]], ['prec', [8826]], ['preccurlyeq', [8828]], ['Precedes', [8826]], ['PrecedesEqual', [10927]], ['PrecedesSlantEqual', [8828]], ['PrecedesTilde', [8830]], ['preceq', [10927]], ['precnapprox', [10937]], ['precneqq', [10933]], ['precnsim', [8936]], ['pre', [10927]], ['prE', [10931]], ['precsim', [8830]], ['prime', [8242]], ['Prime', [8243]], ['primes', [8473]], ['prnap', [10937]], ['prnE', [10933]], ['prnsim', [8936]], ['prod', [8719]], ['Product', [8719]], ['profalar', [9006]], ['profline', [8978]], ['profsurf', [8979]], ['prop', [8733]], ['Proportional', [8733]], ['Proportion', [8759]], ['propto', [8733]], ['prsim', [8830]], ['prurel', [8880]], ['Pscr', [119979]], ['pscr', [120005]], ['Psi', [936]], ['psi', [968]], ['puncsp', [8200]], ['Qfr', [120084]], ['qfr', [120110]], ['qint', [10764]], ['qopf', [120162]], ['Qopf', [8474]], ['qprime', [8279]], ['Qscr', [119980]], ['qscr', [120006]], ['quaternions', [8461]], ['quatint', [10774]], ['quest', [63]], ['questeq', [8799]], ['quot', [34]], ['QUOT', [34]], ['rAarr', [8667]], ['race', [8765, 817]], ['Racute', [340]], ['racute', [341]], ['radic', [8730]], ['raemptyv', [10675]], ['rang', [10217]], ['Rang', [10219]], ['rangd', [10642]], ['range', [10661]], ['rangle', [10217]], ['raquo', [187]], ['rarrap', [10613]], ['rarrb', [8677]], ['rarrbfs', [10528]], ['rarrc', [10547]], ['rarr', [8594]], ['Rarr', [8608]], ['rArr', [8658]], ['rarrfs', [10526]], ['rarrhk', [8618]], ['rarrlp', [8620]], ['rarrpl', [10565]], ['rarrsim', [10612]], ['Rarrtl', [10518]], ['rarrtl', [8611]], ['rarrw', [8605]], ['ratail', [10522]], ['rAtail', [10524]], ['ratio', [8758]], ['rationals', [8474]], ['rbarr', [10509]], ['rBarr', [10511]], ['RBarr', [10512]], ['rbbrk', [10099]], ['rbrace', [125]], ['rbrack', [93]], ['rbrke', [10636]], ['rbrksld', [10638]], ['rbrkslu', [10640]], ['Rcaron', [344]], ['rcaron', [345]], ['Rcedil', [342]], ['rcedil', [343]], ['rceil', [8969]], ['rcub', [125]], ['Rcy', [1056]], ['rcy', [1088]], ['rdca', [10551]], ['rdldhar', [10601]], ['rdquo', [8221]], ['rdquor', [8221]], ['CloseCurlyDoubleQuote', [8221]], ['rdsh', [8627]], ['real', [8476]], ['realine', [8475]], ['realpart', [8476]], ['reals', [8477]], ['Re', [8476]], ['rect', [9645]], ['reg', [174]], ['REG', [174]], ['ReverseElement', [8715]], ['ReverseEquilibrium', [8651]], ['ReverseUpEquilibrium', [10607]], ['rfisht', [10621]], ['rfloor', [8971]], ['rfr', [120111]], ['Rfr', [8476]], ['rHar', [10596]], ['rhard', [8641]], ['rharu', [8640]], ['rharul', [10604]], ['Rho', [929]], ['rho', [961]], ['rhov', [1009]], ['RightAngleBracket', [10217]], ['RightArrowBar', [8677]], ['rightarrow', [8594]], ['RightArrow', [8594]], ['Rightarrow', [8658]], ['RightArrowLeftArrow', [8644]], ['rightarrowtail', [8611]], ['RightCeiling', [8969]], ['RightDoubleBracket', [10215]], ['RightDownTeeVector', [10589]], ['RightDownVectorBar', [10581]], ['RightDownVector', [8642]], ['RightFloor', [8971]], ['rightharpoondown', [8641]], ['rightharpoonup', [8640]], ['rightleftarrows', [8644]], ['rightleftharpoons', [8652]], ['rightrightarrows', [8649]], ['rightsquigarrow', [8605]], ['RightTeeArrow', [8614]], ['RightTee', [8866]], ['RightTeeVector', [10587]], ['rightthreetimes', [8908]], ['RightTriangleBar', [10704]], ['RightTriangle', [8883]], ['RightTriangleEqual', [8885]], ['RightUpDownVector', [10575]], ['RightUpTeeVector', [10588]], ['RightUpVectorBar', [10580]], ['RightUpVector', [8638]], ['RightVectorBar', [10579]], ['RightVector', [8640]], ['ring', [730]], ['risingdotseq', [8787]], ['rlarr', [8644]], ['rlhar', [8652]], ['rlm', [8207]], ['rmoustache', [9137]], ['rmoust', [9137]], ['rnmid', [10990]], ['roang', [10221]], ['roarr', [8702]], ['robrk', [10215]], ['ropar', [10630]], ['ropf', [120163]], ['Ropf', [8477]], ['roplus', [10798]], ['rotimes', [10805]], ['RoundImplies', [10608]], ['rpar', [41]], ['rpargt', [10644]], ['rppolint', [10770]], ['rrarr', [8649]], ['Rrightarrow', [8667]], ['rsaquo', [8250]], ['rscr', [120007]], ['Rscr', [8475]], ['rsh', [8625]], ['Rsh', [8625]], ['rsqb', [93]], ['rsquo', [8217]], ['rsquor', [8217]], ['CloseCurlyQuote', [8217]], ['rthree', [8908]], ['rtimes', [8906]], ['rtri', [9657]], ['rtrie', [8885]], ['rtrif', [9656]], ['rtriltri', [10702]], ['RuleDelayed', [10740]], ['ruluhar', [10600]], ['rx', [8478]], ['Sacute', [346]], ['sacute', [347]], ['sbquo', [8218]], ['scap', [10936]], ['Scaron', [352]], ['scaron', [353]], ['Sc', [10940]], ['sc', [8827]], ['sccue', [8829]], ['sce', [10928]], ['scE', [10932]], ['Scedil', [350]], ['scedil', [351]], ['Scirc', [348]], ['scirc', [349]], ['scnap', [10938]], ['scnE', [10934]], ['scnsim', [8937]], ['scpolint', [10771]], ['scsim', [8831]], ['Scy', [1057]], ['scy', [1089]], ['sdotb', [8865]], ['sdot', [8901]], ['sdote', [10854]], ['searhk', [10533]], ['searr', [8600]], ['seArr', [8664]], ['searrow', [8600]], ['sect', [167]], ['semi', [59]], ['seswar', [10537]], ['setminus', [8726]], ['setmn', [8726]], ['sext', [10038]], ['Sfr', [120086]], ['sfr', [120112]], ['sfrown', [8994]], ['sharp', [9839]], ['SHCHcy', [1065]], ['shchcy', [1097]], ['SHcy', [1064]], ['shcy', [1096]], ['ShortDownArrow', [8595]], ['ShortLeftArrow', [8592]], ['shortmid', [8739]], ['shortparallel', [8741]], ['ShortRightArrow', [8594]], ['ShortUpArrow', [8593]], ['shy', [173]], ['Sigma', [931]], ['sigma', [963]], ['sigmaf', [962]], ['sigmav', [962]], ['sim', [8764]], ['simdot', [10858]], ['sime', [8771]], ['simeq', [8771]], ['simg', [10910]], ['simgE', [10912]], ['siml', [10909]], ['simlE', [10911]], ['simne', [8774]], ['simplus', [10788]], ['simrarr', [10610]], ['slarr', [8592]], ['SmallCircle', [8728]], ['smallsetminus', [8726]], ['smashp', [10803]], ['smeparsl', [10724]], ['smid', [8739]], ['smile', [8995]], ['smt', [10922]], ['smte', [10924]], ['smtes', [10924, 65024]], ['SOFTcy', [1068]], ['softcy', [1100]], ['solbar', [9023]], ['solb', [10692]], ['sol', [47]], ['Sopf', [120138]], ['sopf', [120164]], ['spades', [9824]], ['spadesuit', [9824]], ['spar', [8741]], ['sqcap', [8851]], ['sqcaps', [8851, 65024]], ['sqcup', [8852]], ['sqcups', [8852, 65024]], ['Sqrt', [8730]], ['sqsub', [8847]], ['sqsube', [8849]], ['sqsubset', [8847]], ['sqsubseteq', [8849]], ['sqsup', [8848]], ['sqsupe', [8850]], ['sqsupset', [8848]], ['sqsupseteq', [8850]], ['square', [9633]], ['Square', [9633]], ['SquareIntersection', [8851]], ['SquareSubset', [8847]], ['SquareSubsetEqual', [8849]], ['SquareSuperset', [8848]], ['SquareSupersetEqual', [8850]], ['SquareUnion', [8852]], ['squarf', [9642]], ['squ', [9633]], ['squf', [9642]], ['srarr', [8594]], ['Sscr', [119982]], ['sscr', [120008]], ['ssetmn', [8726]], ['ssmile', [8995]], ['sstarf', [8902]], ['Star', [8902]], ['star', [9734]], ['starf', [9733]], ['straightepsilon', [1013]], ['straightphi', [981]], ['strns', [175]], ['sub', [8834]], ['Sub', [8912]], ['subdot', [10941]], ['subE', [10949]], ['sube', [8838]], ['subedot', [10947]], ['submult', [10945]], ['subnE', [10955]], ['subne', [8842]], ['subplus', [10943]], ['subrarr', [10617]], ['subset', [8834]], ['Subset', [8912]], ['subseteq', [8838]], ['subseteqq', [10949]], ['SubsetEqual', [8838]], ['subsetneq', [8842]], ['subsetneqq', [10955]], ['subsim', [10951]], ['subsub', [10965]], ['subsup', [10963]], ['succapprox', [10936]], ['succ', [8827]], ['succcurlyeq', [8829]], ['Succeeds', [8827]], ['SucceedsEqual', [10928]], ['SucceedsSlantEqual', [8829]], ['SucceedsTilde', [8831]], ['succeq', [10928]], ['succnapprox', [10938]], ['succneqq', [10934]], ['succnsim', [8937]], ['succsim', [8831]], ['SuchThat', [8715]], ['sum', [8721]], ['Sum', [8721]], ['sung', [9834]], ['sup1', [185]], ['sup2', [178]], ['sup3', [179]], ['sup', [8835]], ['Sup', [8913]], ['supdot', [10942]], ['supdsub', [10968]], ['supE', [10950]], ['supe', [8839]], ['supedot', [10948]], ['Superset', [8835]], ['SupersetEqual', [8839]], ['suphsol', [10185]], ['suphsub', [10967]], ['suplarr', [10619]], ['supmult', [10946]], ['supnE', [10956]], ['supne', [8843]], ['supplus', [10944]], ['supset', [8835]], ['Supset', [8913]], ['supseteq', [8839]], ['supseteqq', [10950]], ['supsetneq', [8843]], ['supsetneqq', [10956]], ['supsim', [10952]], ['supsub', [10964]], ['supsup', [10966]], ['swarhk', [10534]], ['swarr', [8601]], ['swArr', [8665]], ['swarrow', [8601]], ['swnwar', [10538]], ['szlig', [223]], ['Tab', [9]], ['target', [8982]], ['Tau', [932]], ['tau', [964]], ['tbrk', [9140]], ['Tcaron', [356]], ['tcaron', [357]], ['Tcedil', [354]], ['tcedil', [355]], ['Tcy', [1058]], ['tcy', [1090]], ['tdot', [8411]], ['telrec', [8981]], ['Tfr', [120087]], ['tfr', [120113]], ['there4', [8756]], ['therefore', [8756]], ['Therefore', [8756]], ['Theta', [920]], ['theta', [952]], ['thetasym', [977]], ['thetav', [977]], ['thickapprox', [8776]], ['thicksim', [8764]], ['ThickSpace', [8287, 8202]], ['ThinSpace', [8201]], ['thinsp', [8201]], ['thkap', [8776]], ['thksim', [8764]], ['THORN', [222]], ['thorn', [254]], ['tilde', [732]], ['Tilde', [8764]], ['TildeEqual', [8771]], ['TildeFullEqual', [8773]], ['TildeTilde', [8776]], ['timesbar', [10801]], ['timesb', [8864]], ['times', [215]], ['timesd', [10800]], ['tint', [8749]], ['toea', [10536]], ['topbot', [9014]], ['topcir', [10993]], ['top', [8868]], ['Topf', [120139]], ['topf', [120165]], ['topfork', [10970]], ['tosa', [10537]], ['tprime', [8244]], ['trade', [8482]], ['TRADE', [8482]], ['triangle', [9653]], ['triangledown', [9663]], ['triangleleft', [9667]], ['trianglelefteq', [8884]], ['triangleq', [8796]], ['triangleright', [9657]], ['trianglerighteq', [8885]], ['tridot', [9708]], ['trie', [8796]], ['triminus', [10810]], ['TripleDot', [8411]], ['triplus', [10809]], ['trisb', [10701]], ['tritime', [10811]], ['trpezium', [9186]], ['Tscr', [119983]], ['tscr', [120009]], ['TScy', [1062]], ['tscy', [1094]], ['TSHcy', [1035]], ['tshcy', [1115]], ['Tstrok', [358]], ['tstrok', [359]], ['twixt', [8812]], ['twoheadleftarrow', [8606]], ['twoheadrightarrow', [8608]], ['Uacute', [218]], ['uacute', [250]], ['uarr', [8593]], ['Uarr', [8607]], ['uArr', [8657]], ['Uarrocir', [10569]], ['Ubrcy', [1038]], ['ubrcy', [1118]], ['Ubreve', [364]], ['ubreve', [365]], ['Ucirc', [219]], ['ucirc', [251]], ['Ucy', [1059]], ['ucy', [1091]], ['udarr', [8645]], ['Udblac', [368]], ['udblac', [369]], ['udhar', [10606]], ['ufisht', [10622]], ['Ufr', [120088]], ['ufr', [120114]], ['Ugrave', [217]], ['ugrave', [249]], ['uHar', [10595]], ['uharl', [8639]], ['uharr', [8638]], ['uhblk', [9600]], ['ulcorn', [8988]], ['ulcorner', [8988]], ['ulcrop', [8975]], ['ultri', [9720]], ['Umacr', [362]], ['umacr', [363]], ['uml', [168]], ['UnderBar', [95]], ['UnderBrace', [9183]], ['UnderBracket', [9141]], ['UnderParenthesis', [9181]], ['Union', [8899]], ['UnionPlus', [8846]], ['Uogon', [370]], ['uogon', [371]], ['Uopf', [120140]], ['uopf', [120166]], ['UpArrowBar', [10514]], ['uparrow', [8593]], ['UpArrow', [8593]], ['Uparrow', [8657]], ['UpArrowDownArrow', [8645]], ['updownarrow', [8597]], ['UpDownArrow', [8597]], ['Updownarrow', [8661]], ['UpEquilibrium', [10606]], ['upharpoonleft', [8639]], ['upharpoonright', [8638]], ['uplus', [8846]], ['UpperLeftArrow', [8598]], ['UpperRightArrow', [8599]], ['upsi', [965]], ['Upsi', [978]], ['upsih', [978]], ['Upsilon', [933]], ['upsilon', [965]], ['UpTeeArrow', [8613]], ['UpTee', [8869]], ['upuparrows', [8648]], ['urcorn', [8989]], ['urcorner', [8989]], ['urcrop', [8974]], ['Uring', [366]], ['uring', [367]], ['urtri', [9721]], ['Uscr', [119984]], ['uscr', [120010]], ['utdot', [8944]], ['Utilde', [360]], ['utilde', [361]], ['utri', [9653]], ['utrif', [9652]], ['uuarr', [8648]], ['Uuml', [220]], ['uuml', [252]], ['uwangle', [10663]], ['vangrt', [10652]], ['varepsilon', [1013]], ['varkappa', [1008]], ['varnothing', [8709]], ['varphi', [981]], ['varpi', [982]], ['varpropto', [8733]], ['varr', [8597]], ['vArr', [8661]], ['varrho', [1009]], ['varsigma', [962]], ['varsubsetneq', [8842, 65024]], ['varsubsetneqq', [10955, 65024]], ['varsupsetneq', [8843, 65024]], ['varsupsetneqq', [10956, 65024]], ['vartheta', [977]], ['vartriangleleft', [8882]], ['vartriangleright', [8883]], ['vBar', [10984]], ['Vbar', [10987]], ['vBarv', [10985]], ['Vcy', [1042]], ['vcy', [1074]], ['vdash', [8866]], ['vDash', [8872]], ['Vdash', [8873]], ['VDash', [8875]], ['Vdashl', [10982]], ['veebar', [8891]], ['vee', [8744]], ['Vee', [8897]], ['veeeq', [8794]], ['vellip', [8942]], ['verbar', [124]], ['Verbar', [8214]], ['vert', [124]], ['Vert', [8214]], ['VerticalBar', [8739]], ['VerticalLine', [124]], ['VerticalSeparator', [10072]], ['VerticalTilde', [8768]], ['VeryThinSpace', [8202]], ['Vfr', [120089]], ['vfr', [120115]], ['vltri', [8882]], ['vnsub', [8834, 8402]], ['vnsup', [8835, 8402]], ['Vopf', [120141]], ['vopf', [120167]], ['vprop', [8733]], ['vrtri', [8883]], ['Vscr', [119985]], ['vscr', [120011]], ['vsubnE', [10955, 65024]], ['vsubne', [8842, 65024]], ['vsupnE', [10956, 65024]], ['vsupne', [8843, 65024]], ['Vvdash', [8874]], ['vzigzag', [10650]], ['Wcirc', [372]], ['wcirc', [373]], ['wedbar', [10847]], ['wedge', [8743]], ['Wedge', [8896]], ['wedgeq', [8793]], ['weierp', [8472]], ['Wfr', [120090]], ['wfr', [120116]], ['Wopf', [120142]], ['wopf', [120168]], ['wp', [8472]], ['wr', [8768]], ['wreath', [8768]], ['Wscr', [119986]], ['wscr', [120012]], ['xcap', [8898]], ['xcirc', [9711]], ['xcup', [8899]], ['xdtri', [9661]], ['Xfr', [120091]], ['xfr', [120117]], ['xharr', [10231]], ['xhArr', [10234]], ['Xi', [926]], ['xi', [958]], ['xlarr', [10229]], ['xlArr', [10232]], ['xmap', [10236]], ['xnis', [8955]], ['xodot', [10752]], ['Xopf', [120143]], ['xopf', [120169]], ['xoplus', [10753]], ['xotime', [10754]], ['xrarr', [10230]], ['xrArr', [10233]], ['Xscr', [119987]], ['xscr', [120013]], ['xsqcup', [10758]], ['xuplus', [10756]], ['xutri', [9651]], ['xvee', [8897]], ['xwedge', [8896]], ['Yacute', [221]], ['yacute', [253]], ['YAcy', [1071]], ['yacy', [1103]], ['Ycirc', [374]], ['ycirc', [375]], ['Ycy', [1067]], ['ycy', [1099]], ['yen', [165]], ['Yfr', [120092]], ['yfr', [120118]], ['YIcy', [1031]], ['yicy', [1111]], ['Yopf', [120144]], ['yopf', [120170]], ['Yscr', [119988]], ['yscr', [120014]], ['YUcy', [1070]], ['yucy', [1102]], ['yuml', [255]], ['Yuml', [376]], ['Zacute', [377]], ['zacute', [378]], ['Zcaron', [381]], ['zcaron', [382]], ['Zcy', [1047]], ['zcy', [1079]], ['Zdot', [379]], ['zdot', [380]], ['zeetrf', [8488]], ['ZeroWidthSpace', [8203]], ['Zeta', [918]], ['zeta', [950]], ['zfr', [120119]], ['Zfr', [8488]], ['ZHcy', [1046]], ['zhcy', [1078]], ['zigrarr', [8669]], ['zopf', [120171]], ['Zopf', [8484]], ['Zscr', [119989]], ['zscr', [120015]], ['zwj', [8205]], ['zwnj', [8204]]];\nvar DECODE_ONLY_ENTITIES = [['NewLine', [10]]];\nvar alphaIndex = {};\nvar charIndex = {};\ncreateIndexes(alphaIndex, charIndex);\n\nvar Html5Entities =\n/** @class */\nfunction () {\n  function Html5Entities() {}\n\n  Html5Entities.prototype.decode = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    return str.replace(/&(#?[\\w\\d]+);?/g, function (s, entity) {\n      var chr;\n\n      if (entity.charAt(0) === \"#\") {\n        var code = entity.charAt(1) === 'x' ? parseInt(entity.substr(2).toLowerCase(), 16) : parseInt(entity.substr(1));\n\n        if (!isNaN(code) || code >= -32768) {\n          if (code <= 65535) {\n            chr = String.fromCharCode(code);\n          } else {\n            chr = surrogate_pairs_1.fromCodePoint(code);\n          }\n        }\n      } else {\n        chr = alphaIndex[entity];\n      }\n\n      return chr || s;\n    });\n  };\n\n  Html5Entities.decode = function (str) {\n    return new Html5Entities().decode(str);\n  };\n\n  Html5Entities.prototype.encode = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var charInfo = charIndex[str.charCodeAt(i)];\n\n      if (charInfo) {\n        var alpha = charInfo[str.charCodeAt(i + 1)];\n\n        if (alpha) {\n          i++;\n        } else {\n          alpha = charInfo[''];\n        }\n\n        if (alpha) {\n          result += \"&\" + alpha + \";\";\n          i++;\n          continue;\n        }\n      }\n\n      result += str.charAt(i);\n      i++;\n    }\n\n    return result;\n  };\n\n  Html5Entities.encode = function (str) {\n    return new Html5Entities().encode(str);\n  };\n\n  Html5Entities.prototype.encodeNonUTF = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var c = str.charCodeAt(i);\n      var charInfo = charIndex[c];\n\n      if (charInfo) {\n        var alpha = charInfo[str.charCodeAt(i + 1)];\n\n        if (alpha) {\n          i++;\n        } else {\n          alpha = charInfo[''];\n        }\n\n        if (alpha) {\n          result += \"&\" + alpha + \";\";\n          i++;\n          continue;\n        }\n      }\n\n      if (c < 32 || c > 126) {\n        if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {\n          result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';\n          i++;\n        } else {\n          result += '&#' + c + ';';\n        }\n      } else {\n        result += str.charAt(i);\n      }\n\n      i++;\n    }\n\n    return result;\n  };\n\n  Html5Entities.encodeNonUTF = function (str) {\n    return new Html5Entities().encodeNonUTF(str);\n  };\n\n  Html5Entities.prototype.encodeNonASCII = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var c = str.charCodeAt(i);\n\n      if (c <= 255) {\n        result += str[i++];\n        continue;\n      }\n\n      if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {\n        result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';\n        i += 2;\n      } else {\n        result += '&#' + c + ';';\n        i++;\n      }\n    }\n\n    return result;\n  };\n\n  Html5Entities.encodeNonASCII = function (str) {\n    return new Html5Entities().encodeNonASCII(str);\n  };\n\n  return Html5Entities;\n}();\n\nexports.Html5Entities = Html5Entities;\n\nfunction createIndexes(alphaIndex, charIndex) {\n  var i = ENTITIES.length;\n\n  while (i--) {\n    var _a = ENTITIES[i],\n        alpha = _a[0],\n        _b = _a[1],\n        chr = _b[0],\n        chr2 = _b[1];\n    var addChar = chr < 32 || chr > 126 || chr === 62 || chr === 60 || chr === 38 || chr === 34 || chr === 39;\n    var charInfo = void 0;\n\n    if (addChar) {\n      charInfo = charIndex[chr] = charIndex[chr] || {};\n    }\n\n    if (chr2) {\n      alphaIndex[alpha] = String.fromCharCode(chr) + String.fromCharCode(chr2);\n      addChar && (charInfo[chr2] = alpha);\n    } else {\n      alphaIndex[alpha] = String.fromCharCode(chr);\n      addChar && (charInfo[''] = alpha);\n    }\n  }\n\n  i = DECODE_ONLY_ENTITIES.length;\n\n  while (i--) {\n    var _c = DECODE_ONLY_ENTITIES[i],\n        alpha = _c[0],\n        _d = _c[1],\n        chr = _d[0],\n        chr2 = _d[1];\n    alphaIndex[alpha] = String.fromCharCode(chr) + (chr2 ? String.fromCharCode(chr2) : '');\n  }\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL2h0bWw1LWVudGl0aWVzLmpzPzE3ZmYiXSwibmFtZXMiOlsiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJleHBvcnRzIiwidmFsdWUiLCJzdXJyb2dhdGVfcGFpcnNfMSIsInJlcXVpcmUiLCJFTlRJVElFUyIsIkRFQ09ERV9PTkxZX0VOVElUSUVTIiwiYWxwaGFJbmRleCIsImNoYXJJbmRleCIsImNyZWF0ZUluZGV4ZXMiLCJIdG1sNUVudGl0aWVzIiwicHJvdG90eXBlIiwiZGVjb2RlIiwic3RyIiwibGVuZ3RoIiwicmVwbGFjZSIsInMiLCJlbnRpdHkiLCJjaHIiLCJjaGFyQXQiLCJjb2RlIiwicGFyc2VJbnQiLCJzdWJzdHIiLCJ0b0xvd2VyQ2FzZSIsImlzTmFOIiwiU3RyaW5nIiwiZnJvbUNoYXJDb2RlIiwiZnJvbUNvZGVQb2ludCIsImVuY29kZSIsInN0ckxlbmd0aCIsInJlc3VsdCIsImkiLCJjaGFySW5mbyIsImNoYXJDb2RlQXQiLCJhbHBoYSIsImVuY29kZU5vblVURiIsImMiLCJoaWdoU3Vycm9nYXRlRnJvbSIsImhpZ2hTdXJyb2dhdGVUbyIsImdldENvZGVQb2ludCIsImVuY29kZU5vbkFTQ0lJIiwiX2EiLCJfYiIsImNocjIiLCJhZGRDaGFyIiwiX2MiLCJfZCJdLCJtYXBwaW5ncyI6IkFBQWE7O0FBQ2JBLE1BQU0sQ0FBQ0MsY0FBUCxDQUFzQkMsT0FBdEIsRUFBK0IsWUFBL0IsRUFBNkM7QUFBRUMsT0FBSyxFQUFFO0FBQVQsQ0FBN0M7O0FBQ0EsSUFBSUMsaUJBQWlCLEdBQUdDLG1CQUFPLENBQUMsOEVBQUQsQ0FBL0I7O0FBQ0EsSUFBSUMsUUFBUSxHQUFHLENBQUMsQ0FBQyxRQUFELEVBQVcsQ0FBQyxHQUFELENBQVgsQ0FBRCxFQUFvQixDQUFDLFFBQUQsRUFBVyxDQUFDLEdBQUQsQ0FBWCxDQUFwQixFQUF1QyxDQUFD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RCxDQUFWLEdBQW9CVCxNQUFNLENBQUNDLFlBQVAsQ0FBb0JSLEdBQXBCLENBQXBCO0FBQ0EwQixhQUFPLEtBQUtaLFFBQVEsQ0FBQyxFQUFELENBQVIsR0FBZUUsS0FBcEIsQ0FBUDtBQUNIO0FBQ0o7O0FBQ0RILEdBQUMsR0FBR3pCLG9CQUFvQixDQUFDUSxNQUF6Qjs7QUFDQSxTQUFPaUIsQ0FBQyxFQUFSLEVBQVk7QUFDUixRQUFJYyxFQUFFLEdBQUd2QyxvQkFBb0IsQ0FBQ3lCLENBQUQsQ0FBN0I7QUFBQSxRQUFrQ0csS0FBSyxHQUFHVyxFQUFFLENBQUMsQ0FBRCxDQUE1QztBQUFBLFFBQWlEQyxFQUFFLEdBQUdELEVBQUUsQ0FBQyxDQUFELENBQXhEO0FBQUEsUUFBNkQzQixHQUFHLEdBQUc0QixFQUFFLENBQUMsQ0FBRCxDQUFyRTtBQUFBLFFBQTBFSCxJQUFJLEdBQUdHLEVBQUUsQ0FBQyxDQUFELENBQW5GO0FBQ0F2QyxjQUFVLENBQUMyQixLQUFELENBQVYsR0FBb0JULE1BQU0sQ0FBQ0MsWUFBUCxDQUFvQlIsR0FBcEIsS0FBNEJ5QixJQUFJLEdBQUdsQixNQUFNLENBQUNDLFlBQVAsQ0FBb0JpQixJQUFwQixDQUFILEdBQStCLEVBQS9ELENBQXBCO0FBQ0g7QUFDSiIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy9odG1sLWVudGl0aWVzL2xpYi9odG1sNS1lbnRpdGllcy5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuT2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIFwiX19lc01vZHVsZVwiLCB7IHZhbHVlOiB0cnVlIH0pO1xudmFyIHN1cnJvZ2F0ZV9wYWlyc18xID0gcmVxdWlyZShcIi4vc3Vycm9nYXRlLXBhaXJzXCIpO1xudmFyIEVOVElUSUVTID0gW1snQWFjdXRlJywgWzE5M11dLCBbJ2FhY3V0ZScsIFsyMjVdXSwgWydBYnJldmUnLCBbMjU4XV0sIFsnYWJyZXZlJywgWzI1OV1dLCBbJ2FjJywgWzg3NjZdXSwgWydhY2QnLCBbODc2N11dLCBbJ2FjRScsIFs4NzY2LCA4MTldXSwgWydBY2lyYycsIFsxOTRdXSwgWydhY2lyYycsIFsyMjZdXSwgWydhY3V0ZScsIFsxODBdXSwgWydBY3knLCBbMTA0MF1dLCBbJ2FjeScsIFsxMDcyXV0sIFsnQUVsaWcnLCBbMTk4XV0sIFsnYWVsaWcnLCBbMjMwXV0sIFsnYWYnLCBbODI4OV1dLCBbJ0FmcicsIFsxMjAwNjhdXSwgWydhZnInLCBbMTIwMDk0XV0sIFsnQWdyYXZlJywgWzE5Ml1dLCBbJ2FncmF2ZScsIFsyMjRdXSwgWydhbGVmc3ltJywgWzg1MDFdXSwgWydhbGVwaCcsIFs4NTAxXV0sIFsnQWxwaGEnLCBbOTEzXV0sIFsnYWxwaGEnLCBbOTQ1XV0sIFsnQW1hY3InLCBbMjU2XV0sIFsnYW1hY3InLCBbMjU3XV0sIFsnYW1hbGcnLCBbMTA4MTVdXSwgWydhbXAnLCBbMzhdXSwgWydBTVAnLCBbMzhdXSwgWydhbmRhbmQnLCBbMTA4MzddXSwgWydBbmQnLCBbMTA4MzVdXSwgWydhbmQnLCBbODc0M11dLCBbJ2FuZGQnLCBbMTA4NDRdXSwgWydhbmRzbG9wZScsIFsxMDg0MF1dLCBbJ2FuZHYnLCBbMTA4NDJdXSwgWydhbmcnLCBbODczNl1dLCBbJ2FuZ2UnLCBbMTA2NjBdXSwgWydhbmdsZScsIFs4NzM2XV0sIFsnYW5nbXNkYWEnLCBbMTA2NjRdXSwgWydhbmdtc2RhYicsIFsxMDY2NV1dLCBbJ2FuZ21zZGFjJywgWzEwNjY2XV0sIFsnYW5nbXNkYWQnLCBbMTA2NjddXSwgWydhbmdtc2RhZScsIFsxMDY2OF1dLCBbJ2FuZ21zZGFmJywgWzEwNjY5XV0sIFsnYW5nbXNkYWcnLCBbMTA2NzBdXSwgWydhbmdtc2RhaCcsIFsxMDY3MV1dLCBbJ2FuZ21zZCcsIFs4NzM3XV0sIFsnYW5ncnQnLCBbODczNV1dLCBbJ2FuZ3J0dmInLCBbODg5NF1dLCBbJ2FuZ3J0dmJkJywgWzEwNjUzXV0sIFsnYW5nc3BoJywgWzg3MzhdXSwgWydhbmdzdCcsIFsxOTddXSwgWydhbmd6YXJyJywgWzkwODRdXSwgWydBb2dvbicsIFsyNjBdXSwgWydhb2dvbicsIFsyNjFdXSwgWydBb3BmJywgWzEyMDEyMF1dLCBbJ2FvcGYnLCBbMTIwMTQ2XV0sIFsnYXBhY2lyJywgWzEwODYzXV0sIFsnYXAnLCBbODc3Nl1dLCBbJ2FwRScsIFsxMDg2NF1dLCBbJ2FwZScsIFs4Nzc4XV0sIFsnYXBpZCcsIFs4Nzc5XV0sIFsnYXBvcycsIFszOV1dLCBbJ0FwcGx5RnVuY3Rpb24nLCBbODI4OV1dLCBbJ2FwcHJveCcsIFs4Nzc2XV0sIFsnYXBwcm94ZXEnLCBbODc3OF1dLCBbJ0FyaW5nJywgWzE5N11dLCBbJ2FyaW5nJywgWzIyOV1dLCBbJ0FzY3InLCBbMTE5OTY0XV0sIFsnYXNjcicsIFsxMTk5OTBdXSwgWydBc3NpZ24nLCBbODc4OF1dLCBbJ2FzdCcsIFs0Ml1dLCBbJ2FzeW1wJywgWzg3NzZdXSwgWydhc3ltcGVxJywgWzg3ODFdXSwgWydBdGlsZGUnLCBbMTk1XV0sIFsnYXRpbGRlJywgWzIyN11dLCBbJ0F1bWwnLCBbMTk2XV0sIFsnYXVtbCcsIFsyMjhdXSwgWydhd2NvbmludCcsIFs4NzU1XV0sIFsnYXdpbnQnLCBbMTA3NjldXSwgWydiYWNrY29uZycsIFs4NzgwXV0sIFsnYmFja2Vwc2lsb24nLCBbMTAxNF1dLCBbJ2JhY2twcmltZScsIFs4MjQ1XV0sIFsnYmFja3NpbScsIFs4NzY1XV0sIFsnYmFja3NpbWVxJywgWzg5MDldXSwgWydCYWNrc2xhc2gnLCBbODcyNl1dLCBbJ0JhcnYnLCBbMTA5ODNdXSwgWydiYXJ2ZWUnLCBbODg5M11dLCBbJ2JhcndlZCcsIFs4OTY1XV0sIFsnQmFyd2VkJywgWzg5NjZdXSwgWydiYXJ3ZWRnZScsIFs4OTY1XV0sIFsnYmJyaycsIFs5MTQxXV0sIFsnYmJya3RicmsnLCBbOTE0Ml1dLCBbJ2Jjb25nJywgWzg3ODBdXSwgWydCY3knLCBbMTA0MV1dLCBbJ2JjeScsIFsxMDczXV0sIFsnYmRxdW8nLCBbODIyMl1dLCBbJ2JlY2F1cycsIFs4NzU3XV0sIFsnYmVjYXVzZScsIFs4NzU3XV0sIFsnQmVjYXVzZScsIFs4NzU3XV0sIFsnYmVtcHR5dicsIFsxMDY3Ml1dLCBbJ2JlcHNpJywgWzEwMTRdXSwgWydiZXJub3UnLCBbODQ5Ml1dLCBbJ0Jlcm5vdWxsaXMnLCBbODQ5Ml1dLCBbJ0JldGEnLCBbOTE0XV0sIFsnYmV0YScsIFs5NDZdXSwgWydiZXRoJywgWzg1MDJdXSwgWydiZXR3ZWVuJywgWzg4MTJdXSwgWydCZnInLCBbMTIwMDY5XV0sIFsnYmZyJywgWzEyMDA5NV1dLCBbJ2JpZ2NhcCcsIFs4ODk4XV0sIFsnYmlnY2lyYycsIFs5NzExXV0sIFsnYmlnY3VwJywgWzg4OTldXSwgWydiaWdvZG90JywgWzEwNzUyXV0sIFsnYmlnb3BsdXMnLCBbMTA3NTNdXSwgWydiaWdvdGltZXMnLCBbMTA3NTRdXSwgWydiaWdzcWN1cCcsIFsxMDc1OF1dLCBbJ2JpZ3N0YXInLCBbOTczM11dLCBbJ2JpZ3RyaWFuZ2xlZG93bicsIFs5NjYxXV0sIFsnYmlndHJpYW5nbGV1cCcsIFs5NjUxXV0sIFsnYmlndXBsdXMnLCBbMTA3NTZdXSwgWydiaWd2ZWUnLCBbODg5N11dLCBbJ2JpZ3dlZGdlJywgWzg4OTZdXSwgWydia2Fyb3cnLCBbMTA1MDldXSwgWydibGFja2xvemVuZ2UnLCBbMTA3MzFdXSwgWydibGFja3NxdWFyZScsIFs5NjQyXV0sIFsnYmxhY2t0cmlhbmdsZScsIFs5NjUyXV0sIFsnYmxhY2t0cmlhbmdsZWRvd24nLCBbOTY2Ml1dLCBbJ2JsYWNrdHJpYW5nbGVsZWZ0JywgWzk2NjZdXSwgWydibGFja3RyaWFuZ2xlcmlnaHQnLCBbOTY1Nl1dLCBbJ2JsYW5rJywgWzkyNTFdXSwgWydibGsxMicsIFs5NjE4XV0sIFsnYmxrMTQnLCBbOTYxN11dLCBbJ2JsazM0JywgWzk2MTldXSwgWydibG9jaycsIFs5NjA4XV0sIFsnYm5lJywgWzYxLCA4NDIxXV0sIFsnYm5lcXVpdicsIFs4ODAxLCA4NDIxXV0sIFsnYk5vdCcsIFsxMDk4OV1dLCBbJ2Jub3QnLCBbODk3Nl1dLCBbJ0JvcGYnLCBbMTIwMTIxXV0sIFsnYm9wZicsIFsxMjAxNDddXSwgWydib3QnLCBbODg2OV1dLCBbJ2JvdHRvbScsIFs4ODY5XV0sIFsnYm93dGllJywgWzg5MDRdXSwgWydib3hib3gnLCBbMTA2OTddXSwgWydib3hkbCcsIFs5NDg4XV0sIFsnYm94ZEwnLCBbOTU1N11dLCBbJ2JveERsJywgWzk1NThdXSwgWydib3hETCcsIFs5NTU5XV0sIFsnYm94ZHInLCBbOTQ4NF1dLCBbJ2JveGRSJywgWzk1NTRdXSwgWydib3hEcicsIFs5NTU1XV0sIFsnYm94RFInLCBbOTU1Nl1dLCBbJ2JveGgnLCBbOTQ3Ml1dLCBbJ2JveEgnLCBbOTU1Ml1dLCBbJ2JveGhkJywgWzk1MTZdXSwgWydib3hIZCcsIFs5NTcyXV0sIFsnYm94aEQnLCBbOTU3M11dLCBbJ2JveEhEJywgWzk1NzRdXSwgWydib3hodScsIFs5NTI0XV0sIFsnYm94SHUnLCBbOTU3NV1dLCBbJ2JveGhVJywgWzk1NzZdXSwgWydib3hIVScsIFs5NTc3XV0sIFsnYm94bWludXMnLCBbODg2M11dLCBbJ2JveHBsdXMnLCBbODg2Ml1dLCBbJ2JveHRpbWVzJywgWzg4NjRdXSwgWydib3h1bCcsIFs5NDk2XV0sIFsnYm94dUwnLCBbOTU2M11dLCBbJ2JveFVsJywgWzk1NjRdXSwgWydib3hVTCcsIFs5NTY1XV0sIFsnYm94dXInLCBbOTQ5Ml1dLCBbJ2JveHVSJywgWzk1NjBdXSwgWydib3hVcicsIFs5NTYxXV0sIFsnYm94VVInLCBbOTU2Ml1dLCBbJ2JveHYnLCBbOTQ3NF1dLCBbJ2JveFYnLCBbOTU1M11dLCBbJ2JveHZoJywgWzk1MzJdXSwgWydib3h2SCcsIFs5NTc4XV0sIFsnYm94VmgnLCBbOTU3OV1dLCBbJ2JveFZIJywgWzk1ODBdXSwgWydib3h2bCcsIFs5NTA4XV0sIFsnYm94dkwnLCBbOTU2OV1dLCBbJ2JveFZsJywgWzk1NzBdXSwgWydib3hWTCcsIFs5NTcxXV0sIFsnYm94dnInLCBbOTUwMF1dLCBbJ2JveHZSJywgWzk1NjZdXSwgWydib3hWcicsIFs5NTY3XV0sIFsnYm94VlInLCBbOTU2OF1dLCBbJ2JwcmltZScsIFs4MjQ1XV0sIFsnYnJldmUnLCBbNzI4XV0sIFsnQnJldmUnLCBbNzI4XV0sIFsnYnJ2YmFyJywgWzE2Nl1dLCBbJ2JzY3InLCBbMTE5OTkxXV0sIFsnQnNjcicsIFs4NDkyXV0sIFsnYnNlbWknLCBbODI3MV1dLCBbJ2JzaW0nLCBbODc2NV1dLCBbJ2JzaW1lJywgWzg5MDldXSwgWydic29sYicsIFsxMDY5M11dLCBbJ2Jzb2wnLCBbOTJdXSwgWydic29saHN1YicsIFsxMDE4NF1dLCBbJ2J1bGwnLCBbODIyNl1dLCBbJ2J1bGxldCcsIFs4MjI2XV0sIFsnYnVtcCcsIFs4NzgyXV0sIFsnYnVtcEUnLCBbMTA5MjZdXSwgWydidW1wZScsIFs4NzgzXV0sIFsnQnVtcGVxJywgWzg3ODJdXSwgWydidW1wZXEnLCBbODc4M11dLCBbJ0NhY3V0ZScsIFsyNjJdXSwgWydjYWN1dGUnLCBbMjYzXV0sIFsnY2FwYW5kJywgWzEwODIwXV0sIFsnY2FwYnJjdXAnLCBbMTA4MjVdXSwgWydjYXBjYXAnLCBbMTA4MjddXSwgWydjYXAnLCBbODc0NV1dLCBbJ0NhcCcsIFs4OTE0XV0sIFsnY2FwY3VwJywgWzEwODIzXV0sIFsnY2FwZG90JywgWzEwODE2XV0sIFsnQ2FwaXRhbERpZmZlcmVudGlhbEQnLCBbODUxN11dLCBbJ2NhcHMnLCBbODc0NSwgNjUwMjRdXSwgWydjYXJldCcsIFs4MjU3XV0sIFsnY2Fyb24nLCBbNzExXV0sIFsnQ2F5bGV5cycsIFs4NDkzXV0sIFsnY2NhcHMnLCBbMTA4MjldXSwgWydDY2Fyb24nLCBbMjY4XV0sIFsnY2Nhcm9uJywgWzI2OV1dLCBbJ0NjZWRpbCcsIFsxOTldXSwgWydjY2VkaWwnLCBbMjMxXV0sIFsnQ2NpcmMnLCBbMjY0XV0sIFsnY2NpcmMnLCBbMjY1XV0sIFsnQ2NvbmludCcsIFs4NzUyXV0sIFsnY2N1cHMnLCBbMTA4MjhdXSwgWydjY3Vwc3NtJywgWzEwODMyXV0sIFsnQ2RvdCcsIFsyNjZdXSwgWydjZG90JywgWzI2N11dLCBbJ2NlZGlsJywgWzE4NF1dLCBbJ0NlZGlsbGEnLCBbMTg0XV0sIFsnY2VtcHR5dicsIFsxMDY3NF1dLCBbJ2NlbnQnLCBbMTYyXV0sIFsnY2VudGVyZG90JywgWzE4M11dLCBbJ0NlbnRlckRvdCcsIFsxODNdXSwgWydjZnInLCBbMTIwMDk2XV0sIFsnQ2ZyJywgWzg0OTNdXSwgWydDSGN5JywgWzEwNjNdXSwgWydjaGN5JywgWzEwOTVdXSwgWydjaGVjaycsIFsxMDAwM11dLCBbJ2NoZWNrbWFyaycsIFsxMDAwM11dLCBbJ0NoaScsIFs5MzVdXSwgWydjaGknLCBbOTY3XV0sIFsnY2lyYycsIFs3MTBdXSwgWydjaXJjZXEnLCBbODc5MV1dLCBbJ2NpcmNsZWFycm93bGVmdCcsIFs4NjM0XV0sIFsnY2lyY2xlYXJyb3dyaWdodCcsIFs4NjM1XV0sIFsnY2lyY2xlZGFzdCcsIFs4ODU5XV0sIFsnY2lyY2xlZGNpcmMnLCBbODg1OF1dLCBbJ2NpcmNsZWRkYXNoJywgWzg4NjFdXSwgWydDaXJjbGVEb3QnLCBbODg1N11dLCBbJ2NpcmNsZWRSJywgWzE3NF1dLCBbJ2NpcmNsZWRTJywgWzk0MTZdXSwgWydDaXJjbGVNaW51cycsIFs4ODU0XV0sIFsnQ2lyY2xlUGx1cycsIFs4ODUzXV0sIFsnQ2lyY2xlVGltZXMnLCBbODg1NV1dLCBbJ2NpcicsIFs5Njc1XV0sIFsnY2lyRScsIFsxMDY5MV1dLCBbJ2NpcmUnLCBbODc5MV1dLCBbJ2NpcmZuaW50JywgWzEwNzY4XV0sIFsnY2lybWlkJywgWzEwOTkxXV0sIFsnY2lyc2NpcicsIFsxMDY5MF1dLCBbJ0Nsb2Nrd2lzZUNvbnRvdXJJbnRlZ3JhbCcsIFs4NzU0XV0sIFsnY2x1YnMnLCBbOTgyN11dLCBbJ2NsdWJzdWl0JywgWzk4MjddXSwgWydjb2xvbicsIFs1OF1dLCBbJ0NvbG9uJywgWzg3NTldXSwgWydDb2xvbmUnLCBbMTA4NjhdXSwgWydjb2xvbmUnLCBbODc4OF1dLCBbJ2NvbG9uZXEnLCBbODc4OF1dLCBbJ2NvbW1hJywgWzQ0XV0sIFsnY29tbWF0JywgWzY0XV0sIFsnY29tcCcsIFs4NzA1XV0sIFsnY29tcGZuJywgWzg3MjhdXSwgWydjb21wbGVtZW50JywgWzg3MDVdXSwgWydjb21wbGV4ZXMnLCBbODQ1MF1dLCBbJ2NvbmcnLCBbODc3M11dLCBbJ2Nvbmdkb3QnLCBbMTA4NjFdXSwgWydDb25ncnVlbnQnLCBbODgwMV1dLCBbJ2NvbmludCcsIFs4NzUwXV0sIFsnQ29uaW50JywgWzg3NTFdXSwgWydDb250b3VySW50ZWdyYWwnLCBbODc1MF1dLCBbJ2NvcGYnLCBbMTIwMTQ4XV0sIFsnQ29wZicsIFs4NDUwXV0sIFsnY29wcm9kJywgWzg3MjBdXSwgWydDb3Byb2R1Y3QnLCBbODcyMF1dLCBbJ2NvcHknLCBbMTY5XV0sIFsnQ09QWScsIFsxNjldXSwgWydjb3B5c3InLCBbODQ3MV1dLCBbJ0NvdW50ZXJDbG9ja3dpc2VDb250b3VySW50ZWdyYWwnLCBbODc1NV1dLCBbJ2NyYXJyJywgWzg2MjldXSwgWydjcm9zcycsIFsxMDAwN11dLCBbJ0Nyb3NzJywgWzEwNzk5XV0sIFsnQ3NjcicsIFsxMTk5NjZdXSwgWydjc2NyJywgWzExOTk5Ml1dLCBbJ2NzdWInLCBbMTA5NTldXSwgWydjc3ViZScsIFsxMDk2MV1dLCBbJ2NzdXAnLCBbMTA5NjBdXSwgWydjc3VwZScsIFsxMDk2Ml1dLCBbJ2N0ZG90JywgWzg5NDNdXSwgWydjdWRhcnJsJywgWzEwNTUyXV0sIFsnY3VkYXJycicsIFsxMDU0OV1dLCBbJ2N1ZXByJywgWzg5MjZdXSwgWydjdWVzYycsIFs4OTI3XV0sIFsnY3VsYXJyJywgWzg2MzBdXSwgWydjdWxhcnJwJywgWzEwNTU3XV0sIFsnY3VwYnJjYXAnLCBbMTA4MjRdXSwgWydjdXBjYXAnLCBbMTA4MjJdXSwgWydDdXBDYXAnLCBbODc4MV1dLCBbJ2N1cCcsIFs4NzQ2XV0sIFsnQ3VwJywgWzg5MTVdXSwgWydjdXBjdXAnLCBbMTA4MjZdXSwgWydjdXBkb3QnLCBbODg0NV1dLCBbJ2N1cG9yJywgWzEwODIxXV0sIFsnY3VwcycsIFs4NzQ2LCA2NTAyNF1dLCBbJ2N1cmFycicsIFs4NjMxXV0sIFsnY3VyYXJybScsIFsxMDU1Nl1dLCBbJ2N1cmx5ZXFwcmVjJywgWzg5MjZdXSwgWydjdXJseWVxc3VjYycsIFs4OTI3XV0sIFsnY3VybHl2ZWUnLCBbODkxMF1dLCBbJ2N1cmx5d2VkZ2UnLCBbODkxMV1dLCBbJ2N1cnJlbicsIFsxNjRdXSwgWydjdXJ2ZWFycm93bGVmdCcsIFs4NjMwXV0sIFsnY3VydmVhcnJvd3JpZ2h0JywgWzg2MzFdXSwgWydjdXZlZScsIFs4OTEwXV0sIFsnY3V3ZWQnLCBbODkxMV1dLCBbJ2N3Y29uaW50JywgWzg3NTRdXSwgWydjd2ludCcsIFs4NzUzXV0sIFsnY3lsY3R5JywgWzkwMDVdXSwgWydkYWdnZXInLCBbODIyNF1dLCBbJ0RhZ2dlcicsIFs4MjI1XV0sIFsnZGFsZXRoJywgWzg1MDRdXSwgWydkYXJyJywgWzg1OTVdXSwgWydEYXJyJywgWzg2MDldXSwgWydkQXJyJywgWzg2NTldXSwgWydkYXNoJywgWzgyMDhdXSwgWydEYXNodicsIFsxMDk4MF1dLCBbJ2Rhc2h2JywgWzg4NjddXSwgWydkYmthcm93JywgWzEwNTExXV0sIFsnZGJsYWMnLCBbNzMzXV0sIFsnRGNhcm9uJywgWzI3MF1dLCBbJ2RjYXJvbicsIFsyNzFdXSwgWydEY3knLCBbMTA0NF1dLCBbJ2RjeScsIFsxMDc2XV0sIFsnZGRhZ2dlcicsIFs4MjI1XV0sIFsnZGRhcnInLCBbODY1MF1dLCBbJ0REJywgWzg1MTddXSwgWydkZCcsIFs4NTE4XV0sIFsnRERvdHJhaGQnLCBbMTA1MTNdXSwgWydkZG90c2VxJywgWzEwODcxXV0sIFsnZGVnJywgWzE3Nl1dLCBbJ0RlbCcsIFs4NzExXV0sIFsnRGVsdGEnLCBbOTE2XV0sIFsnZGVsdGEnLCBbOTQ4XV0sIFsnZGVtcHR5dicsIFsxMDY3M11dLCBbJ2RmaXNodCcsIFsxMDYyM11dLCBbJ0RmcicsIFsxMjAwNzFdXSwgWydkZnInLCBbMTIwMDk3XV0sIFsnZEhhcicsIFsxMDU5N11dLCBbJ2RoYXJsJywgWzg2NDNdXSwgWydkaGFycicsIFs4NjQyXV0sIFsnRGlhY3JpdGljYWxBY3V0ZScsIFsxODBdXSwgWydEaWFjcml0aWNhbERvdCcsIFs3MjldXSwgWydEaWFjcml0aWNhbERvdWJsZUFjdXRlJywgWzczM11dLCBbJ0RpYWNyaXRpY2FsR3JhdmUnLCBbOTZdXSwgWydEaWFjcml0aWNhbFRpbGRlJywgWzczMl1dLCBbJ2RpYW0nLCBbODkwMF1dLCBbJ2RpYW1vbmQnLCBbODkwMF1dLCBbJ0RpYW1vbmQnLCBbODkwMF1dLCBbJ2RpYW1vbmRzdWl0JywgWzk4MzBdXSwgWydkaWFtcycsIFs5ODMwXV0sIFsnZGllJywgWzE2OF1dLCBbJ0RpZmZlcmVudGlhbEQnLCBbODUxOF1dLCBbJ2RpZ2FtbWEnLCBbOTg5XV0sIFsnZGlzaW4nLCBbODk0Nl1dLCBbJ2RpdicsIFsyNDddXSwgWydkaXZpZGUnLCBbMjQ3XV0sIFsnZGl2aWRlb250aW1lcycsIFs4OTAzXV0sIFsnZGl2b254JywgWzg5MDNdXSwgWydESmN5JywgWzEwMjZdXSwgWydkamN5JywgWzExMDZdXSwgWydkbGNvcm4nLCBbODk5MF1dLCBbJ2RsY3JvcCcsIFs4OTczXV0sIFsnZG9sbGFyJywgWzM2XV0sIFsnRG9wZicsIFsxMjAxMjNdXSwgWydkb3BmJywgWzEyMDE0OV1dLCBbJ0RvdCcsIFsxNjhdXSwgWydkb3QnLCBbNzI5XV0sIFsnRG90RG90JywgWzg0MTJdXSwgWydkb3RlcScsIFs4Nzg0XV0sIFsnZG90ZXFkb3QnLCBbODc4NV1dLCBbJ0RvdEVxdWFsJywgWzg3ODRdXSwgWydkb3RtaW51cycsIFs4NzYwXV0sIFsnZG90cGx1cycsIFs4NzI0XV0sIFsnZG90c3F1YXJlJywgWzg4NjVdXSwgWydkb3VibGViYXJ3ZWRnZScsIFs4OTY2XV0sIFsnRG91YmxlQ29udG91ckludGVncmFsJywgWzg3NTFdXSwgWydEb3VibGVEb3QnLCBbMTY4XV0sIFsnRG91YmxlRG93bkFycm93JywgWzg2NTldXSwgWydEb3VibGVMZWZ0QXJyb3cnLCBbODY1Nl1dLCBbJ0RvdWJsZUxlZnRSaWdodEFycm93JywgWzg2NjBdXSwgWydEb3VibGVMZWZ0VGVlJywgWzEwOTgwXV0sIFsnRG91YmxlTG9uZ0xlZnRBcnJvdycsIFsxMDIzMl1dLCBbJ0RvdWJsZUxvbmdMZWZ0UmlnaHRBcnJvdycsIFsxMDIzNF1dLCBbJ0RvdWJsZUxvbmdSaWdodEFycm93JywgWzEwMjMzXV0sIFsnRG91YmxlUmlnaHRBcnJvdycsIFs4NjU4XV0sIFsnRG91YmxlUmlnaHRUZWUnLCBbODg3Ml1dLCBbJ0RvdWJsZVVwQXJyb3cnLCBbODY1N11dLCBbJ0RvdWJsZVVwRG93bkFycm93JywgWzg2NjFdXSwgWydEb3VibGVWZXJ0aWNhbEJhcicsIFs4NzQxXV0sIFsnRG93bkFycm93QmFyJywgWzEwNTE1XV0sIFsnZG93bmFycm93JywgWzg1OTVdXSwgWydEb3duQXJyb3cnLCBbODU5NV1dLCBbJ0Rvd25hcnJvdycsIFs4NjU5XV0sIFsnRG93bkFycm93VXBBcnJvdycsIFs4NjkzXV0sIFsnRG93bkJyZXZlJywgWzc4NV1dLCBbJ2Rvd25kb3duYXJyb3dzJywgWzg2NTBdXSwgWydkb3duaGFycG9vbmxlZnQnLCBbODY0M11dLCBbJ2Rvd25oYXJwb29ucmlnaHQnLCBbODY0Ml1dLCBbJ0Rvd25MZWZ0UmlnaHRWZWN0b3InLCBbMTA1NzZdXSwgWydEb3duTGVmdFRlZVZlY3RvcicsIFsxMDU5MF1dLCBbJ0Rvd25MZWZ0VmVjdG9yQmFyJywgWzEwNTgyXV0sIFsnRG93bkxlZnRWZWN0b3InLCBbODYzN11dLCBbJ0Rvd25SaWdodFRlZVZlY3RvcicsIFsxMDU5MV1dLCBbJ0Rvd25SaWdodFZlY3RvckJhcicsIFsxMDU4M11dLCBbJ0Rvd25SaWdodFZlY3RvcicsIFs4NjQxXV0sIFsnRG93blRlZUFycm93JywgWzg2MTVdXSwgWydEb3duVGVlJywgWzg4NjhdXSwgWydkcmJrYXJvdycsIFsxMDUxMl1dLCBbJ2RyY29ybicsIFs4OTkxXV0sIFsnZHJjcm9wJywgWzg5NzJdXSwgWydEc2NyJywgWzExOTk2N11dLCBbJ2RzY3InLCBbMTE5OTkzXV0sIFsnRFNjeScsIFsxMDI5XV0sIFsnZHNjeScsIFsxMTA5XV0sIFsnZHNvbCcsIFsxMDc0Ml1dLCBbJ0RzdHJvaycsIFsyNzJdXSwgWydkc3Ryb2snLCBbMjczXV0sIFsnZHRkb3QnLCBbODk0NV1dLCBbJ2R0cmknLCBbOTY2M11dLCBbJ2R0cmlmJywgWzk2NjJdXSwgWydkdWFycicsIFs4NjkzXV0sIFsnZHVoYXInLCBbMTA2MDddXSwgWydkd2FuZ2xlJywgWzEwNjYyXV0sIFsnRFpjeScsIFsxMDM5XV0sIFsnZHpjeScsIFsxMTE5XV0sIFsnZHppZ3JhcnInLCBbMTAyMzldXSwgWydFYWN1dGUnLCBbMjAxXV0sIFsnZWFjdXRlJywgWzIzM11dLCBbJ2Vhc3RlcicsIFsxMDg2Ml1dLCBbJ0VjYXJvbicsIFsyODJdXSwgWydlY2Fyb24nLCBbMjgzXV0sIFsnRWNpcmMnLCBbMjAyXV0sIFsnZWNpcmMnLCBbMjM0XV0sIFsnZWNpcicsIFs4NzkwXV0sIFsnZWNvbG9uJywgWzg3ODldXSwgWydFY3knLCBbMTA2OV1dLCBbJ2VjeScsIFsxMTAxXV0sIFsnZUREb3QnLCBbMTA4NzFdXSwgWydFZG90JywgWzI3OF1dLCBbJ2Vkb3QnLCBbMjc5XV0sIFsnZURvdCcsIFs4Nzg1XV0sIFsnZWUnLCBbODUxOV1dLCBbJ2VmRG90JywgWzg3ODZdXSwgWydFZnInLCBbMTIwMDcyXV0sIFsnZWZyJywgWzEyMDA5OF1dLCBbJ2VnJywgWzEwOTA2XV0sIFsnRWdyYXZlJywgWzIwMF1dLCBbJ2VncmF2ZScsIFsyMzJdXSwgWydlZ3MnLCBbMTA5MDJdXSwgWydlZ3Nkb3QnLCBbMTA5MDRdXSwgWydlbCcsIFsxMDkwNV1dLCBbJ0VsZW1lbnQnLCBbODcxMl1dLCBbJ2VsaW50ZXJzJywgWzkxOTFdXSwgWydlbGwnLCBbODQ2N11dLCBbJ2VscycsIFsxMDkwMV1dLCBbJ2Vsc2RvdCcsIFsxMDkwM11dLCBbJ0VtYWNyJywgWzI3NF1dLCBbJ2VtYWNyJywgWzI3NV1dLCBbJ2VtcHR5JywgWzg3MDldXSwgWydlbXB0eXNldCcsIFs4NzA5XV0sIFsnRW1wdHlTbWFsbFNxdWFyZScsIFs5NzIzXV0sIFsnZW1wdHl2JywgWzg3MDldXSwgWydFbXB0eVZlcnlTbWFsbFNxdWFyZScsIFs5NjQzXV0sIFsnZW1zcDEzJywgWzgxOTZdXSwgWydlbXNwMTQnLCBbODE5N11dLCBbJ2Vtc3AnLCBbODE5NV1dLCBbJ0VORycsIFszMzBdXSwgWydlbmcnLCBbMzMxXV0sIFsnZW5zcCcsIFs4MTk0XV0sIFsnRW9nb24nLCBbMjgwXV0sIFsnZW9nb24nLCBbMjgxXV0sIFsnRW9wZicsIFsxMjAxMjRdXSwgWydlb3BmJywgWzEyMDE1MF1dLCBbJ2VwYXInLCBbODkxN11dLCBbJ2VwYXJzbCcsIFsxMDcyM11dLCBbJ2VwbHVzJywgWzEwODY1XV0sIFsnZXBzaScsIFs5NDldXSwgWydFcHNpbG9uJywgWzkxN11dLCBbJ2Vwc2lsb24nLCBbOTQ5XV0sIFsnZXBzaXYnLCBbMTAxM11dLCBbJ2VxY2lyYycsIFs4NzkwXV0sIFsnZXFjb2xvbicsIFs4Nzg5XV0sIFsnZXFzaW0nLCBbODc3MF1dLCBbJ2Vxc2xhbnRndHInLCBbMTA5MDJdXSwgWydlcXNsYW50bGVzcycsIFsxMDkwMV1dLCBbJ0VxdWFsJywgWzEwODY5XV0sIFsnZXF1YWxzJywgWzYxXV0sIFsnRXF1YWxUaWxkZScsIFs4NzcwXV0sIFsnZXF1ZXN0JywgWzg3OTldXSwgWydFcXVpbGlicml1bScsIFs4NjUyXV0sIFsnZXF1aXYnLCBbODgwMV1dLCBbJ2VxdWl2REQnLCBbMTA4NzJdXSwgWydlcXZwYXJzbCcsIFsxMDcyNV1dLCBbJ2VyYXJyJywgWzEwNjA5XV0sIFsnZXJEb3QnLCBbODc4N11dLCBbJ2VzY3InLCBbODQ5NV1dLCBbJ0VzY3InLCBbODQ5Nl1dLCBbJ2VzZG90JywgWzg3ODRdXSwgWydFc2ltJywgWzEwODY3XV0sIFsnZXNpbScsIFs4NzcwXV0sIFsnRXRhJywgWzkxOV1dLCBbJ2V0YScsIFs5NTFdXSwgWydFVEgnLCBbMjA4XV0sIFsnZXRoJywgWzI0MF1dLCBbJ0V1bWwnLCBbMjAzXV0sIFsnZXVtbCcsIFsyMzVdXSwgWydldXJvJywgWzgzNjRdXSwgWydleGNsJywgWzMzXV0sIFsnZXhpc3QnLCBbODcwN11dLCBbJ0V4aXN0cycsIFs4NzA3XV0sIFsnZXhwZWN0YXRpb24nLCBbODQ5Nl1dLCBbJ2V4cG9uZW50aWFsZScsIFs4NTE5XV0sIFsnRXhwb25lbnRpYWxFJywgWzg1MTldXSwgWydmYWxsaW5nZG90c2VxJywgWzg3ODZdXSwgWydGY3knLCBbMTA2MF1dLCBbJ2ZjeScsIFsxMDkyXV0sIFsnZmVtYWxlJywgWzk3OTJdXSwgWydmZmlsaWcnLCBbNjQyNTldXSwgWydmZmxpZycsIFs2NDI1Nl1dLCBbJ2ZmbGxpZycsIFs2NDI2MF1dLCBbJ0ZmcicsIFsxMjAwNzNdXSwgWydmZnInLCBbMTIwMDk5XV0sIFsnZmlsaWcnLCBbNjQyNTddXSwgWydGaWxsZWRTbWFsbFNxdWFyZScsIFs5NzI0XV0sIFsnRmlsbGVkVmVyeVNtYWxsU3F1YXJlJywgWzk2NDJdXSwgWydmamxpZycsIFsxMDIsIDEwNl1dLCBbJ2ZsYXQnLCBbOTgzN11dLCBbJ2ZsbGlnJywgWzY0MjU4XV0sIFsnZmx0bnMnLCBbOTY0OV1dLCBbJ2Zub2YnLCBbNDAyXV0sIFsnRm9wZicsIFsxMjAxMjVdXSwgWydmb3BmJywgWzEyMDE1MV1dLCBbJ2ZvcmFsbCcsIFs4NzA0XV0sIFsnRm9yQWxsJywgWzg3MDRdXSwgWydmb3JrJywgWzg5MTZdXSwgWydmb3JrdicsIFsxMDk2OV1dLCBbJ0ZvdXJpZXJ0cmYnLCBbODQ5N11dLCBbJ2ZwYXJ0aW50JywgWzEwNzY1XV0sIFsnZnJhYzEyJywgWzE4OV1dLCBbJ2ZyYWMxMycsIFs4NTMxXV0sIFsnZnJhYzE0JywgWzE4OF1dLCBbJ2ZyYWMxNScsIFs4NTMzXV0sIFsnZnJhYzE2JywgWzg1MzddXSwgWydmcmFjMTgnLCBbODUzOV1dLCBbJ2ZyYWMyMycsIFs4NTMyXV0sIFsnZnJhYzI1JywgWzg1MzRdXSwgWydmcmFjMzQnLCBbMTkwXV0sIFsnZnJhYzM1JywgWzg1MzVdXSwgWydmcmFjMzgnLCBbODU0MF1dLCBbJ2ZyYWM0NScsIFs4NTM2XV0sIFsnZnJhYzU2JywgWzg1MzhdXSwgWydmcmFjNTgnLCBbODU0MV1dLCBbJ2ZyYWM3OCcsIFs4NTQyXV0sIFsnZnJhc2wnLCBbODI2MF1dLCBbJ2Zyb3duJywgWzg5OTRdXSwgWydmc2NyJywgWzExOTk5NV1dLCBbJ0ZzY3InLCBbODQ5N11dLCBbJ2dhY3V0ZScsIFs1MDFdXSwgWydHYW1tYScsIFs5MTVdXSwgWydnYW1tYScsIFs5NDddXSwgWydHYW1tYWQnLCBbOTg4XV0sIFsnZ2FtbWFkJywgWzk4OV1dLCBbJ2dhcCcsIFsxMDg4Nl1dLCBbJ0dicmV2ZScsIFsyODZdXSwgWydnYnJldmUnLCBbMjg3XV0sIFsnR2NlZGlsJywgWzI5MF1dLCBbJ0djaXJjJywgWzI4NF1dLCBbJ2djaXJjJywgWzI4NV1dLCBbJ0djeScsIFsxMDQzXV0sIFsnZ2N5JywgWzEwNzVdXSwgWydHZG90JywgWzI4OF1dLCBbJ2dkb3QnLCBbMjg5XV0sIFsnZ2UnLCBbODgwNV1dLCBbJ2dFJywgWzg4MDddXSwgWydnRWwnLCBbMTA4OTJdXSwgWydnZWwnLCBbODkyM11dLCBbJ2dlcScsIFs4ODA1XV0sIFsnZ2VxcScsIFs4ODA3XV0sIFsnZ2Vxc2xhbnQnLCBbMTA4NzhdXSwgWydnZXNjYycsIFsxMDkyMV1dLCBbJ2dlcycsIFsxMDg3OF1dLCBbJ2dlc2RvdCcsIFsxMDg4MF1dLCBbJ2dlc2RvdG8nLCBbMTA4ODJdXSwgWydnZXNkb3RvbCcsIFsxMDg4NF1dLCBbJ2dlc2wnLCBbODkyMywgNjUwMjRdXSwgWydnZXNsZXMnLCBbMTA5MDBdXSwgWydHZnInLCBbMTIwMDc0XV0sIFsnZ2ZyJywgWzEyMDEwMF1dLCBbJ2dnJywgWzg4MTFdXSwgWydHZycsIFs4OTIxXV0sIFsnZ2dnJywgWzg5MjFdXSwgWydnaW1lbCcsIFs4NTAzXV0sIFsnR0pjeScsIFsxMDI3XV0sIFsnZ2pjeScsIFsxMTA3XV0sIFsnZ2xhJywgWzEwOTE3XV0sIFsnZ2wnLCBbODgyM11dLCBbJ2dsRScsIFsxMDg5OF1dLCBbJ2dsaicsIFsxMDkxNl1dLCBbJ2duYXAnLCBbMTA4OTBdXSwgWydnbmFwcHJveCcsIFsxMDg5MF1dLCBbJ2duZScsIFsxMDg4OF1dLCBbJ2duRScsIFs4ODA5XV0sIFsnZ25lcScsIFsxMDg4OF1dLCBbJ2duZXFxJywgWzg4MDldXSwgWydnbnNpbScsIFs4OTM1XV0sIFsnR29wZicsIFsxMjAxMjZdXSwgWydnb3BmJywgWzEyMDE1Ml1dLCBbJ2dyYXZlJywgWzk2XV0sIFsnR3JlYXRlckVxdWFsJywgWzg4MDVdXSwgWydHcmVhdGVyRXF1YWxMZXNzJywgWzg5MjNdXSwgWydHcmVhdGVyRnVsbEVxdWFsJywgWzg4MDddXSwgWydHcmVhdGVyR3JlYXRlcicsIFsxMDkxNF1dLCBbJ0dyZWF0ZXJMZXNzJywgWzg4MjNdXSwgWydHcmVhdGVyU2xhbnRFcXVhbCcsIFsxMDg3OF1dLCBbJ0dyZWF0ZXJUaWxkZScsIFs4ODE5XV0sIFsnR3NjcicsIFsxMTk5NzBdXSwgWydnc2NyJywgWzg0NThdXSwgWydnc2ltJywgWzg4MTldXSwgWydnc2ltZScsIFsxMDg5NF1dLCBbJ2dzaW1sJywgWzEwODk2XV0sIFsnZ3RjYycsIFsxMDkxOV1dLCBbJ2d0Y2lyJywgWzEwODc0XV0sIFsnZ3QnLCBbNjJdXSwgWydHVCcsIFs2Ml1dLCBbJ0d0JywgWzg4MTFdXSwgWydndGRvdCcsIFs4OTE5XV0sIFsnZ3RsUGFyJywgWzEwNjQ1XV0sIFsnZ3RxdWVzdCcsIFsxMDg3Nl1dLCBbJ2d0cmFwcHJveCcsIFsxMDg4Nl1dLCBbJ2d0cmFycicsIFsxMDYxNl1dLCBbJ2d0cmRvdCcsIFs4OTE5XV0sIFsnZ3RyZXFsZXNzJywgWzg5MjNdXSwgWydndHJlcXFsZXNzJywgWzEwODkyXV0sIFsnZ3RybGVzcycsIFs4ODIzXV0sIFsnZ3Ryc2ltJywgWzg4MTldXSwgWydndmVydG5lcXEnLCBbODgwOSwgNjUwMjRdXSwgWydndm5FJywgWzg4MDksIDY1MDI0XV0sIFsnSGFjZWsnLCBbNzExXV0sIFsnaGFpcnNwJywgWzgyMDJdXSwgWydoYWxmJywgWzE4OV1dLCBbJ2hhbWlsdCcsIFs4NDU5XV0sIFsnSEFSRGN5JywgWzEwNjZdXSwgWydoYXJkY3knLCBbMTA5OF1dLCBbJ2hhcnJjaXInLCBbMTA1NjhdXSwgWydoYXJyJywgWzg1OTZdXSwgWydoQXJyJywgWzg2NjBdXSwgWydoYXJydycsIFs4NjIxXV0sIFsnSGF0JywgWzk0XV0sIFsnaGJhcicsIFs4NDYzXV0sIFsnSGNpcmMnLCBbMjkyXV0sIFsnaGNpcmMnLCBbMjkzXV0sIFsnaGVhcnRzJywgWzk4MjldXSwgWydoZWFydHN1aXQnLCBbOTgyOV1dLCBbJ2hlbGxpcCcsIFs4MjMwXV0sIFsnaGVyY29uJywgWzg4ODldXSwgWydoZnInLCBbMTIwMTAxXV0sIFsnSGZyJywgWzg0NjBdXSwgWydIaWxiZXJ0U3BhY2UnLCBbODQ1OV1dLCBbJ2hrc2Vhcm93JywgWzEwNTMzXV0sIFsnaGtzd2Fyb3cnLCBbMTA1MzRdXSwgWydob2FycicsIFs4NzAzXV0sIFsnaG9tdGh0JywgWzg3NjNdXSwgWydob29rbGVmdGFycm93JywgWzg2MTddXSwgWydob29rcmlnaHRhcnJvdycsIFs4NjE4XV0sIFsnaG9wZicsIFsxMjAxNTNdXSwgWydIb3BmJywgWzg0NjFdXSwgWydob3JiYXInLCBbODIxM11dLCBbJ0hvcml6b250YWxMaW5lJywgWzk0NzJdXSwgWydoc2NyJywgWzExOTk5N11dLCBbJ0hzY3InLCBbODQ1OV1dLCBbJ2hzbGFzaCcsIFs4NDYzXV0sIFsnSHN0cm9rJywgWzI5NF1dLCBbJ2hzdHJvaycsIFsyOTVdXSwgWydIdW1wRG93bkh1bXAnLCBbODc4Ml1dLCBbJ0h1bXBFcXVhbCcsIFs4NzgzXV0sIFsnaHlidWxsJywgWzgyNTldXSwgWydoeXBoZW4nLCBbODIwOF1dLCBbJ0lhY3V0ZScsIFsyMDVdXSwgWydpYWN1dGUnLCBbMjM3XV0sIFsnaWMnLCBbODI5MV1dLCBbJ0ljaXJjJywgWzIwNl1dLCBbJ2ljaXJjJywgWzIzOF1dLCBbJ0ljeScsIFsxMDQ4XV0sIFsnaWN5JywgWzEwODBdXSwgWydJZG90JywgWzMwNF1dLCBbJ0lFY3knLCBbMTA0NV1dLCBbJ2llY3knLCBbMTA3N11dLCBbJ2lleGNsJywgWzE2MV1dLCBbJ2lmZicsIFs4NjYwXV0sIFsnaWZyJywgWzEyMDEwMl1dLCBbJ0lmcicsIFs4NDY1XV0sIFsnSWdyYXZlJywgWzIwNF1dLCBbJ2lncmF2ZScsIFsyMzZdXSwgWydpaScsIFs4NTIwXV0sIFsnaWlpaW50JywgWzEwNzY0XV0sIFsnaWlpbnQnLCBbODc0OV1dLCBbJ2lpbmZpbicsIFsxMDcxNl1dLCBbJ2lpb3RhJywgWzg0ODldXSwgWydJSmxpZycsIFszMDZdXSwgWydpamxpZycsIFszMDddXSwgWydJbWFjcicsIFsyOThdXSwgWydpbWFjcicsIFsyOTldXSwgWydpbWFnZScsIFs4NDY1XV0sIFsnSW1hZ2luYXJ5SScsIFs4NTIwXV0sIFsnaW1hZ2xpbmUnLCBbODQ2NF1dLCBbJ2ltYWdwYXJ0JywgWzg0NjVdXSwgWydpbWF0aCcsIFszMDVdXSwgWydJbScsIFs4NDY1XV0sIFsnaW1vZicsIFs4ODg3XV0sIFsnaW1wZWQnLCBbNDM3XV0sIFsnSW1wbGllcycsIFs4NjU4XV0sIFsnaW5jYXJlJywgWzg0NTNdXSwgWydpbicsIFs4NzEyXV0sIFsnaW5maW4nLCBbODczNF1dLCBbJ2luZmludGllJywgWzEwNzE3XV0sIFsnaW5vZG90JywgWzMwNV1dLCBbJ2ludGNhbCcsIFs4ODkwXV0sIFsnaW50JywgWzg3NDddXSwgWydJbnQnLCBbODc0OF1dLCBbJ2ludGVnZXJzJywgWzg0ODRdXSwgWydJbnRlZ3JhbCcsIFs4NzQ3XV0sIFsnaW50ZXJjYWwnLCBbODg5MF1dLCBbJ0ludGVyc2VjdGlvbicsIFs4ODk4XV0sIFsnaW50bGFyaGsnLCBbMTA3NzVdXSwgWydpbnRwcm9kJywgWzEwODEyXV0sIFsnSW52aXNpYmxlQ29tbWEnLCBbODI5MV1dLCBbJ0ludmlzaWJsZVRpbWVzJywgWzgyOTBdXSwgWydJT2N5JywgWzEwMjVdXSwgWydpb2N5JywgWzExMDVdXSwgWydJb2dvbicsIFszMDJdXSwgWydpb2dvbicsIFszMDNdXSwgWydJb3BmJywgWzEyMDEyOF1dLCBbJ2lvcGYnLCBbMTIwMTU0XV0sIFsnSW90YScsIFs5MjFdXSwgWydpb3RhJywgWzk1M11dLCBbJ2lwcm9kJywgWzEwODEyXV0sIFsnaXF1ZXN0JywgWzE5MV1dLCBbJ2lzY3InLCBbMTE5OTk4XV0sIFsnSXNjcicsIFs4NDY0XV0sIFsnaXNpbicsIFs4NzEyXV0sIFsnaXNpbmRvdCcsIFs4OTQ5XV0sIFsnaXNpbkUnLCBbODk1M11dLCBbJ2lzaW5zJywgWzg5NDhdXSwgWydpc2luc3YnLCBbODk0N11dLCBbJ2lzaW52JywgWzg3MTJdXSwgWydpdCcsIFs4MjkwXV0sIFsnSXRpbGRlJywgWzI5Nl1dLCBbJ2l0aWxkZScsIFsyOTddXSwgWydJdWtjeScsIFsxMDMwXV0sIFsnaXVrY3knLCBbMTExMF1dLCBbJ0l1bWwnLCBbMjA3XV0sIFsnaXVtbCcsIFsyMzldXSwgWydKY2lyYycsIFszMDhdXSwgWydqY2lyYycsIFszMDldXSwgWydKY3knLCBbMTA0OV1dLCBbJ2pjeScsIFsxMDgxXV0sIFsnSmZyJywgWzEyMDA3N11dLCBbJ2pmcicsIFsxMjAxMDNdXSwgWydqbWF0aCcsIFs1NjddXSwgWydKb3BmJywgWzEyMDEyOV1dLCBbJ2pvcGYnLCBbMTIwMTU1XV0sIFsnSnNjcicsIFsxMTk5NzNdXSwgWydqc2NyJywgWzExOTk5OV1dLCBbJ0pzZXJjeScsIFsxMDMyXV0sIFsnanNlcmN5JywgWzExMTJdXSwgWydKdWtjeScsIFsxMDI4XV0sIFsnanVrY3knLCBbMTEwOF1dLCBbJ0thcHBhJywgWzkyMl1dLCBbJ2thcHBhJywgWzk1NF1dLCBbJ2thcHBhdicsIFsxMDA4XV0sIFsnS2NlZGlsJywgWzMxMF1dLCBbJ2tjZWRpbCcsIFszMTFdXSwgWydLY3knLCBbMTA1MF1dLCBbJ2tjeScsIFsxMDgyXV0sIFsnS2ZyJywgWzEyMDA3OF1dLCBbJ2tmcicsIFsxMjAxMDRdXSwgWydrZ3JlZW4nLCBbMzEyXV0sIFsnS0hjeScsIFsxMDYxXV0sIFsna2hjeScsIFsxMDkzXV0sIFsnS0pjeScsIFsxMDM2XV0sIFsna2pjeScsIFsxMTE2XV0sIFsnS29wZicsIFsxMjAxMzBdXSwgWydrb3BmJywgWzEyMDE1Nl1dLCBbJ0tzY3InLCBbMTE5OTc0XV0sIFsna3NjcicsIFsxMjAwMDBdXSwgWydsQWFycicsIFs4NjY2XV0sIFsnTGFjdXRlJywgWzMxM11dLCBbJ2xhY3V0ZScsIFszMTRdXSwgWydsYWVtcHR5dicsIFsxMDY3Nl1dLCBbJ2xhZ3JhbicsIFs4NDY2XV0sIFsnTGFtYmRhJywgWzkyM11dLCBbJ2xhbWJkYScsIFs5NTVdXSwgWydsYW5nJywgWzEwMjE2XV0sIFsnTGFuZycsIFsxMDIxOF1dLCBbJ2xhbmdkJywgWzEwNjQxXV0sIFsnbGFuZ2xlJywgWzEwMjE2XV0sIFsnbGFwJywgWzEwODg1XV0sIFsnTGFwbGFjZXRyZicsIFs4NDY2XV0sIFsnbGFxdW8nLCBbMTcxXV0sIFsnbGFycmInLCBbODY3Nl1dLCBbJ2xhcnJiZnMnLCBbMTA1MjddXSwgWydsYXJyJywgWzg1OTJdXSwgWydMYXJyJywgWzg2MDZdXSwgWydsQXJyJywgWzg2NTZdXSwgWydsYXJyZnMnLCBbMTA1MjVdXSwgWydsYXJyaGsnLCBbODYxN11dLCBbJ2xhcnJscCcsIFs4NjE5XV0sIFsnbGFycnBsJywgWzEwNTUzXV0sIFsnbGFycnNpbScsIFsxMDYxMV1dLCBbJ2xhcnJ0bCcsIFs4NjEwXV0sIFsnbGF0YWlsJywgWzEwNTIxXV0sIFsnbEF0YWlsJywgWzEwNTIzXV0sIFsnbGF0JywgWzEwOTIzXV0sIFsnbGF0ZScsIFsxMDkyNV1dLCBbJ2xhdGVzJywgWzEwOTI1LCA2NTAyNF1dLCBbJ2xiYXJyJywgWzEwNTA4XV0sIFsnbEJhcnInLCBbMTA1MTBdXSwgWydsYmJyaycsIFsxMDA5OF1dLCBbJ2xicmFjZScsIFsxMjNdXSwgWydsYnJhY2snLCBbOTFdXSwgWydsYnJrZScsIFsxMDYzNV1dLCBbJ2xicmtzbGQnLCBbMTA2MzldXSwgWydsYnJrc2x1JywgWzEwNjM3XV0sIFsnTGNhcm9uJywgWzMxN11dLCBbJ2xjYXJvbicsIFszMThdXSwgWydMY2VkaWwnLCBbMzE1XV0sIFsnbGNlZGlsJywgWzMxNl1dLCBbJ2xjZWlsJywgWzg5NjhdXSwgWydsY3ViJywgWzEyM11dLCBbJ0xjeScsIFsxMDUxXV0sIFsnbGN5JywgWzEwODNdXSwgWydsZGNhJywgWzEwNTUwXV0sIFsnbGRxdW8nLCBbODIyMF1dLCBbJ2xkcXVvcicsIFs4MjIyXV0sIFsnbGRyZGhhcicsIFsxMDU5OV1dLCBbJ2xkcnVzaGFyJywgWzEwNTcxXV0sIFsnbGRzaCcsIFs4NjI2XV0sIFsnbGUnLCBbODgwNF1dLCBbJ2xFJywgWzg4MDZdXSwgWydMZWZ0QW5nbGVCcmFja2V0JywgWzEwMjE2XV0sIFsnTGVmdEFycm93QmFyJywgWzg2NzZdXSwgWydsZWZ0YXJyb3cnLCBbODU5Ml1dLCBbJ0xlZnRBcnJvdycsIFs4NTkyXV0sIFsnTGVmdGFycm93JywgWzg2NTZdXSwgWydMZWZ0QXJyb3dSaWdodEFycm93JywgWzg2NDZdXSwgWydsZWZ0YXJyb3d0YWlsJywgWzg2MTBdXSwgWydMZWZ0Q2VpbGluZycsIFs4OTY4XV0sIFsnTGVmdERvdWJsZUJyYWNrZXQnLCBbMTAyMTRdXSwgWydMZWZ0RG93blRlZVZlY3RvcicsIFsxMDU5M11dLCBbJ0xlZnREb3duVmVjdG9yQmFyJywgWzEwNTg1XV0sIFsnTGVmdERvd25WZWN0b3InLCBbODY0M11dLCBbJ0xlZnRGbG9vcicsIFs4OTcwXV0sIFsnbGVmdGhhcnBvb25kb3duJywgWzg2MzddXSwgWydsZWZ0aGFycG9vbnVwJywgWzg2MzZdXSwgWydsZWZ0bGVmdGFycm93cycsIFs4NjQ3XV0sIFsnbGVmdHJpZ2h0YXJyb3cnLCBbODU5Nl1dLCBbJ0xlZnRSaWdodEFycm93JywgWzg1OTZdXSwgWydMZWZ0cmlnaHRhcnJvdycsIFs4NjYwXV0sIFsnbGVmdHJpZ2h0YXJyb3dzJywgWzg2NDZdXSwgWydsZWZ0cmlnaHRoYXJwb29ucycsIFs4NjUxXV0sIFsnbGVmdHJpZ2h0c3F1aWdhcnJvdycsIFs4NjIxXV0sIFsnTGVmdFJpZ2h0VmVjdG9yJywgWzEwNTc0XV0sIFsnTGVmdFRlZUFycm93JywgWzg2MTJdXSwgWydMZWZ0VGVlJywgWzg4NjddXSwgWydMZWZ0VGVlVmVjdG9yJywgWzEwNTg2XV0sIFsnbGVmdHRocmVldGltZXMnLCBbODkwN11dLCBbJ0xlZnRUcmlhbmdsZUJhcicsIFsxMDcwM11dLCBbJ0xlZnRUcmlhbmdsZScsIFs4ODgyXV0sIFsnTGVmdFRyaWFuZ2xlRXF1YWwnLCBbODg4NF1dLCBbJ0xlZnRVcERvd25WZWN0b3InLCBbMTA1NzddXSwgWydMZWZ0VXBUZWVWZWN0b3InLCBbMTA1OTJdXSwgWydMZWZ0VXBWZWN0b3JCYXInLCBbMTA1ODRdXSwgWydMZWZ0VXBWZWN0b3InLCBbODYzOV1dLCBbJ0xlZnRWZWN0b3JCYXInLCBbMTA1NzhdXSwgWydMZWZ0VmVjdG9yJywgWzg2MzZdXSwgWydsRWcnLCBbMTA4OTFdXSwgWydsZWcnLCBbODkyMl1dLCBbJ2xlcScsIFs4ODA0XV0sIFsnbGVxcScsIFs4ODA2XV0sIFsnbGVxc2xhbnQnLCBbMTA4NzddXSwgWydsZXNjYycsIFsxMDkyMF1dLCBbJ2xlcycsIFsxMDg3N11dLCBbJ2xlc2RvdCcsIFsxMDg3OV1dLCBbJ2xlc2RvdG8nLCBbMTA4ODFdXSwgWydsZXNkb3RvcicsIFsxMDg4M11dLCBbJ2xlc2cnLCBbODkyMiwgNjUwMjRdXSwgWydsZXNnZXMnLCBbMTA4OTldXSwgWydsZXNzYXBwcm94JywgWzEwODg1XV0sIFsnbGVzc2RvdCcsIFs4OTE4XV0sIFsnbGVzc2VxZ3RyJywgWzg5MjJdXSwgWydsZXNzZXFxZ3RyJywgWzEwODkxXV0sIFsnTGVzc0VxdWFsR3JlYXRlcicsIFs4OTIyXV0sIFsnTGVzc0Z1bGxFcXVhbCcsIFs4ODA2XV0sIFsnTGVzc0dyZWF0ZXInLCBbODgyMl1dLCBbJ2xlc3NndHInLCBbODgyMl1dLCBbJ0xlc3NMZXNzJywgWzEwOTEzXV0sIFsnbGVzc3NpbScsIFs4ODE4XV0sIFsnTGVzc1NsYW50RXF1YWwnLCBbMTA4NzddXSwgWydMZXNzVGlsZGUnLCBbODgxOF1dLCBbJ2xmaXNodCcsIFsxMDYyMF1dLCBbJ2xmbG9vcicsIFs4OTcwXV0sIFsnTGZyJywgWzEyMDA3OV1dLCBbJ2xmcicsIFsxMjAxMDVdXSwgWydsZycsIFs4ODIyXV0sIFsnbGdFJywgWzEwODk3XV0sIFsnbEhhcicsIFsxMDU5NF1dLCBbJ2xoYXJkJywgWzg2MzddXSwgWydsaGFydScsIFs4NjM2XV0sIFsnbGhhcnVsJywgWzEwNjAyXV0sIFsnbGhibGsnLCBbOTYwNF1dLCBbJ0xKY3knLCBbMTAzM11dLCBbJ2xqY3knLCBbMTExM11dLCBbJ2xsYXJyJywgWzg2NDddXSwgWydsbCcsIFs4ODEwXV0sIFsnTGwnLCBbODkyMF1dLCBbJ2xsY29ybmVyJywgWzg5OTBdXSwgWydMbGVmdGFycm93JywgWzg2NjZdXSwgWydsbGhhcmQnLCBbMTA2MDNdXSwgWydsbHRyaScsIFs5NzIyXV0sIFsnTG1pZG90JywgWzMxOV1dLCBbJ2xtaWRvdCcsIFszMjBdXSwgWydsbW91c3RhY2hlJywgWzkxMzZdXSwgWydsbW91c3QnLCBbOTEzNl1dLCBbJ2xuYXAnLCBbMTA4ODldXSwgWydsbmFwcHJveCcsIFsxMDg4OV1dLCBbJ2xuZScsIFsxMDg4N11dLCBbJ2xuRScsIFs4ODA4XV0sIFsnbG5lcScsIFsxMDg4N11dLCBbJ2xuZXFxJywgWzg4MDhdXSwgWydsbnNpbScsIFs4OTM0XV0sIFsnbG9hbmcnLCBbMTAyMjBdXSwgWydsb2FycicsIFs4NzAxXV0sIFsnbG9icmsnLCBbMTAyMTRdXSwgWydsb25nbGVmdGFycm93JywgWzEwMjI5XV0sIFsnTG9uZ0xlZnRBcnJvdycsIFsxMDIyOV1dLCBbJ0xvbmdsZWZ0YXJyb3cnLCBbMTAyMzJdXSwgWydsb25nbGVmdHJpZ2h0YXJyb3cnLCBbMTAyMzFdXSwgWydMb25nTGVmdFJpZ2h0QXJyb3cnLCBbMTAyMzFdXSwgWydMb25nbGVmdHJpZ2h0YXJyb3cnLCBbMTAyMzRdXSwgWydsb25nbWFwc3RvJywgWzEwMjM2XV0sIFsnbG9uZ3JpZ2h0YXJyb3cnLCBbMTAyMzBdXSwgWydMb25nUmlnaHRBcnJvdycsIFsxMDIzMF1dLCBbJ0xvbmdyaWdodGFycm93JywgWzEwMjMzXV0sIFsnbG9vcGFycm93bGVmdCcsIFs4NjE5XV0sIFsnbG9vcGFycm93cmlnaHQnLCBbODYyMF1dLCBbJ2xvcGFyJywgWzEwNjI5XV0sIFsnTG9wZicsIFsxMjAxMzFdXSwgWydsb3BmJywgWzEyMDE1N11dLCBbJ2xvcGx1cycsIFsxMDc5N11dLCBbJ2xvdGltZXMnLCBbMTA4MDRdXSwgWydsb3dhc3QnLCBbODcyN11dLCBbJ2xvd2JhcicsIFs5NV1dLCBbJ0xvd2VyTGVmdEFycm93JywgWzg2MDFdXSwgWydMb3dlclJpZ2h0QXJyb3cnLCBbODYwMF1dLCBbJ2xveicsIFs5Njc0XV0sIFsnbG96ZW5nZScsIFs5Njc0XV0sIFsnbG96ZicsIFsxMDczMV1dLCBbJ2xwYXInLCBbNDBdXSwgWydscGFybHQnLCBbMTA2NDNdXSwgWydscmFycicsIFs4NjQ2XV0sIFsnbHJjb3JuZXInLCBbODk5MV1dLCBbJ2xyaGFyJywgWzg2NTFdXSwgWydscmhhcmQnLCBbMTA2MDVdXSwgWydscm0nLCBbODIwNl1dLCBbJ2xydHJpJywgWzg4OTVdXSwgWydsc2FxdW8nLCBbODI0OV1dLCBbJ2xzY3InLCBbMTIwMDAxXV0sIFsnTHNjcicsIFs4NDY2XV0sIFsnbHNoJywgWzg2MjRdXSwgWydMc2gnLCBbODYyNF1dLCBbJ2xzaW0nLCBbODgxOF1dLCBbJ2xzaW1lJywgWzEwODkzXV0sIFsnbHNpbWcnLCBbMTA4OTVdXSwgWydsc3FiJywgWzkxXV0sIFsnbHNxdW8nLCBbODIxNl1dLCBbJ2xzcXVvcicsIFs4MjE4XV0sIFsnTHN0cm9rJywgWzMyMV1dLCBbJ2xzdHJvaycsIFszMjJdXSwgWydsdGNjJywgWzEwOTE4XV0sIFsnbHRjaXInLCBbMTA4NzNdXSwgWydsdCcsIFs2MF1dLCBbJ0xUJywgWzYwXV0sIFsnTHQnLCBbODgxMF1dLCBbJ2x0ZG90JywgWzg5MThdXSwgWydsdGhyZWUnLCBbODkwN11dLCBbJ2x0aW1lcycsIFs4OTA1XV0sIFsnbHRsYXJyJywgWzEwNjE0XV0sIFsnbHRxdWVzdCcsIFsxMDg3NV1dLCBbJ2x0cmknLCBbOTY2N11dLCBbJ2x0cmllJywgWzg4ODRdXSwgWydsdHJpZicsIFs5NjY2XV0sIFsnbHRyUGFyJywgWzEwNjQ2XV0sIFsnbHVyZHNoYXInLCBbMTA1NzBdXSwgWydsdXJ1aGFyJywgWzEwNTk4XV0sIFsnbHZlcnRuZXFxJywgWzg4MDgsIDY1MDI0XV0sIFsnbHZuRScsIFs4ODA4LCA2NTAyNF1dLCBbJ21hY3InLCBbMTc1XV0sIFsnbWFsZScsIFs5Nzk0XV0sIFsnbWFsdCcsIFsxMDAxNl1dLCBbJ21hbHRlc2UnLCBbMTAwMTZdXSwgWydNYXAnLCBbMTA1MDFdXSwgWydtYXAnLCBbODYxNF1dLCBbJ21hcHN0bycsIFs4NjE0XV0sIFsnbWFwc3RvZG93bicsIFs4NjE1XV0sIFsnbWFwc3RvbGVmdCcsIFs4NjEyXV0sIFsnbWFwc3RvdXAnLCBbODYxM11dLCBbJ21hcmtlcicsIFs5NjQ2XV0sIFsnbWNvbW1hJywgWzEwNzkzXV0sIFsnTWN5JywgWzEwNTJdXSwgWydtY3knLCBbMTA4NF1dLCBbJ21kYXNoJywgWzgyMTJdXSwgWydtRERvdCcsIFs4NzYyXV0sIFsnbWVhc3VyZWRhbmdsZScsIFs4NzM3XV0sIFsnTWVkaXVtU3BhY2UnLCBbODI4N11dLCBbJ01lbGxpbnRyZicsIFs4NDk5XV0sIFsnTWZyJywgWzEyMDA4MF1dLCBbJ21mcicsIFsxMjAxMDZdXSwgWydtaG8nLCBbODQ4N11dLCBbJ21pY3JvJywgWzE4MV1dLCBbJ21pZGFzdCcsIFs0Ml1dLCBbJ21pZGNpcicsIFsxMDk5Ml1dLCBbJ21pZCcsIFs4NzM5XV0sIFsnbWlkZG90JywgWzE4M11dLCBbJ21pbnVzYicsIFs4ODYzXV0sIFsnbWludXMnLCBbODcyMl1dLCBbJ21pbnVzZCcsIFs4NzYwXV0sIFsnbWludXNkdScsIFsxMDc5NF1dLCBbJ01pbnVzUGx1cycsIFs4NzIzXV0sIFsnbWxjcCcsIFsxMDk3MV1dLCBbJ21sZHInLCBbODIzMF1dLCBbJ21ucGx1cycsIFs4NzIzXV0sIFsnbW9kZWxzJywgWzg4NzFdXSwgWydNb3BmJywgWzEyMDEzMl1dLCBbJ21vcGYnLCBbMTIwMTU4XV0sIFsnbXAnLCBbODcyM11dLCBbJ21zY3InLCBbMTIwMDAyXV0sIFsnTXNjcicsIFs4NDk5XV0sIFsnbXN0cG9zJywgWzg3NjZdXSwgWydNdScsIFs5MjRdXSwgWydtdScsIFs5NTZdXSwgWydtdWx0aW1hcCcsIFs4ODg4XV0sIFsnbXVtYXAnLCBbODg4OF1dLCBbJ25hYmxhJywgWzg3MTFdXSwgWydOYWN1dGUnLCBbMzIzXV0sIFsnbmFjdXRlJywgWzMyNF1dLCBbJ25hbmcnLCBbODczNiwgODQwMl1dLCBbJ25hcCcsIFs4Nzc3XV0sIFsnbmFwRScsIFsxMDg2NCwgODI0XV0sIFsnbmFwaWQnLCBbODc3OSwgODI0XV0sIFsnbmFwb3MnLCBbMzI5XV0sIFsnbmFwcHJveCcsIFs4Nzc3XV0sIFsnbmF0dXJhbCcsIFs5ODM4XV0sIFsnbmF0dXJhbHMnLCBbODQ2OV1dLCBbJ25hdHVyJywgWzk4MzhdXSwgWyduYnNwJywgWzE2MF1dLCBbJ25idW1wJywgWzg3ODIsIDgyNF1dLCBbJ25idW1wZScsIFs4NzgzLCA4MjRdXSwgWyduY2FwJywgWzEwODE5XV0sIFsnTmNhcm9uJywgWzMyN11dLCBbJ25jYXJvbicsIFszMjhdXSwgWydOY2VkaWwnLCBbMzI1XV0sIFsnbmNlZGlsJywgWzMyNl1dLCBbJ25jb25nJywgWzg3NzVdXSwgWyduY29uZ2RvdCcsIFsxMDg2MSwgODI0XV0sIFsnbmN1cCcsIFsxMDgxOF1dLCBbJ05jeScsIFsxMDUzXV0sIFsnbmN5JywgWzEwODVdXSwgWyduZGFzaCcsIFs4MjExXV0sIFsnbmVhcmhrJywgWzEwNTMyXV0sIFsnbmVhcnInLCBbODU5OV1dLCBbJ25lQXJyJywgWzg2NjNdXSwgWyduZWFycm93JywgWzg1OTldXSwgWyduZScsIFs4ODAwXV0sIFsnbmVkb3QnLCBbODc4NCwgODI0XV0sIFsnTmVnYXRpdmVNZWRpdW1TcGFjZScsIFs4MjAzXV0sIFsnTmVnYXRpdmVUaGlja1NwYWNlJywgWzgyMDNdXSwgWydOZWdhdGl2ZVRoaW5TcGFjZScsIFs4MjAzXV0sIFsnTmVnYXRpdmVWZXJ5VGhpblNwYWNlJywgWzgyMDNdXSwgWyduZXF1aXYnLCBbODgwMl1dLCBbJ25lc2VhcicsIFsxMDUzNl1dLCBbJ25lc2ltJywgWzg3NzAsIDgyNF1dLCBbJ05lc3RlZEdyZWF0ZXJHcmVhdGVyJywgWzg4MTFdXSwgWydOZXN0ZWRMZXNzTGVzcycsIFs4ODEwXV0sIFsnbmV4aXN0JywgWzg3MDhdXSwgWyduZXhpc3RzJywgWzg3MDhdXSwgWydOZnInLCBbMTIwMDgxXV0sIFsnbmZyJywgWzEyMDEwN11dLCBbJ25nRScsIFs4ODA3LCA4MjRdXSwgWyduZ2UnLCBbODgxN11dLCBbJ25nZXEnLCBbODgxN11dLCBbJ25nZXFxJywgWzg4MDcsIDgyNF1dLCBbJ25nZXFzbGFudCcsIFsxMDg3OCwgODI0XV0sIFsnbmdlcycsIFsxMDg3OCwgODI0XV0sIFsnbkdnJywgWzg5MjEsIDgyNF1dLCBbJ25nc2ltJywgWzg4MjFdXSwgWyduR3QnLCBbODgxMSwgODQwMl1dLCBbJ25ndCcsIFs4ODE1XV0sIFsnbmd0cicsIFs4ODE1XV0sIFsnbkd0dicsIFs4ODExLCA4MjRdXSwgWyduaGFycicsIFs4NjIyXV0sIFsnbmhBcnInLCBbODY1NF1dLCBbJ25ocGFyJywgWzEwOTk0XV0sIFsnbmknLCBbODcxNV1dLCBbJ25pcycsIFs4OTU2XV0sIFsnbmlzZCcsIFs4OTU0XV0sIFsnbml2JywgWzg3MTVdXSwgWydOSmN5JywgWzEwMzRdXSwgWyduamN5JywgWzExMTRdXSwgWydubGFycicsIFs4NjAyXV0sIFsnbmxBcnInLCBbODY1M11dLCBbJ25sZHInLCBbODIyOV1dLCBbJ25sRScsIFs4ODA2LCA4MjRdXSwgWydubGUnLCBbODgxNl1dLCBbJ25sZWZ0YXJyb3cnLCBbODYwMl1dLCBbJ25MZWZ0YXJyb3cnLCBbODY1M11dLCBbJ25sZWZ0cmlnaHRhcnJvdycsIFs4NjIyXV0sIFsnbkxlZnRyaWdodGFycm93JywgWzg2NTRdXSwgWydubGVxJywgWzg4MTZdXSwgWydubGVxcScsIFs4ODA2LCA4MjRdXSwgWydubGVxc2xhbnQnLCBbMTA4NzcsIDgyNF1dLCBbJ25sZXMnLCBbMTA4NzcsIDgyNF1dLCBbJ25sZXNzJywgWzg4MTRdXSwgWyduTGwnLCBbODkyMCwgODI0XV0sIFsnbmxzaW0nLCBbODgyMF1dLCBbJ25MdCcsIFs4ODEwLCA4NDAyXV0sIFsnbmx0JywgWzg4MTRdXSwgWydubHRyaScsIFs4OTM4XV0sIFsnbmx0cmllJywgWzg5NDBdXSwgWyduTHR2JywgWzg4MTAsIDgyNF1dLCBbJ25taWQnLCBbODc0MF1dLCBbJ05vQnJlYWsnLCBbODI4OF1dLCBbJ05vbkJyZWFraW5nU3BhY2UnLCBbMTYwXV0sIFsnbm9wZicsIFsxMjAxNTldXSwgWydOb3BmJywgWzg0NjldXSwgWydOb3QnLCBbMTA5ODhdXSwgWydub3QnLCBbMTcyXV0sIFsnTm90Q29uZ3J1ZW50JywgWzg4MDJdXSwgWydOb3RDdXBDYXAnLCBbODgxM11dLCBbJ05vdERvdWJsZVZlcnRpY2FsQmFyJywgWzg3NDJdXSwgWydOb3RFbGVtZW50JywgWzg3MTNdXSwgWydOb3RFcXVhbCcsIFs4ODAwXV0sIFsnTm90RXF1YWxUaWxkZScsIFs4NzcwLCA4MjRdXSwgWydOb3RFeGlzdHMnLCBbODcwOF1dLCBbJ05vdEdyZWF0ZXInLCBbODgxNV1dLCBbJ05vdEdyZWF0ZXJFcXVhbCcsIFs4ODE3XV0sIFsnTm90R3JlYXRlckZ1bGxFcXVhbCcsIFs4ODA3LCA4MjRdXSwgWydOb3RHcmVhdGVyR3JlYXRlcicsIFs4ODExLCA4MjRdXSwgWydOb3RHcmVhdGVyTGVzcycsIFs4ODI1XV0sIFsnTm90R3JlYXRlclNsYW50RXF1YWwnLCBbMTA4NzgsIDgyNF1dLCBbJ05vdEdyZWF0ZXJUaWxkZScsIFs4ODIxXV0sIFsnTm90SHVtcERvd25IdW1wJywgWzg3ODIsIDgyNF1dLCBbJ05vdEh1bXBFcXVhbCcsIFs4NzgzLCA4MjRdXSwgWydub3RpbicsIFs4NzEzXV0sIFsnbm90aW5kb3QnLCBbODk0OSwgODI0XV0sIFsnbm90aW5FJywgWzg5NTMsIDgyNF1dLCBbJ25vdGludmEnLCBbODcxM11dLCBbJ25vdGludmInLCBbODk1MV1dLCBbJ25vdGludmMnLCBbODk1MF1dLCBbJ05vdExlZnRUcmlhbmdsZUJhcicsIFsxMDcwMywgODI0XV0sIFsnTm90TGVmdFRyaWFuZ2xlJywgWzg5MzhdXSwgWydOb3RMZWZ0VHJpYW5nbGVFcXVhbCcsIFs4OTQwXV0sIFsnTm90TGVzcycsIFs4ODE0XV0sIFsnTm90TGVzc0VxdWFsJywgWzg4MTZdXSwgWydOb3RMZXNzR3JlYXRlcicsIFs4ODI0XV0sIFsnTm90TGVzc0xlc3MnLCBbODgxMCwgODI0XV0sIFsnTm90TGVzc1NsYW50RXF1YWwnLCBbMTA4NzcsIDgyNF1dLCBbJ05vdExlc3NUaWxkZScsIFs4ODIwXV0sIFsnTm90TmVzdGVkR3JlYXRlckdyZWF0ZXInLCBbMTA5MTQsIDgyNF1dLCBbJ05vdE5lc3RlZExlc3NMZXNzJywgWzEwOTEzLCA4MjRdXSwgWydub3RuaScsIFs4NzE2XV0sIFsnbm90bml2YScsIFs4NzE2XV0sIFsnbm90bml2YicsIFs4OTU4XV0sIFsnbm90bml2YycsIFs4OTU3XV0sIFsnTm90UHJlY2VkZXMnLCBbODgzMl1dLCBbJ05vdFByZWNlZGVzRXF1YWwnLCBbMTA5MjcsIDgyNF1dLCBbJ05vdFByZWNlZGVzU2xhbnRFcXVhbCcsIFs4OTI4XV0sIFsnTm90UmV2ZXJzZUVsZW1lbnQnLCBbODcxNl1dLCBbJ05vdFJpZ2h0VHJpYW5nbGVCYXInLCBbMTA3MDQsIDgyNF1dLCBbJ05vdFJpZ2h0VHJpYW5nbGUnLCBbODkzOV1dLCBbJ05vdFJpZ2h0VHJpYW5nbGVFcXVhbCcsIFs4OTQxXV0sIFsnTm90U3F1YXJlU3Vic2V0JywgWzg4NDcsIDgyNF1dLCBbJ05vdFNxdWFyZVN1YnNldEVxdWFsJywgWzg5MzBdXSwgWydOb3RTcXVhcmVTdXBlcnNldCcsIFs4ODQ4LCA4MjRdXSwgWydOb3RTcXVhcmVTdXBlcnNldEVxdWFsJywgWzg5MzFdXSwgWydOb3RTdWJzZXQnLCBbODgzNCwgODQwMl1dLCBbJ05vdFN1YnNldEVxdWFsJywgWzg4NDBdXSwgWydOb3RTdWNjZWVkcycsIFs4ODMzXV0sIFsnTm90U3VjY2VlZHNFcXVhbCcsIFsxMDkyOCwgODI0XV0sIFsnTm90U3VjY2VlZHNTbGFudEVxdWFsJywgWzg5MjldXSwgWydOb3RTdWNjZWVkc1RpbGRlJywgWzg4MzEsIDgyNF1dLCBbJ05vdFN1cGVyc2V0JywgWzg4MzUsIDg0MDJdXSwgWydOb3RTdXBlcnNldEVxdWFsJywgWzg4NDFdXSwgWydOb3RUaWxkZScsIFs4NzY5XV0sIFsnTm90VGlsZGVFcXVhbCcsIFs4NzcyXV0sIFsnTm90VGlsZGVGdWxsRXF1YWwnLCBbODc3NV1dLCBbJ05vdFRpbGRlVGlsZGUnLCBbODc3N11dLCBbJ05vdFZlcnRpY2FsQmFyJywgWzg3NDBdXSwgWyducGFyYWxsZWwnLCBbODc0Ml1dLCBbJ25wYXInLCBbODc0Ml1dLCBbJ25wYXJzbCcsIFsxMTAwNSwgODQyMV1dLCBbJ25wYXJ0JywgWzg3MDYsIDgyNF1dLCBbJ25wb2xpbnQnLCBbMTA3NzJdXSwgWyducHInLCBbODgzMl1dLCBbJ25wcmN1ZScsIFs4OTI4XV0sIFsnbnByZWMnLCBbODgzMl1dLCBbJ25wcmVjZXEnLCBbMTA5MjcsIDgyNF1dLCBbJ25wcmUnLCBbMTA5MjcsIDgyNF1dLCBbJ25yYXJyYycsIFsxMDU0NywgODI0XV0sIFsnbnJhcnInLCBbODYwM11dLCBbJ25yQXJyJywgWzg2NTVdXSwgWyducmFycncnLCBbODYwNSwgODI0XV0sIFsnbnJpZ2h0YXJyb3cnLCBbODYwM11dLCBbJ25SaWdodGFycm93JywgWzg2NTVdXSwgWyducnRyaScsIFs4OTM5XV0sIFsnbnJ0cmllJywgWzg5NDFdXSwgWyduc2MnLCBbODgzM11dLCBbJ25zY2N1ZScsIFs4OTI5XV0sIFsnbnNjZScsIFsxMDkyOCwgODI0XV0sIFsnTnNjcicsIFsxMTk5NzddXSwgWyduc2NyJywgWzEyMDAwM11dLCBbJ25zaG9ydG1pZCcsIFs4NzQwXV0sIFsnbnNob3J0cGFyYWxsZWwnLCBbODc0Ml1dLCBbJ25zaW0nLCBbODc2OV1dLCBbJ25zaW1lJywgWzg3NzJdXSwgWyduc2ltZXEnLCBbODc3Ml1dLCBbJ25zbWlkJywgWzg3NDBdXSwgWyduc3BhcicsIFs4NzQyXV0sIFsnbnNxc3ViZScsIFs4OTMwXV0sIFsnbnNxc3VwZScsIFs4OTMxXV0sIFsnbnN1YicsIFs4ODM2XV0sIFsnbnN1YkUnLCBbMTA5NDksIDgyNF1dLCBbJ25zdWJlJywgWzg4NDBdXSwgWyduc3Vic2V0JywgWzg4MzQsIDg0MDJdXSwgWyduc3Vic2V0ZXEnLCBbODg0MF1dLCBbJ25zdWJzZXRlcXEnLCBbMTA5NDksIDgyNF1dLCBbJ25zdWNjJywgWzg4MzNdXSwgWyduc3VjY2VxJywgWzEwOTI4LCA4MjRdXSwgWyduc3VwJywgWzg4MzddXSwgWyduc3VwRScsIFsxMDk1MCwgODI0XV0sIFsnbnN1cGUnLCBbODg0MV1dLCBbJ25zdXBzZXQnLCBbODgzNSwgODQwMl1dLCBbJ25zdXBzZXRlcScsIFs4ODQxXV0sIFsnbnN1cHNldGVxcScsIFsxMDk1MCwgODI0XV0sIFsnbnRnbCcsIFs4ODI1XV0sIFsnTnRpbGRlJywgWzIwOV1dLCBbJ250aWxkZScsIFsyNDFdXSwgWydudGxnJywgWzg4MjRdXSwgWydudHJpYW5nbGVsZWZ0JywgWzg5MzhdXSwgWydudHJpYW5nbGVsZWZ0ZXEnLCBbODk0MF1dLCBbJ250cmlhbmdsZXJpZ2h0JywgWzg5MzldXSwgWydudHJpYW5nbGVyaWdodGVxJywgWzg5NDFdXSwgWydOdScsIFs5MjVdXSwgWydudScsIFs5NTddXSwgWydudW0nLCBbMzVdXSwgWydudW1lcm8nLCBbODQ3MF1dLCBbJ251bXNwJywgWzgxOTldXSwgWydudmFwJywgWzg3ODEsIDg0MDJdXSwgWydudmRhc2gnLCBbODg3Nl1dLCBbJ252RGFzaCcsIFs4ODc3XV0sIFsnblZkYXNoJywgWzg4NzhdXSwgWyduVkRhc2gnLCBbODg3OV1dLCBbJ252Z2UnLCBbODgwNSwgODQwMl1dLCBbJ252Z3QnLCBbNjIsIDg0MDJdXSwgWydudkhhcnInLCBbMTA1MDBdXSwgWydudmluZmluJywgWzEwNzE4XV0sIFsnbnZsQXJyJywgWzEwNDk4XV0sIFsnbnZsZScsIFs4ODA0LCA4NDAyXV0sIFsnbnZsdCcsIFs2MCwgODQwMl1dLCBbJ252bHRyaWUnLCBbODg4NCwgODQwMl1dLCBbJ252ckFycicsIFsxMDQ5OV1dLCBbJ252cnRyaWUnLCBbODg4NSwgODQwMl1dLCBbJ252c2ltJywgWzg3NjQsIDg0MDJdXSwgWydud2FyaGsnLCBbMTA1MzFdXSwgWydud2FycicsIFs4NTk4XV0sIFsnbndBcnInLCBbODY2Ml1dLCBbJ253YXJyb3cnLCBbODU5OF1dLCBbJ253bmVhcicsIFsxMDUzNV1dLCBbJ09hY3V0ZScsIFsyMTFdXSwgWydvYWN1dGUnLCBbMjQzXV0sIFsnb2FzdCcsIFs4ODU5XV0sIFsnT2NpcmMnLCBbMjEyXV0sIFsnb2NpcmMnLCBbMjQ0XV0sIFsnb2NpcicsIFs4ODU4XV0sIFsnT2N5JywgWzEwNTRdXSwgWydvY3knLCBbMTA4Nl1dLCBbJ29kYXNoJywgWzg4NjFdXSwgWydPZGJsYWMnLCBbMzM2XV0sIFsnb2RibGFjJywgWzMzN11dLCBbJ29kaXYnLCBbMTA4MDhdXSwgWydvZG90JywgWzg4NTddXSwgWydvZHNvbGQnLCBbMTA2ODRdXSwgWydPRWxpZycsIFszMzhdXSwgWydvZWxpZycsIFszMzldXSwgWydvZmNpcicsIFsxMDY4N11dLCBbJ09mcicsIFsxMjAwODJdXSwgWydvZnInLCBbMTIwMTA4XV0sIFsnb2dvbicsIFs3MzFdXSwgWydPZ3JhdmUnLCBbMjEwXV0sIFsnb2dyYXZlJywgWzI0Ml1dLCBbJ29ndCcsIFsxMDY4OV1dLCBbJ29oYmFyJywgWzEwNjc3XV0sIFsnb2htJywgWzkzN11dLCBbJ29pbnQnLCBbODc1MF1dLCBbJ29sYXJyJywgWzg2MzRdXSwgWydvbGNpcicsIFsxMDY4Nl1dLCBbJ29sY3Jvc3MnLCBbMTA2ODNdXSwgWydvbGluZScsIFs4MjU0XV0sIFsnb2x0JywgWzEwNjg4XV0sIFsnT21hY3InLCBbMzMyXV0sIFsnb21hY3InLCBbMzMzXV0sIFsnT21lZ2EnLCBbOTM3XV0sIFsnb21lZ2EnLCBbOTY5XV0sIFsnT21pY3JvbicsIFs5MjddXSwgWydvbWljcm9uJywgWzk1OV1dLCBbJ29taWQnLCBbMTA2NzhdXSwgWydvbWludXMnLCBbODg1NF1dLCBbJ09vcGYnLCBbMTIwMTM0XV0sIFsnb29wZicsIFsxMjAxNjBdXSwgWydvcGFyJywgWzEwNjc5XV0sIFsnT3BlbkN1cmx5RG91YmxlUXVvdGUnLCBbODIyMF1dLCBbJ09wZW5DdXJseVF1b3RlJywgWzgyMTZdXSwgWydvcGVycCcsIFsxMDY4MV1dLCBbJ29wbHVzJywgWzg4NTNdXSwgWydvcmFycicsIFs4NjM1XV0sIFsnT3InLCBbMTA4MzZdXSwgWydvcicsIFs4NzQ0XV0sIFsnb3JkJywgWzEwODQ1XV0sIFsnb3JkZXInLCBbODUwMF1dLCBbJ29yZGVyb2YnLCBbODUwMF1dLCBbJ29yZGYnLCBbMTcwXV0sIFsnb3JkbScsIFsxODZdXSwgWydvcmlnb2YnLCBbODg4Nl1dLCBbJ29yb3InLCBbMTA4MzhdXSwgWydvcnNsb3BlJywgWzEwODM5XV0sIFsnb3J2JywgWzEwODQzXV0sIFsnb1MnLCBbOTQxNl1dLCBbJ09zY3InLCBbMTE5OTc4XV0sIFsnb3NjcicsIFs4NTAwXV0sIFsnT3NsYXNoJywgWzIxNl1dLCBbJ29zbGFzaCcsIFsyNDhdXSwgWydvc29sJywgWzg4NTZdXSwgWydPdGlsZGUnLCBbMjEzXV0sIFsnb3RpbGRlJywgWzI0NV1dLCBbJ290aW1lc2FzJywgWzEwODA2XV0sIFsnT3RpbWVzJywgWzEwODA3XV0sIFsnb3RpbWVzJywgWzg4NTVdXSwgWydPdW1sJywgWzIxNF1dLCBbJ291bWwnLCBbMjQ2XV0sIFsnb3ZiYXInLCBbOTAyMV1dLCBbJ092ZXJCYXInLCBbODI1NF1dLCBbJ092ZXJCcmFjZScsIFs5MTgyXV0sIFsnT3ZlckJyYWNrZXQnLCBbOTE0MF1dLCBbJ092ZXJQYXJlbnRoZXNpcycsIFs5MTgwXV0sIFsncGFyYScsIFsxODJdXSwgWydwYXJhbGxlbCcsIFs4NzQxXV0sIFsncGFyJywgWzg3NDFdXSwgWydwYXJzaW0nLCBbMTA5OTVdXSwgWydwYXJzbCcsIFsxMTAwNV1dLCBbJ3BhcnQnLCBbODcwNl1dLCBbJ1BhcnRpYWxEJywgWzg3MDZdXSwgWydQY3knLCBbMTA1NV1dLCBbJ3BjeScsIFsxMDg3XV0sIFsncGVyY250JywgWzM3XV0sIFsncGVyaW9kJywgWzQ2XV0sIFsncGVybWlsJywgWzgyNDBdXSwgWydwZXJwJywgWzg4NjldXSwgWydwZXJ0ZW5rJywgWzgyNDFdXSwgWydQZnInLCBbMTIwMDgzXV0sIFsncGZyJywgWzEyMDEwOV1dLCBbJ1BoaScsIFs5MzRdXSwgWydwaGknLCBbOTY2XV0sIFsncGhpdicsIFs5ODFdXSwgWydwaG1tYXQnLCBbODQ5OV1dLCBbJ3Bob25lJywgWzk3NDJdXSwgWydQaScsIFs5MjhdXSwgWydwaScsIFs5NjBdXSwgWydwaXRjaGZvcmsnLCBbODkxNl1dLCBbJ3BpdicsIFs5ODJdXSwgWydwbGFuY2snLCBbODQ2M11dLCBbJ3BsYW5ja2gnLCBbODQ2Ml1dLCBbJ3BsYW5rdicsIFs4NDYzXV0sIFsncGx1c2FjaXInLCBbMTA3ODddXSwgWydwbHVzYicsIFs4ODYyXV0sIFsncGx1c2NpcicsIFsxMDc4Nl1dLCBbJ3BsdXMnLCBbNDNdXSwgWydwbHVzZG8nLCBbODcyNF1dLCBbJ3BsdXNkdScsIFsxMDc4OV1dLCBbJ3BsdXNlJywgWzEwODY2XV0sIFsnUGx1c01pbnVzJywgWzE3N11dLCBbJ3BsdXNtbicsIFsxNzddXSwgWydwbHVzc2ltJywgWzEwNzkwXV0sIFsncGx1c3R3bycsIFsxMDc5MV1dLCBbJ3BtJywgWzE3N11dLCBbJ1BvaW5jYXJlcGxhbmUnLCBbODQ2MF1dLCBbJ3BvaW50aW50JywgWzEwNzczXV0sIFsncG9wZicsIFsxMjAxNjFdXSwgWydQb3BmJywgWzg0NzNdXSwgWydwb3VuZCcsIFsxNjNdXSwgWydwcmFwJywgWzEwOTM1XV0sIFsnUHInLCBbMTA5MzldXSwgWydwcicsIFs4ODI2XV0sIFsncHJjdWUnLCBbODgyOF1dLCBbJ3ByZWNhcHByb3gnLCBbMTA5MzVdXSwgWydwcmVjJywgWzg4MjZdXSwgWydwcmVjY3VybHllcScsIFs4ODI4XV0sIFsnUHJlY2VkZXMnLCBbODgyNl1dLCBbJ1ByZWNlZGVzRXF1YWwnLCBbMTA5MjddXSwgWydQcmVjZWRlc1NsYW50RXF1YWwnLCBbODgyOF1dLCBbJ1ByZWNlZGVzVGlsZGUnLCBbODgzMF1dLCBbJ3ByZWNlcScsIFsxMDkyN11dLCBbJ3ByZWNuYXBwcm94JywgWzEwOTM3XV0sIFsncHJlY25lcXEnLCBbMTA5MzNdXSwgWydwcmVjbnNpbScsIFs4OTM2XV0sIFsncHJlJywgWzEwOTI3XV0sIFsncHJFJywgWzEwOTMxXV0sIFsncHJlY3NpbScsIFs4ODMwXV0sIFsncHJpbWUnLCBbODI0Ml1dLCBbJ1ByaW1lJywgWzgyNDNdXSwgWydwcmltZXMnLCBbODQ3M11dLCBbJ3BybmFwJywgWzEwOTM3XV0sIFsncHJuRScsIFsxMDkzM11dLCBbJ3BybnNpbScsIFs4OTM2XV0sIFsncHJvZCcsIFs4NzE5XV0sIFsnUHJvZHVjdCcsIFs4NzE5XV0sIFsncHJvZmFsYXInLCBbOTAwNl1dLCBbJ3Byb2ZsaW5lJywgWzg5NzhdXSwgWydwcm9mc3VyZicsIFs4OTc5XV0sIFsncHJvcCcsIFs4NzMzXV0sIFsnUHJvcG9ydGlvbmFsJywgWzg3MzNdXSwgWydQcm9wb3J0aW9uJywgWzg3NTldXSwgWydwcm9wdG8nLCBbODczM11dLCBbJ3Byc2ltJywgWzg4MzBdXSwgWydwcnVyZWwnLCBbODg4MF1dLCBbJ1BzY3InLCBbMTE5OTc5XV0sIFsncHNjcicsIFsxMjAwMDVdXSwgWydQc2knLCBbOTM2XV0sIFsncHNpJywgWzk2OF1dLCBbJ3B1bmNzcCcsIFs4MjAwXV0sIFsnUWZyJywgWzEyMDA4NF1dLCBbJ3FmcicsIFsxMjAxMTBdXSwgWydxaW50JywgWzEwNzY0XV0sIFsncW9wZicsIFsxMjAxNjJdXSwgWydRb3BmJywgWzg0NzRdXSwgWydxcHJpbWUnLCBbODI3OV1dLCBbJ1FzY3InLCBbMTE5OTgwXV0sIFsncXNjcicsIFsxMjAwMDZdXSwgWydxdWF0ZXJuaW9ucycsIFs4NDYxXV0sIFsncXVhdGludCcsIFsxMDc3NF1dLCBbJ3F1ZXN0JywgWzYzXV0sIFsncXVlc3RlcScsIFs4Nzk5XV0sIFsncXVvdCcsIFszNF1dLCBbJ1FVT1QnLCBbMzRdXSwgWydyQWFycicsIFs4NjY3XV0sIFsncmFjZScsIFs4NzY1LCA4MTddXSwgWydSYWN1dGUnLCBbMzQwXV0sIFsncmFjdXRlJywgWzM0MV1dLCBbJ3JhZGljJywgWzg3MzBdXSwgWydyYWVtcHR5dicsIFsxMDY3NV1dLCBbJ3JhbmcnLCBbMTAyMTddXSwgWydSYW5nJywgWzEwMjE5XV0sIFsncmFuZ2QnLCBbMTA2NDJdXSwgWydyYW5nZScsIFsxMDY2MV1dLCBbJ3JhbmdsZScsIFsxMDIxN11dLCBbJ3JhcXVvJywgWzE4N11dLCBbJ3JhcnJhcCcsIFsxMDYxM11dLCBbJ3JhcnJiJywgWzg2NzddXSwgWydyYXJyYmZzJywgWzEwNTI4XV0sIFsncmFycmMnLCBbMTA1NDddXSwgWydyYXJyJywgWzg1OTRdXSwgWydSYXJyJywgWzg2MDhdXSwgWydyQXJyJywgWzg2NThdXSwgWydyYXJyZnMnLCBbMTA1MjZdXSwgWydyYXJyaGsnLCBbODYxOF1dLCBbJ3JhcnJscCcsIFs4NjIwXV0sIFsncmFycnBsJywgWzEwNTY1XV0sIFsncmFycnNpbScsIFsxMDYxMl1dLCBbJ1JhcnJ0bCcsIFsxMDUxOF1dLCBbJ3JhcnJ0bCcsIFs4NjExXV0sIFsncmFycncnLCBbODYwNV1dLCBbJ3JhdGFpbCcsIFsxMDUyMl1dLCBbJ3JBdGFpbCcsIFsxMDUyNF1dLCBbJ3JhdGlvJywgWzg3NThdXSwgWydyYXRpb25hbHMnLCBbODQ3NF1dLCBbJ3JiYXJyJywgWzEwNTA5XV0sIFsnckJhcnInLCBbMTA1MTFdXSwgWydSQmFycicsIFsxMDUxMl1dLCBbJ3JiYnJrJywgWzEwMDk5XV0sIFsncmJyYWNlJywgWzEyNV1dLCBbJ3JicmFjaycsIFs5M11dLCBbJ3JicmtlJywgWzEwNjM2XV0sIFsncmJya3NsZCcsIFsxMDYzOF1dLCBbJ3JicmtzbHUnLCBbMTA2NDBdXSwgWydSY2Fyb24nLCBbMzQ0XV0sIFsncmNhcm9uJywgWzM0NV1dLCBbJ1JjZWRpbCcsIFszNDJdXSwgWydyY2VkaWwnLCBbMzQzXV0sIFsncmNlaWwnLCBbODk2OV1dLCBbJ3JjdWInLCBbMTI1XV0sIFsnUmN5JywgWzEwNTZdXSwgWydyY3knLCBbMTA4OF1dLCBbJ3JkY2EnLCBbMTA1NTFdXSwgWydyZGxkaGFyJywgWzEwNjAxXV0sIFsncmRxdW8nLCBbODIyMV1dLCBbJ3JkcXVvcicsIFs4MjIxXV0sIFsnQ2xvc2VDdXJseURvdWJsZVF1b3RlJywgWzgyMjFdXSwgWydyZHNoJywgWzg2MjddXSwgWydyZWFsJywgWzg0NzZdXSwgWydyZWFsaW5lJywgWzg0NzVdXSwgWydyZWFscGFydCcsIFs4NDc2XV0sIFsncmVhbHMnLCBbODQ3N11dLCBbJ1JlJywgWzg0NzZdXSwgWydyZWN0JywgWzk2NDVdXSwgWydyZWcnLCBbMTc0XV0sIFsnUkVHJywgWzE3NF1dLCBbJ1JldmVyc2VFbGVtZW50JywgWzg3MTVdXSwgWydSZXZlcnNlRXF1aWxpYnJpdW0nLCBbODY1MV1dLCBbJ1JldmVyc2VVcEVxdWlsaWJyaXVtJywgWzEwNjA3XV0sIFsncmZpc2h0JywgWzEwNjIxXV0sIFsncmZsb29yJywgWzg5NzFdXSwgWydyZnInLCBbMTIwMTExXV0sIFsnUmZyJywgWzg0NzZdXSwgWydySGFyJywgWzEwNTk2XV0sIFsncmhhcmQnLCBbODY0MV1dLCBbJ3JoYXJ1JywgWzg2NDBdXSwgWydyaGFydWwnLCBbMTA2MDRdXSwgWydSaG8nLCBbOTI5XV0sIFsncmhvJywgWzk2MV1dLCBbJ3Job3YnLCBbMTAwOV1dLCBbJ1JpZ2h0QW5nbGVCcmFja2V0JywgWzEwMjE3XV0sIFsnUmlnaHRBcnJvd0JhcicsIFs4Njc3XV0sIFsncmlnaHRhcnJvdycsIFs4NTk0XV0sIFsnUmlnaHRBcnJvdycsIFs4NTk0XV0sIFsnUmlnaHRhcnJvdycsIFs4NjU4XV0sIFsnUmlnaHRBcnJvd0xlZnRBcnJvdycsIFs4NjQ0XV0sIFsncmlnaHRhcnJvd3RhaWwnLCBbODYxMV1dLCBbJ1JpZ2h0Q2VpbGluZycsIFs4OTY5XV0sIFsnUmlnaHREb3VibGVCcmFja2V0JywgWzEwMjE1XV0sIFsnUmlnaHREb3duVGVlVmVjdG9yJywgWzEwNTg5XV0sIFsnUmlnaHREb3duVmVjdG9yQmFyJywgWzEwNTgxXV0sIFsnUmlnaHREb3duVmVjdG9yJywgWzg2NDJdXSwgWydSaWdodEZsb29yJywgWzg5NzFdXSwgWydyaWdodGhhcnBvb25kb3duJywgWzg2NDFdXSwgWydyaWdodGhhcnBvb251cCcsIFs4NjQwXV0sIFsncmlnaHRsZWZ0YXJyb3dzJywgWzg2NDRdXSwgWydyaWdodGxlZnRoYXJwb29ucycsIFs4NjUyXV0sIFsncmlnaHRyaWdodGFycm93cycsIFs4NjQ5XV0sIFsncmlnaHRzcXVpZ2Fycm93JywgWzg2MDVdXSwgWydSaWdodFRlZUFycm93JywgWzg2MTRdXSwgWydSaWdodFRlZScsIFs4ODY2XV0sIFsnUmlnaHRUZWVWZWN0b3InLCBbMTA1ODddXSwgWydyaWdodHRocmVldGltZXMnLCBbODkwOF1dLCBbJ1JpZ2h0VHJpYW5nbGVCYXInLCBbMTA3MDRdXSwgWydSaWdodFRyaWFuZ2xlJywgWzg4ODNdXSwgWydSaWdodFRyaWFuZ2xlRXF1YWwnLCBbODg4NV1dLCBbJ1JpZ2h0VXBEb3duVmVjdG9yJywgWzEwNTc1XV0sIFsnUmlnaHRVcFRlZVZlY3RvcicsIFsxMDU4OF1dLCBbJ1JpZ2h0VXBWZWN0b3JCYXInLCBbMTA1ODBdXSwgWydSaWdodFVwVmVjdG9yJywgWzg2MzhdXSwgWydSaWdodFZlY3RvckJhcicsIFsxMDU3OV1dLCBbJ1JpZ2h0VmVjdG9yJywgWzg2NDBdXSwgWydyaW5nJywgWzczMF1dLCBbJ3Jpc2luZ2RvdHNlcScsIFs4Nzg3XV0sIFsncmxhcnInLCBbODY0NF1dLCBbJ3JsaGFyJywgWzg2NTJdXSwgWydybG0nLCBbODIwN11dLCBbJ3Jtb3VzdGFjaGUnLCBbOTEzN11dLCBbJ3Jtb3VzdCcsIFs5MTM3XV0sIFsncm5taWQnLCBbMTA5OTBdXSwgWydyb2FuZycsIFsxMDIyMV1dLCBbJ3JvYXJyJywgWzg3MDJdXSwgWydyb2JyaycsIFsxMDIxNV1dLCBbJ3JvcGFyJywgWzEwNjMwXV0sIFsncm9wZicsIFsxMjAxNjNdXSwgWydSb3BmJywgWzg0NzddXSwgWydyb3BsdXMnLCBbMTA3OThdXSwgWydyb3RpbWVzJywgWzEwODA1XV0sIFsnUm91bmRJbXBsaWVzJywgWzEwNjA4XV0sIFsncnBhcicsIFs0MV1dLCBbJ3JwYXJndCcsIFsxMDY0NF1dLCBbJ3JwcG9saW50JywgWzEwNzcwXV0sIFsncnJhcnInLCBbODY0OV1dLCBbJ1JyaWdodGFycm93JywgWzg2NjddXSwgWydyc2FxdW8nLCBbODI1MF1dLCBbJ3JzY3InLCBbMTIwMDA3XV0sIFsnUnNjcicsIFs4NDc1XV0sIFsncnNoJywgWzg2MjVdXSwgWydSc2gnLCBbODYyNV1dLCBbJ3JzcWInLCBbOTNdXSwgWydyc3F1bycsIFs4MjE3XV0sIFsncnNxdW9yJywgWzgyMTddXSwgWydDbG9zZUN1cmx5UXVvdGUnLCBbODIxN11dLCBbJ3J0aHJlZScsIFs4OTA4XV0sIFsncnRpbWVzJywgWzg5MDZdXSwgWydydHJpJywgWzk2NTddXSwgWydydHJpZScsIFs4ODg1XV0sIFsncnRyaWYnLCBbOTY1Nl1dLCBbJ3J0cmlsdHJpJywgWzEwNzAyXV0sIFsnUnVsZURlbGF5ZWQnLCBbMTA3NDBdXSwgWydydWx1aGFyJywgWzEwNjAwXV0sIFsncngnLCBbODQ3OF1dLCBbJ1NhY3V0ZScsIFszNDZdXSwgWydzYWN1dGUnLCBbMzQ3XV0sIFsnc2JxdW8nLCBbODIxOF1dLCBbJ3NjYXAnLCBbMTA5MzZdXSwgWydTY2Fyb24nLCBbMzUyXV0sIFsnc2Nhcm9uJywgWzM1M11dLCBbJ1NjJywgWzEwOTQwXV0sIFsnc2MnLCBbODgyN11dLCBbJ3NjY3VlJywgWzg4MjldXSwgWydzY2UnLCBbMTA5MjhdXSwgWydzY0UnLCBbMTA5MzJdXSwgWydTY2VkaWwnLCBbMzUwXV0sIFsnc2NlZGlsJywgWzM1MV1dLCBbJ1NjaXJjJywgWzM0OF1dLCBbJ3NjaXJjJywgWzM0OV1dLCBbJ3NjbmFwJywgWzEwOTM4XV0sIFsnc2NuRScsIFsxMDkzNF1dLCBbJ3NjbnNpbScsIFs4OTM3XV0sIFsnc2Nwb2xpbnQnLCBbMTA3NzFdXSwgWydzY3NpbScsIFs4ODMxXV0sIFsnU2N5JywgWzEwNTddXSwgWydzY3knLCBbMTA4OV1dLCBbJ3Nkb3RiJywgWzg4NjVdXSwgWydzZG90JywgWzg5MDFdXSwgWydzZG90ZScsIFsxMDg1NF1dLCBbJ3NlYXJoaycsIFsxMDUzM11dLCBbJ3NlYXJyJywgWzg2MDBdXSwgWydzZUFycicsIFs4NjY0XV0sIFsnc2VhcnJvdycsIFs4NjAwXV0sIFsnc2VjdCcsIFsxNjddXSwgWydzZW1pJywgWzU5XV0sIFsnc2Vzd2FyJywgWzEwNTM3XV0sIFsnc2V0bWludXMnLCBbODcyNl1dLCBbJ3NldG1uJywgWzg3MjZdXSwgWydzZXh0JywgWzEwMDM4XV0sIFsnU2ZyJywgWzEyMDA4Nl1dLCBbJ3NmcicsIFsxMjAxMTJdXSwgWydzZnJvd24nLCBbODk5NF1dLCBbJ3NoYXJwJywgWzk4MzldXSwgWydTSENIY3knLCBbMTA2NV1dLCBbJ3NoY2hjeScsIFsxMDk3XV0sIFsnU0hjeScsIFsxMDY0XV0sIFsnc2hjeScsIFsxMDk2XV0sIFsnU2hvcnREb3duQXJyb3cnLCBbODU5NV1dLCBbJ1Nob3J0TGVmdEFycm93JywgWzg1OTJdXSwgWydzaG9ydG1pZCcsIFs4NzM5XV0sIFsnc2hvcnRwYXJhbGxlbCcsIFs4NzQxXV0sIFsnU2hvcnRSaWdodEFycm93JywgWzg1OTRdXSwgWydTaG9ydFVwQXJyb3cnLCBbODU5M11dLCBbJ3NoeScsIFsxNzNdXSwgWydTaWdtYScsIFs5MzFdXSwgWydzaWdtYScsIFs5NjNdXSwgWydzaWdtYWYnLCBbOTYyXV0sIFsnc2lnbWF2JywgWzk2Ml1dLCBbJ3NpbScsIFs4NzY0XV0sIFsnc2ltZG90JywgWzEwODU4XV0sIFsnc2ltZScsIFs4NzcxXV0sIFsnc2ltZXEnLCBbODc3MV1dLCBbJ3NpbWcnLCBbMTA5MTBdXSwgWydzaW1nRScsIFsxMDkxMl1dLCBbJ3NpbWwnLCBbMTA5MDldXSwgWydzaW1sRScsIFsxMDkxMV1dLCBbJ3NpbW5lJywgWzg3NzRdXSwgWydzaW1wbHVzJywgWzEwNzg4XV0sIFsnc2ltcmFycicsIFsxMDYxMF1dLCBbJ3NsYXJyJywgWzg1OTJdXSwgWydTbWFsbENpcmNsZScsIFs4NzI4XV0sIFsnc21hbGxzZXRtaW51cycsIFs4NzI2XV0sIFsnc21hc2hwJywgWzEwODAzXV0sIFsnc21lcGFyc2wnLCBbMTA3MjRdXSwgWydzbWlkJywgWzg3MzldXSwgWydzbWlsZScsIFs4OTk1XV0sIFsnc210JywgWzEwOTIyXV0sIFsnc210ZScsIFsxMDkyNF1dLCBbJ3NtdGVzJywgWzEwOTI0LCA2NTAyNF1dLCBbJ1NPRlRjeScsIFsxMDY4XV0sIFsnc29mdGN5JywgWzExMDBdXSwgWydzb2xiYXInLCBbOTAyM11dLCBbJ3NvbGInLCBbMTA2OTJdXSwgWydzb2wnLCBbNDddXSwgWydTb3BmJywgWzEyMDEzOF1dLCBbJ3NvcGYnLCBbMTIwMTY0XV0sIFsnc3BhZGVzJywgWzk4MjRdXSwgWydzcGFkZXN1aXQnLCBbOTgyNF1dLCBbJ3NwYXInLCBbODc0MV1dLCBbJ3NxY2FwJywgWzg4NTFdXSwgWydzcWNhcHMnLCBbODg1MSwgNjUwMjRdXSwgWydzcWN1cCcsIFs4ODUyXV0sIFsnc3FjdXBzJywgWzg4NTIsIDY1MDI0XV0sIFsnU3FydCcsIFs4NzMwXV0sIFsnc3FzdWInLCBbODg0N11dLCBbJ3Nxc3ViZScsIFs4ODQ5XV0sIFsnc3FzdWJzZXQnLCBbODg0N11dLCBbJ3Nxc3Vic2V0ZXEnLCBbODg0OV1dLCBbJ3Nxc3VwJywgWzg4NDhdXSwgWydzcXN1cGUnLCBbODg1MF1dLCBbJ3Nxc3Vwc2V0JywgWzg4NDhdXSwgWydzcXN1cHNldGVxJywgWzg4NTBdXSwgWydzcXVhcmUnLCBbOTYzM11dLCBbJ1NxdWFyZScsIFs5NjMzXV0sIFsnU3F1YXJlSW50ZXJzZWN0aW9uJywgWzg4NTFdXSwgWydTcXVhcmVTdWJzZXQnLCBbODg0N11dLCBbJ1NxdWFyZVN1YnNldEVxdWFsJywgWzg4NDldXSwgWydTcXVhcmVTdXBlcnNldCcsIFs4ODQ4XV0sIFsnU3F1YXJlU3VwZXJzZXRFcXVhbCcsIFs4ODUwXV0sIFsnU3F1YXJlVW5pb24nLCBbODg1Ml1dLCBbJ3NxdWFyZicsIFs5NjQyXV0sIFsnc3F1JywgWzk2MzNdXSwgWydzcXVmJywgWzk2NDJdXSwgWydzcmFycicsIFs4NTk0XV0sIFsnU3NjcicsIFsxMTk5ODJdXSwgWydzc2NyJywgWzEyMDAwOF1dLCBbJ3NzZXRtbicsIFs4NzI2XV0sIFsnc3NtaWxlJywgWzg5OTVdXSwgWydzc3RhcmYnLCBbODkwMl1dLCBbJ1N0YXInLCBbODkwMl1dLCBbJ3N0YXInLCBbOTczNF1dLCBbJ3N0YXJmJywgWzk3MzNdXSwgWydzdHJhaWdodGVwc2lsb24nLCBbMTAxM11dLCBbJ3N0cmFpZ2h0cGhpJywgWzk4MV1dLCBbJ3N0cm5zJywgWzE3NV1dLCBbJ3N1YicsIFs4ODM0XV0sIFsnU3ViJywgWzg5MTJdXSwgWydzdWJkb3QnLCBbMTA5NDFdXSwgWydzdWJFJywgWzEwOTQ5XV0sIFsnc3ViZScsIFs4ODM4XV0sIFsnc3ViZWRvdCcsIFsxMDk0N11dLCBbJ3N1Ym11bHQnLCBbMTA5NDVdXSwgWydzdWJuRScsIFsxMDk1NV1dLCBbJ3N1Ym5lJywgWzg4NDJdXSwgWydzdWJwbHVzJywgWzEwOTQzXV0sIFsnc3VicmFycicsIFsxMDYxN11dLCBbJ3N1YnNldCcsIFs4ODM0XV0sIFsnU3Vic2V0JywgWzg5MTJdXSwgWydzdWJzZXRlcScsIFs4ODM4XV0sIFsnc3Vic2V0ZXFxJywgWzEwOTQ5XV0sIFsnU3Vic2V0RXF1YWwnLCBbODgzOF1dLCBbJ3N1YnNldG5lcScsIFs4ODQyXV0sIFsnc3Vic2V0bmVxcScsIFsxMDk1NV1dLCBbJ3N1YnNpbScsIFsxMDk1MV1dLCBbJ3N1YnN1YicsIFsxMDk2NV1dLCBbJ3N1YnN1cCcsIFsxMDk2M11dLCBbJ3N1Y2NhcHByb3gnLCBbMTA5MzZdXSwgWydzdWNjJywgWzg4MjddXSwgWydzdWNjY3VybHllcScsIFs4ODI5XV0sIFsnU3VjY2VlZHMnLCBbODgyN11dLCBbJ1N1Y2NlZWRzRXF1YWwnLCBbMTA5MjhdXSwgWydTdWNjZWVkc1NsYW50RXF1YWwnLCBbODgyOV1dLCBbJ1N1Y2NlZWRzVGlsZGUnLCBbODgzMV1dLCBbJ3N1Y2NlcScsIFsxMDkyOF1dLCBbJ3N1Y2NuYXBwcm94JywgWzEwOTM4XV0sIFsnc3VjY25lcXEnLCBbMTA5MzRdXSwgWydzdWNjbnNpbScsIFs4OTM3XV0sIFsnc3VjY3NpbScsIFs4ODMxXV0sIFsnU3VjaFRoYXQnLCBbODcxNV1dLCBbJ3N1bScsIFs4NzIxXV0sIFsnU3VtJywgWzg3MjFdXSwgWydzdW5nJywgWzk4MzRdXSwgWydzdXAxJywgWzE4NV1dLCBbJ3N1cDInLCBbMTc4XV0sIFsnc3VwMycsIFsxNzldXSwgWydzdXAnLCBbODgzNV1dLCBbJ1N1cCcsIFs4OTEzXV0sIFsnc3VwZG90JywgWzEwOTQyXV0sIFsnc3VwZHN1YicsIFsxMDk2OF1dLCBbJ3N1cEUnLCBbMTA5NTBdXSwgWydzdXBlJywgWzg4MzldXSwgWydzdXBlZG90JywgWzEwOTQ4XV0sIFsnU3VwZXJzZXQnLCBbODgzNV1dLCBbJ1N1cGVyc2V0RXF1YWwnLCBbODgzOV1dLCBbJ3N1cGhzb2wnLCBbMTAxODVdXSwgWydzdXBoc3ViJywgWzEwOTY3XV0sIFsnc3VwbGFycicsIFsxMDYxOV1dLCBbJ3N1cG11bHQnLCBbMTA5NDZdXSwgWydzdXBuRScsIFsxMDk1Nl1dLCBbJ3N1cG5lJywgWzg4NDNdXSwgWydzdXBwbHVzJywgWzEwOTQ0XV0sIFsnc3Vwc2V0JywgWzg4MzVdXSwgWydTdXBzZXQnLCBbODkxM11dLCBbJ3N1cHNldGVxJywgWzg4MzldXSwgWydzdXBzZXRlcXEnLCBbMTA5NTBdXSwgWydzdXBzZXRuZXEnLCBbODg0M11dLCBbJ3N1cHNldG5lcXEnLCBbMTA5NTZdXSwgWydzdXBzaW0nLCBbMTA5NTJdXSwgWydzdXBzdWInLCBbMTA5NjRdXSwgWydzdXBzdXAnLCBbMTA5NjZdXSwgWydzd2FyaGsnLCBbMTA1MzRdXSwgWydzd2FycicsIFs4NjAxXV0sIFsnc3dBcnInLCBbODY2NV1dLCBbJ3N3YXJyb3cnLCBbODYwMV1dLCBbJ3N3bndhcicsIFsxMDUzOF1dLCBbJ3N6bGlnJywgWzIyM11dLCBbJ1RhYicsIFs5XV0sIFsndGFyZ2V0JywgWzg5ODJdXSwgWydUYXUnLCBbOTMyXV0sIFsndGF1JywgWzk2NF1dLCBbJ3RicmsnLCBbOTE0MF1dLCBbJ1RjYXJvbicsIFszNTZdXSwgWyd0Y2Fyb24nLCBbMzU3XV0sIFsnVGNlZGlsJywgWzM1NF1dLCBbJ3RjZWRpbCcsIFszNTVdXSwgWydUY3knLCBbMTA1OF1dLCBbJ3RjeScsIFsxMDkwXV0sIFsndGRvdCcsIFs4NDExXV0sIFsndGVscmVjJywgWzg5ODFdXSwgWydUZnInLCBbMTIwMDg3XV0sIFsndGZyJywgWzEyMDExM11dLCBbJ3RoZXJlNCcsIFs4NzU2XV0sIFsndGhlcmVmb3JlJywgWzg3NTZdXSwgWydUaGVyZWZvcmUnLCBbODc1Nl1dLCBbJ1RoZXRhJywgWzkyMF1dLCBbJ3RoZXRhJywgWzk1Ml1dLCBbJ3RoZXRhc3ltJywgWzk3N11dLCBbJ3RoZXRhdicsIFs5NzddXSwgWyd0aGlja2FwcHJveCcsIFs4Nzc2XV0sIFsndGhpY2tzaW0nLCBbODc2NF1dLCBbJ1RoaWNrU3BhY2UnLCBbODI4NywgODIwMl1dLCBbJ1RoaW5TcGFjZScsIFs4MjAxXV0sIFsndGhpbnNwJywgWzgyMDFdXSwgWyd0aGthcCcsIFs4Nzc2XV0sIFsndGhrc2ltJywgWzg3NjRdXSwgWydUSE9STicsIFsyMjJdXSwgWyd0aG9ybicsIFsyNTRdXSwgWyd0aWxkZScsIFs3MzJdXSwgWydUaWxkZScsIFs4NzY0XV0sIFsnVGlsZGVFcXVhbCcsIFs4NzcxXV0sIFsnVGlsZGVGdWxsRXF1YWwnLCBbODc3M11dLCBbJ1RpbGRlVGlsZGUnLCBbODc3Nl1dLCBbJ3RpbWVzYmFyJywgWzEwODAxXV0sIFsndGltZXNiJywgWzg4NjRdXSwgWyd0aW1lcycsIFsyMTVdXSwgWyd0aW1lc2QnLCBbMTA4MDBdXSwgWyd0aW50JywgWzg3NDldXSwgWyd0b2VhJywgWzEwNTM2XV0sIFsndG9wYm90JywgWzkwMTRdXSwgWyd0b3BjaXInLCBbMTA5OTNdXSwgWyd0b3AnLCBbODg2OF1dLCBbJ1RvcGYnLCBbMTIwMTM5XV0sIFsndG9wZicsIFsxMjAxNjVdXSwgWyd0b3Bmb3JrJywgWzEwOTcwXV0sIFsndG9zYScsIFsxMDUzN11dLCBbJ3RwcmltZScsIFs4MjQ0XV0sIFsndHJhZGUnLCBbODQ4Ml1dLCBbJ1RSQURFJywgWzg0ODJdXSwgWyd0cmlhbmdsZScsIFs5NjUzXV0sIFsndHJpYW5nbGVkb3duJywgWzk2NjNdXSwgWyd0cmlhbmdsZWxlZnQnLCBbOTY2N11dLCBbJ3RyaWFuZ2xlbGVmdGVxJywgWzg4ODRdXSwgWyd0cmlhbmdsZXEnLCBbODc5Nl1dLCBbJ3RyaWFuZ2xlcmlnaHQnLCBbOTY1N11dLCBbJ3RyaWFuZ2xlcmlnaHRlcScsIFs4ODg1XV0sIFsndHJpZG90JywgWzk3MDhdXSwgWyd0cmllJywgWzg3OTZdXSwgWyd0cmltaW51cycsIFsxMDgxMF1dLCBbJ1RyaXBsZURvdCcsIFs4NDExXV0sIFsndHJpcGx1cycsIFsxMDgwOV1dLCBbJ3RyaXNiJywgWzEwNzAxXV0sIFsndHJpdGltZScsIFsxMDgxMV1dLCBbJ3RycGV6aXVtJywgWzkxODZdXSwgWydUc2NyJywgWzExOTk4M11dLCBbJ3RzY3InLCBbMTIwMDA5XV0sIFsnVFNjeScsIFsxMDYyXV0sIFsndHNjeScsIFsxMDk0XV0sIFsnVFNIY3knLCBbMTAzNV1dLCBbJ3RzaGN5JywgWzExMTVdXSwgWydUc3Ryb2snLCBbMzU4XV0sIFsndHN0cm9rJywgWzM1OV1dLCBbJ3R3aXh0JywgWzg4MTJdXSwgWyd0d29oZWFkbGVmdGFycm93JywgWzg2MDZdXSwgWyd0d29oZWFkcmlnaHRhcnJvdycsIFs4NjA4XV0sIFsnVWFjdXRlJywgWzIxOF1dLCBbJ3VhY3V0ZScsIFsyNTBdXSwgWyd1YXJyJywgWzg1OTNdXSwgWydVYXJyJywgWzg2MDddXSwgWyd1QXJyJywgWzg2NTddXSwgWydVYXJyb2NpcicsIFsxMDU2OV1dLCBbJ1VicmN5JywgWzEwMzhdXSwgWyd1YnJjeScsIFsxMTE4XV0sIFsnVWJyZXZlJywgWzM2NF1dLCBbJ3VicmV2ZScsIFszNjVdXSwgWydVY2lyYycsIFsyMTldXSwgWyd1Y2lyYycsIFsyNTFdXSwgWydVY3knLCBbMTA1OV1dLCBbJ3VjeScsIFsxMDkxXV0sIFsndWRhcnInLCBbODY0NV1dLCBbJ1VkYmxhYycsIFszNjhdXSwgWyd1ZGJsYWMnLCBbMzY5XV0sIFsndWRoYXInLCBbMTA2MDZdXSwgWyd1ZmlzaHQnLCBbMTA2MjJdXSwgWydVZnInLCBbMTIwMDg4XV0sIFsndWZyJywgWzEyMDExNF1dLCBbJ1VncmF2ZScsIFsyMTddXSwgWyd1Z3JhdmUnLCBbMjQ5XV0sIFsndUhhcicsIFsxMDU5NV1dLCBbJ3VoYXJsJywgWzg2MzldXSwgWyd1aGFycicsIFs4NjM4XV0sIFsndWhibGsnLCBbOTYwMF1dLCBbJ3VsY29ybicsIFs4OTg4XV0sIFsndWxjb3JuZXInLCBbODk4OF1dLCBbJ3VsY3JvcCcsIFs4OTc1XV0sIFsndWx0cmknLCBbOTcyMF1dLCBbJ1VtYWNyJywgWzM2Ml1dLCBbJ3VtYWNyJywgWzM2M11dLCBbJ3VtbCcsIFsxNjhdXSwgWydVbmRlckJhcicsIFs5NV1dLCBbJ1VuZGVyQnJhY2UnLCBbOTE4M11dLCBbJ1VuZGVyQnJhY2tldCcsIFs5MTQxXV0sIFsnVW5kZXJQYXJlbnRoZXNpcycsIFs5MTgxXV0sIFsnVW5pb24nLCBbODg5OV1dLCBbJ1VuaW9uUGx1cycsIFs4ODQ2XV0sIFsnVW9nb24nLCBbMzcwXV0sIFsndW9nb24nLCBbMzcxXV0sIFsnVW9wZicsIFsxMjAxNDBdXSwgWyd1b3BmJywgWzEyMDE2Nl1dLCBbJ1VwQXJyb3dCYXInLCBbMTA1MTRdXSwgWyd1cGFycm93JywgWzg1OTNdXSwgWydVcEFycm93JywgWzg1OTNdXSwgWydVcGFycm93JywgWzg2NTddXSwgWydVcEFycm93RG93bkFycm93JywgWzg2NDVdXSwgWyd1cGRvd25hcnJvdycsIFs4NTk3XV0sIFsnVXBEb3duQXJyb3cnLCBbODU5N11dLCBbJ1VwZG93bmFycm93JywgWzg2NjFdXSwgWydVcEVxdWlsaWJyaXVtJywgWzEwNjA2XV0sIFsndXBoYXJwb29ubGVmdCcsIFs4NjM5XV0sIFsndXBoYXJwb29ucmlnaHQnLCBbODYzOF1dLCBbJ3VwbHVzJywgWzg4NDZdXSwgWydVcHBlckxlZnRBcnJvdycsIFs4NTk4XV0sIFsnVXBwZXJSaWdodEFycm93JywgWzg1OTldXSwgWyd1cHNpJywgWzk2NV1dLCBbJ1Vwc2knLCBbOTc4XV0sIFsndXBzaWgnLCBbOTc4XV0sIFsnVXBzaWxvbicsIFs5MzNdXSwgWyd1cHNpbG9uJywgWzk2NV1dLCBbJ1VwVGVlQXJyb3cnLCBbODYxM11dLCBbJ1VwVGVlJywgWzg4NjldXSwgWyd1cHVwYXJyb3dzJywgWzg2NDhdXSwgWyd1cmNvcm4nLCBbODk4OV1dLCBbJ3VyY29ybmVyJywgWzg5ODldXSwgWyd1cmNyb3AnLCBbODk3NF1dLCBbJ1VyaW5nJywgWzM2Nl1dLCBbJ3VyaW5nJywgWzM2N11dLCBbJ3VydHJpJywgWzk3MjFdXSwgWydVc2NyJywgWzExOTk4NF1dLCBbJ3VzY3InLCBbMTIwMDEwXV0sIFsndXRkb3QnLCBbODk0NF1dLCBbJ1V0aWxkZScsIFszNjBdXSwgWyd1dGlsZGUnLCBbMzYxXV0sIFsndXRyaScsIFs5NjUzXV0sIFsndXRyaWYnLCBbOTY1Ml1dLCBbJ3V1YXJyJywgWzg2NDhdXSwgWydVdW1sJywgWzIyMF1dLCBbJ3V1bWwnLCBbMjUyXV0sIFsndXdhbmdsZScsIFsxMDY2M11dLCBbJ3ZhbmdydCcsIFsxMDY1Ml1dLCBbJ3ZhcmVwc2lsb24nLCBbMTAxM11dLCBbJ3ZhcmthcHBhJywgWzEwMDhdXSwgWyd2YXJub3RoaW5nJywgWzg3MDldXSwgWyd2YXJwaGknLCBbOTgxXV0sIFsndmFycGknLCBbOTgyXV0sIFsndmFycHJvcHRvJywgWzg3MzNdXSwgWyd2YXJyJywgWzg1OTddXSwgWyd2QXJyJywgWzg2NjFdXSwgWyd2YXJyaG8nLCBbMTAwOV1dLCBbJ3ZhcnNpZ21hJywgWzk2Ml1dLCBbJ3ZhcnN1YnNldG5lcScsIFs4ODQyLCA2NTAyNF1dLCBbJ3ZhcnN1YnNldG5lcXEnLCBbMTA5NTUsIDY1MDI0XV0sIFsndmFyc3Vwc2V0bmVxJywgWzg4NDMsIDY1MDI0XV0sIFsndmFyc3Vwc2V0bmVxcScsIFsxMDk1NiwgNjUwMjRdXSwgWyd2YXJ0aGV0YScsIFs5NzddXSwgWyd2YXJ0cmlhbmdsZWxlZnQnLCBbODg4Ml1dLCBbJ3ZhcnRyaWFuZ2xlcmlnaHQnLCBbODg4M11dLCBbJ3ZCYXInLCBbMTA5ODRdXSwgWydWYmFyJywgWzEwOTg3XV0sIFsndkJhcnYnLCBbMTA5ODVdXSwgWydWY3knLCBbMTA0Ml1dLCBbJ3ZjeScsIFsxMDc0XV0sIFsndmRhc2gnLCBbODg2Nl1dLCBbJ3ZEYXNoJywgWzg4NzJdXSwgWydWZGFzaCcsIFs4ODczXV0sIFsnVkRhc2gnLCBbODg3NV1dLCBbJ1ZkYXNobCcsIFsxMDk4Ml1dLCBbJ3ZlZWJhcicsIFs4ODkxXV0sIFsndmVlJywgWzg3NDRdXSwgWydWZWUnLCBbODg5N11dLCBbJ3ZlZWVxJywgWzg3OTRdXSwgWyd2ZWxsaXAnLCBbODk0Ml1dLCBbJ3ZlcmJhcicsIFsxMjRdXSwgWydWZXJiYXInLCBbODIxNF1dLCBbJ3ZlcnQnLCBbMTI0XV0sIFsnVmVydCcsIFs4MjE0XV0sIFsnVmVydGljYWxCYXInLCBbODczOV1dLCBbJ1ZlcnRpY2FsTGluZScsIFsxMjRdXSwgWydWZXJ0aWNhbFNlcGFyYXRvcicsIFsxMDA3Ml1dLCBbJ1ZlcnRpY2FsVGlsZGUnLCBbODc2OF1dLCBbJ1ZlcnlUaGluU3BhY2UnLCBbODIwMl1dLCBbJ1ZmcicsIFsxMjAwODldXSwgWyd2ZnInLCBbMTIwMTE1XV0sIFsndmx0cmknLCBbODg4Ml1dLCBbJ3Zuc3ViJywgWzg4MzQsIDg0MDJdXSwgWyd2bnN1cCcsIFs4ODM1LCA4NDAyXV0sIFsnVm9wZicsIFsxMjAxNDFdXSwgWyd2b3BmJywgWzEyMDE2N11dLCBbJ3Zwcm9wJywgWzg3MzNdXSwgWyd2cnRyaScsIFs4ODgzXV0sIFsnVnNjcicsIFsxMTk5ODVdXSwgWyd2c2NyJywgWzEyMDAxMV1dLCBbJ3ZzdWJuRScsIFsxMDk1NSwgNjUwMjRdXSwgWyd2c3VibmUnLCBbODg0MiwgNjUwMjRdXSwgWyd2c3VwbkUnLCBbMTA5NTYsIDY1MDI0XV0sIFsndnN1cG5lJywgWzg4NDMsIDY1MDI0XV0sIFsnVnZkYXNoJywgWzg4NzRdXSwgWyd2emlnemFnJywgWzEwNjUwXV0sIFsnV2NpcmMnLCBbMzcyXV0sIFsnd2NpcmMnLCBbMzczXV0sIFsnd2VkYmFyJywgWzEwODQ3XV0sIFsnd2VkZ2UnLCBbODc0M11dLCBbJ1dlZGdlJywgWzg4OTZdXSwgWyd3ZWRnZXEnLCBbODc5M11dLCBbJ3dlaWVycCcsIFs4NDcyXV0sIFsnV2ZyJywgWzEyMDA5MF1dLCBbJ3dmcicsIFsxMjAxMTZdXSwgWydXb3BmJywgWzEyMDE0Ml1dLCBbJ3dvcGYnLCBbMTIwMTY4XV0sIFsnd3AnLCBbODQ3Ml1dLCBbJ3dyJywgWzg3NjhdXSwgWyd3cmVhdGgnLCBbODc2OF1dLCBbJ1dzY3InLCBbMTE5OTg2XV0sIFsnd3NjcicsIFsxMjAwMTJdXSwgWyd4Y2FwJywgWzg4OThdXSwgWyd4Y2lyYycsIFs5NzExXV0sIFsneGN1cCcsIFs4ODk5XV0sIFsneGR0cmknLCBbOTY2MV1dLCBbJ1hmcicsIFsxMjAwOTFdXSwgWyd4ZnInLCBbMTIwMTE3XV0sIFsneGhhcnInLCBbMTAyMzFdXSwgWyd4aEFycicsIFsxMDIzNF1dLCBbJ1hpJywgWzkyNl1dLCBbJ3hpJywgWzk1OF1dLCBbJ3hsYXJyJywgWzEwMjI5XV0sIFsneGxBcnInLCBbMTAyMzJdXSwgWyd4bWFwJywgWzEwMjM2XV0sIFsneG5pcycsIFs4OTU1XV0sIFsneG9kb3QnLCBbMTA3NTJdXSwgWydYb3BmJywgWzEyMDE0M11dLCBbJ3hvcGYnLCBbMTIwMTY5XV0sIFsneG9wbHVzJywgWzEwNzUzXV0sIFsneG90aW1lJywgWzEwNzU0XV0sIFsneHJhcnInLCBbMTAyMzBdXSwgWyd4ckFycicsIFsxMDIzM11dLCBbJ1hzY3InLCBbMTE5OTg3XV0sIFsneHNjcicsIFsxMjAwMTNdXSwgWyd4c3FjdXAnLCBbMTA3NThdXSwgWyd4dXBsdXMnLCBbMTA3NTZdXSwgWyd4dXRyaScsIFs5NjUxXV0sIFsneHZlZScsIFs4ODk3XV0sIFsneHdlZGdlJywgWzg4OTZdXSwgWydZYWN1dGUnLCBbMjIxXV0sIFsneWFjdXRlJywgWzI1M11dLCBbJ1lBY3knLCBbMTA3MV1dLCBbJ3lhY3knLCBbMTEwM11dLCBbJ1ljaXJjJywgWzM3NF1dLCBbJ3ljaXJjJywgWzM3NV1dLCBbJ1ljeScsIFsxMDY3XV0sIFsneWN5JywgWzEwOTldXSwgWyd5ZW4nLCBbMTY1XV0sIFsnWWZyJywgWzEyMDA5Ml1dLCBbJ3lmcicsIFsxMjAxMThdXSwgWydZSWN5JywgWzEwMzFdXSwgWyd5aWN5JywgWzExMTFdXSwgWydZb3BmJywgWzEyMDE0NF1dLCBbJ3lvcGYnLCBbMTIwMTcwXV0sIFsnWXNjcicsIFsxMTk5ODhdXSwgWyd5c2NyJywgWzEyMDAxNF1dLCBbJ1lVY3knLCBbMTA3MF1dLCBbJ3l1Y3knLCBbMTEwMl1dLCBbJ3l1bWwnLCBbMjU1XV0sIFsnWXVtbCcsIFszNzZdXSwgWydaYWN1dGUnLCBbMzc3XV0sIFsnemFjdXRlJywgWzM3OF1dLCBbJ1pjYXJvbicsIFszODFdXSwgWyd6Y2Fyb24nLCBbMzgyXV0sIFsnWmN5JywgWzEwNDddXSwgWyd6Y3knLCBbMTA3OV1dLCBbJ1pkb3QnLCBbMzc5XV0sIFsnemRvdCcsIFszODBdXSwgWyd6ZWV0cmYnLCBbODQ4OF1dLCBbJ1plcm9XaWR0aFNwYWNlJywgWzgyMDNdXSwgWydaZXRhJywgWzkxOF1dLCBbJ3pldGEnLCBbOTUwXV0sIFsnemZyJywgWzEyMDExOV1dLCBbJ1pmcicsIFs4NDg4XV0sIFsnWkhjeScsIFsxMDQ2XV0sIFsnemhjeScsIFsxMDc4XV0sIFsnemlncmFycicsIFs4NjY5XV0sIFsnem9wZicsIFsxMjAxNzFdXSwgWydab3BmJywgWzg0ODRdXSwgWydac2NyJywgWzExOTk4OV1dLCBbJ3pzY3InLCBbMTIwMDE1XV0sIFsnendqJywgWzgyMDVdXSwgWyd6d25qJywgWzgyMDRdXV07XG52YXIgREVDT0RFX09OTFlfRU5USVRJRVMgPSBbWydOZXdMaW5lJywgWzEwXV1dO1xudmFyIGFscGhhSW5kZXggPSB7fTtcbnZhciBjaGFySW5kZXggPSB7fTtcbmNyZWF0ZUluZGV4ZXMoYWxwaGFJbmRleCwgY2hhckluZGV4KTtcbnZhciBIdG1sNUVudGl0aWVzID0gLyoqIEBjbGFzcyAqLyAoZnVuY3Rpb24gKCkge1xuICAgIGZ1bmN0aW9uIEh0bWw1RW50aXRpZXMoKSB7XG4gICAgfVxuICAgIEh0bWw1RW50aXRpZXMucHJvdG90eXBlLmRlY29kZSA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgaWYgKCFzdHIgfHwgIXN0ci5sZW5ndGgpIHtcbiAgICAgICAgICAgIHJldHVybiAnJztcbiAgICAgICAgfVxuICAgICAgICByZXR1cm4gc3RyLnJlcGxhY2UoLyYoIz9bXFx3XFxkXSspOz8vZywgZnVuY3Rpb24gKHMsIGVudGl0eSkge1xuICAgICAgICAgICAgdmFyIGNocjtcbiAgICAgICAgICAgIGlmIChlbnRpdHkuY2hhckF0KDApID09PSBcIiNcIikge1xuICAgICAgICAgICAgICAgIHZhciBjb2RlID0gZW50aXR5LmNoYXJBdCgxKSA9PT0gJ3gnID9cbiAgICAgICAgICAgICAgICAgICAgcGFyc2VJbnQoZW50aXR5LnN1YnN0cigyKS50b0xvd2VyQ2FzZSgpLCAxNikgOlxuICAgICAgICAgICAgICAgICAgICBwYXJzZUludChlbnRpdHkuc3Vic3RyKDEpKTtcbiAgICAgICAgICAgICAgICBpZiAoIWlzTmFOKGNvZGUpIHx8IGNvZGUgPj0gLTMyNzY4KSB7XG4gICAgICAgICAgICAgICAgICAgIGlmIChjb2RlIDw9IDY1NTM1KSB7XG4gICAgICAgICAgICAgICAgICAgICAgICBjaHIgPSBTdHJpbmcuZnJvbUNoYXJDb2RlKGNvZGUpO1xuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgICAgICAgICAgY2hyID0gc3Vycm9nYXRlX3BhaXJzXzEuZnJvbUNvZGVQb2ludChjb2RlKTtcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgIGNociA9IGFscGhhSW5kZXhbZW50aXR5XTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIHJldHVybiBjaHIgfHwgcztcbiAgICAgICAgfSk7XG4gICAgfTtcbiAgICBIdG1sNUVudGl0aWVzLmRlY29kZSA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgcmV0dXJuIG5ldyBIdG1sNUVudGl0aWVzKCkuZGVjb2RlKHN0cik7XG4gICAgfTtcbiAgICBIdG1sNUVudGl0aWVzLnByb3RvdHlwZS5lbmNvZGUgPSBmdW5jdGlvbiAoc3RyKSB7XG4gICAgICAgIGlmICghc3RyIHx8ICFzdHIubGVuZ3RoKSB7XG4gICAgICAgICAgICByZXR1cm4gJyc7XG4gICAgICAgIH1cbiAgICAgICAgdmFyIHN0ckxlbmd0aCA9IHN0ci5sZW5ndGg7XG4gICAgICAgIHZhciByZXN1bHQgPSAnJztcbiAgICAgICAgdmFyIGkgPSAwO1xuICAgICAgICB3aGlsZSAoaSA8IHN0ckxlbmd0aCkge1xuICAgICAgICAgICAgdmFyIGNoYXJJbmZvID0gY2hhckluZGV4W3N0ci5jaGFyQ29kZUF0KGkpXTtcbiAgICAgICAgICAgIGlmIChjaGFySW5mbykge1xuICAgICAgICAgICAgICAgIHZhciBhbHBoYSA9IGNoYXJJbmZvW3N0ci5jaGFyQ29kZUF0KGkgKyAxKV07XG4gICAgICAgICAgICAgICAgaWYgKGFscGhhKSB7XG4gICAgICAgICAgICAgICAgICAgIGkrKztcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgICAgIGFscGhhID0gY2hhckluZm9bJyddO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICBpZiAoYWxwaGEpIHtcbiAgICAgICAgICAgICAgICAgICAgcmVzdWx0ICs9IFwiJlwiICsgYWxwaGEgKyBcIjtcIjtcbiAgICAgICAgICAgICAgICAgICAgaSsrO1xuICAgICAgICAgICAgICAgICAgICBjb250aW51ZTtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICByZXN1bHQgKz0gc3RyLmNoYXJBdChpKTtcbiAgICAgICAgICAgIGkrKztcbiAgICAgICAgfVxuICAgICAgICByZXR1cm4gcmVzdWx0O1xuICAgIH07XG4gICAgSHRtbDVFbnRpdGllcy5lbmNvZGUgPSBmdW5jdGlvbiAoc3RyKSB7XG4gICAgICAgIHJldHVybiBuZXcgSHRtbDVFbnRpdGllcygpLmVuY29kZShzdHIpO1xuICAgIH07XG4gICAgSHRtbDVFbnRpdGllcy5wcm90b3R5cGUuZW5jb2RlTm9uVVRGID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHZhciBzdHJMZW5ndGggPSBzdHIubGVuZ3RoO1xuICAgICAgICB2YXIgcmVzdWx0ID0gJyc7XG4gICAgICAgIHZhciBpID0gMDtcbiAgICAgICAgd2hpbGUgKGkgPCBzdHJMZW5ndGgpIHtcbiAgICAgICAgICAgIHZhciBjID0gc3RyLmNoYXJDb2RlQXQoaSk7XG4gICAgICAgICAgICB2YXIgY2hhckluZm8gPSBjaGFySW5kZXhbY107XG4gICAgICAgICAgICBpZiAoY2hhckluZm8pIHtcbiAgICAgICAgICAgICAgICB2YXIgYWxwaGEgPSBjaGFySW5mb1tzdHIuY2hhckNvZGVBdChpICsgMSldO1xuICAgICAgICAgICAgICAgIGlmIChhbHBoYSkge1xuICAgICAgICAgICAgICAgICAgICBpKys7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgICAgICBhbHBoYSA9IGNoYXJJbmZvWycnXTtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgaWYgKGFscGhhKSB7XG4gICAgICAgICAgICAgICAgICAgIHJlc3VsdCArPSBcIiZcIiArIGFscGhhICsgXCI7XCI7XG4gICAgICAgICAgICAgICAgICAgIGkrKztcbiAgICAgICAgICAgICAgICAgICAgY29udGludWU7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaWYgKGMgPCAzMiB8fCBjID4gMTI2KSB7XG4gICAgICAgICAgICAgICAgaWYgKGMgPj0gc3Vycm9nYXRlX3BhaXJzXzEuaGlnaFN1cnJvZ2F0ZUZyb20gJiYgYyA8PSBzdXJyb2dhdGVfcGFpcnNfMS5oaWdoU3Vycm9nYXRlVG8pIHtcbiAgICAgICAgICAgICAgICAgICAgcmVzdWx0ICs9ICcmIycgKyBzdXJyb2dhdGVfcGFpcnNfMS5nZXRDb2RlUG9pbnQoc3RyLCBpKSArICc7JztcbiAgICAgICAgICAgICAgICAgICAgaSsrO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICBlbHNlIHtcbiAgICAgICAgICAgICAgICAgICAgcmVzdWx0ICs9ICcmIycgKyBjICsgJzsnO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgIHJlc3VsdCArPSBzdHIuY2hhckF0KGkpO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaSsrO1xuICAgICAgICB9XG4gICAgICAgIHJldHVybiByZXN1bHQ7XG4gICAgfTtcbiAgICBIdG1sNUVudGl0aWVzLmVuY29kZU5vblVURiA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgcmV0dXJuIG5ldyBIdG1sNUVudGl0aWVzKCkuZW5jb2RlTm9uVVRGKHN0cik7XG4gICAgfTtcbiAgICBIdG1sNUVudGl0aWVzLnByb3RvdHlwZS5lbmNvZGVOb25BU0NJSSA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgaWYgKCFzdHIgfHwgIXN0ci5sZW5ndGgpIHtcbiAgICAgICAgICAgIHJldHVybiAnJztcbiAgICAgICAgfVxuICAgICAgICB2YXIgc3RyTGVuZ3RoID0gc3RyLmxlbmd0aDtcbiAgICAgICAgdmFyIHJlc3VsdCA9ICcnO1xuICAgICAgICB2YXIgaSA9IDA7XG4gICAgICAgIHdoaWxlIChpIDwgc3RyTGVuZ3RoKSB7XG4gICAgICAgICAgICB2YXIgYyA9IHN0ci5jaGFyQ29kZUF0KGkpO1xuICAgICAgICAgICAgaWYgKGMgPD0gMjU1KSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9IHN0cltpKytdO1xuICAgICAgICAgICAgICAgIGNvbnRpbnVlO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaWYgKGMgPj0gc3Vycm9nYXRlX3BhaXJzXzEuaGlnaFN1cnJvZ2F0ZUZyb20gJiYgYyA8PSBzdXJyb2dhdGVfcGFpcnNfMS5oaWdoU3Vycm9nYXRlVG8pIHtcbiAgICAgICAgICAgICAgICByZXN1bHQgKz0gJyYjJyArIHN1cnJvZ2F0ZV9wYWlyc18xLmdldENvZGVQb2ludChzdHIsIGkpICsgJzsnO1xuICAgICAgICAgICAgICAgIGkgKz0gMjtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgIHJlc3VsdCArPSAnJiMnICsgYyArICc7JztcbiAgICAgICAgICAgICAgICBpKys7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9O1xuICAgIEh0bWw1RW50aXRpZXMuZW5jb2RlTm9uQVNDSUkgPSBmdW5jdGlvbiAoc3RyKSB7XG4gICAgICAgIHJldHVybiBuZXcgSHRtbDVFbnRpdGllcygpLmVuY29kZU5vbkFTQ0lJKHN0cik7XG4gICAgfTtcbiAgICByZXR1cm4gSHRtbDVFbnRpdGllcztcbn0oKSk7XG5leHBvcnRzLkh0bWw1RW50aXRpZXMgPSBIdG1sNUVudGl0aWVzO1xuZnVuY3Rpb24gY3JlYXRlSW5kZXhlcyhhbHBoYUluZGV4LCBjaGFySW5kZXgpIHtcbiAgICB2YXIgaSA9IEVOVElUSUVTLmxlbmd0aDtcbiAgICB3aGlsZSAoaS0tKSB7XG4gICAgICAgIHZhciBfYSA9IEVOVElUSUVTW2ldLCBhbHBoYSA9IF9hWzBdLCBfYiA9IF9hWzFdLCBjaHIgPSBfYlswXSwgY2hyMiA9IF9iWzFdO1xuICAgICAgICB2YXIgYWRkQ2hhciA9IChjaHIgPCAzMiB8fCBjaHIgPiAxMjYpIHx8IGNociA9PT0gNjIgfHwgY2hyID09PSA2MCB8fCBjaHIgPT09IDM4IHx8IGNociA9PT0gMzQgfHwgY2hyID09PSAzOTtcbiAgICAgICAgdmFyIGNoYXJJbmZvID0gdm9pZCAwO1xuICAgICAgICBpZiAoYWRkQ2hhcikge1xuICAgICAgICAgICAgY2hhckluZm8gPSBjaGFySW5kZXhbY2hyXSA9IGNoYXJJbmRleFtjaHJdIHx8IHt9O1xuICAgICAgICB9XG4gICAgICAgIGlmIChjaHIyKSB7XG4gICAgICAgICAgICBhbHBoYUluZGV4W2FscGhhXSA9IFN0cmluZy5mcm9tQ2hhckNvZGUoY2hyKSArIFN0cmluZy5mcm9tQ2hhckNvZGUoY2hyMik7XG4gICAgICAgICAgICBhZGRDaGFyICYmIChjaGFySW5mb1tjaHIyXSA9IGFscGhhKTtcbiAgICAgICAgfVxuICAgICAgICBlbHNlIHtcbiAgICAgICAgICAgIGFscGhhSW5kZXhbYWxwaGFdID0gU3RyaW5nLmZyb21DaGFyQ29kZShjaHIpO1xuICAgICAgICAgICAgYWRkQ2hhciAmJiAoY2hhckluZm9bJyddID0gYWxwaGEpO1xuICAgICAgICB9XG4gICAgfVxuICAgIGkgPSBERUNPREVfT05MWV9FTlRJVElFUy5sZW5ndGg7XG4gICAgd2hpbGUgKGktLSkge1xuICAgICAgICB2YXIgX2MgPSBERUNPREVfT05MWV9FTlRJVElFU1tpXSwgYWxwaGEgPSBfY1swXSwgX2QgPSBfY1sxXSwgY2hyID0gX2RbMF0sIGNocjIgPSBfZFsxXTtcbiAgICAgICAgYWxwaGFJbmRleFthbHBoYV0gPSBTdHJpbmcuZnJvbUNoYXJDb2RlKGNocikgKyAoY2hyMiA/IFN0cmluZy5mcm9tQ2hhckNvZGUoY2hyMikgOiAnJyk7XG4gICAgfVxufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/html-entities/lib/html5-entities.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/html-entities/lib/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar xml_entities_1 = __webpack_require__(/*! ./xml-entities */ \"./node_modules/html-entities/lib/xml-entities.js\");\n\nexports.XmlEntities = xml_entities_1.XmlEntities;\n\nvar html4_entities_1 = __webpack_require__(/*! ./html4-entities */ \"./node_modules/html-entities/lib/html4-entities.js\");\n\nexports.Html4Entities = html4_entities_1.Html4Entities;\n\nvar html5_entities_1 = __webpack_require__(/*! ./html5-entities */ \"./node_modules/html-entities/lib/html5-entities.js\");\n\nexports.Html5Entities = html5_entities_1.Html5Entities;\nexports.AllHtmlEntities = html5_entities_1.Html5Entities;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL2luZGV4LmpzP2MyYmYiXSwibmFtZXMiOlsiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJleHBvcnRzIiwidmFsdWUiLCJ4bWxfZW50aXRpZXNfMSIsInJlcXVpcmUiLCJYbWxFbnRpdGllcyIsImh0bWw0X2VudGl0aWVzXzEiLCJIdG1sNEVudGl0aWVzIiwiaHRtbDVfZW50aXRpZXNfMSIsIkh0bWw1RW50aXRpZXMiLCJBbGxIdG1sRW50aXRpZXMiXSwibWFwcGluZ3MiOiJBQUFhOztBQUNiQSxNQUFNLENBQUNDLGNBQVAsQ0FBc0JDLE9BQXRCLEVBQStCLFlBQS9CLEVBQTZDO0FBQUVDLE9BQUssRUFBRTtBQUFULENBQTdDOztBQUNBLElBQUlDLGNBQWMsR0FBR0MsbUJBQU8sQ0FBQyx3RUFBRCxDQUE1Qjs7QUFDQUgsT0FBTyxDQUFDSSxXQUFSLEdBQXNCRixjQUFjLENBQUNFLFdBQXJDOztBQUNBLElBQUlDLGdCQUFnQixHQUFHRixtQkFBTyxDQUFDLDRFQUFELENBQTlCOztBQUNBSCxPQUFPLENBQUNNLGFBQVIsR0FBd0JELGdCQUFnQixDQUFDQyxhQUF6Qzs7QUFDQSxJQUFJQyxnQkFBZ0IsR0FBR0osbUJBQU8sQ0FBQyw0RUFBRCxDQUE5Qjs7QUFDQUgsT0FBTyxDQUFDUSxhQUFSLEdBQXdCRCxnQkFBZ0IsQ0FBQ0MsYUFBekM7QUFDQVIsT0FBTyxDQUFDUyxlQUFSLEdBQTBCRixnQkFBZ0IsQ0FBQ0MsYUFBM0MiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvaHRtbC1lbnRpdGllcy9saWIvaW5kZXguanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcInVzZSBzdHJpY3RcIjtcbk9iamVjdC5kZWZpbmVQcm9wZXJ0eShleHBvcnRzLCBcIl9fZXNNb2R1bGVcIiwgeyB2YWx1ZTogdHJ1ZSB9KTtcbnZhciB4bWxfZW50aXRpZXNfMSA9IHJlcXVpcmUoXCIuL3htbC1lbnRpdGllc1wiKTtcbmV4cG9ydHMuWG1sRW50aXRpZXMgPSB4bWxfZW50aXRpZXNfMS5YbWxFbnRpdGllcztcbnZhciBodG1sNF9lbnRpdGllc18xID0gcmVxdWlyZShcIi4vaHRtbDQtZW50aXRpZXNcIik7XG5leHBvcnRzLkh0bWw0RW50aXRpZXMgPSBodG1sNF9lbnRpdGllc18xLkh0bWw0RW50aXRpZXM7XG52YXIgaHRtbDVfZW50aXRpZXNfMSA9IHJlcXVpcmUoXCIuL2h0bWw1LWVudGl0aWVzXCIpO1xuZXhwb3J0cy5IdG1sNUVudGl0aWVzID0gaHRtbDVfZW50aXRpZXNfMS5IdG1sNUVudGl0aWVzO1xuZXhwb3J0cy5BbGxIdG1sRW50aXRpZXMgPSBodG1sNV9lbnRpdGllc18xLkh0bWw1RW50aXRpZXM7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/html-entities/lib/index.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/surrogate-pairs.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/html-entities/lib/surrogate-pairs.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nexports.fromCodePoint = String.fromCodePoint || function (astralCodePoint) {\n  return String.fromCharCode(Math.floor((astralCodePoint - 0x10000) / 0x400) + 0xD800, (astralCodePoint - 0x10000) % 0x400 + 0xDC00);\n};\n\nexports.getCodePoint = String.prototype.codePointAt ? function (input, position) {\n  return input.codePointAt(position);\n} : function (input, position) {\n  return (input.charCodeAt(position) - 0xD800) * 0x400 + input.charCodeAt(position + 1) - 0xDC00 + 0x10000;\n};\nexports.highSurrogateFrom = 0xD800;\nexports.highSurrogateTo = 0xDBFF;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL3N1cnJvZ2F0ZS1wYWlycy5qcz8yZjYwIl0sIm5hbWVzIjpbIk9iamVjdCIsImRlZmluZVByb3BlcnR5IiwiZXhwb3J0cyIsInZhbHVlIiwiZnJvbUNvZGVQb2ludCIsIlN0cmluZyIsImFzdHJhbENvZGVQb2ludCIsImZyb21DaGFyQ29kZSIsIk1hdGgiLCJmbG9vciIsImdldENvZGVQb2ludCIsInByb3RvdHlwZSIsImNvZGVQb2ludEF0IiwiaW5wdXQiLCJwb3NpdGlvbiIsImNoYXJDb2RlQXQiLCJoaWdoU3Vycm9nYXRlRnJvbSIsImhpZ2hTdXJyb2dhdGVUbyJdLCJtYXBwaW5ncyI6IkFBQWE7O0FBQ2JBLE1BQU0sQ0FBQ0MsY0FBUCxDQUFzQkMsT0FBdEIsRUFBK0IsWUFBL0IsRUFBNkM7QUFBRUMsT0FBSyxFQUFFO0FBQVQsQ0FBN0M7O0FBQ0FELE9BQU8sQ0FBQ0UsYUFBUixHQUF3QkMsTUFBTSxDQUFDRCxhQUFQLElBQXdCLFVBQVVFLGVBQVYsRUFBMkI7QUFDdkUsU0FBT0QsTUFBTSxDQUFDRSxZQUFQLENBQW9CQyxJQUFJLENBQUNDLEtBQUwsQ0FBVyxDQUFDSCxlQUFlLEdBQUcsT0FBbkIsSUFBOEIsS0FBekMsSUFBa0QsTUFBdEUsRUFBOEUsQ0FBQ0EsZUFBZSxHQUFHLE9BQW5CLElBQThCLEtBQTlCLEdBQXNDLE1BQXBILENBQVA7QUFDSCxDQUZEOztBQUdBSixPQUFPLENBQUNRLFlBQVIsR0FBdUJMLE1BQU0sQ0FBQ00sU0FBUCxDQUFpQkMsV0FBakIsR0FDbkIsVUFBVUMsS0FBVixFQUFpQkMsUUFBakIsRUFBMkI7QUFDdkIsU0FBT0QsS0FBSyxDQUFDRCxXQUFOLENBQWtCRSxRQUFsQixDQUFQO0FBQ0gsQ0FIa0IsR0FJbkIsVUFBVUQsS0FBVixFQUFpQkMsUUFBakIsRUFBMkI7QUFDdkIsU0FBTyxDQUFDRCxLQUFLLENBQUNFLFVBQU4sQ0FBaUJELFFBQWpCLElBQTZCLE1BQTlCLElBQXdDLEtBQXhDLEdBQ0RELEtBQUssQ0FBQ0UsVUFBTixDQUFpQkQsUUFBUSxHQUFHLENBQTVCLENBREMsR0FDZ0MsTUFEaEMsR0FDeUMsT0FEaEQ7QUFFSCxDQVBMO0FBUUFaLE9BQU8sQ0FBQ2MsaUJBQVIsR0FBNEIsTUFBNUI7QUFDQWQsT0FBTyxDQUFDZSxlQUFSLEdBQTBCLE1BQTFCIiwiZmlsZSI6Ii4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL3N1cnJvZ2F0ZS1wYWlycy5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuT2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIFwiX19lc01vZHVsZVwiLCB7IHZhbHVlOiB0cnVlIH0pO1xuZXhwb3J0cy5mcm9tQ29kZVBvaW50ID0gU3RyaW5nLmZyb21Db2RlUG9pbnQgfHwgZnVuY3Rpb24gKGFzdHJhbENvZGVQb2ludCkge1xuICAgIHJldHVybiBTdHJpbmcuZnJvbUNoYXJDb2RlKE1hdGguZmxvb3IoKGFzdHJhbENvZGVQb2ludCAtIDB4MTAwMDApIC8gMHg0MDApICsgMHhEODAwLCAoYXN0cmFsQ29kZVBvaW50IC0gMHgxMDAwMCkgJSAweDQwMCArIDB4REMwMCk7XG59O1xuZXhwb3J0cy5nZXRDb2RlUG9pbnQgPSBTdHJpbmcucHJvdG90eXBlLmNvZGVQb2ludEF0ID9cbiAgICBmdW5jdGlvbiAoaW5wdXQsIHBvc2l0aW9uKSB7XG4gICAgICAgIHJldHVybiBpbnB1dC5jb2RlUG9pbnRBdChwb3NpdGlvbik7XG4gICAgfSA6XG4gICAgZnVuY3Rpb24gKGlucHV0LCBwb3NpdGlvbikge1xuICAgICAgICByZXR1cm4gKGlucHV0LmNoYXJDb2RlQXQocG9zaXRpb24pIC0gMHhEODAwKSAqIDB4NDAwXG4gICAgICAgICAgICArIGlucHV0LmNoYXJDb2RlQXQocG9zaXRpb24gKyAxKSAtIDB4REMwMCArIDB4MTAwMDA7XG4gICAgfTtcbmV4cG9ydHMuaGlnaFN1cnJvZ2F0ZUZyb20gPSAweEQ4MDA7XG5leHBvcnRzLmhpZ2hTdXJyb2dhdGVUbyA9IDB4REJGRjtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/html-entities/lib/surrogate-pairs.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/html-entities/lib/xml-entities.js":
+/*!********************************************************!*\
+  !*** ./node_modules/html-entities/lib/xml-entities.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar surrogate_pairs_1 = __webpack_require__(/*! ./surrogate-pairs */ \"./node_modules/html-entities/lib/surrogate-pairs.js\");\n\nvar ALPHA_INDEX = {\n  '&lt': '<',\n  '&gt': '>',\n  '&quot': '\"',\n  '&apos': '\\'',\n  '&amp': '&',\n  '&lt;': '<',\n  '&gt;': '>',\n  '&quot;': '\"',\n  '&apos;': '\\'',\n  '&amp;': '&'\n};\nvar CHAR_INDEX = {\n  60: 'lt',\n  62: 'gt',\n  34: 'quot',\n  39: 'apos',\n  38: 'amp'\n};\nvar CHAR_S_INDEX = {\n  '<': '&lt;',\n  '>': '&gt;',\n  '\"': '&quot;',\n  '\\'': '&apos;',\n  '&': '&amp;'\n};\n\nvar XmlEntities =\n/** @class */\nfunction () {\n  function XmlEntities() {}\n\n  XmlEntities.prototype.encode = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    return str.replace(/[<>\"'&]/g, function (s) {\n      return CHAR_S_INDEX[s];\n    });\n  };\n\n  XmlEntities.encode = function (str) {\n    return new XmlEntities().encode(str);\n  };\n\n  XmlEntities.prototype.decode = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    return str.replace(/&#?[0-9a-zA-Z]+;?/g, function (s) {\n      if (s.charAt(1) === '#') {\n        var code = s.charAt(2).toLowerCase() === 'x' ? parseInt(s.substr(3), 16) : parseInt(s.substr(2));\n\n        if (!isNaN(code) || code >= -32768) {\n          if (code <= 65535) {\n            return String.fromCharCode(code);\n          } else {\n            return surrogate_pairs_1.fromCodePoint(code);\n          }\n        }\n\n        return '';\n      }\n\n      return ALPHA_INDEX[s] || s;\n    });\n  };\n\n  XmlEntities.decode = function (str) {\n    return new XmlEntities().decode(str);\n  };\n\n  XmlEntities.prototype.encodeNonUTF = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var c = str.charCodeAt(i);\n      var alpha = CHAR_INDEX[c];\n\n      if (alpha) {\n        result += \"&\" + alpha + \";\";\n        i++;\n        continue;\n      }\n\n      if (c < 32 || c > 126) {\n        if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {\n          result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';\n          i++;\n        } else {\n          result += '&#' + c + ';';\n        }\n      } else {\n        result += str.charAt(i);\n      }\n\n      i++;\n    }\n\n    return result;\n  };\n\n  XmlEntities.encodeNonUTF = function (str) {\n    return new XmlEntities().encodeNonUTF(str);\n  };\n\n  XmlEntities.prototype.encodeNonASCII = function (str) {\n    if (!str || !str.length) {\n      return '';\n    }\n\n    var strLength = str.length;\n    var result = '';\n    var i = 0;\n\n    while (i < strLength) {\n      var c = str.charCodeAt(i);\n\n      if (c <= 255) {\n        result += str[i++];\n        continue;\n      }\n\n      if (c >= surrogate_pairs_1.highSurrogateFrom && c <= surrogate_pairs_1.highSurrogateTo) {\n        result += '&#' + surrogate_pairs_1.getCodePoint(str, i) + ';';\n        i++;\n      } else {\n        result += '&#' + c + ';';\n      }\n\n      i++;\n    }\n\n    return result;\n  };\n\n  XmlEntities.encodeNonASCII = function (str) {\n    return new XmlEntities().encodeNonASCII(str);\n  };\n\n  return XmlEntities;\n}();\n\nexports.XmlEntities = XmlEntities;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL3htbC1lbnRpdGllcy5qcz81MDI5Il0sIm5hbWVzIjpbIk9iamVjdCIsImRlZmluZVByb3BlcnR5IiwiZXhwb3J0cyIsInZhbHVlIiwic3Vycm9nYXRlX3BhaXJzXzEiLCJyZXF1aXJlIiwiQUxQSEFfSU5ERVgiLCJDSEFSX0lOREVYIiwiQ0hBUl9TX0lOREVYIiwiWG1sRW50aXRpZXMiLCJwcm90b3R5cGUiLCJlbmNvZGUiLCJzdHIiLCJsZW5ndGgiLCJyZXBsYWNlIiwicyIsImRlY29kZSIsImNoYXJBdCIsImNvZGUiLCJ0b0xvd2VyQ2FzZSIsInBhcnNlSW50Iiwic3Vic3RyIiwiaXNOYU4iLCJTdHJpbmciLCJmcm9tQ2hhckNvZGUiLCJmcm9tQ29kZVBvaW50IiwiZW5jb2RlTm9uVVRGIiwic3RyTGVuZ3RoIiwicmVzdWx0IiwiaSIsImMiLCJjaGFyQ29kZUF0IiwiYWxwaGEiLCJoaWdoU3Vycm9nYXRlRnJvbSIsImhpZ2hTdXJyb2dhdGVUbyIsImdldENvZGVQb2ludCIsImVuY29kZU5vbkFTQ0lJIl0sIm1hcHBpbmdzIjoiQUFBYTs7QUFDYkEsTUFBTSxDQUFDQyxjQUFQLENBQXNCQyxPQUF0QixFQUErQixZQUEvQixFQUE2QztBQUFFQyxPQUFLLEVBQUU7QUFBVCxDQUE3Qzs7QUFDQSxJQUFJQyxpQkFBaUIsR0FBR0MsbUJBQU8sQ0FBQyw4RUFBRCxDQUEvQjs7QUFDQSxJQUFJQyxXQUFXLEdBQUc7QUFDZCxTQUFPLEdBRE87QUFFZCxTQUFPLEdBRk87QUFHZCxXQUFTLEdBSEs7QUFJZCxXQUFTLElBSks7QUFLZCxVQUFRLEdBTE07QUFNZCxVQUFRLEdBTk07QUFPZCxVQUFRLEdBUE07QUFRZCxZQUFVLEdBUkk7QUFTZCxZQUFVLElBVEk7QUFVZCxXQUFTO0FBVkssQ0FBbEI7QUFZQSxJQUFJQyxVQUFVLEdBQUc7QUFDYixNQUFJLElBRFM7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QjtBQUNsQixVQUFJRyxDQUFDLEdBQUdsQixHQUFHLENBQUNtQixVQUFKLENBQWVGLENBQWYsQ0FBUjs7QUFDQSxVQUFJQyxDQUFDLElBQUksR0FBVCxFQUFjO0FBQ1ZGLGNBQU0sSUFBSWhCLEdBQUcsQ0FBQ2lCLENBQUMsRUFBRixDQUFiO0FBQ0E7QUFDSDs7QUFDRCxVQUFJQyxDQUFDLElBQUkxQixpQkFBaUIsQ0FBQzZCLGlCQUF2QixJQUE0Q0gsQ0FBQyxJQUFJMUIsaUJBQWlCLENBQUM4QixlQUF2RSxFQUF3RjtBQUNwRk4sY0FBTSxJQUFJLE9BQU94QixpQkFBaUIsQ0FBQytCLFlBQWxCLENBQStCdkIsR0FBL0IsRUFBb0NpQixDQUFwQyxDQUFQLEdBQWdELEdBQTFEO0FBQ0FBLFNBQUM7QUFDSixPQUhELE1BSUs7QUFDREQsY0FBTSxJQUFJLE9BQU9FLENBQVAsR0FBVyxHQUFyQjtBQUNIOztBQUNERCxPQUFDO0FBQ0o7O0FBQ0QsV0FBT0QsTUFBUDtBQUNILEdBdkJEOztBQXdCQW5CLGFBQVcsQ0FBQzJCLGNBQVosR0FBNkIsVUFBVXhCLEdBQVYsRUFBZTtBQUN4QyxXQUFPLElBQUlILFdBQUosR0FBa0IyQixjQUFsQixDQUFpQ3hCLEdBQWpDLENBQVA7QUFDSCxHQUZEOztBQUdBLFNBQU9ILFdBQVA7QUFDSCxDQXJHZ0MsRUFBakM7O0FBc0dBUCxPQUFPLENBQUNPLFdBQVIsR0FBc0JBLFdBQXRCIiwiZmlsZSI6Ii4vbm9kZV9tb2R1bGVzL2h0bWwtZW50aXRpZXMvbGliL3htbC1lbnRpdGllcy5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuT2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIFwiX19lc01vZHVsZVwiLCB7IHZhbHVlOiB0cnVlIH0pO1xudmFyIHN1cnJvZ2F0ZV9wYWlyc18xID0gcmVxdWlyZShcIi4vc3Vycm9nYXRlLXBhaXJzXCIpO1xudmFyIEFMUEhBX0lOREVYID0ge1xuICAgICcmbHQnOiAnPCcsXG4gICAgJyZndCc6ICc+JyxcbiAgICAnJnF1b3QnOiAnXCInLFxuICAgICcmYXBvcyc6ICdcXCcnLFxuICAgICcmYW1wJzogJyYnLFxuICAgICcmbHQ7JzogJzwnLFxuICAgICcmZ3Q7JzogJz4nLFxuICAgICcmcXVvdDsnOiAnXCInLFxuICAgICcmYXBvczsnOiAnXFwnJyxcbiAgICAnJmFtcDsnOiAnJidcbn07XG52YXIgQ0hBUl9JTkRFWCA9IHtcbiAgICA2MDogJ2x0JyxcbiAgICA2MjogJ2d0JyxcbiAgICAzNDogJ3F1b3QnLFxuICAgIDM5OiAnYXBvcycsXG4gICAgMzg6ICdhbXAnXG59O1xudmFyIENIQVJfU19JTkRFWCA9IHtcbiAgICAnPCc6ICcmbHQ7JyxcbiAgICAnPic6ICcmZ3Q7JyxcbiAgICAnXCInOiAnJnF1b3Q7JyxcbiAgICAnXFwnJzogJyZhcG9zOycsXG4gICAgJyYnOiAnJmFtcDsnXG59O1xudmFyIFhtbEVudGl0aWVzID0gLyoqIEBjbGFzcyAqLyAoZnVuY3Rpb24gKCkge1xuICAgIGZ1bmN0aW9uIFhtbEVudGl0aWVzKCkge1xuICAgIH1cbiAgICBYbWxFbnRpdGllcy5wcm90b3R5cGUuZW5jb2RlID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHJldHVybiBzdHIucmVwbGFjZSgvWzw+XCInJl0vZywgZnVuY3Rpb24gKHMpIHtcbiAgICAgICAgICAgIHJldHVybiBDSEFSX1NfSU5ERVhbc107XG4gICAgICAgIH0pO1xuICAgIH07XG4gICAgWG1sRW50aXRpZXMuZW5jb2RlID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICByZXR1cm4gbmV3IFhtbEVudGl0aWVzKCkuZW5jb2RlKHN0cik7XG4gICAgfTtcbiAgICBYbWxFbnRpdGllcy5wcm90b3R5cGUuZGVjb2RlID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHJldHVybiBzdHIucmVwbGFjZSgvJiM/WzAtOWEtekEtWl0rOz8vZywgZnVuY3Rpb24gKHMpIHtcbiAgICAgICAgICAgIGlmIChzLmNoYXJBdCgxKSA9PT0gJyMnKSB7XG4gICAgICAgICAgICAgICAgdmFyIGNvZGUgPSBzLmNoYXJBdCgyKS50b0xvd2VyQ2FzZSgpID09PSAneCcgP1xuICAgICAgICAgICAgICAgICAgICBwYXJzZUludChzLnN1YnN0cigzKSwgMTYpIDpcbiAgICAgICAgICAgICAgICAgICAgcGFyc2VJbnQocy5zdWJzdHIoMikpO1xuICAgICAgICAgICAgICAgIGlmICghaXNOYU4oY29kZSkgfHwgY29kZSA+PSAtMzI3NjgpIHtcbiAgICAgICAgICAgICAgICAgICAgaWYgKGNvZGUgPD0gNjU1MzUpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBTdHJpbmcuZnJvbUNoYXJDb2RlKGNvZGUpO1xuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHN1cnJvZ2F0ZV9wYWlyc18xLmZyb21Db2RlUG9pbnQoY29kZSk7XG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgcmV0dXJuIEFMUEhBX0lOREVYW3NdIHx8IHM7XG4gICAgICAgIH0pO1xuICAgIH07XG4gICAgWG1sRW50aXRpZXMuZGVjb2RlID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICByZXR1cm4gbmV3IFhtbEVudGl0aWVzKCkuZGVjb2RlKHN0cik7XG4gICAgfTtcbiAgICBYbWxFbnRpdGllcy5wcm90b3R5cGUuZW5jb2RlTm9uVVRGID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHZhciBzdHJMZW5ndGggPSBzdHIubGVuZ3RoO1xuICAgICAgICB2YXIgcmVzdWx0ID0gJyc7XG4gICAgICAgIHZhciBpID0gMDtcbiAgICAgICAgd2hpbGUgKGkgPCBzdHJMZW5ndGgpIHtcbiAgICAgICAgICAgIHZhciBjID0gc3RyLmNoYXJDb2RlQXQoaSk7XG4gICAgICAgICAgICB2YXIgYWxwaGEgPSBDSEFSX0lOREVYW2NdO1xuICAgICAgICAgICAgaWYgKGFscGhhKSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9IFwiJlwiICsgYWxwaGEgKyBcIjtcIjtcbiAgICAgICAgICAgICAgICBpKys7XG4gICAgICAgICAgICAgICAgY29udGludWU7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpZiAoYyA8IDMyIHx8IGMgPiAxMjYpIHtcbiAgICAgICAgICAgICAgICBpZiAoYyA+PSBzdXJyb2dhdGVfcGFpcnNfMS5oaWdoU3Vycm9nYXRlRnJvbSAmJiBjIDw9IHN1cnJvZ2F0ZV9wYWlyc18xLmhpZ2hTdXJyb2dhdGVUbykge1xuICAgICAgICAgICAgICAgICAgICByZXN1bHQgKz0gJyYjJyArIHN1cnJvZ2F0ZV9wYWlyc18xLmdldENvZGVQb2ludChzdHIsIGkpICsgJzsnO1xuICAgICAgICAgICAgICAgICAgICBpKys7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgICAgICByZXN1bHQgKz0gJyYjJyArIGMgKyAnOyc7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9IHN0ci5jaGFyQXQoaSk7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpKys7XG4gICAgICAgIH1cbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9O1xuICAgIFhtbEVudGl0aWVzLmVuY29kZU5vblVURiA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgcmV0dXJuIG5ldyBYbWxFbnRpdGllcygpLmVuY29kZU5vblVURihzdHIpO1xuICAgIH07XG4gICAgWG1sRW50aXRpZXMucHJvdG90eXBlLmVuY29kZU5vbkFTQ0lJID0gZnVuY3Rpb24gKHN0cikge1xuICAgICAgICBpZiAoIXN0ciB8fCAhc3RyLmxlbmd0aCkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG4gICAgICAgIHZhciBzdHJMZW5ndGggPSBzdHIubGVuZ3RoO1xuICAgICAgICB2YXIgcmVzdWx0ID0gJyc7XG4gICAgICAgIHZhciBpID0gMDtcbiAgICAgICAgd2hpbGUgKGkgPCBzdHJMZW5ndGgpIHtcbiAgICAgICAgICAgIHZhciBjID0gc3RyLmNoYXJDb2RlQXQoaSk7XG4gICAgICAgICAgICBpZiAoYyA8PSAyNTUpIHtcbiAgICAgICAgICAgICAgICByZXN1bHQgKz0gc3RyW2krK107XG4gICAgICAgICAgICAgICAgY29udGludWU7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpZiAoYyA+PSBzdXJyb2dhdGVfcGFpcnNfMS5oaWdoU3Vycm9nYXRlRnJvbSAmJiBjIDw9IHN1cnJvZ2F0ZV9wYWlyc18xLmhpZ2hTdXJyb2dhdGVUbykge1xuICAgICAgICAgICAgICAgIHJlc3VsdCArPSAnJiMnICsgc3Vycm9nYXRlX3BhaXJzXzEuZ2V0Q29kZVBvaW50KHN0ciwgaSkgKyAnOyc7XG4gICAgICAgICAgICAgICAgaSsrO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgcmVzdWx0ICs9ICcmIycgKyBjICsgJzsnO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaSsrO1xuICAgICAgICB9XG4gICAgICAgIHJldHVybiByZXN1bHQ7XG4gICAgfTtcbiAgICBYbWxFbnRpdGllcy5lbmNvZGVOb25BU0NJSSA9IGZ1bmN0aW9uIChzdHIpIHtcbiAgICAgICAgcmV0dXJuIG5ldyBYbWxFbnRpdGllcygpLmVuY29kZU5vbkFTQ0lJKHN0cik7XG4gICAgfTtcbiAgICByZXR1cm4gWG1sRW50aXRpZXM7XG59KCkpO1xuZXhwb3J0cy5YbWxFbnRpdGllcyA9IFhtbEVudGl0aWVzO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/html-entities/lib/xml-entities.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/strip-ansi/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/strip-ansi/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar ansiRegex = __webpack_require__(/*! ansi-regex */ \"./node_modules/ansi-regex/index.js\")();\n\nmodule.exports = function (str) {\n  return typeof str === 'string' ? str.replace(ansiRegex, '') : str;\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vbm9kZV9tb2R1bGVzL3N0cmlwLWFuc2kvaW5kZXguanM/NzY3MSJdLCJuYW1lcyI6WyJhbnNpUmVnZXgiLCJyZXF1aXJlIiwibW9kdWxlIiwiZXhwb3J0cyIsInN0ciIsInJlcGxhY2UiXSwibWFwcGluZ3MiOiJBQUFhOztBQUNiLElBQUlBLFNBQVMsR0FBR0MsbUJBQU8sQ0FBQyxzREFBRCxDQUFQLEVBQWhCOztBQUVBQyxNQUFNLENBQUNDLE9BQVAsR0FBaUIsVUFBVUMsR0FBVixFQUFlO0FBQy9CLFNBQU8sT0FBT0EsR0FBUCxLQUFlLFFBQWYsR0FBMEJBLEdBQUcsQ0FBQ0MsT0FBSixDQUFZTCxTQUFaLEVBQXVCLEVBQXZCLENBQTFCLEdBQXVESSxHQUE5RDtBQUNBLENBRkQiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvc3RyaXAtYW5zaS9pbmRleC5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcbnZhciBhbnNpUmVnZXggPSByZXF1aXJlKCdhbnNpLXJlZ2V4JykoKTtcblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiAoc3RyKSB7XG5cdHJldHVybiB0eXBlb2Ygc3RyID09PSAnc3RyaW5nJyA/IHN0ci5yZXBsYWNlKGFuc2lSZWdleCwgJycpIDogc3RyO1xufTtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/strip-ansi/index.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/webpack-hot-middleware/client-overlay.js":
+/*!**************************************************!*\
+  !*** (webpack)-hot-middleware/client-overlay.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/*eslint-env browser*/\nvar clientOverlay = document.createElement('div');\nclientOverlay.id = 'webpack-hot-middleware-clientOverlay';\nvar styles = {\n  background: 'rgba(0,0,0,0.85)',\n  color: '#e8e8e8',\n  lineHeight: '1.6',\n  whiteSpace: 'pre',\n  fontFamily: 'Menlo, Consolas, monospace',\n  fontSize: '13px',\n  position: 'fixed',\n  zIndex: 9999,\n  padding: '10px',\n  left: 0,\n  right: 0,\n  top: 0,\n  bottom: 0,\n  overflow: 'auto',\n  dir: 'ltr',\n  textAlign: 'left'\n};\n\nvar ansiHTML = __webpack_require__(/*! ansi-html */ \"./node_modules/ansi-html/index.js\");\n\nvar colors = {\n  reset: ['transparent', 'transparent'],\n  black: '181818',\n  red: 'ff3348',\n  green: '3fff4f',\n  yellow: 'ffd30e',\n  blue: '169be0',\n  magenta: 'f840b7',\n  cyan: '0ad8e9',\n  lightgrey: 'ebe7e3',\n  darkgrey: '6d7891'\n};\n\nvar Entities = __webpack_require__(/*! html-entities */ \"./node_modules/html-entities/lib/index.js\").AllHtmlEntities;\n\nvar entities = new Entities();\n\nfunction showProblems(type, lines) {\n  clientOverlay.innerHTML = '';\n  lines.forEach(function (msg) {\n    msg = ansiHTML(entities.encode(msg));\n    var div = document.createElement('div');\n    div.style.marginBottom = '26px';\n    div.innerHTML = problemType(type) + ' in ' + msg;\n    clientOverlay.appendChild(div);\n  });\n\n  if (document.body) {\n    document.body.appendChild(clientOverlay);\n  }\n}\n\nfunction clear() {\n  if (document.body && clientOverlay.parentNode) {\n    document.body.removeChild(clientOverlay);\n  }\n}\n\nfunction problemType(type) {\n  var problemColors = {\n    errors: colors.red,\n    warnings: colors.yellow\n  };\n  var color = problemColors[type] || colors.red;\n  return '<span style=\"background-color:#' + color + '; color:#000000; padding:3px 6px; border-radius: 4px;\">' + type.slice(0, -1).toUpperCase() + '</span>';\n}\n\nmodule.exports = function (options) {\n  for (var color in options.ansiColors) {\n    if (color in colors) {\n      colors[color] = options.ansiColors[color];\n    }\n\n    ansiHTML.setColors(colors);\n  }\n\n  for (var style in options.overlayStyles) {\n    styles[style] = options.overlayStyles[style];\n  }\n\n  for (var key in styles) {\n    clientOverlay.style[key] = styles[key];\n  }\n\n  return {\n    showProblems: showProblems,\n    clear: clear\n  };\n};\n\nmodule.exports.clear = clear;\nmodule.exports.showProblems = showProblems;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLyh3ZWJwYWNrKS1ob3QtbWlkZGxld2FyZS9jbGllbnQtb3ZlcmxheS5qcz9jN2E4Il0sIm5hbWVzIjpbImNsaWVudE92ZXJsYXkiLCJkb2N1bWVudCIsImNyZWF0ZUVsZW1lbnQiLCJpZCIsInN0eWxlcyIsImJhY2tncm91bmQiLCJjb2xvciIsImxpbmVIZWlnaHQiLCJ3aGl0ZVNwYWNlIiwiZm9udEZhbWlseSIsImZvbnRTaXplIiwicG9zaXRpb24iLCJ6SW5kZXgiLCJwYWRkaW5nIiwibGVmdCIsInJpZ2h0IiwidG9wIiwiYm90dG9tIiwib3ZlcmZsb3ciLCJkaXIiLCJ0ZXh0QWxpZ24iLCJhbnNpSFRNTCIsInJlcXVpcmUiLCJjb2xvcnMiLCJyZXNldCIsImJsYWNrIiwicmVkIiwiZ3JlZW4iLCJ5ZWxsb3ciLCJibHVlIiwibWFnZW50YSIsImN5YW4iLCJsaWdodGdyZXkiLCJkYXJrZ3JleSIsIkVudGl0aWVzIiwiQWxsSHRtbEVudGl0aWVzIiwiZW50aXRpZXMiLCJzaG93UHJvYmxlbXMiLCJ0eXBlIiwibGluZXMiLCJpbm5lckhUTUwiLCJmb3JFYWNoIiwibXNnIiwiZW5jb2RlIiwiZGl2Iiwic3R5bGUiLCJtYXJnaW5Cb3R0b20iLCJwcm9ibGVtVHlwZSIsImFwcGVuZENoaWxkIiwiYm9keSIsImNsZWFyIiwicGFyZW50Tm9kZSIsInJlbW92ZUNoaWxkIiwicHJvYmxlbUNvbG9ycyIsImVycm9ycyIsIndhcm5pbmdzIiwic2xpY2UiLCJ0b1VwcGVyQ2FzZSIsIm1vZHVsZSIsImV4cG9ydHMiLCJvcHRpb25zIiwiYW5zaUNvbG9ycyIsInNldENvbG9ycyIsIm92ZXJsYXlTdHlsZXMiLCJrZXkiXSwibWFwcGluZ3MiOiJBQUFBO0FBRUEsSUFBSUEsYUFBYSxHQUFHQyxRQUFRLENBQUNDLGFBQVQsQ0FBdUIsS0FBdkIsQ0FBcEI7QUFDQUYsYUFBYSxDQUFDRyxFQUFkLEdBQW1CLHNDQUFuQjtBQUNBLElB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QUssSUFBSXRELEtBQVQsSUFBa0JzRCxPQUFPLENBQUNDLFVBQTFCLEVBQXNDO0FBQ3BDLFFBQUl2RCxLQUFLLElBQUlpQixNQUFiLEVBQXFCO0FBQ25CQSxZQUFNLENBQUNqQixLQUFELENBQU4sR0FBZ0JzRCxPQUFPLENBQUNDLFVBQVIsQ0FBbUJ2RCxLQUFuQixDQUFoQjtBQUNEOztBQUNEZSxZQUFRLENBQUN5QyxTQUFULENBQW1CdkMsTUFBbkI7QUFDRDs7QUFFRCxPQUFLLElBQUlzQixLQUFULElBQWtCZSxPQUFPLENBQUNHLGFBQTFCLEVBQXlDO0FBQ3ZDM0QsVUFBTSxDQUFDeUMsS0FBRCxDQUFOLEdBQWdCZSxPQUFPLENBQUNHLGFBQVIsQ0FBc0JsQixLQUF0QixDQUFoQjtBQUNEOztBQUVELE9BQUssSUFBSW1CLEdBQVQsSUFBZ0I1RCxNQUFoQixFQUF3QjtBQUN0QkosaUJBQWEsQ0FBQzZDLEtBQWQsQ0FBb0JtQixHQUFwQixJQUEyQjVELE1BQU0sQ0FBQzRELEdBQUQsQ0FBakM7QUFDRDs7QUFFRCxTQUFPO0FBQ0wzQixnQkFBWSxFQUFFQSxZQURUO0FBRUxhLFNBQUssRUFBRUE7QUFGRixHQUFQO0FBSUQsQ0FwQkQ7O0FBc0JBUSxNQUFNLENBQUNDLE9BQVAsQ0FBZVQsS0FBZixHQUF1QkEsS0FBdkI7QUFDQVEsTUFBTSxDQUFDQyxPQUFQLENBQWV0QixZQUFmLEdBQThCQSxZQUE5QiIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy93ZWJwYWNrLWhvdC1taWRkbGV3YXJlL2NsaWVudC1vdmVybGF5LmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyplc2xpbnQtZW52IGJyb3dzZXIqL1xuXG52YXIgY2xpZW50T3ZlcmxheSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuY2xpZW50T3ZlcmxheS5pZCA9ICd3ZWJwYWNrLWhvdC1taWRkbGV3YXJlLWNsaWVudE92ZXJsYXknO1xudmFyIHN0eWxlcyA9IHtcbiAgYmFja2dyb3VuZDogJ3JnYmEoMCwwLDAsMC44NSknLFxuICBjb2xvcjogJyNlOGU4ZTgnLFxuICBsaW5lSGVpZ2h0OiAnMS42JyxcbiAgd2hpdGVTcGFjZTogJ3ByZScsXG4gIGZvbnRGYW1pbHk6ICdNZW5sbywgQ29uc29sYXMsIG1vbm9zcGFjZScsXG4gIGZvbnRTaXplOiAnMTNweCcsXG4gIHBvc2l0aW9uOiAnZml4ZWQnLFxuICB6SW5kZXg6IDk5OTksXG4gIHBhZGRpbmc6ICcxMHB4JyxcbiAgbGVmdDogMCxcbiAgcmlnaHQ6IDAsXG4gIHRvcDogMCxcbiAgYm90dG9tOiAwLFxuICBvdmVyZmxvdzogJ2F1dG8nLFxuICBkaXI6ICdsdHInLFxuICB0ZXh0QWxpZ246ICdsZWZ0Jyxcbn07XG5cbnZhciBhbnNpSFRNTCA9IHJlcXVpcmUoJ2Fuc2ktaHRtbCcpO1xudmFyIGNvbG9ycyA9IHtcbiAgcmVzZXQ6IFsndHJhbnNwYXJlbnQnLCAndHJhbnNwYXJlbnQnXSxcbiAgYmxhY2s6ICcxODE4MTgnLFxuICByZWQ6ICdmZjMzNDgnLFxuICBncmVlbjogJzNmZmY0ZicsXG4gIHllbGxvdzogJ2ZmZDMwZScsXG4gIGJsdWU6ICcxNjliZTAnLFxuICBtYWdlbnRhOiAnZjg0MGI3JyxcbiAgY3lhbjogJzBhZDhlOScsXG4gIGxpZ2h0Z3JleTogJ2ViZTdlMycsXG4gIGRhcmtncmV5OiAnNmQ3ODkxJyxcbn07XG5cbnZhciBFbnRpdGllcyA9IHJlcXVpcmUoJ2h0bWwtZW50aXRpZXMnKS5BbGxIdG1sRW50aXRpZXM7XG52YXIgZW50aXRpZXMgPSBuZXcgRW50aXRpZXMoKTtcblxuZnVuY3Rpb24gc2hvd1Byb2JsZW1zKHR5cGUsIGxpbmVzKSB7XG4gIGNsaWVudE92ZXJsYXkuaW5uZXJIVE1MID0gJyc7XG4gIGxpbmVzLmZvckVhY2goZnVuY3Rpb24obXNnKSB7XG4gICAgbXNnID0gYW5zaUhUTUwoZW50aXRpZXMuZW5jb2RlKG1zZykpO1xuICAgIHZhciBkaXYgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTtcbiAgICBkaXYuc3R5bGUubWFyZ2luQm90dG9tID0gJzI2cHgnO1xuICAgIGRpdi5pbm5lckhUTUwgPSBwcm9ibGVtVHlwZSh0eXBlKSArICcgaW4gJyArIG1zZztcbiAgICBjbGllbnRPdmVybGF5LmFwcGVuZENoaWxkKGRpdik7XG4gIH0pO1xuICBpZiAoZG9jdW1lbnQuYm9keSkge1xuICAgIGRvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoY2xpZW50T3ZlcmxheSk7XG4gIH1cbn1cblxuZnVuY3Rpb24gY2xlYXIoKSB7XG4gIGlmIChkb2N1bWVudC5ib2R5ICYmIGNsaWVudE92ZXJsYXkucGFyZW50Tm9kZSkge1xuICAgIGRvY3VtZW50LmJvZHkucmVtb3ZlQ2hpbGQoY2xpZW50T3ZlcmxheSk7XG4gIH1cbn1cblxuZnVuY3Rpb24gcHJvYmxlbVR5cGUodHlwZSkge1xuICB2YXIgcHJvYmxlbUNvbG9ycyA9IHtcbiAgICBlcnJvcnM6IGNvbG9ycy5yZWQsXG4gICAgd2FybmluZ3M6IGNvbG9ycy55ZWxsb3csXG4gIH07XG4gIHZhciBjb2xvciA9IHByb2JsZW1Db2xvcnNbdHlwZV0gfHwgY29sb3JzLnJlZDtcbiAgcmV0dXJuIChcbiAgICAnPHNwYW4gc3R5bGU9XCJiYWNrZ3JvdW5kLWNvbG9yOiMnICtcbiAgICBjb2xvciArXG4gICAgJzsgY29sb3I6IzAwMDAwMDsgcGFkZGluZzozcHggNnB4OyBib3JkZXItcmFkaXVzOiA0cHg7XCI+JyArXG4gICAgdHlwZS5zbGljZSgwLCAtMSkudG9VcHBlckNhc2UoKSArXG4gICAgJzwvc3Bhbj4nXG4gICk7XG59XG5cbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24ob3B0aW9ucykge1xuICBmb3IgKHZhciBjb2xvciBpbiBvcHRpb25zLmFuc2lDb2xvcnMpIHtcbiAgICBpZiAoY29sb3IgaW4gY29sb3JzKSB7XG4gICAgICBjb2xvcnNbY29sb3JdID0gb3B0aW9ucy5hbnNpQ29sb3JzW2NvbG9yXTtcbiAgICB9XG4gICAgYW5zaUhUTUwuc2V0Q29sb3JzKGNvbG9ycyk7XG4gIH1cblxuICBmb3IgKHZhciBzdHlsZSBpbiBvcHRpb25zLm92ZXJsYXlTdHlsZXMpIHtcbiAgICBzdHlsZXNbc3R5bGVdID0gb3B0aW9ucy5vdmVybGF5U3R5bGVzW3N0eWxlXTtcbiAgfVxuXG4gIGZvciAodmFyIGtleSBpbiBzdHlsZXMpIHtcbiAgICBjbGllbnRPdmVybGF5LnN0eWxlW2tleV0gPSBzdHlsZXNba2V5XTtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgc2hvd1Byb2JsZW1zOiBzaG93UHJvYmxlbXMsXG4gICAgY2xlYXI6IGNsZWFyLFxuICB9O1xufTtcblxubW9kdWxlLmV4cG9ydHMuY2xlYXIgPSBjbGVhcjtcbm1vZHVsZS5leHBvcnRzLnNob3dQcm9ibGVtcyA9IHNob3dQcm9ibGVtcztcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/webpack-hot-middleware/client-overlay.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/webpack-hot-middleware/client.js":
+/*!******************************************!*\
+  !*** (webpack)-hot-middleware/client.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function(module) {/*eslint-env browser*/\n\n/*global __resourceQuery __webpack_public_path__*/\nvar options = {\n  path: '/__webpack_hmr',\n  timeout: 20 * 1000,\n  overlay: true,\n  reload: false,\n  log: true,\n  warn: true,\n  name: '',\n  autoConnect: true,\n  overlayStyles: {},\n  overlayWarnings: false,\n  ansiColors: {}\n};\n\nif (false) { var overrides, querystring; }\n\nif (typeof window === 'undefined') {// do nothing\n} else if (typeof window.EventSource === 'undefined') {\n  console.warn(\"webpack-hot-middleware's client requires EventSource to work. \" + 'You should include a polyfill if you want to support this browser: ' + 'https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events#Tools');\n} else {\n  if (options.autoConnect) {\n    connect();\n  }\n}\n/* istanbul ignore next */\n\n\nfunction setOptionsAndConnect(overrides) {\n  setOverrides(overrides);\n  connect();\n}\n\nfunction setOverrides(overrides) {\n  if (overrides.autoConnect) options.autoConnect = overrides.autoConnect == 'true';\n  if (overrides.path) options.path = overrides.path;\n  if (overrides.timeout) options.timeout = overrides.timeout;\n  if (overrides.overlay) options.overlay = overrides.overlay !== 'false';\n  if (overrides.reload) options.reload = overrides.reload !== 'false';\n\n  if (overrides.noInfo && overrides.noInfo !== 'false') {\n    options.log = false;\n  }\n\n  if (overrides.name) {\n    options.name = overrides.name;\n  }\n\n  if (overrides.quiet && overrides.quiet !== 'false') {\n    options.log = false;\n    options.warn = false;\n  }\n\n  if (overrides.dynamicPublicPath) {\n    options.path = __webpack_require__.p + options.path;\n  }\n\n  if (overrides.ansiColors) options.ansiColors = JSON.parse(overrides.ansiColors);\n  if (overrides.overlayStyles) options.overlayStyles = JSON.parse(overrides.overlayStyles);\n\n  if (overrides.overlayWarnings) {\n    options.overlayWarnings = overrides.overlayWarnings == 'true';\n  }\n}\n\nfunction EventSourceWrapper() {\n  var source;\n  var lastActivity = new Date();\n  var listeners = [];\n  init();\n  var timer = setInterval(function () {\n    if (new Date() - lastActivity > options.timeout) {\n      handleDisconnect();\n    }\n  }, options.timeout / 2);\n\n  function init() {\n    source = new window.EventSource(options.path);\n    source.onopen = handleOnline;\n    source.onerror = handleDisconnect;\n    source.onmessage = handleMessage;\n  }\n\n  function handleOnline() {\n    if (options.log) console.log('[HMR] connected');\n    lastActivity = new Date();\n  }\n\n  function handleMessage(event) {\n    lastActivity = new Date();\n\n    for (var i = 0; i < listeners.length; i++) {\n      listeners[i](event);\n    }\n  }\n\n  function handleDisconnect() {\n    clearInterval(timer);\n    source.close();\n    setTimeout(init, options.timeout);\n  }\n\n  return {\n    addMessageListener: function (fn) {\n      listeners.push(fn);\n    }\n  };\n}\n\nfunction getEventSourceWrapper() {\n  if (!window.__whmEventSourceWrapper) {\n    window.__whmEventSourceWrapper = {};\n  }\n\n  if (!window.__whmEventSourceWrapper[options.path]) {\n    // cache the wrapper for other entries loaded on\n    // the same page with the same options.path\n    window.__whmEventSourceWrapper[options.path] = EventSourceWrapper();\n  }\n\n  return window.__whmEventSourceWrapper[options.path];\n}\n\nfunction connect() {\n  getEventSourceWrapper().addMessageListener(handleMessage);\n\n  function handleMessage(event) {\n    if (event.data == '\\uD83D\\uDC93') {\n      return;\n    }\n\n    try {\n      processMessage(JSON.parse(event.data));\n    } catch (ex) {\n      if (options.warn) {\n        console.warn('Invalid HMR message: ' + event.data + '\\n' + ex);\n      }\n    }\n  }\n} // the reporter needs to be a singleton on the page\n// in case the client is being used by multiple bundles\n// we only want to report once.\n// all the errors will go to all clients\n\n\nvar singletonKey = '__webpack_hot_middleware_reporter__';\nvar reporter;\n\nif (typeof window !== 'undefined') {\n  if (!window[singletonKey]) {\n    window[singletonKey] = createReporter();\n  }\n\n  reporter = window[singletonKey];\n}\n\nfunction createReporter() {\n  var strip = __webpack_require__(/*! strip-ansi */ \"./node_modules/strip-ansi/index.js\");\n\n  var overlay;\n\n  if (typeof document !== 'undefined' && options.overlay) {\n    overlay = __webpack_require__(/*! ./client-overlay */ \"./node_modules/webpack-hot-middleware/client-overlay.js\")({\n      ansiColors: options.ansiColors,\n      overlayStyles: options.overlayStyles\n    });\n  }\n\n  var styles = {\n    errors: 'color: #ff0000;',\n    warnings: 'color: #999933;'\n  };\n  var previousProblems = null;\n\n  function log(type, obj) {\n    var newProblems = obj[type].map(function (msg) {\n      return strip(msg);\n    }).join('\\n');\n\n    if (previousProblems == newProblems) {\n      return;\n    } else {\n      previousProblems = newProblems;\n    }\n\n    var style = styles[type];\n    var name = obj.name ? \"'\" + obj.name + \"' \" : '';\n    var title = '[HMR] bundle ' + name + 'has ' + obj[type].length + ' ' + type; // NOTE: console.warn or console.error will print the stack trace\n    // which isn't helpful here, so using console.log to escape it.\n\n    if (console.group && console.groupEnd) {\n      console.group('%c' + title, style);\n      console.log('%c' + newProblems, style);\n      console.groupEnd();\n    } else {\n      console.log('%c' + title + '\\n\\t%c' + newProblems.replace(/\\n/g, '\\n\\t'), style + 'font-weight: bold;', style + 'font-weight: normal;');\n    }\n  }\n\n  return {\n    cleanProblemsCache: function () {\n      previousProblems = null;\n    },\n    problems: function (type, obj) {\n      if (options.warn) {\n        log(type, obj);\n      }\n\n      if (overlay) {\n        if (options.overlayWarnings || type === 'errors') {\n          overlay.showProblems(type, obj[type]);\n          return false;\n        }\n\n        overlay.clear();\n      }\n\n      return true;\n    },\n    success: function () {\n      if (overlay) overlay.clear();\n    },\n    useCustomOverlay: function (customOverlay) {\n      overlay = customOverlay;\n    }\n  };\n}\n\nvar processUpdate = __webpack_require__(/*! ./process-update */ \"./node_modules/webpack-hot-middleware/process-update.js\");\n\nvar customHandler;\nvar subscribeAllHandler;\n\nfunction processMessage(obj) {\n  switch (obj.action) {\n    case 'building':\n      if (options.log) {\n        console.log('[HMR] bundle ' + (obj.name ? \"'\" + obj.name + \"' \" : '') + 'rebuilding');\n      }\n\n      break;\n\n    case 'built':\n      if (options.log) {\n        console.log('[HMR] bundle ' + (obj.name ? \"'\" + obj.name + \"' \" : '') + 'rebuilt in ' + obj.time + 'ms');\n      }\n\n    // fall through\n\n    case 'sync':\n      if (obj.name && options.name && obj.name !== options.name) {\n        return;\n      }\n\n      var applyUpdate = true;\n\n      if (obj.errors.length > 0) {\n        if (reporter) reporter.problems('errors', obj);\n        applyUpdate = false;\n      } else if (obj.warnings.length > 0) {\n        if (reporter) {\n          var overlayShown = reporter.problems('warnings', obj);\n          applyUpdate = overlayShown;\n        }\n      } else {\n        if (reporter) {\n          reporter.cleanProblemsCache();\n          reporter.success();\n        }\n      }\n\n      if (applyUpdate) {\n        processUpdate(obj.hash, obj.modules, options);\n      }\n\n      break;\n\n    default:\n      if (customHandler) {\n        customHandler(obj);\n      }\n\n  }\n\n  if (subscribeAllHandler) {\n    subscribeAllHandler(obj);\n  }\n}\n\nif (module) {\n  module.exports = {\n    subscribeAll: function subscribeAll(handler) {\n      subscribeAllHandler = handler;\n    },\n    subscribe: function subscribe(handler) {\n      customHandler = handler;\n    },\n    useCustomOverlay: function useCustomOverlay(customOverlay) {\n      if (reporter) reporter.useCustomOverlay(customOverlay);\n    },\n    setOptionsAndConnect: setOptionsAndConnect\n  };\n}\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ \"./node_modules/webpack/buildin/module.js\")(module)))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLyh3ZWJwYWNrKS1ob3QtbWlkZGxld2FyZS9jbGllbnQuanM/ZmVjOSJdLCJuYW1lcyI6WyJvcHRpb25zIiwicGF0aCIsInRpbWVvdXQiLCJvdmVybGF5IiwicmVsb2FkIiwibG9nIiwid2FybiIsIm5hbWUiLCJhdXRvQ29ubmVjdCIsIm92ZXJsYXlTdHlsZXMiLCJvdmVybGF5V2FybmluZ3MiLCJhbnNpQ29sb3JzIiwiX19yZXNvdXJjZVF1ZXJ5Iiwid2luZG93IiwiRXZlbnRTb3VyY2UiLCJjb25zb2xlIiwiY29ubmVjdCIsInNldE9wdGlvbnNBbmRDb25uZWN0Iiwib3ZlcnJpZGVzIiwic2V0T3ZlcnJpZGVzIiwibm9JbmZvIiwicXVpZXQiLCJkeW5hbWljUHVibGljUGF0aCIsIl9fd2VicGFja19wdWJsaWNfcGF0aF9fIiwiSlNPTiIsInBhcnNlIiwiRXZlbnRTb3VyY2VXcmFwcGVyIiwic291cmNlIiwibGFzdEFjdGl2aXR5IiwiRGF0ZSIsImxpc3RlbmVycyIsImluaXQiLCJ0aW1lciIsInNldEludGVydmFsIiwiaGFuZGxlRGlzY29ubmVjdCIsIm9ub3BlbiIsImhhbmRsZU9ubGluZSIsIm9uZXJyb3IiLCJvbm1lc3NhZ2UiLCJoYW5kbGVNZXNzYWdlIiwiZXZlbnQiLCJpIiwibGVuZ3RoIiwiY2xlYXJJbnRlcnZhbCIsImNsb3NlIiwic2V0VGltZW91dCIsImFkZE1lc3NhZ2VMaXN0ZW5lciIsImZuIiwicHVzaCIsImdldEV2ZW50U291cmNlV3JhcHBlciIsIl9fd2htRXZlbnRTb3VyY2VXcmFwcGVyIiwiZGF0YSIsInByb2Nlc3NNZXNzYWdlIiwiZXgiLCJzaW5nbGV0b25LZXkiLCJyZXBvcnRlciIsImNyZWF0ZVJlcG9ydGVyIiwic3RyaXAiLCJyZXF1aXJlIiwiZG9jdW1lbnQiLCJzdHlsZXMiLCJlcnJvcnMiLCJ3YXJuaW5ncyIsInByZXZpb3VzUHJvYmxlbXMiLCJ0eXBlIiwib2JqIiwibmV3UHJvYmxlbXMiLCJtYXAiLCJtc2ciLCJqb2luIiwic3R5bGUiLCJ0aXRsZSIsImdyb3VwIiwiZ3JvdXBFbmQiLCJyZXBsYWNlIiwiY2xlYW5Qcm9ibGVtc0NhY2hlIiwicHJvYmxlbXMiLCJzaG93UHJvYmxlbXMiLCJjbGVhciIsInN1Y2Nlc3MiLCJ1c2VDdXN0b21PdmVybGF5IiwiY3VzdG9tT3ZlcmxheSIsInByb2Nlc3NVcGRhdGUiLCJjdXN0b21IYW5kbGVyIiwic3Vic2NyaWJlQWxsSGFuZGxlciIsImFjdGlvbiIsInRpbWUiLCJhcHBseVVwZGF0ZSIsIm92ZXJsYXlTaG93biIsImhhc2giLCJtb2R1bGVzIiwibW9kdWxlIiwiZXhwb3J0cyIsInN1YnNjcmliZUFsbCIsImhhbmRsZXIiLCJzdWJzY3JpYmUiXSwibWFwcGluZ3MiOiJBQUFBOztBQUNBO0FBRUEsSUFBSUEsT0FBTyxHQUFHO0FBQ1pDLE1BQUksRUFBRSxnQkFETTtBQUVaQyxTQUFPLEVBQUUsS0FBSyxJQUZGO0FBR1pDLFNBQU8sRUFBRSxJQUhHO0FBSVpDLFFBQU0sRUFBRSxLQUpJO0FBS1pDLEtBQUcsRUFBRSxJQUxPO0FBTVpDLE1BQUksRUFBRSxJQU5NO0FBT1pDLE1BQUksRUFBRSxFQVBNO0FBUVpDLGFBQVcsRUFBRSxJQVJEO0FBU1pDLGVBQWEsRUFBRSxFQVRIO0FBVVpDLGlCQUFlLEVBQUUsS0FWTDtBQVdaQyxZQUFVLEVBQUU7QUFYQSxDQUFkOztBQWFBLElBQUlDLEtBQUosRUFBcUIsK0JBSXBCOztBQUVELElBQUksT0FBT0MsTUFBUCxLQUFrQixXQUF0QixFQUFtQyxDQUNqQztBQUNELENBRkQsTUFFTyxJQUFJLE9BQU9BLE1BQU0sQ0FBQ0MsV0FBZCxLQUE4QixXQUFsQyxFQUErQztBQUNwREMsU0FBTyxDQUFDVCxJQUFSLENBQ0UsbUVBQ0UscUVBREYsR0FFRSwyRUFISjtBQUtELENBTk0sTUFNQTtBQUNMLE1BQUlOLE9BQU8sQ0FBQ1EsV0FBWixFQUF5QjtBQUN2QlEsV0FBTztBQUNSO0FBQ0Y7QUFFRDs7O0FB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QUNBcEIsa0JBQVEsQ0FBQ3dCLE9BQVQ7QUFDRDtBQUNGOztBQUNELFVBQUlRLFdBQUosRUFBaUI7QUFDZkwscUJBQWEsQ0FBQ2pCLEdBQUcsQ0FBQ3dCLElBQUwsRUFBV3hCLEdBQUcsQ0FBQ3lCLE9BQWYsRUFBd0IxRixPQUF4QixDQUFiO0FBQ0Q7O0FBQ0Q7O0FBQ0Y7QUFDRSxVQUFJbUYsYUFBSixFQUFtQjtBQUNqQkEscUJBQWEsQ0FBQ2xCLEdBQUQsQ0FBYjtBQUNEOztBQS9DTDs7QUFrREEsTUFBSW1CLG1CQUFKLEVBQXlCO0FBQ3ZCQSx1QkFBbUIsQ0FBQ25CLEdBQUQsQ0FBbkI7QUFDRDtBQUNGOztBQUVELElBQUkwQixNQUFKLEVBQVk7QUFDVkEsUUFBTSxDQUFDQyxPQUFQLEdBQWlCO0FBQ2ZDLGdCQUFZLEVBQUUsU0FBU0EsWUFBVCxDQUFzQkMsT0FBdEIsRUFBK0I7QUFDM0NWLHlCQUFtQixHQUFHVSxPQUF0QjtBQUNELEtBSGM7QUFJZkMsYUFBUyxFQUFFLFNBQVNBLFNBQVQsQ0FBbUJELE9BQW5CLEVBQTRCO0FBQ3JDWCxtQkFBYSxHQUFHVyxPQUFoQjtBQUNELEtBTmM7QUFPZmQsb0JBQWdCLEVBQUUsU0FBU0EsZ0JBQVQsQ0FBMEJDLGFBQTFCLEVBQXlDO0FBQ3pELFVBQUkxQixRQUFKLEVBQWNBLFFBQVEsQ0FBQ3lCLGdCQUFULENBQTBCQyxhQUExQjtBQUNmLEtBVGM7QUFVZmhFLHdCQUFvQixFQUFFQTtBQVZQLEdBQWpCO0FBWUQsQyIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy93ZWJwYWNrLWhvdC1taWRkbGV3YXJlL2NsaWVudC5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qZXNsaW50LWVudiBicm93c2VyKi9cbi8qZ2xvYmFsIF9fcmVzb3VyY2VRdWVyeSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyovXG5cbnZhciBvcHRpb25zID0ge1xuICBwYXRoOiAnL19fd2VicGFja19obXInLFxuICB0aW1lb3V0OiAyMCAqIDEwMDAsXG4gIG92ZXJsYXk6IHRydWUsXG4gIHJlbG9hZDogZmFsc2UsXG4gIGxvZzogdHJ1ZSxcbiAgd2FybjogdHJ1ZSxcbiAgbmFtZTogJycsXG4gIGF1dG9Db25uZWN0OiB0cnVlLFxuICBvdmVybGF5U3R5bGVzOiB7fSxcbiAgb3ZlcmxheVdhcm5pbmdzOiBmYWxzZSxcbiAgYW5zaUNvbG9yczoge30sXG59O1xuaWYgKF9fcmVzb3VyY2VRdWVyeSkge1xuICB2YXIgcXVlcnlzdHJpbmcgPSByZXF1aXJlKCdxdWVyeXN0cmluZycpO1xuICB2YXIgb3ZlcnJpZGVzID0gcXVlcnlzdHJpbmcucGFyc2UoX19yZXNvdXJjZVF1ZXJ5LnNsaWNlKDEpKTtcbiAgc2V0T3ZlcnJpZGVzKG92ZXJyaWRlcyk7XG59XG5cbmlmICh0eXBlb2Ygd2luZG93ID09PSAndW5kZWZpbmVkJykge1xuICAvLyBkbyBub3RoaW5nXG59IGVsc2UgaWYgKHR5cGVvZiB3aW5kb3cuRXZlbnRTb3VyY2UgPT09ICd1bmRlZmluZWQnKSB7XG4gIGNvbnNvbGUud2FybihcbiAgICBcIndlYnBhY2staG90LW1pZGRsZXdhcmUncyBjbGllbnQgcmVxdWlyZXMgRXZlbnRTb3VyY2UgdG8gd29yay4gXCIgK1xuICAgICAgJ1lvdSBzaG91bGQgaW5jbHVkZSBhIHBvbHlmaWxsIGlmIHlvdSB3YW50IHRvIHN1cHBvcnQgdGhpcyBicm93c2VyOiAnICtcbiAgICAgICdodHRwczovL2RldmVsb3Blci5tb3ppbGxhLm9yZy9lbi1VUy9kb2NzL1dlYi9BUEkvU2VydmVyLXNlbnRfZXZlbnRzI1Rvb2xzJ1xuICApO1xufSBlbHNlIHtcbiAgaWYgKG9wdGlvbnMuYXV0b0Nvbm5lY3QpIHtcbiAgICBjb25uZWN0KCk7XG4gIH1cbn1cblxuLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbmZ1bmN0aW9uIHNldE9wdGlvbnNBbmRDb25uZWN0KG92ZXJyaWRlcykge1xuICBzZXRPdmVycmlkZXMob3ZlcnJpZGVzKTtcbiAgY29ubmVjdCgpO1xufVxuXG5mdW5jdGlvbiBzZXRPdmVycmlkZXMob3ZlcnJpZGVzKSB7XG4gIGlmIChvdmVycmlkZXMuYXV0b0Nvbm5lY3QpXG4gICAgb3B0aW9ucy5hdXRvQ29ubmVjdCA9IG92ZXJyaWRlcy5hdXRvQ29ubmVjdCA9PSAndHJ1ZSc7XG4gIGlmIChvdmVycmlkZXMucGF0aCkgb3B0aW9ucy5wYXRoID0gb3ZlcnJpZGVzLnBhdGg7XG4gIGlmIChvdmVycmlkZXMudGltZW91dCkgb3B0aW9ucy50aW1lb3V0ID0gb3ZlcnJpZGVzLnRpbWVvdXQ7XG4gIGlmIChvdmVycmlkZXMub3ZlcmxheSkgb3B0aW9ucy5vdmVybGF5ID0gb3ZlcnJpZGVzLm92ZXJsYXkgIT09ICdmYWxzZSc7XG4gIGlmIChvdmVycmlkZXMucmVsb2FkKSBvcHRpb25zLnJlbG9hZCA9IG92ZXJyaWRlcy5yZWxvYWQgIT09ICdmYWxzZSc7XG4gIGlmIChvdmVycmlkZXMubm9JbmZvICYmIG92ZXJyaWRlcy5ub0luZm8gIT09ICdmYWxzZScpIHtcbiAgICBvcHRpb25zLmxvZyA9IGZhbHNlO1xuICB9XG4gIGlmIChvdmVycmlkZXMubmFtZSkge1xuICAgIG9wdGlvbnMubmFtZSA9IG92ZXJyaWRlcy5uYW1lO1xuICB9XG4gIGlmIChvdmVycmlkZXMucXVpZXQgJiYgb3ZlcnJpZGVzLnF1aWV0ICE9PSAnZmFsc2UnKSB7XG4gICAgb3B0aW9ucy5sb2cgPSBmYWxzZTtcbiAgICBvcHRpb25zLndhcm4gPSBmYWxzZTtcbiAgfVxuXG4gIGlmIChvdmVycmlkZXMuZHluYW1pY1B1YmxpY1BhdGgpIHtcbiAgICBvcHRpb25zLnBhdGggPSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyArIG9wdGlvbnMucGF0aDtcbiAgfVxuXG4gIGlmIChvdmVycmlkZXMuYW5zaUNvbG9ycylcbiAgICBvcHRpb25zLmFuc2lDb2xvcnMgPSBKU09OLnBhcnNlKG92ZXJyaWRlcy5hbnNpQ29sb3JzKTtcbiAgaWYgKG92ZXJyaWRlcy5vdmVybGF5U3R5bGVzKVxuICAgIG9wdGlvbnMub3ZlcmxheVN0eWxlcyA9IEpTT04ucGFyc2Uob3ZlcnJpZGVzLm92ZXJsYXlTdHlsZXMpO1xuXG4gIGlmIChvdmVycmlkZXMub3ZlcmxheVdhcm5pbmdzKSB7XG4gICAgb3B0aW9ucy5vdmVybGF5V2FybmluZ3MgPSBvdmVycmlkZXMub3ZlcmxheVdhcm5pbmdzID09ICd0cnVlJztcbiAgfVxufVxuXG5mdW5jdGlvbiBFdmVudFNvdXJjZVdyYXBwZXIoKSB7XG4gIHZhciBzb3VyY2U7XG4gIHZhciBsYXN0QWN0aXZpdHkgPSBuZXcgRGF0ZSgpO1xuICB2YXIgbGlzdGVuZXJzID0gW107XG5cbiAgaW5pdCgpO1xuICB2YXIgdGltZXIgPSBzZXRJbnRlcnZhbChmdW5jdGlvbigpIHtcbiAgICBpZiAobmV3IERhdGUoKSAtIGxhc3RBY3Rpdml0eSA+IG9wdGlvbnMudGltZW91dCkge1xuICAgICAgaGFuZGxlRGlzY29ubmVjdCgpO1xuICAgIH1cbiAgfSwgb3B0aW9ucy50aW1lb3V0IC8gMik7XG5cbiAgZnVuY3Rpb24gaW5pdCgpIHtcbiAgICBzb3VyY2UgPSBuZXcgd2luZG93LkV2ZW50U291cmNlKG9wdGlvbnMucGF0aCk7XG4gICAgc291cmNlLm9ub3BlbiA9IGhhbmRsZU9ubGluZTtcbiAgICBzb3VyY2Uub25lcnJvciA9IGhhbmRsZURpc2Nvbm5lY3Q7XG4gICAgc291cmNlLm9ubWVzc2FnZSA9IGhhbmRsZU1lc3NhZ2U7XG4gIH1cblxuICBmdW5jdGlvbiBoYW5kbGVPbmxpbmUoKSB7XG4gICAgaWYgKG9wdGlvbnMubG9nKSBjb25zb2xlLmxvZygnW0hNUl0gY29ubmVjdGVkJyk7XG4gICAgbGFzdEFjdGl2aXR5ID0gbmV3IERhdGUoKTtcbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZU1lc3NhZ2UoZXZlbnQpIHtcbiAgICBsYXN0QWN0aXZpdHkgPSBuZXcgRGF0ZSgpO1xuICAgIGZvciAodmFyIGkgPSAwOyBpIDwgbGlzdGVuZXJzLmxlbmd0aDsgaSsrKSB7XG4gICAgICBsaXN0ZW5lcnNbaV0oZXZlbnQpO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZURpc2Nvbm5lY3QoKSB7XG4gICAgY2xlYXJJbnRlcnZhbCh0aW1lcik7XG4gICAgc291cmNlLmNsb3NlKCk7XG4gICAgc2V0VGltZW91dChpbml0LCBvcHRpb25zLnRpbWVvdXQpO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBhZGRNZXNzYWdlTGlzdGVuZXI6IGZ1bmN0aW9uKGZuKSB7XG4gICAgICBsaXN0ZW5lcnMucHVzaChmbik7XG4gICAgfSxcbiAgfTtcbn1cblxuZnVuY3Rpb24gZ2V0RXZlbnRTb3VyY2VXcmFwcGVyKCkge1xuICBpZiAoIXdpbmRvdy5fX3dobUV2ZW50U291cmNlV3JhcHBlcikge1xuICAgIHdpbmRvdy5fX3dobUV2ZW50U291cmNlV3JhcHBlciA9IHt9O1xuICB9XG4gIGlmICghd2luZG93Ll9fd2htRXZlbnRTb3VyY2VXcmFwcGVyW29wdGlvbnMucGF0aF0pIHtcbiAgICAvLyBjYWNoZSB0aGUgd3JhcHBlciBmb3Igb3RoZXIgZW50cmllcyBsb2FkZWQgb25cbiAgICAvLyB0aGUgc2FtZSBwYWdlIHdpdGggdGhlIHNhbWUgb3B0aW9ucy5wYXRoXG4gICAgd2luZG93Ll9fd2htRXZlbnRTb3VyY2VXcmFwcGVyW29wdGlvbnMucGF0aF0gPSBFdmVudFNvdXJjZVdyYXBwZXIoKTtcbiAgfVxuICByZXR1cm4gd2luZG93Ll9fd2htRXZlbnRTb3VyY2VXcmFwcGVyW29wdGlvbnMucGF0aF07XG59XG5cbmZ1bmN0aW9uIGNvbm5lY3QoKSB7XG4gIGdldEV2ZW50U291cmNlV3JhcHBlcigpLmFkZE1lc3NhZ2VMaXN0ZW5lcihoYW5kbGVNZXNzYWdlKTtcblxuICBmdW5jdGlvbiBoYW5kbGVNZXNzYWdlKGV2ZW50KSB7XG4gICAgaWYgKGV2ZW50LmRhdGEgPT0gJ1xcdUQ4M0RcXHVEQzkzJykge1xuICAgICAgcmV0dXJuO1xuICAgIH1cbiAgICB0cnkge1xuICAgICAgcHJvY2Vzc01lc3NhZ2UoSlNPTi5wYXJzZShldmVudC5kYXRhKSk7XG4gICAgfSBjYXRjaCAoZXgpIHtcbiAgICAgIGlmIChvcHRpb25zLndhcm4pIHtcbiAgICAgICAgY29uc29sZS53YXJuKCdJbnZhbGlkIEhNUiBtZXNzYWdlOiAnICsgZXZlbnQuZGF0YSArICdcXG4nICsgZXgpO1xuICAgICAgfVxuICAgIH1cbiAgfVxufVxuXG4vLyB0aGUgcmVwb3J0ZXIgbmVlZHMgdG8gYmUgYSBzaW5nbGV0b24gb24gdGhlIHBhZ2Vcbi8vIGluIGNhc2UgdGhlIGNsaWVudCBpcyBiZWluZyB1c2VkIGJ5IG11bHRpcGxlIGJ1bmRsZXNcbi8vIHdlIG9ubHkgd2FudCB0byByZXBvcnQgb25jZS5cbi8vIGFsbCB0aGUgZXJyb3JzIHdpbGwgZ28gdG8gYWxsIGNsaWVudHNcbnZhciBzaW5nbGV0b25LZXkgPSAnX193ZWJwYWNrX2hvdF9taWRkbGV3YXJlX3JlcG9ydGVyX18nO1xudmFyIHJlcG9ydGVyO1xuaWYgKHR5cGVvZiB3aW5kb3cgIT09ICd1bmRlZmluZWQnKSB7XG4gIGlmICghd2luZG93W3NpbmdsZXRvbktleV0pIHtcbiAgICB3aW5kb3dbc2luZ2xldG9uS2V5XSA9IGNyZWF0ZVJlcG9ydGVyKCk7XG4gIH1cbiAgcmVwb3J0ZXIgPSB3aW5kb3dbc2luZ2xldG9uS2V5XTtcbn1cblxuZnVuY3Rpb24gY3JlYXRlUmVwb3J0ZXIoKSB7XG4gIHZhciBzdHJpcCA9IHJlcXVpcmUoJ3N0cmlwLWFuc2knKTtcblxuICB2YXIgb3ZlcmxheTtcbiAgaWYgKHR5cGVvZiBkb2N1bWVudCAhPT0gJ3VuZGVmaW5lZCcgJiYgb3B0aW9ucy5vdmVybGF5KSB7XG4gICAgb3ZlcmxheSA9IHJlcXVpcmUoJy4vY2xpZW50LW92ZXJsYXknKSh7XG4gICAgICBhbnNpQ29sb3JzOiBvcHRpb25zLmFuc2lDb2xvcnMsXG4gICAgICBvdmVybGF5U3R5bGVzOiBvcHRpb25zLm92ZXJsYXlTdHlsZXMsXG4gICAgfSk7XG4gIH1cblxuICB2YXIgc3R5bGVzID0ge1xuICAgIGVycm9yczogJ2NvbG9yOiAjZmYwMDAwOycsXG4gICAgd2FybmluZ3M6ICdjb2xvcjogIzk5OTkzMzsnLFxuICB9O1xuICB2YXIgcHJldmlvdXNQcm9ibGVtcyA9IG51bGw7XG4gIGZ1bmN0aW9uIGxvZyh0eXBlLCBvYmopIHtcbiAgICB2YXIgbmV3UHJvYmxlbXMgPSBvYmpbdHlwZV1cbiAgICAgIC5tYXAoZnVuY3Rpb24obXNnKSB7XG4gICAgICAgIHJldHVybiBzdHJpcChtc2cpO1xuICAgICAgfSlcbiAgICAgIC5qb2luKCdcXG4nKTtcbiAgICBpZiAocHJldmlvdXNQcm9ibGVtcyA9PSBuZXdQcm9ibGVtcykge1xuICAgICAgcmV0dXJuO1xuICAgIH0gZWxzZSB7XG4gICAgICBwcmV2aW91c1Byb2JsZW1zID0gbmV3UHJvYmxlbXM7XG4gICAgfVxuXG4gICAgdmFyIHN0eWxlID0gc3R5bGVzW3R5cGVdO1xuICAgIHZhciBuYW1lID0gb2JqLm5hbWUgPyBcIidcIiArIG9iai5uYW1lICsgXCInIFwiIDogJyc7XG4gICAgdmFyIHRpdGxlID0gJ1tITVJdIGJ1bmRsZSAnICsgbmFtZSArICdoYXMgJyArIG9ialt0eXBlXS5sZW5ndGggKyAnICcgKyB0eXBlO1xuICAgIC8vIE5PVEU6IGNvbnNvbGUud2FybiBvciBjb25zb2xlLmVycm9yIHdpbGwgcHJpbnQgdGhlIHN0YWNrIHRyYWNlXG4gICAgLy8gd2hpY2ggaXNuJ3QgaGVscGZ1bCBoZXJlLCBzbyB1c2luZyBjb25zb2xlLmxvZyB0byBlc2NhcGUgaXQuXG4gICAgaWYgKGNvbnNvbGUuZ3JvdXAgJiYgY29uc29sZS5ncm91cEVuZCkge1xuICAgICAgY29uc29sZS5ncm91cCgnJWMnICsgdGl0bGUsIHN0eWxlKTtcbiAgICAgIGNvbnNvbGUubG9nKCclYycgKyBuZXdQcm9ibGVtcywgc3R5bGUpO1xuICAgICAgY29uc29sZS5ncm91cEVuZCgpO1xuICAgIH0gZWxzZSB7XG4gICAgICBjb25zb2xlLmxvZyhcbiAgICAgICAgJyVjJyArIHRpdGxlICsgJ1xcblxcdCVjJyArIG5ld1Byb2JsZW1zLnJlcGxhY2UoL1xcbi9nLCAnXFxuXFx0JyksXG4gICAgICAgIHN0eWxlICsgJ2ZvbnQtd2VpZ2h0OiBib2xkOycsXG4gICAgICAgIHN0eWxlICsgJ2ZvbnQtd2VpZ2h0OiBub3JtYWw7J1xuICAgICAgKTtcbiAgICB9XG4gIH1cblxuICByZXR1cm4ge1xuICAgIGNsZWFuUHJvYmxlbXNDYWNoZTogZnVuY3Rpb24oKSB7XG4gICAgICBwcmV2aW91c1Byb2JsZW1zID0gbnVsbDtcbiAgICB9LFxuICAgIHByb2JsZW1zOiBmdW5jdGlvbih0eXBlLCBvYmopIHtcbiAgICAgIGlmIChvcHRpb25zLndhcm4pIHtcbiAgICAgICAgbG9nKHR5cGUsIG9iaik7XG4gICAgICB9XG4gICAgICBpZiAob3ZlcmxheSkge1xuICAgICAgICBpZiAob3B0aW9ucy5vdmVybGF5V2FybmluZ3MgfHwgdHlwZSA9PT0gJ2Vycm9ycycpIHtcbiAgICAgICAgICBvdmVybGF5LnNob3dQcm9ibGVtcyh0eXBlLCBvYmpbdHlwZV0pO1xuICAgICAgICAgIHJldHVybiBmYWxzZTtcbiAgICAgICAgfVxuICAgICAgICBvdmVybGF5LmNsZWFyKCk7XG4gICAgICB9XG4gICAgICByZXR1cm4gdHJ1ZTtcbiAgICB9LFxuICAgIHN1Y2Nlc3M6IGZ1bmN0aW9uKCkge1xuICAgICAgaWYgKG92ZXJsYXkpIG92ZXJsYXkuY2xlYXIoKTtcbiAgICB9LFxuICAgIHVzZUN1c3RvbU92ZXJsYXk6IGZ1bmN0aW9uKGN1c3RvbU92ZXJsYXkpIHtcbiAgICAgIG92ZXJsYXkgPSBjdXN0b21PdmVybGF5O1xuICAgIH0sXG4gIH07XG59XG5cbnZhciBwcm9jZXNzVXBkYXRlID0gcmVxdWlyZSgnLi9wcm9jZXNzLXVwZGF0ZScpO1xuXG52YXIgY3VzdG9tSGFuZGxlcjtcbnZhciBzdWJzY3JpYmVBbGxIYW5kbGVyO1xuZnVuY3Rpb24gcHJvY2Vzc01lc3NhZ2Uob2JqKSB7XG4gIHN3aXRjaCAob2JqLmFjdGlvbikge1xuICAgIGNhc2UgJ2J1aWxkaW5nJzpcbiAgICAgIGlmIChvcHRpb25zLmxvZykge1xuICAgICAgICBjb25zb2xlLmxvZyhcbiAgICAgICAgICAnW0hNUl0gYnVuZGxlICcgK1xuICAgICAgICAgICAgKG9iai5uYW1lID8gXCInXCIgKyBvYmoubmFtZSArIFwiJyBcIiA6ICcnKSArXG4gICAgICAgICAgICAncmVidWlsZGluZydcbiAgICAgICAgKTtcbiAgICAgIH1cbiAgICAgIGJyZWFrO1xuICAgIGNhc2UgJ2J1aWx0JzpcbiAgICAgIGlmIChvcHRpb25zLmxvZykge1xuICAgICAgICBjb25zb2xlLmxvZyhcbiAgICAgICAgICAnW0hNUl0gYnVuZGxlICcgK1xuICAgICAgICAgICAgKG9iai5uYW1lID8gXCInXCIgKyBvYmoubmFtZSArIFwiJyBcIiA6ICcnKSArXG4gICAgICAgICAgICAncmVidWlsdCBpbiAnICtcbiAgICAgICAgICAgIG9iai50aW1lICtcbiAgICAgICAgICAgICdtcydcbiAgICAgICAgKTtcbiAgICAgIH1cbiAgICAvLyBmYWxsIHRocm91Z2hcbiAgICBjYXNlICdzeW5jJzpcbiAgICAgIGlmIChvYmoubmFtZSAmJiBvcHRpb25zLm5hbWUgJiYgb2JqLm5hbWUgIT09IG9wdGlvbnMubmFtZSkge1xuICAgICAgICByZXR1cm47XG4gICAgICB9XG4gICAgICB2YXIgYXBwbHlVcGRhdGUgPSB0cnVlO1xuICAgICAgaWYgKG9iai5lcnJvcnMubGVuZ3RoID4gMCkge1xuICAgICAgICBpZiAocmVwb3J0ZXIpIHJlcG9ydGVyLnByb2JsZW1zKCdlcnJvcnMnLCBvYmopO1xuICAgICAgICBhcHBseVVwZGF0ZSA9IGZhbHNlO1xuICAgICAgfSBlbHNlIGlmIChvYmoud2FybmluZ3MubGVuZ3RoID4gMCkge1xuICAgICAgICBpZiAocmVwb3J0ZXIpIHtcbiAgICAgICAgICB2YXIgb3ZlcmxheVNob3duID0gcmVwb3J0ZXIucHJvYmxlbXMoJ3dhcm5pbmdzJywgb2JqKTtcbiAgICAgICAgICBhcHBseVVwZGF0ZSA9IG92ZXJsYXlTaG93bjtcbiAgICAgICAgfVxuICAgICAgfSBlbHNlIHtcbiAgICAgICAgaWYgKHJlcG9ydGVyKSB7XG4gICAgICAgICAgcmVwb3J0ZXIuY2xlYW5Qcm9ibGVtc0NhY2hlKCk7XG4gICAgICAgICAgcmVwb3J0ZXIuc3VjY2VzcygpO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgICBpZiAoYXBwbHlVcGRhdGUpIHtcbiAgICAgICAgcHJvY2Vzc1VwZGF0ZShvYmouaGFzaCwgb2JqLm1vZHVsZXMsIG9wdGlvbnMpO1xuICAgICAgfVxuICAgICAgYnJlYWs7XG4gICAgZGVmYXVsdDpcbiAgICAgIGlmIChjdXN0b21IYW5kbGVyKSB7XG4gICAgICAgIGN1c3RvbUhhbmRsZXIob2JqKTtcbiAgICAgIH1cbiAgfVxuXG4gIGlmIChzdWJzY3JpYmVBbGxIYW5kbGVyKSB7XG4gICAgc3Vic2NyaWJlQWxsSGFuZGxlcihvYmopO1xuICB9XG59XG5cbmlmIChtb2R1bGUpIHtcbiAgbW9kdWxlLmV4cG9ydHMgPSB7XG4gICAgc3Vic2NyaWJlQWxsOiBmdW5jdGlvbiBzdWJzY3JpYmVBbGwoaGFuZGxlcikge1xuICAgICAgc3Vic2NyaWJlQWxsSGFuZGxlciA9IGhhbmRsZXI7XG4gICAgfSxcbiAgICBzdWJzY3JpYmU6IGZ1bmN0aW9uIHN1YnNjcmliZShoYW5kbGVyKSB7XG4gICAgICBjdXN0b21IYW5kbGVyID0gaGFuZGxlcjtcbiAgICB9LFxuICAgIHVzZUN1c3RvbU92ZXJsYXk6IGZ1bmN0aW9uIHVzZUN1c3RvbU92ZXJsYXkoY3VzdG9tT3ZlcmxheSkge1xuICAgICAgaWYgKHJlcG9ydGVyKSByZXBvcnRlci51c2VDdXN0b21PdmVybGF5KGN1c3RvbU92ZXJsYXkpO1xuICAgIH0sXG4gICAgc2V0T3B0aW9uc0FuZENvbm5lY3Q6IHNldE9wdGlvbnNBbmRDb25uZWN0LFxuICB9O1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/webpack-hot-middleware/client.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/webpack-hot-middleware/process-update.js":
+/*!**************************************************!*\
+  !*** (webpack)-hot-middleware/process-update.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/**\n * Based heavily on https://github.com/webpack/webpack/blob/\n *  c0afdf9c6abc1dd70707c594e473802a566f7b6e/hot/only-dev-server.js\n * Original copyright Tobias Koppers @sokra (MIT license)\n */\n\n/* global window __webpack_hash__ */\nif (false) {}\n\nvar hmrDocsUrl = 'https://webpack.js.org/concepts/hot-module-replacement/'; // eslint-disable-line max-len\n\nvar lastHash;\nvar failureStatuses = {\n  abort: 1,\n  fail: 1\n};\nvar applyOptions = {\n  ignoreUnaccepted: true,\n  ignoreDeclined: true,\n  ignoreErrored: true,\n  onUnaccepted: function (data) {\n    console.warn('Ignored an update to unaccepted module ' + data.chain.join(' -> '));\n  },\n  onDeclined: function (data) {\n    console.warn('Ignored an update to declined module ' + data.chain.join(' -> '));\n  },\n  onErrored: function (data) {\n    console.error(data.error);\n    console.warn('Ignored an error while updating module ' + data.moduleId + ' (' + data.type + ')');\n  }\n};\n\nfunction upToDate(hash) {\n  if (hash) lastHash = hash;\n  return lastHash == __webpack_require__.h();\n}\n\nmodule.exports = function (hash, moduleMap, options) {\n  var reload = options.reload;\n\n  if (!upToDate(hash) && module.hot.status() == 'idle') {\n    if (options.log) console.log('[HMR] Checking for updates on the server...');\n    check();\n  }\n\n  function check() {\n    var cb = function (err, updatedModules) {\n      if (err) return handleError(err);\n\n      if (!updatedModules) {\n        if (options.warn) {\n          console.warn('[HMR] Cannot find update (Full reload needed)');\n          console.warn('[HMR] (Probably because of restarting the server)');\n        }\n\n        performReload();\n        return null;\n      }\n\n      var applyCallback = function (applyErr, renewedModules) {\n        if (applyErr) return handleError(applyErr);\n        if (!upToDate()) check();\n        logUpdates(updatedModules, renewedModules);\n      };\n\n      var applyResult = module.hot.apply(applyOptions, applyCallback); // webpack 2 promise\n\n      if (applyResult && applyResult.then) {\n        // HotModuleReplacement.runtime.js refers to the result as `outdatedModules`\n        applyResult.then(function (outdatedModules) {\n          applyCallback(null, outdatedModules);\n        });\n        applyResult.catch(applyCallback);\n      }\n    };\n\n    var result = module.hot.check(false, cb); // webpack 2 promise\n\n    if (result && result.then) {\n      result.then(function (updatedModules) {\n        cb(null, updatedModules);\n      });\n      result.catch(cb);\n    }\n  }\n\n  function logUpdates(updatedModules, renewedModules) {\n    var unacceptedModules = updatedModules.filter(function (moduleId) {\n      return renewedModules && renewedModules.indexOf(moduleId) < 0;\n    });\n\n    if (unacceptedModules.length > 0) {\n      if (options.warn) {\n        console.warn(\"[HMR] The following modules couldn't be hot updated: \" + '(Full reload needed)\\n' + 'This is usually because the modules which have changed ' + '(and their parents) do not know how to hot reload themselves. ' + 'See ' + hmrDocsUrl + ' for more details.');\n        unacceptedModules.forEach(function (moduleId) {\n          console.warn('[HMR]  - ' + (moduleMap[moduleId] || moduleId));\n        });\n      }\n\n      performReload();\n      return;\n    }\n\n    if (options.log) {\n      if (!renewedModules || renewedModules.length === 0) {\n        console.log('[HMR] Nothing hot updated.');\n      } else {\n        console.log('[HMR] Updated modules:');\n        renewedModules.forEach(function (moduleId) {\n          console.log('[HMR]  - ' + (moduleMap[moduleId] || moduleId));\n        });\n      }\n\n      if (upToDate()) {\n        console.log('[HMR] App is up to date.');\n      }\n    }\n  }\n\n  function handleError(err) {\n    if (module.hot.status() in failureStatuses) {\n      if (options.warn) {\n        console.warn('[HMR] Cannot check for update (Full reload needed)');\n        console.warn('[HMR] ' + (err.stack || err.message));\n      }\n\n      performReload();\n      return;\n    }\n\n    if (options.warn) {\n      console.warn('[HMR] Update check failed: ' + (err.stack || err.message));\n    }\n  }\n\n  function performReload() {\n    if (reload) {\n      if (options.warn) console.warn('[HMR] Reloading page');\n      window.location.reload();\n    }\n  }\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLyh3ZWJwYWNrKS1ob3QtbWlkZGxld2FyZS9wcm9jZXNzLXVwZGF0ZS5qcz9lMTM1Il0sIm5hbWVzIjpbImhtckRvY3NVcmwiLCJsYXN0SGFzaCIsImZhaWx1cmVTdGF0dXNlcyIsImFib3J0IiwiZmFpbCIsImFwcGx5T3B0aW9ucyIsImlnbm9yZVVuYWNjZXB0ZWQiLCJpZ25vcmVEZWNsaW5lZCIsImlnbm9yZUVycm9yZWQiLCJvblVuYWNjZXB0ZWQiLCJkYXRhIiwiY29uc29sZSIsIndhcm4iLCJjaGFpbiIsImpvaW4iLCJvbkRlY2xpbmVkIiwib25FcnJvcmVkIiwiZXJyb3IiLCJtb2R1bGVJZCIsInR5cGUiLCJ1cFRvRGF0ZSIsImhhc2giLCJfX3dlYnBhY2tfaGFzaF9fIiwibW9kdWxlIiwiZXhwb3J0cyIsIm1vZHVsZU1hcCIsIm9wdGlvbnMiLCJyZWxvYWQiLCJob3QiLCJzdGF0dXMiLCJsb2ciLCJjaGVjayIsImNiIiwiZXJyIiwidXBkYXRlZE1vZHVsZXMiLCJoYW5kbGVFcnJvciIsInBlcmZvcm1SZWxvYWQiLCJhcHBseUNhbGxiYWNrIiwiYXBwbHlFcnIiLCJyZW5ld2VkTW9kdWxlcyIsImxvZ1VwZGF0ZXMiLCJhcHBseVJlc3VsdCIsImFwcGx5IiwidGhlbiIsIm91dGRhdGVkTW9kdWxlcyIsImNhdGNoIiwicmVzdWx0IiwidW5hY2NlcHRlZE1vZHVsZXMiLCJmaWx0ZXIiLCJpbmRleE9mIiwibGVuZ3RoIiwiZm9yRWFjaCIsInN0YWNrIiwibWVzc2FnZSIsIndpbmRvdyIsImxvY2F0aW9uIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBRUEsSUFBSSxLQUFKLEVBQWlCLEVBRWhCOztBQUVELElBQUlBLFVBQVUsR0FBRyx5REFBakIsQyxDQUE0RTs7QUFFNUUsSUFBSUMsUUFBSjtBQUNBLElBQUlDLGVBQWUsR0FBRztBQUFFQyxPQUFLLEVBQUUsQ0FBVDtB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bkIsZUFBTyxDQUFDbUIsR0FBUixDQUFZLHdCQUFaO0FBQ0FTLHNCQUFjLENBQUNZLE9BQWYsQ0FBdUIsVUFBU2pDLFFBQVQsRUFBbUI7QUFDeENQLGlCQUFPLENBQUNtQixHQUFSLENBQVksZUFBZUwsU0FBUyxDQUFDUCxRQUFELENBQVQsSUFBdUJBLFFBQXRDLENBQVo7QUFDRCxTQUZEO0FBR0Q7O0FBRUQsVUFBSUUsUUFBUSxFQUFaLEVBQWdCO0FBQ2RULGVBQU8sQ0FBQ21CLEdBQVIsQ0FBWSwwQkFBWjtBQUNEO0FBQ0Y7QUFDRjs7QUFFRCxXQUFTSyxXQUFULENBQXFCRixHQUFyQixFQUEwQjtBQUN4QixRQUFJVixNQUFNLENBQUNLLEdBQVAsQ0FBV0MsTUFBWCxNQUF1QjNCLGVBQTNCLEVBQTRDO0FBQzFDLFVBQUl3QixPQUFPLENBQUNkLElBQVosRUFBa0I7QUFDaEJELGVBQU8sQ0FBQ0MsSUFBUixDQUFhLG9EQUFiO0FBQ0FELGVBQU8sQ0FBQ0MsSUFBUixDQUFhLFlBQVlxQixHQUFHLENBQUNtQixLQUFKLElBQWFuQixHQUFHLENBQUNvQixPQUE3QixDQUFiO0FBQ0Q7O0FBQ0RqQixtQkFBYTtBQUNiO0FBQ0Q7O0FBQ0QsUUFBSVYsT0FBTyxDQUFDZCxJQUFaLEVBQWtCO0FBQ2hCRCxhQUFPLENBQUNDLElBQVIsQ0FBYSxpQ0FBaUNxQixHQUFHLENBQUNtQixLQUFKLElBQWFuQixHQUFHLENBQUNvQixPQUFsRCxDQUFiO0FBQ0Q7QUFDRjs7QUFFRCxXQUFTakIsYUFBVCxHQUF5QjtBQUN2QixRQUFJVCxNQUFKLEVBQVk7QUFDVixVQUFJRCxPQUFPLENBQUNkLElBQVosRUFBa0JELE9BQU8sQ0FBQ0MsSUFBUixDQUFhLHNCQUFiO0FBQ2xCMEMsWUFBTSxDQUFDQyxRQUFQLENBQWdCNUIsTUFBaEI7QUFDRDtBQUNGO0FBQ0YsQ0E3R0QiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvd2VicGFjay1ob3QtbWlkZGxld2FyZS9wcm9jZXNzLXVwZGF0ZS5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQmFzZWQgaGVhdmlseSBvbiBodHRwczovL2dpdGh1Yi5jb20vd2VicGFjay93ZWJwYWNrL2Jsb2IvXG4gKiAgYzBhZmRmOWM2YWJjMWRkNzA3MDdjNTk0ZTQ3MzgwMmE1NjZmN2I2ZS9ob3Qvb25seS1kZXYtc2VydmVyLmpzXG4gKiBPcmlnaW5hbCBjb3B5cmlnaHQgVG9iaWFzIEtvcHBlcnMgQHNva3JhIChNSVQgbGljZW5zZSlcbiAqL1xuXG4vKiBnbG9iYWwgd2luZG93IF9fd2VicGFja19oYXNoX18gKi9cblxuaWYgKCFtb2R1bGUuaG90KSB7XG4gIHRocm93IG5ldyBFcnJvcignW0hNUl0gSG90IE1vZHVsZSBSZXBsYWNlbWVudCBpcyBkaXNhYmxlZC4nKTtcbn1cblxudmFyIGhtckRvY3NVcmwgPSAnaHR0cHM6Ly93ZWJwYWNrLmpzLm9yZy9jb25jZXB0cy9ob3QtbW9kdWxlLXJlcGxhY2VtZW50Lyc7IC8vIGVzbGludC1kaXNhYmxlLWxpbmUgbWF4LWxlblxuXG52YXIgbGFzdEhhc2g7XG52YXIgZmFpbHVyZVN0YXR1c2VzID0geyBhYm9ydDogMSwgZmFpbDogMSB9O1xudmFyIGFwcGx5T3B0aW9ucyA9IHtcbiAgaWdub3JlVW5hY2NlcHRlZDogdHJ1ZSxcbiAgaWdub3JlRGVjbGluZWQ6IHRydWUsXG4gIGlnbm9yZUVycm9yZWQ6IHRydWUsXG4gIG9uVW5hY2NlcHRlZDogZnVuY3Rpb24oZGF0YSkge1xuICAgIGNvbnNvbGUud2FybihcbiAgICAgICdJZ25vcmVkIGFuIHVwZGF0ZSB0byB1bmFjY2VwdGVkIG1vZHVsZSAnICsgZGF0YS5jaGFpbi5qb2luKCcgLT4gJylcbiAgICApO1xuICB9LFxuICBvbkRlY2xpbmVkOiBmdW5jdGlvbihkYXRhKSB7XG4gICAgY29uc29sZS53YXJuKFxuICAgICAgJ0lnbm9yZWQgYW4gdXBkYXRlIHRvIGRlY2xpbmVkIG1vZHVsZSAnICsgZGF0YS5jaGFpbi5qb2luKCcgLT4gJylcbiAgICApO1xuICB9LFxuICBvbkVycm9yZWQ6IGZ1bmN0aW9uKGRhdGEpIHtcbiAgICBjb25zb2xlLmVycm9yKGRhdGEuZXJyb3IpO1xuICAgIGNvbnNvbGUud2FybihcbiAgICAgICdJZ25vcmVkIGFuIGVycm9yIHdoaWxlIHVwZGF0aW5nIG1vZHVsZSAnICtcbiAgICAgICAgZGF0YS5tb2R1bGVJZCArXG4gICAgICAgICcgKCcgK1xuICAgICAgICBkYXRhLnR5cGUgK1xuICAgICAgICAnKSdcbiAgICApO1xuICB9LFxufTtcblxuZnVuY3Rpb24gdXBUb0RhdGUoaGFzaCkge1xuICBpZiAoaGFzaCkgbGFzdEhhc2ggPSBoYXNoO1xuICByZXR1cm4gbGFzdEhhc2ggPT0gX193ZWJwYWNrX2hhc2hfXztcbn1cblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbihoYXNoLCBtb2R1bGVNYXAsIG9wdGlvbnMpIHtcbiAgdmFyIHJlbG9hZCA9IG9wdGlvbnMucmVsb2FkO1xuICBpZiAoIXVwVG9EYXRlKGhhc2gpICYmIG1vZHVsZS5ob3Quc3RhdHVzKCkgPT0gJ2lkbGUnKSB7XG4gICAgaWYgKG9wdGlvbnMubG9nKSBjb25zb2xlLmxvZygnW0hNUl0gQ2hlY2tpbmcgZm9yIHVwZGF0ZXMgb24gdGhlIHNlcnZlci4uLicpO1xuICAgIGNoZWNrKCk7XG4gIH1cblxuICBmdW5jdGlvbiBjaGVjaygpIHtcbiAgICB2YXIgY2IgPSBmdW5jdGlvbihlcnIsIHVwZGF0ZWRNb2R1bGVzKSB7XG4gICAgICBpZiAoZXJyKSByZXR1cm4gaGFuZGxlRXJyb3IoZXJyKTtcblxuICAgICAgaWYgKCF1cGRhdGVkTW9kdWxlcykge1xuICAgICAgICBpZiAob3B0aW9ucy53YXJuKSB7XG4gICAgICAgICAgY29uc29sZS53YXJuKCdbSE1SXSBDYW5ub3QgZmluZCB1cGRhdGUgKEZ1bGwgcmVsb2FkIG5lZWRlZCknKTtcbiAgICAgICAgICBjb25zb2xlLndhcm4oJ1tITVJdIChQcm9iYWJseSBiZWNhdXNlIG9mIHJlc3RhcnRpbmcgdGhlIHNlcnZlciknKTtcbiAgICAgICAgfVxuICAgICAgICBwZXJmb3JtUmVsb2FkKCk7XG4gICAgICAgIHJldHVybiBudWxsO1xuICAgICAgfVxuXG4gICAgICB2YXIgYXBwbHlDYWxsYmFjayA9IGZ1bmN0aW9uKGFwcGx5RXJyLCByZW5ld2VkTW9kdWxlcykge1xuICAgICAgICBpZiAoYXBwbHlFcnIpIHJldHVybiBoYW5kbGVFcnJvcihhcHBseUVycik7XG5cbiAgICAgICAgaWYgKCF1cFRvRGF0ZSgpKSBjaGVjaygpO1xuXG4gICAgICAgIGxvZ1VwZGF0ZXModXBkYXRlZE1vZHVsZXMsIHJlbmV3ZWRNb2R1bGVzKTtcbiAgICAgIH07XG5cbiAgICAgIHZhciBhcHBseVJlc3VsdCA9IG1vZHVsZS5ob3QuYXBwbHkoYXBwbHlPcHRpb25zLCBhcHBseUNhbGxiYWNrKTtcbiAgICAgIC8vIHdlYnBhY2sgMiBwcm9taXNlXG4gICAgICBpZiAoYXBwbHlSZXN1bHQgJiYgYXBwbHlSZXN1bHQudGhlbikge1xuICAgICAgICAvLyBIb3RNb2R1bGVSZXBsYWNlbWVudC5ydW50aW1lLmpzIHJlZmVycyB0byB0aGUgcmVzdWx0IGFzIGBvdXRkYXRlZE1vZHVsZXNgXG4gICAgICAgIGFwcGx5UmVzdWx0LnRoZW4oZnVuY3Rpb24ob3V0ZGF0ZWRNb2R1bGVzKSB7XG4gICAgICAgICAgYXBwbHlDYWxsYmFjayhudWxsLCBvdXRkYXRlZE1vZHVsZXMpO1xuICAgICAgICB9KTtcbiAgICAgICAgYXBwbHlSZXN1bHQuY2F0Y2goYXBwbHlDYWxsYmFjayk7XG4gICAgICB9XG4gICAgfTtcblxuICAgIHZhciByZXN1bHQgPSBtb2R1bGUuaG90LmNoZWNrKGZhbHNlLCBjYik7XG4gICAgLy8gd2VicGFjayAyIHByb21pc2VcbiAgICBpZiAocmVzdWx0ICYmIHJlc3VsdC50aGVuKSB7XG4gICAgICByZXN1bHQudGhlbihmdW5jdGlvbih1cGRhdGVkTW9kdWxlcykge1xuICAgICAgICBjYihudWxsLCB1cGRhdGVkTW9kdWxlcyk7XG4gICAgICB9KTtcbiAgICAgIHJlc3VsdC5jYXRjaChjYik7XG4gICAgfVxuICB9XG5cbiAgZnVuY3Rpb24gbG9nVXBkYXRlcyh1cGRhdGVkTW9kdWxlcywgcmVuZXdlZE1vZHVsZXMpIHtcbiAgICB2YXIgdW5hY2NlcHRlZE1vZHVsZXMgPSB1cGRhdGVkTW9kdWxlcy5maWx0ZXIoZnVuY3Rpb24obW9kdWxlSWQpIHtcbiAgICAgIHJldHVybiByZW5ld2VkTW9kdWxlcyAmJiByZW5ld2VkTW9kdWxlcy5pbmRleE9mKG1vZHVsZUlkKSA8IDA7XG4gICAgfSk7XG5cbiAgICBpZiAodW5hY2NlcHRlZE1vZHVsZXMubGVuZ3RoID4gMCkge1xuICAgICAgaWYgKG9wdGlvbnMud2Fybikge1xuICAgICAgICBjb25zb2xlLndhcm4oXG4gICAgICAgICAgXCJbSE1SXSBUaGUgZm9sbG93aW5nIG1vZHVsZXMgY291bGRuJ3QgYmUgaG90IHVwZGF0ZWQ6IFwiICtcbiAgICAgICAgICAgICcoRnVsbCByZWxvYWQgbmVlZGVkKVxcbicgK1xuICAgICAgICAgICAgJ1RoaXMgaXMgdXN1YWxseSBiZWNhdXNlIHRoZSBtb2R1bGVzIHdoaWNoIGhhdmUgY2hhbmdlZCAnICtcbiAgICAgICAgICAgICcoYW5kIHRoZWlyIHBhcmVudHMpIGRvIG5vdCBrbm93IGhvdyB0byBob3QgcmVsb2FkIHRoZW1zZWx2ZXMuICcgK1xuICAgICAgICAgICAgJ1NlZSAnICtcbiAgICAgICAgICAgIGhtckRvY3NVcmwgK1xuICAgICAgICAgICAgJyBmb3IgbW9yZSBkZXRhaWxzLidcbiAgICAgICAgKTtcbiAgICAgICAgdW5hY2NlcHRlZE1vZHVsZXMuZm9yRWFjaChmdW5jdGlvbihtb2R1bGVJZCkge1xuICAgICAgICAgIGNvbnNvbGUud2FybignW0hNUl0gIC0gJyArIChtb2R1bGVNYXBbbW9kdWxlSWRdIHx8IG1vZHVsZUlkKSk7XG4gICAgICAgIH0pO1xuICAgICAgfVxuICAgICAgcGVyZm9ybVJlbG9hZCgpO1xuICAgICAgcmV0dXJuO1xuICAgIH1cblxuICAgIGlmIChvcHRpb25zLmxvZykge1xuICAgICAgaWYgKCFyZW5ld2VkTW9kdWxlcyB8fCByZW5ld2VkTW9kdWxlcy5sZW5ndGggPT09IDApIHtcbiAgICAgICAgY29uc29sZS5sb2coJ1tITVJdIE5vdGhpbmcgaG90IHVwZGF0ZWQuJyk7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICBjb25zb2xlLmxvZygnW0hNUl0gVXBkYXRlZCBtb2R1bGVzOicpO1xuICAgICAgICByZW5ld2VkTW9kdWxlcy5mb3JFYWNoKGZ1bmN0aW9uKG1vZHVsZUlkKSB7XG4gICAgICAgICAgY29uc29sZS5sb2coJ1tITVJdICAtICcgKyAobW9kdWxlTWFwW21vZHVsZUlkXSB8fCBtb2R1bGVJZCkpO1xuICAgICAgICB9KTtcbiAgICAgIH1cblxuICAgICAgaWYgKHVwVG9EYXRlKCkpIHtcbiAgICAgICAgY29uc29sZS5sb2coJ1tITVJdIEFwcCBpcyB1cCB0byBkYXRlLicpO1xuICAgICAgfVxuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZUVycm9yKGVycikge1xuICAgIGlmIChtb2R1bGUuaG90LnN0YXR1cygpIGluIGZhaWx1cmVTdGF0dXNlcykge1xuICAgICAgaWYgKG9wdGlvbnMud2Fybikge1xuICAgICAgICBjb25zb2xlLndhcm4oJ1tITVJdIENhbm5vdCBjaGVjayBmb3IgdXBkYXRlIChGdWxsIHJlbG9hZCBuZWVkZWQpJyk7XG4gICAgICAgIGNvbnNvbGUud2FybignW0hNUl0gJyArIChlcnIuc3RhY2sgfHwgZXJyLm1lc3NhZ2UpKTtcbiAgICAgIH1cbiAgICAgIHBlcmZvcm1SZWxvYWQoKTtcbiAgICAgIHJldHVybjtcbiAgICB9XG4gICAgaWYgKG9wdGlvbnMud2Fybikge1xuICAgICAgY29uc29sZS53YXJuKCdbSE1SXSBVcGRhdGUgY2hlY2sgZmFpbGVkOiAnICsgKGVyci5zdGFjayB8fCBlcnIubWVzc2FnZSkpO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHBlcmZvcm1SZWxvYWQoKSB7XG4gICAgaWYgKHJlbG9hZCkge1xuICAgICAgaWYgKG9wdGlvbnMud2FybikgY29uc29sZS53YXJuKCdbSE1SXSBSZWxvYWRpbmcgcGFnZScpO1xuICAgICAgd2luZG93LmxvY2F0aW9uLnJlbG9hZCgpO1xuICAgIH1cbiAgfVxufTtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/webpack-hot-middleware/process-update.js\n");
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = function (module) {\n  if (!module.webpackPolyfill) {\n    module.deprecate = function () {};\n\n    module.paths = []; // module.parent = undefined by default\n\n    if (!module.children) module.children = [];\n    Object.defineProperty(module, \"loaded\", {\n      enumerable: true,\n      get: function () {\n        return module.l;\n      }\n    });\n    Object.defineProperty(module, \"id\", {\n      enumerable: true,\n      get: function () {\n        return module.i;\n      }\n    });\n    module.webpackPolyfill = 1;\n  }\n\n  return module;\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLyh3ZWJwYWNrKS9idWlsZGluL21vZHVsZS5qcz9jZWQyIl0sIm5hbWVzIjpbIm1vZHVsZSIsImV4cG9ydHMiLCJ3ZWJwYWNrUG9seWZpbGwiLCJkZXByZWNhdGUiLCJwYXRocyIsImNoaWxkcmVuIiwiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJlbnVtZXJhYmxlIiwiZ2V0IiwibCIsImkiXSwibWFwcGluZ3MiOiJBQUFBQSxNQUFNLENBQUNDLE9BQVAsR0FBaUIsVUFBU0QsTUFBVCxFQUFpQjtBQUNqQyxNQUFJLENBQUNBLE1BQU0sQ0FBQ0UsZUFBWixFQUE2QjtBQUM1QkYsVUFBTSxDQUFDRyxTQUFQLEdBQW1CLFlBQVcsQ0FBRSxDQUFoQzs7QUFDQUgsVUFBTSxDQUFDSSxLQUFQLEdBQWUsRUFBZixDQUY0QixDQUc1Qjs7QUFDQSxRQUFJLENBQUNKLE1BQU0sQ0FBQ0ssUUFBWixFQUFzQkwsTUFBTSxDQUFDSyxRQUFQLEdBQWtCLEVBQWxCO0FBQ3RCQyxVQUFNLENBQUNDLGNBQVAsQ0FBc0JQLE1BQXRCLEVBQThCLFFBQTlCLEVBQXdDO0FBQ3ZDUSxnQkFBVSxFQUFFLElBRDJCO0FBRXZDQyxTQUFHLEVBQUUsWUFBVztBQUNmLGVBQU9ULE1BQU0sQ0FBQ1UsQ0FBZDtBQUNBO0FBSnNDLEtBQXhDO0FBTUFKLFVBQU0sQ0FBQ0MsY0FBUCxDQUFzQlAsTUFBdEIsRUFBOEIsSUFBOUIsRUFBb0M7QUFDbkNRLGdCQUFVLEVBQUUsSUFEdUI7QUFFbkNDLFNBQUcsRUFBRSxZQUFXO0FBQ2YsZUFBT1QsTUFBTSxDQUFDVyxDQUFkO0FBQ0E7QUFKa0MsS0FBcEM7QUFNQVgsVUFBTSxDQUFDRSxlQUFQLEdBQXlCLENBQXpCO0FBQ0E7O0FBQ0QsU0FBT0YsTUFBUDtBQUNBLENBckJEIiwiZmlsZSI6Ii4vbm9kZV9tb2R1bGVzL3dlYnBhY2svYnVpbGRpbi9tb2R1bGUuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJtb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uKG1vZHVsZSkge1xuXHRpZiAoIW1vZHVsZS53ZWJwYWNrUG9seWZpbGwpIHtcblx0XHRtb2R1bGUuZGVwcmVjYXRlID0gZnVuY3Rpb24oKSB7fTtcblx0XHRtb2R1bGUucGF0aHMgPSBbXTtcblx0XHQvLyBtb2R1bGUucGFyZW50ID0gdW5kZWZpbmVkIGJ5IGRlZmF1bHRcblx0XHRpZiAoIW1vZHVsZS5jaGlsZHJlbikgbW9kdWxlLmNoaWxkcmVuID0gW107XG5cdFx0T2JqZWN0LmRlZmluZVByb3BlcnR5KG1vZHVsZSwgXCJsb2FkZWRcIiwge1xuXHRcdFx0ZW51bWVyYWJsZTogdHJ1ZSxcblx0XHRcdGdldDogZnVuY3Rpb24oKSB7XG5cdFx0XHRcdHJldHVybiBtb2R1bGUubDtcblx0XHRcdH1cblx0XHR9KTtcblx0XHRPYmplY3QuZGVmaW5lUHJvcGVydHkobW9kdWxlLCBcImlkXCIsIHtcblx0XHRcdGVudW1lcmFibGU6IHRydWUsXG5cdFx0XHRnZXQ6IGZ1bmN0aW9uKCkge1xuXHRcdFx0XHRyZXR1cm4gbW9kdWxlLmk7XG5cdFx0XHR9XG5cdFx0fSk7XG5cdFx0bW9kdWxlLndlYnBhY2tQb2x5ZmlsbCA9IDE7XG5cdH1cblx0cmV0dXJuIG1vZHVsZTtcbn07XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/webpack/buildin/module.js\n");
+
+/***/ }),
+
+/***/ "./src/animatedNumbersBuilder.js":
+/*!***************************************!*\
+  !*** ./src/animatedNumbersBuilder.js ***!
+  \***************************************/
+/*! exports provided: animatedNumbersBuilder */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"animatedNumbersBuilder\", function() { return animatedNumbersBuilder; });\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./src/helpers.js\");\n\nvar animatedNumbersBuilder = function animatedNumbersBuilder() {\n  var animationProps = function animationProps(aninum) {\n    var numelem = aninum.querySelector(\".animated-number_number_nr\");\n    var regex, maxnum, negnum, delay, step;\n\n    if (numelem) {\n      numelem.innerHTML = numelem.innerHTML.toString().trim(); // zero-basing\n\n      var totalNumLength = numelem.innerHTML.length - 1; // save position of comma, if there is one\n\n      var hasComma = numelem.innerHTML.indexOf(',') > 0;\n      var commaPos = hasComma ? numelem.innerHTML.indexOf(',') : -1;\n      var decimalPrecision = commaPos > -1 ? totalNumLength - commaPos : 0;\n      regex = /[.,\\s]/g;\n      maxnum = numelem.innerHTML.replace(regex, \"\");\n      maxnum = parseInt(maxnum, 10);\n      negnum = 1;\n      delay = 20;\n      step = 1;\n\n      if (maxnum !== 0) {\n        if (maxnum < 0) {\n          maxnum = maxnum * -1;\n          negnum = -1;\n        }\n\n        if (1000 / maxnum < 20) {\n          delay = 20;\n          step = parseInt(20 / (1000 / maxnum), 10);\n        } else {\n          delay = 1000 / maxnum;\n          step = 1;\n        }\n\n        return {\n          step: step,\n          delay: delay,\n          maxnum: maxnum,\n          negnum: negnum,\n          decimalPrecision: decimalPrecision\n        };\n      }\n    } else {\n      console.error(_helpers__WEBPACK_IMPORTED_MODULE_0__[\"notFoundError\"]);\n    }\n  }; // animation logic\n\n\n  var animateNumber = function animateNumber(id) {\n    var numelem = document.getElementById(id).querySelector(\".animated-number_number_nr\");\n\n    if (!numelem) {\n      console.error(_helpers__WEBPACK_IMPORTED_MODULE_0__[\"notFoundError\"]);\n      return false;\n    }\n\n    app.aninums[id].interval = window.setInterval(function () {\n      // while number is animating\n      if (app.aninums[id].actnum < app.aninums[id].maxnum) {\n        app.aninums[id].actnum = app.aninums[id].actnum + app.aninums[id].step;\n        numelem.innerHTML = app.aninums[id].actnum * app.aninums[id].negnum;\n        numelem.innerHTML = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__[\"insertAt\"])(numelem.innerHTML, ',', app.aninums[id].decimalPrecision);\n      } // when done animating the number\n      else {\n          numelem.innerHTML = app.aninums[id].maxnum * app.aninums[id].negnum;\n          numelem.innerHTML = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__[\"insertAt\"])(numelem.innerHTML, ',', app.aninums[id].decimalPrecision);\n          window.clearInterval(app.aninums[id].interval);\n          app.aninums[id].isInViewport = true;\n        }\n    }, app.aninums[id].delay);\n  }; // DOM logic\n\n\n  var arr = document.querySelectorAll(\".animated-number\");\n  arr.forEach(function (aninum, index) {\n    // assign an id to aninum if it has none\n    var numelem = aninum.querySelector(\".animated-number_number_nr\");\n\n    if (numelem) {\n      if (aninum.id === \"\" || undefined) {\n        aninum.id = \"aninum_\" + index;\n      } // populate aninum with animation properties\n\n\n      app.aninums[aninum.id] = {\n        interval: null,\n        delay: animationProps(aninum).delay,\n        step: animationProps(aninum).step,\n        actnum: 0,\n        maxnum: animationProps(aninum).maxnum,\n        negnum: animationProps(aninum).negnum,\n        decimalPrecision: animationProps(aninum).decimalPrecision,\n        isInViewport: false\n      }; // set animated number to 0 and count up\n\n      numelem.innerHTML = \"0\"; // perform animation if the aninum is within\n      // the viewport on initial page load\n\n      if (app.elementIsInViewport(aninum)) {\n        animateNumber(aninum.id);\n      } // custom event definition\n\n\n      aninum.addEventListener(\"inviewport\", function () {\n        animateNumber(aninum.id);\n      });\n    } else {\n      console.error(_helpers__WEBPACK_IMPORTED_MODULE_0__[\"notFoundError\"]);\n    }\n  });\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vc3JjL2FuaW1hdGVkTnVtYmVyc0J1aWxkZXIuanM/NDdjZiJdLCJuYW1lcyI6WyJhbmltYXRlZE51bWJlcnNCdWlsZGVyIiwiYW5pbWF0aW9uUHJvcHMiLCJhbmludW0iLCJudW1lbGVtIiwicXVlcnlTZWxlY3RvciIsInJlZ2V4IiwibWF4bnVtIiwibmVnbnVtIiwiZGVsYXkiLCJzdGVwIiwiaW5uZXJIVE1MIiwidG9TdHJpbmciLCJ0cmltIiwidG90YWxOdW1MZW5ndGgiLCJsZW5ndGgiLCJoYXNDb21tYSIsImluZGV4T2YiLCJjb21tYVBvcyIsImRlY2ltYWxQcmVjaXNpb24iLCJyZXBsYWNlIiwicGFyc2VJbnQiLCJjb25zb2xlIiwiZXJyb3IiLCJub3RGb3VuZEVycm9yIiwiYW5pbWF0ZU51bWJlciIsImlkIiwiZG9jdW1lbnQiLCJnZXRFbGVtZW50QnlJZCIsImFwcCIsImFuaW51bXMiLCJpbnRlcnZhbCIsIndpbmRvdyIsInNldEludGVydmFsIiwiYWN0bnVtIiwiaW5zZXJ0QXQiLCJjbGVhckludGVydmFsIiwiaXNJblZpZXdwb3J0IiwiYXJyIiwicXVlcnlTZWxlY3RvckFsbCIsImZvckVhY2giLCJpbmRleCIsInVuZGVmaW5lZCIsImVsZW1lbnRJc0luVmlld3BvcnQiLCJhZGRFdmVudExpc3RlbmVyIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUVPLElBQU1BLHNCQUFzQixHQUFHLFNBQXpCQSxzQkFBeUIsR0FBTTtBQUUxQyxNQUFNQyxjQUFjLEdBQUcsU0FBU0EsY0FBVCxDQUF3QkMsTUFBeEIsRUFBZ0M7QUFDckQsUUFBSUMsT0FBTyxHQUFHRCxNQUFNLENBQUNFLGFBQVAsQ0FBcUIsNEJBQXJCLENBQWQ7QUFDQSxRQUFJQyxLQUFKLEVBQVdDLE1BQVgsRUFBbUJDLE1BQW5CLEVBQTJCQyxLQUEzQixFQUFrQ0MsSUFBbEM7O0FBRUEsUUFBSU4sT0FBSixFQUFhO0FB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cnQgeyBub3RGb3VuZEVycm9yLCBpbnNlcnRBdH0gZnJvbSBcIi4vaGVscGVyc1wiO1xuXG5leHBvcnQgY29uc3QgYW5pbWF0ZWROdW1iZXJzQnVpbGRlciA9ICgpID0+IHtcblxuICBjb25zdCBhbmltYXRpb25Qcm9wcyA9IGZ1bmN0aW9uIGFuaW1hdGlvblByb3BzKGFuaW51bSkge1xuICAgIGxldCBudW1lbGVtID0gYW5pbnVtLnF1ZXJ5U2VsZWN0b3IoXCIuYW5pbWF0ZWQtbnVtYmVyX251bWJlcl9uclwiKTtcbiAgICBsZXQgcmVnZXgsIG1heG51bSwgbmVnbnVtLCBkZWxheSwgc3RlcDtcblxuICAgIGlmIChudW1lbGVtKSB7XG5cbiAgICAgIG51bWVsZW0uaW5uZXJIVE1MID0gbnVtZWxlbS5pbm5lckhUTUwudG9TdHJpbmcoKS50cmltKCk7XG4gICAgICAvLyB6ZXJvLWJhc2luZ1xuICAgICAgY29uc3QgdG90YWxOdW1MZW5ndGggPSBudW1lbGVtLmlubmVySFRNTC5sZW5ndGggLTE7XG4gICAgICAvLyBzYXZlIHBvc2l0aW9uIG9mIGNvbW1hLCBpZiB0aGVyZSBpcyBvbmVcbiAgICAgIGNvbnN0IGhhc0NvbW1hID0gbnVtZWxlbS5pbm5lckhUTUwuaW5kZXhPZignLCcpID4gMDtcbiAgICAgIGNvbnN0IGNvbW1hUG9zID0gaGFzQ29tbWEgPyBudW1lbGVtLmlubmVySFRNTC5pbmRleE9mKCcsJykgOiAtMTtcbiAgICAgIGNvbnN0IGRlY2ltYWxQcmVjaXNpb24gPSBjb21tYVBvcyA+IC0xID8gdG90YWxOdW1MZW5ndGggLSBjb21tYVBvcyA6IDA7XG5cbiAgICAgIHJlZ2V4ID0gL1suLFxcc10vZztcbiAgICAgIG1heG51bSA9IG51bWVsZW0uaW5uZXJIVE1MLnJlcGxhY2UocmVnZXgsIFwiXCIpO1xuXG4gICAgICBtYXhudW0gPSBwYXJzZUludChtYXhudW0sIDEwKTtcbiAgICAgIG5lZ251bSA9IDE7XG4gICAgICBkZWxheSA9IDIwO1xuICAgICAgc3RlcCA9IDE7XG5cbiAgICAgIGlmIChtYXhudW0gIT09IDApIHtcbiAgICAgICAgaWYgKG1heG51bSA8IDApIHtcbiAgICAgICAgICBtYXhudW0gPSBtYXhudW0gKiAtMTtcbiAgICAgICAgICBuZWdudW0gPSAtMTtcbiAgICAgICAgfVxuXG4gICAgICAgIGlmICgxMDAwIC8gbWF4bnVtIDwgMjApIHtcbiAgICAgICAgICBkZWxheSA9IDIwO1xuICAgICAgICAgIHN0ZXAgPSBwYXJzZUludCgyMCAvICgxMDAwIC8gbWF4bnVtKSwgMTApO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgIGRlbGF5ID0gMTAwMCAvIG1heG51bTtcbiAgICAgICAgICBzdGVwID0gMTtcbiAgICAgICAgfVxuXG4gICAgICAgIHJldHVybiB7XG4gICAgICAgICAgc3RlcDogc3RlcCxcbiAgICAgICAgICBkZWxheTogZGVsYXksXG4gICAgICAgICAgbWF4bnVtOiBtYXhudW0sXG4gICAgICAgICAgbmVnbnVtOiBuZWdudW0sXG4gICAgICAgICAgZGVjaW1hbFByZWNpc2lvbjogZGVjaW1hbFByZWNpc2lvblxuICAgICAgICB9O1xuICAgICAgfVxuICAgIH0gZWxzZSB7XG4gICAgICBjb25zb2xlLmVycm9yKG5vdEZvdW5kRXJyb3IpO1xuICAgIH1cbiAgfTtcblxuICAvLyBhbmltYXRpb24gbG9naWNcbiAgY29uc3QgYW5pbWF0ZU51bWJlciA9IGZ1bmN0aW9uIGFuaW1hdGVOdW1iZXIoaWQpIHtcbiAgICBsZXQgbnVtZWxlbSA9IGRvY3VtZW50XG4gICAgICAuZ2V0RWxlbWVudEJ5SWQoaWQpXG4gICAgICAucXVlcnlTZWxlY3RvcihcIi5hbmltYXRlZC1udW1iZXJfbnVtYmVyX25yXCIpO1xuXG4gICAgaWYgKCFudW1lbGVtKSB7XG4gICAgICBjb25zb2xlLmVycm9yKG5vdEZvdW5kRXJyb3IpO1xuICAgICAgcmV0dXJuIGZhbHNlO1xuICAgIH1cbiAgICBhcHAuYW5pbnVtc1tpZF0uaW50ZXJ2YWwgPSB3aW5kb3cuc2V0SW50ZXJ2YWwoZnVuY3Rpb24gKCkge1xuXG4gICAgICAvLyB3aGlsZSBudW1iZXIgaXMgYW5pbWF0aW5nXG4gICAgICBpZiAoYXBwLmFuaW51bXNbaWRdLmFjdG51bSA8IGFwcC5hbmludW1zW2lkXS5tYXhudW0pIHtcbiAgICAgICAgYXBwLmFuaW51bXNbaWRdLmFjdG51bSA9IGFwcC5hbmludW1zW2lkXS5hY3RudW0gKyBhcHAuYW5pbnVtc1tpZF0uc3RlcDtcbiAgICAgICAgbnVtZWxlbS5pbm5lckhUTUwgPSAoYXBwLmFuaW51bXNbaWRdLmFjdG51bSAqIGFwcC5hbmludW1zW2lkXS5uZWdudW0pO1xuICAgICAgICBudW1lbGVtLmlubmVySFRNTCA9IGluc2VydEF0KG51bWVsZW0uaW5uZXJIVE1MLCAnLCcsIGFwcC5hbmludW1zW2lkXS5kZWNpbWFsUHJlY2lzaW9uKTtcbiAgICAgIH1cbiAgICAgIC8vIHdoZW4gZG9uZSBhbmltYXRpbmcgdGhlIG51bWJlclxuICAgICAgZWxzZSB7XG4gICAgICAgIG51bWVsZW0uaW5uZXJIVE1MID0gKGFwcC5hbmludW1zW2lkXS5tYXhudW0gKiBhcHAuYW5pbnVtc1tpZF0ubmVnbnVtKTtcbiAgICAgICAgbnVtZWxlbS5pbm5lckhUTUwgPSBpbnNlcnRBdChudW1lbGVtLmlubmVySFRNTCwgJywnLCBhcHAuYW5pbnVtc1tpZF0uZGVjaW1hbFByZWNpc2lvbik7XG4gICAgICAgIHdpbmRvdy5jbGVhckludGVydmFsKGFwcC5hbmludW1zW2lkXS5pbnRlcnZhbCk7XG4gICAgICAgIGFwcC5hbmludW1zW2lkXS5pc0luVmlld3BvcnQgPSB0cnVlO1xuICAgICAgfVxuICAgIH0sIGFwcC5hbmludW1zW2lkXS5kZWxheSk7XG4gIH07XG5cbiAgLy8gRE9NIGxvZ2ljXG4gIGNvbnN0IGFyciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoXCIuYW5pbWF0ZWQtbnVtYmVyXCIpO1xuICBhcnIuZm9yRWFjaChmdW5jdGlvbiAoYW5pbnVtLCBpbmRleCkge1xuXG4gICAgLy8gYXNzaWduIGFuIGlkIHRvIGFuaW51bSBpZiBpdCBoYXMgbm9uZVxuICAgIGxldCBudW1lbGVtID0gYW5pbnVtLnF1ZXJ5U2VsZWN0b3IoXCIuYW5pbWF0ZWQtbnVtYmVyX251bWJlcl9uclwiKTtcblxuICAgIGlmIChudW1lbGVtKSB7XG4gICAgICBpZiAoYW5pbnVtLmlkID09PSBcIlwiIHx8IHVuZGVmaW5lZCkge1xuICAgICAgICBhbmludW0uaWQgPSBcImFuaW51bV9cIiArIGluZGV4O1xuICAgICAgfVxuXG4gICAgICAvLyBwb3B1bGF0ZSBhbmludW0gd2l0aCBhbmltYXRpb24gcHJvcGVydGllc1xuICAgICAgYXBwLmFuaW51bXNbYW5pbnVtLmlkXSA9IHtcbiAgICAgICAgaW50ZXJ2YWw6IG51bGwsXG4gICAgICAgIGRlbGF5OiBhbmltYXRpb25Qcm9wcyhhbmludW0pLmRlbGF5LFxuICAgICAgICBzdGVwOiBhbmltYXRpb25Qcm9wcyhhbmludW0pLnN0ZXAsXG4gICAgICAgIGFjdG51bTogMCxcbiAgICAgICAgbWF4bnVtOiBhbmltYXRpb25Qcm9wcyhhbmludW0pLm1heG51bSxcbiAgICAgICAgbmVnbnVtOiBhbmltYXRpb25Qcm9wcyhhbmludW0pLm5lZ251bSxcbiAgICAgICAgZGVjaW1hbFByZWNpc2lvbjogYW5pbWF0aW9uUHJvcHMoYW5pbnVtKS5kZWNpbWFsUHJlY2lzaW9uLFxuICAgICAgICBpc0luVmlld3BvcnQ6IGZhbHNlXG4gICAgICB9O1xuXG4gICAgICAvLyBzZXQgYW5pbWF0ZWQgbnVtYmVyIHRvIDAgYW5kIGNvdW50IHVwXG4gICAgICBudW1lbGVtLmlubmVySFRNTCA9IFwiMFwiO1xuXG4gICAgICAvLyBwZXJmb3JtIGFuaW1hdGlvbiBpZiB0aGUgYW5pbnVtIGlzIHdpdGhpblxuICAgICAgLy8gdGhlIHZpZXdwb3J0IG9uIGluaXRpYWwgcGFnZSBsb2FkXG4gICAgICBpZiAoYXBwLmVsZW1lbnRJc0luVmlld3BvcnQoYW5pbnVtKSkge1xuICAgICAgICBhbmltYXRlTnVtYmVyKGFuaW51bS5pZCk7XG4gICAgICB9XG5cbiAgICAgIC8vIGN1c3RvbSBldmVudCBkZWZpbml0aW9uXG4gICAgICBhbmludW0uYWRkRXZlbnRMaXN0ZW5lcihcImludmlld3BvcnRcIiwgZnVuY3Rpb24gKCkge1xuICAgICAgICBhbmltYXRlTnVtYmVyKGFuaW51bS5pZCk7XG4gICAgICB9KTtcbiAgICB9XG4gICAgZWxzZSB7XG4gICAgICBjb25zb2xlLmVycm9yKG5vdEZvdW5kRXJyb3IpO1xuICAgIH1cbiAgfSk7XG59O1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/animatedNumbersBuilder.js\n");
+
+/***/ }),
+
+/***/ "./src/helpers.js":
+/*!************************!*\
+  !*** ./src/helpers.js ***!
+  \************************/
+/*! exports provided: insertAt, elementIsInViewport, notFoundError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"insertAt\", function() { return insertAt; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"elementIsInViewport\", function() { return elementIsInViewport; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"notFoundError\", function() { return notFoundError; });\n/**\n *\n * @param str - string to manipulate\n * @param sub - char or string to insert into str\n * @param dec - decimal precision, e.g. 2 for 0,12\n * @returns {string}\n */\nvar insertAt = function insertAt(str, sub, dec) {\n  var string = str.toString(); // add a comma only if the original number included decimal precision\n\n  if (dec > 0) {\n    var preCommaString = string.slice(0, string.length - dec);\n\n    if (preCommaString === '') {\n      preCommaString = 0;\n    }\n\n    return \"\".concat(preCommaString).concat(sub).concat(string.slice(string.length - dec));\n  } // if no decimal precision in the original number\n  else if (dec === 0) {\n      return string.replace(/\\B(?=(\\d{3})+(?!\\d))/g, \".\");\n    }\n};\nvar elementIsInViewport = function elementIsInViewport(el) {\n  var top = el.offsetTop;\n  var left = el.offsetLeft;\n  var width = el.offsetWidth;\n  var height = el.offsetHeight;\n\n  while (el.offsetParent) {\n    el = el.offsetParent;\n    top += el.offsetTop;\n    left += el.offsetLeft;\n  }\n\n  if (top >= window.pageYOffset && left >= window.pageXOffset && top + height <= window.pageYOffset + window.innerHeight && left + width <= window.pageXOffset + window.innerWidth) {\n    return true;\n  }\n};\nvar notFoundError = 'Error: could not find item to animate!';//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vc3JjL2hlbHBlcnMuanM/ZDdjMiJdLCJuYW1lcyI6WyJpbnNlcnRBdCIsInN0ciIsInN1YiIsImRlYyIsInN0cmluZyIsInRvU3RyaW5nIiwicHJlQ29tbWFTdHJpbmciLCJzbGljZSIsImxlbmd0aCIsInJlcGxhY2UiLCJlbGVtZW50SXNJblZpZXdwb3J0IiwiZWwiLCJ0b3AiLCJvZmZzZXRUb3AiLCJsZWZ0Iiwib2Zmc2V0TGVmdCIsIndpZHRoIiwib2Zmc2V0V2lkdGgiLCJoZWlnaHQiLCJvZmZzZXRIZWlnaHQiLCJvZmZzZXRQYXJlbnQiLCJ3aW5kb3ciLCJwYWdlWU9mZnNldCIsInBhZ2VYT2Zmc2V0IiwiaW5uZXJIZWlnaHQiLCJpbm5lcldpZHRoIiwibm90Rm91bmRFcnJvciJdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVPLElBQU1BLFFBQVEsR0FBRyxTQUFYQSxRQUFXLENBQUNDLEdBQUQsRUFBTUMsR0FBTixFQUFXQyxHQUFYLEVBQW1CO0FBQ3pDLE1BQUlDLE1BQU0sR0FBR0gsR0FBRyxDQUFDSSxRQUFKLEVBQWIsQ0FEeUMsQ0FFekM7O0FBQ0EsTUFBSUYsR0FBRyxHQUFHLENBQVYsRUFBYTtBQUNYLFFBQUlHLGNBQWMsR0FBR0YsTUFBTSxDQUFDRyxLQUFQLENBQWEsQ0FBYixFQUFnQkgsTUFBTSxDQUFDSSxNQUFQLEdBQWNMLEdBQTlCLENBQXJCOztBQUNBLFFBQUlHLGNBQWMsS0FBSyxFQUF2QixFQUEyQjtBQUN6QkEsb0JBQWMsR0FBRyxDQUFqQjtBQUNEOztBQUNELHFCQUFVQSxjQUFWLFNBQTJCSixHQUEzQixTQUFpQ0UsTUFBTSxDQUFDRyxLQUFQLENBQWFILE1BQU0sQ0FBQ0ksTUFBUCxHQUFjTCxHQUEzQixDQUFqQztBQUNELEdBTkQsQ0FPQTtBQVBBLE9BUUssSUFBSUEsR0FBRyxLQUFLLENBQVosRUFBZTtBQUNsQixhQUFPQyxNQUFNLENBQUNLLE9BQVAsQ0FBZSx1QkFBZixFQUF1QyxHQUF2QyxDQUFQO0FBQ0Q7QUFDRixDQWRNO0FBZ0JBLElBQU1DLG1CQUFtQixHQUFHLFNBQXRCQSxtQkFBc0IsQ0FBQ0MsRUFBRCxFQUFRO0FBQ3pDLE1BQUlDLEdBQUcsR0FBR0QsRUFBRSxDQUFDRSxTQUFiO0FBQ0EsTUFBSUMsSUFBSSxHQUFHSCxFQUFFLENBQUNJLFVBQWQ7QUFDQSxNQUFJQyxLQUFLLEdBQUdMLEVBQUUsQ0FBQ00sV0FBZjtBQUNBLE1BQUlDLE1BQU0sR0FBR1AsRUFBRSxDQUFDUSxZQUFoQjs7QUFFQSxTQUFPUixFQUFFLENBQUNTLFlBQVYsRUFBd0I7QUFDdEJULE1BQUUsR0FBR0EsRUFBRSxDQUFDUyxZQUFSO0FBQ0FSLE9BQUcsSUFBSUQsRUFBRSxDQUFDRSxTQUFWO0FBQ0FDLFFBQUksSUFBSUgsRUFBRSxDQUFDSSxVQUFYO0FBQ0Q7O0FBRUQsTUFDRUgsR0FBRyxJQUFJUyxNQUFNLENBQUNDLFdBQWQsSUFDQVIsSUFBSSxJQUFJTyxNQUFNLENBQUNFLFdBRGYsSUFFQVgsR0FBRyxHQUFHTSxNQUFOLElBQWdCRyxNQUFNLENBQUNDLFdBQVAsR0FBcUJELE1BQU0sQ0FBQ0csV0FGNUMsSUFHQVYsSUFBSSxHQUFHRSxLQUFQLElBQWdCSyxNQUFNLENBQUNFLFdBQVAsR0FBcUJGLE1BQU0sQ0FBQ0ksVUFKOUMsRUFLRTtBQUNBLFdBQU8sSUFBUDtBQUNEO0FBQ0YsQ0FwQk07QUFzQkEsSUFBTUMsYUFBYSxHQUFHLHdDQUF0QiIsImZpbGUiOiIuL3NyYy9oZWxwZXJzLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKlxuICogQHBhcmFtIHN0ciAtIHN0cmluZyB0byBtYW5pcHVsYXRlXG4gKiBAcGFyYW0gc3ViIC0gY2hhciBvciBzdHJpbmcgdG8gaW5zZXJ0IGludG8gc3RyXG4gKiBAcGFyYW0gZGVjIC0gZGVjaW1hbCBwcmVjaXNpb24sIGUuZy4gMiBmb3IgMCwxMlxuICogQHJldHVybnMge3N0cmluZ31cbiAqL1xuXG5leHBvcnQgY29uc3QgaW5zZXJ0QXQgPSAoc3RyLCBzdWIsIGRlYykgPT4ge1xuICBsZXQgc3RyaW5nID0gc3RyLnRvU3RyaW5nKCk7XG4gIC8vIGFkZCBhIGNvbW1hIG9ubHkgaWYgdGhlIG9yaWdpbmFsIG51bWJlciBpbmNsdWRlZCBkZWNpbWFsIHByZWNpc2lvblxuICBpZiAoZGVjID4gMCkge1xuICAgIGxldCBwcmVDb21tYVN0cmluZyA9IHN0cmluZy5zbGljZSgwLCBzdHJpbmcubGVuZ3RoLWRlYyk7XG4gICAgaWYgKHByZUNvbW1hU3RyaW5nID09PSAnJykge1xuICAgICAgcHJlQ29tbWFTdHJpbmcgPSAwO1xuICAgIH1cbiAgICByZXR1cm4gYCR7cHJlQ29tbWFTdHJpbmd9JHtzdWJ9JHtzdHJpbmcuc2xpY2Uoc3RyaW5nLmxlbmd0aC1kZWMpfWA7XG4gIH1cbiAgLy8gaWYgbm8gZGVjaW1hbCBwcmVjaXNpb24gaW4gdGhlIG9yaWdpbmFsIG51bWJlclxuICBlbHNlIGlmIChkZWMgPT09IDApIHtcbiAgICByZXR1cm4gc3RyaW5nLnJlcGxhY2UoL1xcQig/PShcXGR7M30pKyg/IVxcZCkpL2csXCIuXCIpO1xuICB9XG59XG5cbmV4cG9ydCBjb25zdCBlbGVtZW50SXNJblZpZXdwb3J0ID0gKGVsKSA9PiB7XG4gIGxldCB0b3AgPSBlbC5vZmZzZXRUb3A7XG4gIGxldCBsZWZ0ID0gZWwub2Zmc2V0TGVmdDtcbiAgbGV0IHdpZHRoID0gZWwub2Zmc2V0V2lkdGg7XG4gIGxldCBoZWlnaHQgPSBlbC5vZmZzZXRIZWlnaHQ7XG5cbiAgd2hpbGUgKGVsLm9mZnNldFBhcmVudCkge1xuICAgIGVsID0gZWwub2Zmc2V0UGFyZW50O1xuICAgIHRvcCArPSBlbC5vZmZzZXRUb3A7XG4gICAgbGVmdCArPSBlbC5vZmZzZXRMZWZ0O1xuICB9XG5cbiAgaWYgKFxuICAgIHRvcCA+PSB3aW5kb3cucGFnZVlPZmZzZXQgJiZcbiAgICBsZWZ0ID49IHdpbmRvdy5wYWdlWE9mZnNldCAmJlxuICAgIHRvcCArIGhlaWdodCA8PSB3aW5kb3cucGFnZVlPZmZzZXQgKyB3aW5kb3cuaW5uZXJIZWlnaHQgJiZcbiAgICBsZWZ0ICsgd2lkdGggPD0gd2luZG93LnBhZ2VYT2Zmc2V0ICsgd2luZG93LmlubmVyV2lkdGhcbiAgKSB7XG4gICAgcmV0dXJuIHRydWU7XG4gIH1cbn07XG5cbmV4cG9ydCBjb25zdCBub3RGb3VuZEVycm9yID0gJ0Vycm9yOiBjb3VsZCBub3QgZmluZCBpdGVtIHRvIGFuaW1hdGUhJztcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/helpers.js\n");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./src/helpers.js\");\n/* harmony import */ var _animatedNumbersBuilder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animatedNumbersBuilder */ \"./src/animatedNumbersBuilder.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  window.app = window.app ? window.app : {};\n  var app = window.app;\n  app.events = app.events ? app.events : {};\n  app.events.inviewport = new CustomEvent(\"inviewport\");\n  app.openanimations = true;\n  app.aninums = {};\n  app.elementIsInViewport = _helpers__WEBPACK_IMPORTED_MODULE_0__[\"elementIsInViewport\"];\n  app.animatedNumbersBuilder = _animatedNumbersBuilder__WEBPACK_IMPORTED_MODULE_1__[\"animatedNumbersBuilder\"];\n\n  app.WindowScrollBinder = function () {\n    var aniNumsInDoc = document.querySelectorAll(\".animated-number\").length > 0;\n    window.aniNumsInDoc = aniNumsInDoc;\n\n    window.onscroll = function (e) {\n      if (aniNumsInDoc) {\n        app.openanimations = false;\n        var arr = document.querySelectorAll(\".animated-number\");\n        arr.forEach(function (aninum) {\n          if (app.aninums[aninum.id].interval === null) {\n            app.openanimations = true;\n\n            if (app.elementIsInViewport(aninum)) {\n              // dispatch the given aninum's custom event\n              aninum.dispatchEvent(app.events.inviewport);\n            }\n          }\n        });\n      }\n    };\n\n    app.animatedNumbersBuilder();\n  };\n\n  app.WindowScrollBinder();\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9hbmltYXRlZC1udW1iZXJzLy4vc3JjL2luZGV4LmpzP2I2MzUiXSwibmFtZXMiOlsiZG9jdW1lbnQiLCJhZGRFdmVudExpc3RlbmVyIiwid2luZG93IiwiYXBwIiwiZXZlbnRzIiwiaW52aWV3cG9ydCIsIkN1c3RvbUV2ZW50Iiwib3BlbmFuaW1hdGlvbnMiLCJhbmludW1zIiwiZWxlbWVudElzSW5WaWV3cG9ydCIsImFuaW1hdGVkTnVtYmVyc0J1aWxkZXIiLCJXaW5kb3dTY3JvbGxCaW5kZXIiLCJhbmlOdW1zSW5Eb2MiLCJxdWVyeVNlbGVjdG9yQWxsIiwibGVuZ3RoIiwib25zY3JvbGwiLCJlIiwiYXJyIiwiZm9yRWFjaCIsImFuaW51bSIsImlkIiwiaW50ZXJ2YWwiLCJkaXNwYXRjaEV2ZW50Il0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBRUFBLFFBQVEsQ0FBQ0MsZ0JBQVQsQ0FBMEIsa0JBQTFCLEVBQThDLFlBQU07QUFDbERDLFFBQU0sQ0FBQ0MsR0FBUCxHQUFhRCxNQUFNLENBQUNDLEdBQVAsR0FBYUQsTUFBTSxDQUFDQyxHQUFwQixHQUEwQixFQUF2QztBQUNBLE1BQUlBLEdBQUcsR0FBR0QsTUFBTSxDQUFDQyxHQUFqQjtBQUVBQSxLQUFHLENBQUNDLE1BQUosR0FBYUQsR0FBRyxDQUFDQyxNQUFKLEdBQWFELEdBQUcsQ0FBQ0MsTUFBakIsR0FBMEIsRUFBdkM7QUFDQUQsS0FBRyxDQUFDQyxNQUFKLENBQVdDLFVBQVgsR0FBd0IsSUFBSUMsV0FBSixDQUFnQixZQUFoQixDQUF4QjtBQUNBSCxLQUFHLENBQUNJLGNBQUosR0FBcUIsSUFBckI7QUFDQUosS0FBRyxDQUFDSyxPQUFKLEdBQWMsRUFBZDtBQUVBTCxLQUFHLENBQUNNLG1CQUFKLEdBQTBCQSw0REFBMUI7QUFDQU4sS0FBRyxDQUFDTyxzQkFBSixHQUE2QkEsOEVBQTdCOztBQUVBUCxLQUFHLENBQUNRLGtCQUFKLEdBQXlCLFlBQVk7QUFDbkMsUUFBSUMsWUFBWSxHQUFHWixRQUFRLENBQUNhLGdCQUFULENBQTBCLGtCQUExQixFQUE4Q0MsTUFBOUMsR0FBdUQsQ0FBMUU7QUFDQVosVUFBTSxDQUFDVSxZQUFQLEdBQXNCQSxZQUF0Qjs7QUFFQVYsVUFBTSxDQUFDYSxRQUFQLEdBQWtCLFVBQVVDLENBQVYsRUFBYTtBQUM3QixVQUFJSixZQUFKLEVBQWtCO0FBQ2hCVCxXQUFHLENBQUNJLGNBQUosR0FBcUIsS0FBckI7QUFDQSxZQUFJVSxHQUFHLEdBQUdqQixRQUFRLENBQUNhLGdCQUFULENBQTBCLGtCQUExQixDQUFWO0FBQ0FJLFdBQUcsQ0FBQ0MsT0FBSixDQUFZLFVBQVVDLE1BQVYsRUFBa0I7QUFDNUIsY0FBSWhCLEdBQUcsQ0FBQ0ssT0FBSixDQUFZVyxNQUFNLENBQUNDLEVBQW5CLEVBQXVCQyxRQUF2QixLQUFvQyxJQUF4QyxFQUE4QztBQUM1Q2xCLGVBQUcsQ0FBQ0ksY0FBSixHQUFxQixJQUFyQjs7QUFFQSxnQkFBSUosR0FBRyxDQUFDTSxtQkFBSixDQUF3QlUsTUFBeEIsQ0FBSixFQUFxQztBQUNuQztBQUNBQSxvQkFBTSxDQUFDRyxhQUFQLENBQXFCbkIsR0FBRyxDQUFDQyxNQUFKLENBQVdDLFVBQWhDO0FBQ0Q7QUFDRjtBQUNGLFNBVEQ7QUFVRDtBQUNGLEtBZkQ7O0FBZ0JBRixPQUFHLENBQUNPLHNCQUFKO0FBQ0QsR0FyQkQ7O0FBc0JBUCxLQUFHLENBQUNRLGtCQUFKO0FBQ0QsQ0FuQ0QiLCJmaWxlIjoiLi9zcmMvaW5kZXguanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBlbGVtZW50SXNJblZpZXdwb3J0IH0gZnJvbSBcIi4vaGVscGVyc1wiO1xuaW1wb3J0IHsgYW5pbWF0ZWROdW1iZXJzQnVpbGRlciB9IGZyb20gXCIuL2FuaW1hdGVkTnVtYmVyc0J1aWxkZXJcIjtcblxuZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcihcIkRPTUNvbnRlbnRMb2FkZWRcIiwgKCkgPT4ge1xuICB3aW5kb3cuYXBwID0gd2luZG93LmFwcCA/IHdpbmRvdy5hcHAgOiB7fTtcbiAgbGV0IGFwcCA9IHdpbmRvdy5hcHA7XG5cbiAgYXBwLmV2ZW50cyA9IGFwcC5ldmVudHMgPyBhcHAuZXZlbnRzIDoge307XG4gIGFwcC5ldmVudHMuaW52aWV3cG9ydCA9IG5ldyBDdXN0b21FdmVudChcImludmlld3BvcnRcIik7XG4gIGFwcC5vcGVuYW5pbWF0aW9ucyA9IHRydWU7XG4gIGFwcC5hbmludW1zID0ge307XG5cbiAgYXBwLmVsZW1lbnRJc0luVmlld3BvcnQgPSBlbGVtZW50SXNJblZpZXdwb3J0O1xuICBhcHAuYW5pbWF0ZWROdW1iZXJzQnVpbGRlciA9IGFuaW1hdGVkTnVtYmVyc0J1aWxkZXI7XG5cbiAgYXBwLldpbmRvd1Njcm9sbEJpbmRlciA9IGZ1bmN0aW9uICgpIHtcbiAgICBsZXQgYW5pTnVtc0luRG9jID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5hbmltYXRlZC1udW1iZXJcIikubGVuZ3RoID4gMDtcbiAgICB3aW5kb3cuYW5pTnVtc0luRG9jID0gYW5pTnVtc0luRG9jO1xuXG4gICAgd2luZG93Lm9uc2Nyb2xsID0gZnVuY3Rpb24gKGUpIHtcbiAgICAgIGlmIChhbmlOdW1zSW5Eb2MpIHtcbiAgICAgICAgYXBwLm9wZW5hbmltYXRpb25zID0gZmFsc2U7XG4gICAgICAgIGxldCBhcnIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLmFuaW1hdGVkLW51bWJlclwiKTtcbiAgICAgICAgYXJyLmZvckVhY2goZnVuY3Rpb24gKGFuaW51bSkge1xuICAgICAgICAgIGlmIChhcHAuYW5pbnVtc1thbmludW0uaWRdLmludGVydmFsID09PSBudWxsKSB7XG4gICAgICAgICAgICBhcHAub3BlbmFuaW1hdGlvbnMgPSB0cnVlO1xuXG4gICAgICAgICAgICBpZiAoYXBwLmVsZW1lbnRJc0luVmlld3BvcnQoYW5pbnVtKSkge1xuICAgICAgICAgICAgICAvLyBkaXNwYXRjaCB0aGUgZ2l2ZW4gYW5pbnVtJ3MgY3VzdG9tIGV2ZW50XG4gICAgICAgICAgICAgIGFuaW51bS5kaXNwYXRjaEV2ZW50KGFwcC5ldmVudHMuaW52aWV3cG9ydCk7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgfVxuICAgICAgICB9KTtcbiAgICAgIH1cbiAgICB9O1xuICAgIGFwcC5hbmltYXRlZE51bWJlcnNCdWlsZGVyKCk7XG4gIH07XG4gIGFwcC5XaW5kb3dTY3JvbGxCaW5kZXIoKTtcbn0pO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.js\n");
+
+/***/ }),
+
+/***/ 0:
+/*!**********************************************************!*\
+  !*** multi webpack-hot-middleware/client ./src/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! webpack-hot-middleware/client */"./node_modules/webpack-hot-middleware/client.js");
+module.exports = __webpack_require__(/*! ./src/index.js */"./src/index.js");
+
+
+/***/ })
+
+/******/ });
+});
+},{}],2:[function(require,module,exports){
+/*!
+ * Chart.js v3.7.1
+ * https://www.chartjs.org
+ * (c) 2022 Chart.js Contributors
+ * Released under the MIT License
+ */
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+typeof define === 'function' && define.amd ? define(factory) :
+(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Chart = factory());
+})(this, (function () { 'use strict';
+
+function fontString(pixelSize, fontStyle, fontFamily) {
+  return fontStyle + ' ' + pixelSize + 'px ' + fontFamily;
+}
+const requestAnimFrame = (function() {
+  if (typeof window === 'undefined') {
+    return function(callback) {
+      return callback();
+    };
+  }
+  return window.requestAnimationFrame;
+}());
+function throttled(fn, thisArg, updateFn) {
+  const updateArgs = updateFn || ((args) => Array.prototype.slice.call(args));
+  let ticking = false;
+  let args = [];
+  return function(...rest) {
+    args = updateArgs(rest);
+    if (!ticking) {
+      ticking = true;
+      requestAnimFrame.call(window, () => {
+        ticking = false;
+        fn.apply(thisArg, args);
+      });
+    }
+  };
+}
+function debounce(fn, delay) {
+  let timeout;
+  return function(...args) {
+    if (delay) {
+      clearTimeout(timeout);
+      timeout = setTimeout(fn, delay, args);
+    } else {
+      fn.apply(this, args);
+    }
+    return delay;
+  };
+}
+const _toLeftRightCenter = (align) => align === 'start' ? 'left' : align === 'end' ? 'right' : 'center';
+const _alignStartEnd = (align, start, end) => align === 'start' ? start : align === 'end' ? end : (start + end) / 2;
+const _textX = (align, left, right, rtl) => {
+  const check = rtl ? 'left' : 'right';
+  return align === check ? right : align === 'center' ? (left + right) / 2 : left;
+};
+
+class Animator {
+  constructor() {
+    this._request = null;
+    this._charts = new Map();
+    this._running = false;
+    this._lastDate = undefined;
+  }
+  _notify(chart, anims, date, type) {
+    const callbacks = anims.listeners[type];
+    const numSteps = anims.duration;
+    callbacks.forEach(fn => fn({
+      chart,
+      initial: anims.initial,
+      numSteps,
+      currentStep: Math.min(date - anims.start, numSteps)
+    }));
+  }
+  _refresh() {
+    if (this._request) {
+      return;
+    }
+    this._running = true;
+    this._request = requestAnimFrame.call(window, () => {
+      this._update();
+      this._request = null;
+      if (this._running) {
+        this._refresh();
+      }
+    });
+  }
+  _update(date = Date.now()) {
+    let remaining = 0;
+    this._charts.forEach((anims, chart) => {
+      if (!anims.running || !anims.items.length) {
+        return;
+      }
+      const items = anims.items;
+      let i = items.length - 1;
+      let draw = false;
+      let item;
+      for (; i >= 0; --i) {
+        item = items[i];
+        if (item._active) {
+          if (item._total > anims.duration) {
+            anims.duration = item._total;
+          }
+          item.tick(date);
+          draw = true;
+        } else {
+          items[i] = items[items.length - 1];
+          items.pop();
+        }
+      }
+      if (draw) {
+        chart.draw();
+        this._notify(chart, anims, date, 'progress');
+      }
+      if (!items.length) {
+        anims.running = false;
+        this._notify(chart, anims, date, 'complete');
+        anims.initial = false;
+      }
+      remaining += items.length;
+    });
+    this._lastDate = date;
+    if (remaining === 0) {
+      this._running = false;
+    }
+  }
+  _getAnims(chart) {
+    const charts = this._charts;
+    let anims = charts.get(chart);
+    if (!anims) {
+      anims = {
+        running: false,
+        initial: true,
+        items: [],
+        listeners: {
+          complete: [],
+          progress: []
+        }
+      };
+      charts.set(chart, anims);
+    }
+    return anims;
+  }
+  listen(chart, event, cb) {
+    this._getAnims(chart).listeners[event].push(cb);
+  }
+  add(chart, items) {
+    if (!items || !items.length) {
+      return;
+    }
+    this._getAnims(chart).items.push(...items);
+  }
+  has(chart) {
+    return this._getAnims(chart).items.length > 0;
+  }
+  start(chart) {
+    const anims = this._charts.get(chart);
+    if (!anims) {
+      return;
+    }
+    anims.running = true;
+    anims.start = Date.now();
+    anims.duration = anims.items.reduce((acc, cur) => Math.max(acc, cur._duration), 0);
+    this._refresh();
+  }
+  running(chart) {
+    if (!this._running) {
+      return false;
+    }
+    const anims = this._charts.get(chart);
+    if (!anims || !anims.running || !anims.items.length) {
+      return false;
+    }
+    return true;
+  }
+  stop(chart) {
+    const anims = this._charts.get(chart);
+    if (!anims || !anims.items.length) {
+      return;
+    }
+    const items = anims.items;
+    let i = items.length - 1;
+    for (; i >= 0; --i) {
+      items[i].cancel();
+    }
+    anims.items = [];
+    this._notify(chart, anims, Date.now(), 'complete');
+  }
+  remove(chart) {
+    return this._charts.delete(chart);
+  }
+}
+var animator = new Animator();
+
+/*!
+ * @kurkle/color v0.1.9
+ * https://github.com/kurkle/color#readme
+ * (c) 2020 Jukka Kurkela
+ * Released under the MIT License
+ */
+const map$1 = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, A: 10, B: 11, C: 12, D: 13, E: 14, F: 15, a: 10, b: 11, c: 12, d: 13, e: 14, f: 15};
+const hex = '0123456789ABCDEF';
+const h1 = (b) => hex[b & 0xF];
+const h2 = (b) => hex[(b & 0xF0) >> 4] + hex[b & 0xF];
+const eq = (b) => (((b & 0xF0) >> 4) === (b & 0xF));
+function isShort(v) {
+	return eq(v.r) && eq(v.g) && eq(v.b) && eq(v.a);
+}
+function hexParse(str) {
+	var len = str.length;
+	var ret;
+	if (str[0] === '#') {
+		if (len === 4 || len === 5) {
+			ret = {
+				r: 255 & map$1[str[1]] * 17,
+				g: 255 & map$1[str[2]] * 17,
+				b: 255 & map$1[str[3]] * 17,
+				a: len === 5 ? map$1[str[4]] * 17 : 255
+			};
+		} else if (len === 7 || len === 9) {
+			ret = {
+				r: map$1[str[1]] << 4 | map$1[str[2]],
+				g: map$1[str[3]] << 4 | map$1[str[4]],
+				b: map$1[str[5]] << 4 | map$1[str[6]],
+				a: len === 9 ? (map$1[str[7]] << 4 | map$1[str[8]]) : 255
+			};
+		}
+	}
+	return ret;
+}
+function hexString(v) {
+	var f = isShort(v) ? h1 : h2;
+	return v
+		? '#' + f(v.r) + f(v.g) + f(v.b) + (v.a < 255 ? f(v.a) : '')
+		: v;
+}
+function round(v) {
+	return v + 0.5 | 0;
+}
+const lim = (v, l, h) => Math.max(Math.min(v, h), l);
+function p2b(v) {
+	return lim(round(v * 2.55), 0, 255);
+}
+function n2b(v) {
+	return lim(round(v * 255), 0, 255);
+}
+function b2n(v) {
+	return lim(round(v / 2.55) / 100, 0, 1);
+}
+function n2p(v) {
+	return lim(round(v * 100), 0, 100);
+}
+const RGB_RE = /^rgba?\(\s*([-+.\d]+)(%)?[\s,]+([-+.e\d]+)(%)?[\s,]+([-+.e\d]+)(%)?(?:[\s,/]+([-+.e\d]+)(%)?)?\s*\)$/;
+function rgbParse(str) {
+	const m = RGB_RE.exec(str);
+	let a = 255;
+	let r, g, b;
+	if (!m) {
+		return;
+	}
+	if (m[7] !== r) {
+		const v = +m[7];
+		a = 255 & (m[8] ? p2b(v) : v * 255);
+	}
+	r = +m[1];
+	g = +m[3];
+	b = +m[5];
+	r = 255 & (m[2] ? p2b(r) : r);
+	g = 255 & (m[4] ? p2b(g) : g);
+	b = 255 & (m[6] ? p2b(b) : b);
+	return {
+		r: r,
+		g: g,
+		b: b,
+		a: a
+	};
+}
+function rgbString(v) {
+	return v && (
+		v.a < 255
+			? `rgba(${v.r}, ${v.g}, ${v.b}, ${b2n(v.a)})`
+			: `rgb(${v.r}, ${v.g}, ${v.b})`
+	);
+}
+const HUE_RE = /^(hsla?|hwb|hsv)\(\s*([-+.e\d]+)(?:deg)?[\s,]+([-+.e\d]+)%[\s,]+([-+.e\d]+)%(?:[\s,]+([-+.e\d]+)(%)?)?\s*\)$/;
+function hsl2rgbn(h, s, l) {
+	const a = s * Math.min(l, 1 - l);
+	const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+	return [f(0), f(8), f(4)];
+}
+function hsv2rgbn(h, s, v) {
+	const f = (n, k = (n + h / 60) % 6) => v - v * s * Math.max(Math.min(k, 4 - k, 1), 0);
+	return [f(5), f(3), f(1)];
+}
+function hwb2rgbn(h, w, b) {
+	const rgb = hsl2rgbn(h, 1, 0.5);
+	let i;
+	if (w + b > 1) {
+		i = 1 / (w + b);
+		w *= i;
+		b *= i;
+	}
+	for (i = 0; i < 3; i++) {
+		rgb[i] *= 1 - w - b;
+		rgb[i] += w;
+	}
+	return rgb;
+}
+function rgb2hsl(v) {
+	const range = 255;
+	const r = v.r / range;
+	const g = v.g / range;
+	const b = v.b / range;
+	const max = Math.max(r, g, b);
+	const min = Math.min(r, g, b);
+	const l = (max + min) / 2;
+	let h, s, d;
+	if (max !== min) {
+		d = max - min;
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+		h = max === r
+			? ((g - b) / d) + (g < b ? 6 : 0)
+			: max === g
+				? (b - r) / d + 2
+				: (r - g) / d + 4;
+		h = h * 60 + 0.5;
+	}
+	return [h | 0, s || 0, l];
+}
+function calln(f, a, b, c) {
+	return (
+		Array.isArray(a)
+			? f(a[0], a[1], a[2])
+			: f(a, b, c)
+	).map(n2b);
+}
+function hsl2rgb(h, s, l) {
+	return calln(hsl2rgbn, h, s, l);
+}
+function hwb2rgb(h, w, b) {
+	return calln(hwb2rgbn, h, w, b);
+}
+function hsv2rgb(h, s, v) {
+	return calln(hsv2rgbn, h, s, v);
+}
+function hue(h) {
+	return (h % 360 + 360) % 360;
+}
+function hueParse(str) {
+	const m = HUE_RE.exec(str);
+	let a = 255;
+	let v;
+	if (!m) {
+		return;
+	}
+	if (m[5] !== v) {
+		a = m[6] ? p2b(+m[5]) : n2b(+m[5]);
+	}
+	const h = hue(+m[2]);
+	const p1 = +m[3] / 100;
+	const p2 = +m[4] / 100;
+	if (m[1] === 'hwb') {
+		v = hwb2rgb(h, p1, p2);
+	} else if (m[1] === 'hsv') {
+		v = hsv2rgb(h, p1, p2);
+	} else {
+		v = hsl2rgb(h, p1, p2);
+	}
+	return {
+		r: v[0],
+		g: v[1],
+		b: v[2],
+		a: a
+	};
+}
+function rotate(v, deg) {
+	var h = rgb2hsl(v);
+	h[0] = hue(h[0] + deg);
+	h = hsl2rgb(h);
+	v.r = h[0];
+	v.g = h[1];
+	v.b = h[2];
+}
+function hslString(v) {
+	if (!v) {
+		return;
+	}
+	const a = rgb2hsl(v);
+	const h = a[0];
+	const s = n2p(a[1]);
+	const l = n2p(a[2]);
+	return v.a < 255
+		? `hsla(${h}, ${s}%, ${l}%, ${b2n(v.a)})`
+		: `hsl(${h}, ${s}%, ${l}%)`;
+}
+const map$1$1 = {
+	x: 'dark',
+	Z: 'light',
+	Y: 're',
+	X: 'blu',
+	W: 'gr',
+	V: 'medium',
+	U: 'slate',
+	A: 'ee',
+	T: 'ol',
+	S: 'or',
+	B: 'ra',
+	C: 'lateg',
+	D: 'ights',
+	R: 'in',
+	Q: 'turquois',
+	E: 'hi',
+	P: 'ro',
+	O: 'al',
+	N: 'le',
+	M: 'de',
+	L: 'yello',
+	F: 'en',
+	K: 'ch',
+	G: 'arks',
+	H: 'ea',
+	I: 'ightg',
+	J: 'wh'
+};
+const names = {
+	OiceXe: 'f0f8ff',
+	antiquewEte: 'faebd7',
+	aqua: 'ffff',
+	aquamarRe: '7fffd4',
+	azuY: 'f0ffff',
+	beige: 'f5f5dc',
+	bisque: 'ffe4c4',
+	black: '0',
+	blanKedOmond: 'ffebcd',
+	Xe: 'ff',
+	XeviTet: '8a2be2',
+	bPwn: 'a52a2a',
+	burlywood: 'deb887',
+	caMtXe: '5f9ea0',
+	KartYuse: '7fff00',
+	KocTate: 'd2691e',
+	cSO: 'ff7f50',
+	cSnflowerXe: '6495ed',
+	cSnsilk: 'fff8dc',
+	crimson: 'dc143c',
+	cyan: 'ffff',
+	xXe: '8b',
+	xcyan: '8b8b',
+	xgTMnPd: 'b8860b',
+	xWay: 'a9a9a9',
+	xgYF: '6400',
+	xgYy: 'a9a9a9',
+	xkhaki: 'bdb76b',
+	xmagFta: '8b008b',
+	xTivegYF: '556b2f',
+	xSange: 'ff8c00',
+	xScEd: '9932cc',
+	xYd: '8b0000',
+	xsOmon: 'e9967a',
+	xsHgYF: '8fbc8f',
+	xUXe: '483d8b',
+	xUWay: '2f4f4f',
+	xUgYy: '2f4f4f',
+	xQe: 'ced1',
+	xviTet: '9400d3',
+	dAppRk: 'ff1493',
+	dApskyXe: 'bfff',
+	dimWay: '696969',
+	dimgYy: '696969',
+	dodgerXe: '1e90ff',
+	fiYbrick: 'b22222',
+	flSOwEte: 'fffaf0',
+	foYstWAn: '228b22',
+	fuKsia: 'ff00ff',
+	gaRsbSo: 'dcdcdc',
+	ghostwEte: 'f8f8ff',
+	gTd: 'ffd700',
+	gTMnPd: 'daa520',
+	Way: '808080',
+	gYF: '8000',
+	gYFLw: 'adff2f',
+	gYy: '808080',
+	honeyMw: 'f0fff0',
+	hotpRk: 'ff69b4',
+	RdianYd: 'cd5c5c',
+	Rdigo: '4b0082',
+	ivSy: 'fffff0',
+	khaki: 'f0e68c',
+	lavFMr: 'e6e6fa',
+	lavFMrXsh: 'fff0f5',
+	lawngYF: '7cfc00',
+	NmoncEffon: 'fffacd',
+	ZXe: 'add8e6',
+	ZcSO: 'f08080',
+	Zcyan: 'e0ffff',
+	ZgTMnPdLw: 'fafad2',
+	ZWay: 'd3d3d3',
+	ZgYF: '90ee90',
+	ZgYy: 'd3d3d3',
+	ZpRk: 'ffb6c1',
+	ZsOmon: 'ffa07a',
+	ZsHgYF: '20b2aa',
+	ZskyXe: '87cefa',
+	ZUWay: '778899',
+	ZUgYy: '778899',
+	ZstAlXe: 'b0c4de',
+	ZLw: 'ffffe0',
+	lime: 'ff00',
+	limegYF: '32cd32',
+	lRF: 'faf0e6',
+	magFta: 'ff00ff',
+	maPon: '800000',
+	VaquamarRe: '66cdaa',
+	VXe: 'cd',
+	VScEd: 'ba55d3',
+	VpurpN: '9370db',
+	VsHgYF: '3cb371',
+	VUXe: '7b68ee',
+	VsprRggYF: 'fa9a',
+	VQe: '48d1cc',
+	VviTetYd: 'c71585',
+	midnightXe: '191970',
+	mRtcYam: 'f5fffa',
+	mistyPse: 'ffe4e1',
+	moccasR: 'ffe4b5',
+	navajowEte: 'ffdead',
+	navy: '80',
+	Tdlace: 'fdf5e6',
+	Tive: '808000',
+	TivedBb: '6b8e23',
+	Sange: 'ffa500',
+	SangeYd: 'ff4500',
+	ScEd: 'da70d6',
+	pOegTMnPd: 'eee8aa',
+	pOegYF: '98fb98',
+	pOeQe: 'afeeee',
+	pOeviTetYd: 'db7093',
+	papayawEp: 'ffefd5',
+	pHKpuff: 'ffdab9',
+	peru: 'cd853f',
+	pRk: 'ffc0cb',
+	plum: 'dda0dd',
+	powMrXe: 'b0e0e6',
+	purpN: '800080',
+	YbeccapurpN: '663399',
+	Yd: 'ff0000',
+	Psybrown: 'bc8f8f',
+	PyOXe: '4169e1',
+	saddNbPwn: '8b4513',
+	sOmon: 'fa8072',
+	sandybPwn: 'f4a460',
+	sHgYF: '2e8b57',
+	sHshell: 'fff5ee',
+	siFna: 'a0522d',
+	silver: 'c0c0c0',
+	skyXe: '87ceeb',
+	UXe: '6a5acd',
+	UWay: '708090',
+	UgYy: '708090',
+	snow: 'fffafa',
+	sprRggYF: 'ff7f',
+	stAlXe: '4682b4',
+	tan: 'd2b48c',
+	teO: '8080',
+	tEstN: 'd8bfd8',
+	tomato: 'ff6347',
+	Qe: '40e0d0',
+	viTet: 'ee82ee',
+	JHt: 'f5deb3',
+	wEte: 'ffffff',
+	wEtesmoke: 'f5f5f5',
+	Lw: 'ffff00',
+	LwgYF: '9acd32'
+};
+function unpack() {
+	const unpacked = {};
+	const keys = Object.keys(names);
+	const tkeys = Object.keys(map$1$1);
+	let i, j, k, ok, nk;
+	for (i = 0; i < keys.length; i++) {
+		ok = nk = keys[i];
+		for (j = 0; j < tkeys.length; j++) {
+			k = tkeys[j];
+			nk = nk.replace(k, map$1$1[k]);
+		}
+		k = parseInt(names[ok], 16);
+		unpacked[nk] = [k >> 16 & 0xFF, k >> 8 & 0xFF, k & 0xFF];
+	}
+	return unpacked;
+}
+let names$1;
+function nameParse(str) {
+	if (!names$1) {
+		names$1 = unpack();
+		names$1.transparent = [0, 0, 0, 0];
+	}
+	const a = names$1[str.toLowerCase()];
+	return a && {
+		r: a[0],
+		g: a[1],
+		b: a[2],
+		a: a.length === 4 ? a[3] : 255
+	};
+}
+function modHSL(v, i, ratio) {
+	if (v) {
+		let tmp = rgb2hsl(v);
+		tmp[i] = Math.max(0, Math.min(tmp[i] + tmp[i] * ratio, i === 0 ? 360 : 1));
+		tmp = hsl2rgb(tmp);
+		v.r = tmp[0];
+		v.g = tmp[1];
+		v.b = tmp[2];
+	}
+}
+function clone$1(v, proto) {
+	return v ? Object.assign(proto || {}, v) : v;
+}
+function fromObject(input) {
+	var v = {r: 0, g: 0, b: 0, a: 255};
+	if (Array.isArray(input)) {
+		if (input.length >= 3) {
+			v = {r: input[0], g: input[1], b: input[2], a: 255};
+			if (input.length > 3) {
+				v.a = n2b(input[3]);
+			}
+		}
+	} else {
+		v = clone$1(input, {r: 0, g: 0, b: 0, a: 1});
+		v.a = n2b(v.a);
+	}
+	return v;
+}
+function functionParse(str) {
+	if (str.charAt(0) === 'r') {
+		return rgbParse(str);
+	}
+	return hueParse(str);
+}
+class Color {
+	constructor(input) {
+		if (input instanceof Color) {
+			return input;
+		}
+		const type = typeof input;
+		let v;
+		if (type === 'object') {
+			v = fromObject(input);
+		} else if (type === 'string') {
+			v = hexParse(input) || nameParse(input) || functionParse(input);
+		}
+		this._rgb = v;
+		this._valid = !!v;
+	}
+	get valid() {
+		return this._valid;
+	}
+	get rgb() {
+		var v = clone$1(this._rgb);
+		if (v) {
+			v.a = b2n(v.a);
+		}
+		return v;
+	}
+	set rgb(obj) {
+		this._rgb = fromObject(obj);
+	}
+	rgbString() {
+		return this._valid ? rgbString(this._rgb) : this._rgb;
+	}
+	hexString() {
+		return this._valid ? hexString(this._rgb) : this._rgb;
+	}
+	hslString() {
+		return this._valid ? hslString(this._rgb) : this._rgb;
+	}
+	mix(color, weight) {
+		const me = this;
+		if (color) {
+			const c1 = me.rgb;
+			const c2 = color.rgb;
+			let w2;
+			const p = weight === w2 ? 0.5 : weight;
+			const w = 2 * p - 1;
+			const a = c1.a - c2.a;
+			const w1 = ((w * a === -1 ? w : (w + a) / (1 + w * a)) + 1) / 2.0;
+			w2 = 1 - w1;
+			c1.r = 0xFF & w1 * c1.r + w2 * c2.r + 0.5;
+			c1.g = 0xFF & w1 * c1.g + w2 * c2.g + 0.5;
+			c1.b = 0xFF & w1 * c1.b + w2 * c2.b + 0.5;
+			c1.a = p * c1.a + (1 - p) * c2.a;
+			me.rgb = c1;
+		}
+		return me;
+	}
+	clone() {
+		return new Color(this.rgb);
+	}
+	alpha(a) {
+		this._rgb.a = n2b(a);
+		return this;
+	}
+	clearer(ratio) {
+		const rgb = this._rgb;
+		rgb.a *= 1 - ratio;
+		return this;
+	}
+	greyscale() {
+		const rgb = this._rgb;
+		const val = round(rgb.r * 0.3 + rgb.g * 0.59 + rgb.b * 0.11);
+		rgb.r = rgb.g = rgb.b = val;
+		return this;
+	}
+	opaquer(ratio) {
+		const rgb = this._rgb;
+		rgb.a *= 1 + ratio;
+		return this;
+	}
+	negate() {
+		const v = this._rgb;
+		v.r = 255 - v.r;
+		v.g = 255 - v.g;
+		v.b = 255 - v.b;
+		return this;
+	}
+	lighten(ratio) {
+		modHSL(this._rgb, 2, ratio);
+		return this;
+	}
+	darken(ratio) {
+		modHSL(this._rgb, 2, -ratio);
+		return this;
+	}
+	saturate(ratio) {
+		modHSL(this._rgb, 1, ratio);
+		return this;
+	}
+	desaturate(ratio) {
+		modHSL(this._rgb, 1, -ratio);
+		return this;
+	}
+	rotate(deg) {
+		rotate(this._rgb, deg);
+		return this;
+	}
+}
+function index_esm(input) {
+	return new Color(input);
+}
+
+const isPatternOrGradient = (value) => value instanceof CanvasGradient || value instanceof CanvasPattern;
+function color(value) {
+  return isPatternOrGradient(value) ? value : index_esm(value);
+}
+function getHoverColor(value) {
+  return isPatternOrGradient(value)
+    ? value
+    : index_esm(value).saturate(0.5).darken(0.1).hexString();
+}
+
+function noop() {}
+const uid = (function() {
+  let id = 0;
+  return function() {
+    return id++;
+  };
+}());
+function isNullOrUndef(value) {
+  return value === null || typeof value === 'undefined';
+}
+function isArray(value) {
+  if (Array.isArray && Array.isArray(value)) {
+    return true;
+  }
+  const type = Object.prototype.toString.call(value);
+  if (type.substr(0, 7) === '[object' && type.substr(-6) === 'Array]') {
+    return true;
+  }
+  return false;
+}
+function isObject(value) {
+  return value !== null && Object.prototype.toString.call(value) === '[object Object]';
+}
+const isNumberFinite = (value) => (typeof value === 'number' || value instanceof Number) && isFinite(+value);
+function finiteOrDefault(value, defaultValue) {
+  return isNumberFinite(value) ? value : defaultValue;
+}
+function valueOrDefault(value, defaultValue) {
+  return typeof value === 'undefined' ? defaultValue : value;
+}
+const toPercentage = (value, dimension) =>
+  typeof value === 'string' && value.endsWith('%') ?
+    parseFloat(value) / 100
+    : value / dimension;
+const toDimension = (value, dimension) =>
+  typeof value === 'string' && value.endsWith('%') ?
+    parseFloat(value) / 100 * dimension
+    : +value;
+function callback(fn, args, thisArg) {
+  if (fn && typeof fn.call === 'function') {
+    return fn.apply(thisArg, args);
+  }
+}
+function each(loopable, fn, thisArg, reverse) {
+  let i, len, keys;
+  if (isArray(loopable)) {
+    len = loopable.length;
+    if (reverse) {
+      for (i = len - 1; i >= 0; i--) {
+        fn.call(thisArg, loopable[i], i);
+      }
+    } else {
+      for (i = 0; i < len; i++) {
+        fn.call(thisArg, loopable[i], i);
+      }
+    }
+  } else if (isObject(loopable)) {
+    keys = Object.keys(loopable);
+    len = keys.length;
+    for (i = 0; i < len; i++) {
+      fn.call(thisArg, loopable[keys[i]], keys[i]);
+    }
+  }
+}
+function _elementsEqual(a0, a1) {
+  let i, ilen, v0, v1;
+  if (!a0 || !a1 || a0.length !== a1.length) {
+    return false;
+  }
+  for (i = 0, ilen = a0.length; i < ilen; ++i) {
+    v0 = a0[i];
+    v1 = a1[i];
+    if (v0.datasetIndex !== v1.datasetIndex || v0.index !== v1.index) {
+      return false;
+    }
+  }
+  return true;
+}
+function clone(source) {
+  if (isArray(source)) {
+    return source.map(clone);
+  }
+  if (isObject(source)) {
+    const target = Object.create(null);
+    const keys = Object.keys(source);
+    const klen = keys.length;
+    let k = 0;
+    for (; k < klen; ++k) {
+      target[keys[k]] = clone(source[keys[k]]);
+    }
+    return target;
+  }
+  return source;
+}
+function isValidKey(key) {
+  return ['__proto__', 'prototype', 'constructor'].indexOf(key) === -1;
+}
+function _merger(key, target, source, options) {
+  if (!isValidKey(key)) {
+    return;
+  }
+  const tval = target[key];
+  const sval = source[key];
+  if (isObject(tval) && isObject(sval)) {
+    merge(tval, sval, options);
+  } else {
+    target[key] = clone(sval);
+  }
+}
+function merge(target, source, options) {
+  const sources = isArray(source) ? source : [source];
+  const ilen = sources.length;
+  if (!isObject(target)) {
+    return target;
+  }
+  options = options || {};
+  const merger = options.merger || _merger;
+  for (let i = 0; i < ilen; ++i) {
+    source = sources[i];
+    if (!isObject(source)) {
+      continue;
+    }
+    const keys = Object.keys(source);
+    for (let k = 0, klen = keys.length; k < klen; ++k) {
+      merger(keys[k], target, source, options);
+    }
+  }
+  return target;
+}
+function mergeIf(target, source) {
+  return merge(target, source, {merger: _mergerIf});
+}
+function _mergerIf(key, target, source) {
+  if (!isValidKey(key)) {
+    return;
+  }
+  const tval = target[key];
+  const sval = source[key];
+  if (isObject(tval) && isObject(sval)) {
+    mergeIf(tval, sval);
+  } else if (!Object.prototype.hasOwnProperty.call(target, key)) {
+    target[key] = clone(sval);
+  }
+}
+function _deprecated(scope, value, previous, current) {
+  if (value !== undefined) {
+    console.warn(scope + ': "' + previous +
+			'" is deprecated. Please use "' + current + '" instead');
+  }
+}
+const emptyString = '';
+const dot = '.';
+function indexOfDotOrLength(key, start) {
+  const idx = key.indexOf(dot, start);
+  return idx === -1 ? key.length : idx;
+}
+function resolveObjectKey(obj, key) {
+  if (key === emptyString) {
+    return obj;
+  }
+  let pos = 0;
+  let idx = indexOfDotOrLength(key, pos);
+  while (obj && idx > pos) {
+    obj = obj[key.substr(pos, idx - pos)];
+    pos = idx + 1;
+    idx = indexOfDotOrLength(key, pos);
+  }
+  return obj;
+}
+function _capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+const defined = (value) => typeof value !== 'undefined';
+const isFunction = (value) => typeof value === 'function';
+const setsEqual = (a, b) => {
+  if (a.size !== b.size) {
+    return false;
+  }
+  for (const item of a) {
+    if (!b.has(item)) {
+      return false;
+    }
+  }
+  return true;
+};
+function _isClickEvent(e) {
+  return e.type === 'mouseup' || e.type === 'click' || e.type === 'contextmenu';
+}
+
+const overrides = Object.create(null);
+const descriptors = Object.create(null);
+function getScope$1(node, key) {
+  if (!key) {
+    return node;
+  }
+  const keys = key.split('.');
+  for (let i = 0, n = keys.length; i < n; ++i) {
+    const k = keys[i];
+    node = node[k] || (node[k] = Object.create(null));
+  }
+  return node;
+}
+function set(root, scope, values) {
+  if (typeof scope === 'string') {
+    return merge(getScope$1(root, scope), values);
+  }
+  return merge(getScope$1(root, ''), scope);
+}
+class Defaults {
+  constructor(_descriptors) {
+    this.animation = undefined;
+    this.backgroundColor = 'rgba(0,0,0,0.1)';
+    this.borderColor = 'rgba(0,0,0,0.1)';
+    this.color = '#666';
+    this.datasets = {};
+    this.devicePixelRatio = (context) => context.chart.platform.getDevicePixelRatio();
+    this.elements = {};
+    this.events = [
+      'mousemove',
+      'mouseout',
+      'click',
+      'touchstart',
+      'touchmove'
+    ];
+    this.font = {
+      family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      size: 12,
+      style: 'normal',
+      lineHeight: 1.2,
+      weight: null
+    };
+    this.hover = {};
+    this.hoverBackgroundColor = (ctx, options) => getHoverColor(options.backgroundColor);
+    this.hoverBorderColor = (ctx, options) => getHoverColor(options.borderColor);
+    this.hoverColor = (ctx, options) => getHoverColor(options.color);
+    this.indexAxis = 'x';
+    this.interaction = {
+      mode: 'nearest',
+      intersect: true
+    };
+    this.maintainAspectRatio = true;
+    this.onHover = null;
+    this.onClick = null;
+    this.parsing = true;
+    this.plugins = {};
+    this.responsive = true;
+    this.scale = undefined;
+    this.scales = {};
+    this.showLine = true;
+    this.drawActiveElementsOnTop = true;
+    this.describe(_descriptors);
+  }
+  set(scope, values) {
+    return set(this, scope, values);
+  }
+  get(scope) {
+    return getScope$1(this, scope);
+  }
+  describe(scope, values) {
+    return set(descriptors, scope, values);
+  }
+  override(scope, values) {
+    return set(overrides, scope, values);
+  }
+  route(scope, name, targetScope, targetName) {
+    const scopeObject = getScope$1(this, scope);
+    const targetScopeObject = getScope$1(this, targetScope);
+    const privateName = '_' + name;
+    Object.defineProperties(scopeObject, {
+      [privateName]: {
+        value: scopeObject[name],
+        writable: true
+      },
+      [name]: {
+        enumerable: true,
+        get() {
+          const local = this[privateName];
+          const target = targetScopeObject[targetName];
+          if (isObject(local)) {
+            return Object.assign({}, target, local);
+          }
+          return valueOrDefault(local, target);
+        },
+        set(value) {
+          this[privateName] = value;
+        }
+      }
+    });
+  }
+}
+var defaults = new Defaults({
+  _scriptable: (name) => !name.startsWith('on'),
+  _indexable: (name) => name !== 'events',
+  hover: {
+    _fallback: 'interaction'
+  },
+  interaction: {
+    _scriptable: false,
+    _indexable: false,
+  }
+});
+
+const PI = Math.PI;
+const TAU = 2 * PI;
+const PITAU = TAU + PI;
+const INFINITY = Number.POSITIVE_INFINITY;
+const RAD_PER_DEG = PI / 180;
+const HALF_PI = PI / 2;
+const QUARTER_PI = PI / 4;
+const TWO_THIRDS_PI = PI * 2 / 3;
+const log10 = Math.log10;
+const sign = Math.sign;
+function niceNum(range) {
+  const roundedRange = Math.round(range);
+  range = almostEquals(range, roundedRange, range / 1000) ? roundedRange : range;
+  const niceRange = Math.pow(10, Math.floor(log10(range)));
+  const fraction = range / niceRange;
+  const niceFraction = fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;
+  return niceFraction * niceRange;
+}
+function _factorize(value) {
+  const result = [];
+  const sqrt = Math.sqrt(value);
+  let i;
+  for (i = 1; i < sqrt; i++) {
+    if (value % i === 0) {
+      result.push(i);
+      result.push(value / i);
+    }
+  }
+  if (sqrt === (sqrt | 0)) {
+    result.push(sqrt);
+  }
+  result.sort((a, b) => a - b).pop();
+  return result;
+}
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+function almostEquals(x, y, epsilon) {
+  return Math.abs(x - y) < epsilon;
+}
+function almostWhole(x, epsilon) {
+  const rounded = Math.round(x);
+  return ((rounded - epsilon) <= x) && ((rounded + epsilon) >= x);
+}
+function _setMinAndMaxByKey(array, target, property) {
+  let i, ilen, value;
+  for (i = 0, ilen = array.length; i < ilen; i++) {
+    value = array[i][property];
+    if (!isNaN(value)) {
+      target.min = Math.min(target.min, value);
+      target.max = Math.max(target.max, value);
+    }
+  }
+}
+function toRadians(degrees) {
+  return degrees * (PI / 180);
+}
+function toDegrees(radians) {
+  return radians * (180 / PI);
+}
+function _decimalPlaces(x) {
+  if (!isNumberFinite(x)) {
+    return;
+  }
+  let e = 1;
+  let p = 0;
+  while (Math.round(x * e) / e !== x) {
+    e *= 10;
+    p++;
+  }
+  return p;
+}
+function getAngleFromPoint(centrePoint, anglePoint) {
+  const distanceFromXCenter = anglePoint.x - centrePoint.x;
+  const distanceFromYCenter = anglePoint.y - centrePoint.y;
+  const radialDistanceFromCenter = Math.sqrt(distanceFromXCenter * distanceFromXCenter + distanceFromYCenter * distanceFromYCenter);
+  let angle = Math.atan2(distanceFromYCenter, distanceFromXCenter);
+  if (angle < (-0.5 * PI)) {
+    angle += TAU;
+  }
+  return {
+    angle,
+    distance: radialDistanceFromCenter
+  };
+}
+function distanceBetweenPoints(pt1, pt2) {
+  return Math.sqrt(Math.pow(pt2.x - pt1.x, 2) + Math.pow(pt2.y - pt1.y, 2));
+}
+function _angleDiff(a, b) {
+  return (a - b + PITAU) % TAU - PI;
+}
+function _normalizeAngle(a) {
+  return (a % TAU + TAU) % TAU;
+}
+function _angleBetween(angle, start, end, sameAngleIsFullCircle) {
+  const a = _normalizeAngle(angle);
+  const s = _normalizeAngle(start);
+  const e = _normalizeAngle(end);
+  const angleToStart = _normalizeAngle(s - a);
+  const angleToEnd = _normalizeAngle(e - a);
+  const startToAngle = _normalizeAngle(a - s);
+  const endToAngle = _normalizeAngle(a - e);
+  return a === s || a === e || (sameAngleIsFullCircle && s === e)
+    || (angleToStart > angleToEnd && startToAngle < endToAngle);
+}
+function _limitValue(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+function _int16Range(value) {
+  return _limitValue(value, -32768, 32767);
+}
+function _isBetween(value, start, end, epsilon = 1e-6) {
+  return value >= Math.min(start, end) - epsilon && value <= Math.max(start, end) + epsilon;
+}
+
+function toFontString(font) {
+  if (!font || isNullOrUndef(font.size) || isNullOrUndef(font.family)) {
+    return null;
+  }
+  return (font.style ? font.style + ' ' : '')
+		+ (font.weight ? font.weight + ' ' : '')
+		+ font.size + 'px '
+		+ font.family;
+}
+function _measureText(ctx, data, gc, longest, string) {
+  let textWidth = data[string];
+  if (!textWidth) {
+    textWidth = data[string] = ctx.measureText(string).width;
+    gc.push(string);
+  }
+  if (textWidth > longest) {
+    longest = textWidth;
+  }
+  return longest;
+}
+function _longestText(ctx, font, arrayOfThings, cache) {
+  cache = cache || {};
+  let data = cache.data = cache.data || {};
+  let gc = cache.garbageCollect = cache.garbageCollect || [];
+  if (cache.font !== font) {
+    data = cache.data = {};
+    gc = cache.garbageCollect = [];
+    cache.font = font;
+  }
+  ctx.save();
+  ctx.font = font;
+  let longest = 0;
+  const ilen = arrayOfThings.length;
+  let i, j, jlen, thing, nestedThing;
+  for (i = 0; i < ilen; i++) {
+    thing = arrayOfThings[i];
+    if (thing !== undefined && thing !== null && isArray(thing) !== true) {
+      longest = _measureText(ctx, data, gc, longest, thing);
+    } else if (isArray(thing)) {
+      for (j = 0, jlen = thing.length; j < jlen; j++) {
+        nestedThing = thing[j];
+        if (nestedThing !== undefined && nestedThing !== null && !isArray(nestedThing)) {
+          longest = _measureText(ctx, data, gc, longest, nestedThing);
+        }
+      }
+    }
+  }
+  ctx.restore();
+  const gcLen = gc.length / 2;
+  if (gcLen > arrayOfThings.length) {
+    for (i = 0; i < gcLen; i++) {
+      delete data[gc[i]];
+    }
+    gc.splice(0, gcLen);
+  }
+  return longest;
+}
+function _alignPixel(chart, pixel, width) {
+  const devicePixelRatio = chart.currentDevicePixelRatio;
+  const halfWidth = width !== 0 ? Math.max(width / 2, 0.5) : 0;
+  return Math.round((pixel - halfWidth) * devicePixelRatio) / devicePixelRatio + halfWidth;
+}
+function clearCanvas(canvas, ctx) {
+  ctx = ctx || canvas.getContext('2d');
+  ctx.save();
+  ctx.resetTransform();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+}
+function drawPoint(ctx, options, x, y) {
+  let type, xOffset, yOffset, size, cornerRadius;
+  const style = options.pointStyle;
+  const rotation = options.rotation;
+  const radius = options.radius;
+  let rad = (rotation || 0) * RAD_PER_DEG;
+  if (style && typeof style === 'object') {
+    type = style.toString();
+    if (type === '[object HTMLImageElement]' || type === '[object HTMLCanvasElement]') {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rad);
+      ctx.drawImage(style, -style.width / 2, -style.height / 2, style.width, style.height);
+      ctx.restore();
+      return;
+    }
+  }
+  if (isNaN(radius) || radius <= 0) {
+    return;
+  }
+  ctx.beginPath();
+  switch (style) {
+  default:
+    ctx.arc(x, y, radius, 0, TAU);
+    ctx.closePath();
+    break;
+  case 'triangle':
+    ctx.moveTo(x + Math.sin(rad) * radius, y - Math.cos(rad) * radius);
+    rad += TWO_THIRDS_PI;
+    ctx.lineTo(x + Math.sin(rad) * radius, y - Math.cos(rad) * radius);
+    rad += TWO_THIRDS_PI;
+    ctx.lineTo(x + Math.sin(rad) * radius, y - Math.cos(rad) * radius);
+    ctx.closePath();
+    break;
+  case 'rectRounded':
+    cornerRadius = radius * 0.516;
+    size = radius - cornerRadius;
+    xOffset = Math.cos(rad + QUARTER_PI) * size;
+    yOffset = Math.sin(rad + QUARTER_PI) * size;
+    ctx.arc(x - xOffset, y - yOffset, cornerRadius, rad - PI, rad - HALF_PI);
+    ctx.arc(x + yOffset, y - xOffset, cornerRadius, rad - HALF_PI, rad);
+    ctx.arc(x + xOffset, y + yOffset, cornerRadius, rad, rad + HALF_PI);
+    ctx.arc(x - yOffset, y + xOffset, cornerRadius, rad + HALF_PI, rad + PI);
+    ctx.closePath();
+    break;
+  case 'rect':
+    if (!rotation) {
+      size = Math.SQRT1_2 * radius;
+      ctx.rect(x - size, y - size, 2 * size, 2 * size);
+      break;
+    }
+    rad += QUARTER_PI;
+  case 'rectRot':
+    xOffset = Math.cos(rad) * radius;
+    yOffset = Math.sin(rad) * radius;
+    ctx.moveTo(x - xOffset, y - yOffset);
+    ctx.lineTo(x + yOffset, y - xOffset);
+    ctx.lineTo(x + xOffset, y + yOffset);
+    ctx.lineTo(x - yOffset, y + xOffset);
+    ctx.closePath();
+    break;
+  case 'crossRot':
+    rad += QUARTER_PI;
+  case 'cross':
+    xOffset = Math.cos(rad) * radius;
+    yOffset = Math.sin(rad) * radius;
+    ctx.moveTo(x - xOffset, y - yOffset);
+    ctx.lineTo(x + xOffset, y + yOffset);
+    ctx.moveTo(x + yOffset, y - xOffset);
+    ctx.lineTo(x - yOffset, y + xOffset);
+    break;
+  case 'star':
+    xOffset = Math.cos(rad) * radius;
+    yOffset = Math.sin(rad) * radius;
+    ctx.moveTo(x - xOffset, y - yOffset);
+    ctx.lineTo(x + xOffset, y + yOffset);
+    ctx.moveTo(x + yOffset, y - xOffset);
+    ctx.lineTo(x - yOffset, y + xOffset);
+    rad += QUARTER_PI;
+    xOffset = Math.cos(rad) * radius;
+    yOffset = Math.sin(rad) * radius;
+    ctx.moveTo(x - xOffset, y - yOffset);
+    ctx.lineTo(x + xOffset, y + yOffset);
+    ctx.moveTo(x + yOffset, y - xOffset);
+    ctx.lineTo(x - yOffset, y + xOffset);
+    break;
+  case 'line':
+    xOffset = Math.cos(rad) * radius;
+    yOffset = Math.sin(rad) * radius;
+    ctx.moveTo(x - xOffset, y - yOffset);
+    ctx.lineTo(x + xOffset, y + yOffset);
+    break;
+  case 'dash':
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + Math.cos(rad) * radius, y + Math.sin(rad) * radius);
+    break;
+  }
+  ctx.fill();
+  if (options.borderWidth > 0) {
+    ctx.stroke();
+  }
+}
+function _isPointInArea(point, area, margin) {
+  margin = margin || 0.5;
+  return !area || (point && point.x > area.left - margin && point.x < area.right + margin &&
+		point.y > area.top - margin && point.y < area.bottom + margin);
+}
+function clipArea(ctx, area) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(area.left, area.top, area.right - area.left, area.bottom - area.top);
+  ctx.clip();
+}
+function unclipArea(ctx) {
+  ctx.restore();
+}
+function _steppedLineTo(ctx, previous, target, flip, mode) {
+  if (!previous) {
+    return ctx.lineTo(target.x, target.y);
+  }
+  if (mode === 'middle') {
+    const midpoint = (previous.x + target.x) / 2.0;
+    ctx.lineTo(midpoint, previous.y);
+    ctx.lineTo(midpoint, target.y);
+  } else if (mode === 'after' !== !!flip) {
+    ctx.lineTo(previous.x, target.y);
+  } else {
+    ctx.lineTo(target.x, previous.y);
+  }
+  ctx.lineTo(target.x, target.y);
+}
+function _bezierCurveTo(ctx, previous, target, flip) {
+  if (!previous) {
+    return ctx.lineTo(target.x, target.y);
+  }
+  ctx.bezierCurveTo(
+    flip ? previous.cp1x : previous.cp2x,
+    flip ? previous.cp1y : previous.cp2y,
+    flip ? target.cp2x : target.cp1x,
+    flip ? target.cp2y : target.cp1y,
+    target.x,
+    target.y);
+}
+function renderText(ctx, text, x, y, font, opts = {}) {
+  const lines = isArray(text) ? text : [text];
+  const stroke = opts.strokeWidth > 0 && opts.strokeColor !== '';
+  let i, line;
+  ctx.save();
+  ctx.font = font.string;
+  setRenderOpts(ctx, opts);
+  for (i = 0; i < lines.length; ++i) {
+    line = lines[i];
+    if (stroke) {
+      if (opts.strokeColor) {
+        ctx.strokeStyle = opts.strokeColor;
+      }
+      if (!isNullOrUndef(opts.strokeWidth)) {
+        ctx.lineWidth = opts.strokeWidth;
+      }
+      ctx.strokeText(line, x, y, opts.maxWidth);
+    }
+    ctx.fillText(line, x, y, opts.maxWidth);
+    decorateText(ctx, x, y, line, opts);
+    y += font.lineHeight;
+  }
+  ctx.restore();
+}
+function setRenderOpts(ctx, opts) {
+  if (opts.translation) {
+    ctx.translate(opts.translation[0], opts.translation[1]);
+  }
+  if (!isNullOrUndef(opts.rotation)) {
+    ctx.rotate(opts.rotation);
+  }
+  if (opts.color) {
+    ctx.fillStyle = opts.color;
+  }
+  if (opts.textAlign) {
+    ctx.textAlign = opts.textAlign;
+  }
+  if (opts.textBaseline) {
+    ctx.textBaseline = opts.textBaseline;
+  }
+}
+function decorateText(ctx, x, y, line, opts) {
+  if (opts.strikethrough || opts.underline) {
+    const metrics = ctx.measureText(line);
+    const left = x - metrics.actualBoundingBoxLeft;
+    const right = x + metrics.actualBoundingBoxRight;
+    const top = y - metrics.actualBoundingBoxAscent;
+    const bottom = y + metrics.actualBoundingBoxDescent;
+    const yDecoration = opts.strikethrough ? (top + bottom) / 2 : bottom;
+    ctx.strokeStyle = ctx.fillStyle;
+    ctx.beginPath();
+    ctx.lineWidth = opts.decorationWidth || 2;
+    ctx.moveTo(left, yDecoration);
+    ctx.lineTo(right, yDecoration);
+    ctx.stroke();
+  }
+}
+function addRoundedRectPath(ctx, rect) {
+  const {x, y, w, h, radius} = rect;
+  ctx.arc(x + radius.topLeft, y + radius.topLeft, radius.topLeft, -HALF_PI, PI, true);
+  ctx.lineTo(x, y + h - radius.bottomLeft);
+  ctx.arc(x + radius.bottomLeft, y + h - radius.bottomLeft, radius.bottomLeft, PI, HALF_PI, true);
+  ctx.lineTo(x + w - radius.bottomRight, y + h);
+  ctx.arc(x + w - radius.bottomRight, y + h - radius.bottomRight, radius.bottomRight, HALF_PI, 0, true);
+  ctx.lineTo(x + w, y + radius.topRight);
+  ctx.arc(x + w - radius.topRight, y + radius.topRight, radius.topRight, 0, -HALF_PI, true);
+  ctx.lineTo(x + radius.topLeft, y);
+}
+
+function _lookup(table, value, cmp) {
+  cmp = cmp || ((index) => table[index] < value);
+  let hi = table.length - 1;
+  let lo = 0;
+  let mid;
+  while (hi - lo > 1) {
+    mid = (lo + hi) >> 1;
+    if (cmp(mid)) {
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+  return {lo, hi};
+}
+const _lookupByKey = (table, key, value) =>
+  _lookup(table, value, index => table[index][key] < value);
+const _rlookupByKey = (table, key, value) =>
+  _lookup(table, value, index => table[index][key] >= value);
+function _filterBetween(values, min, max) {
+  let start = 0;
+  let end = values.length;
+  while (start < end && values[start] < min) {
+    start++;
+  }
+  while (end > start && values[end - 1] > max) {
+    end--;
+  }
+  return start > 0 || end < values.length
+    ? values.slice(start, end)
+    : values;
+}
+const arrayEvents = ['push', 'pop', 'shift', 'splice', 'unshift'];
+function listenArrayEvents(array, listener) {
+  if (array._chartjs) {
+    array._chartjs.listeners.push(listener);
+    return;
+  }
+  Object.defineProperty(array, '_chartjs', {
+    configurable: true,
+    enumerable: false,
+    value: {
+      listeners: [listener]
+    }
+  });
+  arrayEvents.forEach((key) => {
+    const method = '_onData' + _capitalize(key);
+    const base = array[key];
+    Object.defineProperty(array, key, {
+      configurable: true,
+      enumerable: false,
+      value(...args) {
+        const res = base.apply(this, args);
+        array._chartjs.listeners.forEach((object) => {
+          if (typeof object[method] === 'function') {
+            object[method](...args);
+          }
+        });
+        return res;
+      }
+    });
+  });
+}
+function unlistenArrayEvents(array, listener) {
+  const stub = array._chartjs;
+  if (!stub) {
+    return;
+  }
+  const listeners = stub.listeners;
+  const index = listeners.indexOf(listener);
+  if (index !== -1) {
+    listeners.splice(index, 1);
+  }
+  if (listeners.length > 0) {
+    return;
+  }
+  arrayEvents.forEach((key) => {
+    delete array[key];
+  });
+  delete array._chartjs;
+}
+function _arrayUnique(items) {
+  const set = new Set();
+  let i, ilen;
+  for (i = 0, ilen = items.length; i < ilen; ++i) {
+    set.add(items[i]);
+  }
+  if (set.size === ilen) {
+    return items;
+  }
+  return Array.from(set);
+}
+
+function _isDomSupported() {
+  return typeof window !== 'undefined' && typeof document !== 'undefined';
+}
+function _getParentNode(domNode) {
+  let parent = domNode.parentNode;
+  if (parent && parent.toString() === '[object ShadowRoot]') {
+    parent = parent.host;
+  }
+  return parent;
+}
+function parseMaxStyle(styleValue, node, parentProperty) {
+  let valueInPixels;
+  if (typeof styleValue === 'string') {
+    valueInPixels = parseInt(styleValue, 10);
+    if (styleValue.indexOf('%') !== -1) {
+      valueInPixels = valueInPixels / 100 * node.parentNode[parentProperty];
+    }
+  } else {
+    valueInPixels = styleValue;
+  }
+  return valueInPixels;
+}
+const getComputedStyle = (element) => window.getComputedStyle(element, null);
+function getStyle(el, property) {
+  return getComputedStyle(el).getPropertyValue(property);
+}
+const positions = ['top', 'right', 'bottom', 'left'];
+function getPositionedStyle(styles, style, suffix) {
+  const result = {};
+  suffix = suffix ? '-' + suffix : '';
+  for (let i = 0; i < 4; i++) {
+    const pos = positions[i];
+    result[pos] = parseFloat(styles[style + '-' + pos + suffix]) || 0;
+  }
+  result.width = result.left + result.right;
+  result.height = result.top + result.bottom;
+  return result;
+}
+const useOffsetPos = (x, y, target) => (x > 0 || y > 0) && (!target || !target.shadowRoot);
+function getCanvasPosition(evt, canvas) {
+  const e = evt.native || evt;
+  const touches = e.touches;
+  const source = touches && touches.length ? touches[0] : e;
+  const {offsetX, offsetY} = source;
+  let box = false;
+  let x, y;
+  if (useOffsetPos(offsetX, offsetY, e.target)) {
+    x = offsetX;
+    y = offsetY;
+  } else {
+    const rect = canvas.getBoundingClientRect();
+    x = source.clientX - rect.left;
+    y = source.clientY - rect.top;
+    box = true;
+  }
+  return {x, y, box};
+}
+function getRelativePosition$1(evt, chart) {
+  const {canvas, currentDevicePixelRatio} = chart;
+  const style = getComputedStyle(canvas);
+  const borderBox = style.boxSizing === 'border-box';
+  const paddings = getPositionedStyle(style, 'padding');
+  const borders = getPositionedStyle(style, 'border', 'width');
+  const {x, y, box} = getCanvasPosition(evt, canvas);
+  const xOffset = paddings.left + (box && borders.left);
+  const yOffset = paddings.top + (box && borders.top);
+  let {width, height} = chart;
+  if (borderBox) {
+    width -= paddings.width + borders.width;
+    height -= paddings.height + borders.height;
+  }
+  return {
+    x: Math.round((x - xOffset) / width * canvas.width / currentDevicePixelRatio),
+    y: Math.round((y - yOffset) / height * canvas.height / currentDevicePixelRatio)
+  };
+}
+function getContainerSize(canvas, width, height) {
+  let maxWidth, maxHeight;
+  if (width === undefined || height === undefined) {
+    const container = _getParentNode(canvas);
+    if (!container) {
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+    } else {
+      const rect = container.getBoundingClientRect();
+      const containerStyle = getComputedStyle(container);
+      const containerBorder = getPositionedStyle(containerStyle, 'border', 'width');
+      const containerPadding = getPositionedStyle(containerStyle, 'padding');
+      width = rect.width - containerPadding.width - containerBorder.width;
+      height = rect.height - containerPadding.height - containerBorder.height;
+      maxWidth = parseMaxStyle(containerStyle.maxWidth, container, 'clientWidth');
+      maxHeight = parseMaxStyle(containerStyle.maxHeight, container, 'clientHeight');
+    }
+  }
+  return {
+    width,
+    height,
+    maxWidth: maxWidth || INFINITY,
+    maxHeight: maxHeight || INFINITY
+  };
+}
+const round1 = v => Math.round(v * 10) / 10;
+function getMaximumSize(canvas, bbWidth, bbHeight, aspectRatio) {
+  const style = getComputedStyle(canvas);
+  const margins = getPositionedStyle(style, 'margin');
+  const maxWidth = parseMaxStyle(style.maxWidth, canvas, 'clientWidth') || INFINITY;
+  const maxHeight = parseMaxStyle(style.maxHeight, canvas, 'clientHeight') || INFINITY;
+  const containerSize = getContainerSize(canvas, bbWidth, bbHeight);
+  let {width, height} = containerSize;
+  if (style.boxSizing === 'content-box') {
+    const borders = getPositionedStyle(style, 'border', 'width');
+    const paddings = getPositionedStyle(style, 'padding');
+    width -= paddings.width + borders.width;
+    height -= paddings.height + borders.height;
+  }
+  width = Math.max(0, width - margins.width);
+  height = Math.max(0, aspectRatio ? Math.floor(width / aspectRatio) : height - margins.height);
+  width = round1(Math.min(width, maxWidth, containerSize.maxWidth));
+  height = round1(Math.min(height, maxHeight, containerSize.maxHeight));
+  if (width && !height) {
+    height = round1(width / 2);
+  }
+  return {
+    width,
+    height
+  };
+}
+function retinaScale(chart, forceRatio, forceStyle) {
+  const pixelRatio = forceRatio || 1;
+  const deviceHeight = Math.floor(chart.height * pixelRatio);
+  const deviceWidth = Math.floor(chart.width * pixelRatio);
+  chart.height = deviceHeight / pixelRatio;
+  chart.width = deviceWidth / pixelRatio;
+  const canvas = chart.canvas;
+  if (canvas.style && (forceStyle || (!canvas.style.height && !canvas.style.width))) {
+    canvas.style.height = `${chart.height}px`;
+    canvas.style.width = `${chart.width}px`;
+  }
+  if (chart.currentDevicePixelRatio !== pixelRatio
+      || canvas.height !== deviceHeight
+      || canvas.width !== deviceWidth) {
+    chart.currentDevicePixelRatio = pixelRatio;
+    canvas.height = deviceHeight;
+    canvas.width = deviceWidth;
+    chart.ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    return true;
+  }
+  return false;
+}
+const supportsEventListenerOptions = (function() {
+  let passiveSupported = false;
+  try {
+    const options = {
+      get passive() {
+        passiveSupported = true;
+        return false;
+      }
+    };
+    window.addEventListener('test', null, options);
+    window.removeEventListener('test', null, options);
+  } catch (e) {
+  }
+  return passiveSupported;
+}());
+function readUsedSize(element, property) {
+  const value = getStyle(element, property);
+  const matches = value && value.match(/^(\d+)(\.\d+)?px$/);
+  return matches ? +matches[1] : undefined;
+}
+
+function getRelativePosition(e, chart) {
+  if ('native' in e) {
+    return {
+      x: e.x,
+      y: e.y
+    };
+  }
+  return getRelativePosition$1(e, chart);
+}
+function evaluateAllVisibleItems(chart, handler) {
+  const metasets = chart.getSortedVisibleDatasetMetas();
+  let index, data, element;
+  for (let i = 0, ilen = metasets.length; i < ilen; ++i) {
+    ({index, data} = metasets[i]);
+    for (let j = 0, jlen = data.length; j < jlen; ++j) {
+      element = data[j];
+      if (!element.skip) {
+        handler(element, index, j);
+      }
+    }
+  }
+}
+function binarySearch(metaset, axis, value, intersect) {
+  const {controller, data, _sorted} = metaset;
+  const iScale = controller._cachedMeta.iScale;
+  if (iScale && axis === iScale.axis && axis !== 'r' && _sorted && data.length) {
+    const lookupMethod = iScale._reversePixels ? _rlookupByKey : _lookupByKey;
+    if (!intersect) {
+      return lookupMethod(data, axis, value);
+    } else if (controller._sharedOptions) {
+      const el = data[0];
+      const range = typeof el.getRange === 'function' && el.getRange(axis);
+      if (range) {
+        const start = lookupMethod(data, axis, value - range);
+        const end = lookupMethod(data, axis, value + range);
+        return {lo: start.lo, hi: end.hi};
+      }
+    }
+  }
+  return {lo: 0, hi: data.length - 1};
+}
+function optimizedEvaluateItems(chart, axis, position, handler, intersect) {
+  const metasets = chart.getSortedVisibleDatasetMetas();
+  const value = position[axis];
+  for (let i = 0, ilen = metasets.length; i < ilen; ++i) {
+    const {index, data} = metasets[i];
+    const {lo, hi} = binarySearch(metasets[i], axis, value, intersect);
+    for (let j = lo; j <= hi; ++j) {
+      const element = data[j];
+      if (!element.skip) {
+        handler(element, index, j);
+      }
+    }
+  }
+}
+function getDistanceMetricForAxis(axis) {
+  const useX = axis.indexOf('x') !== -1;
+  const useY = axis.indexOf('y') !== -1;
+  return function(pt1, pt2) {
+    const deltaX = useX ? Math.abs(pt1.x - pt2.x) : 0;
+    const deltaY = useY ? Math.abs(pt1.y - pt2.y) : 0;
+    return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+  };
+}
+function getIntersectItems(chart, position, axis, useFinalPosition) {
+  const items = [];
+  if (!_isPointInArea(position, chart.chartArea, chart._minPadding)) {
+    return items;
+  }
+  const evaluationFunc = function(element, datasetIndex, index) {
+    if (element.inRange(position.x, position.y, useFinalPosition)) {
+      items.push({element, datasetIndex, index});
+    }
+  };
+  optimizedEvaluateItems(chart, axis, position, evaluationFunc, true);
+  return items;
+}
+function getNearestRadialItems(chart, position, axis, useFinalPosition) {
+  let items = [];
+  function evaluationFunc(element, datasetIndex, index) {
+    const {startAngle, endAngle} = element.getProps(['startAngle', 'endAngle'], useFinalPosition);
+    const {angle} = getAngleFromPoint(element, {x: position.x, y: position.y});
+    if (_angleBetween(angle, startAngle, endAngle)) {
+      items.push({element, datasetIndex, index});
+    }
+  }
+  optimizedEvaluateItems(chart, axis, position, evaluationFunc);
+  return items;
+}
+function getNearestCartesianItems(chart, position, axis, intersect, useFinalPosition) {
+  let items = [];
+  const distanceMetric = getDistanceMetricForAxis(axis);
+  let minDistance = Number.POSITIVE_INFINITY;
+  function evaluationFunc(element, datasetIndex, index) {
+    const inRange = element.inRange(position.x, position.y, useFinalPosition);
+    if (intersect && !inRange) {
+      return;
+    }
+    const center = element.getCenterPoint(useFinalPosition);
+    const pointInArea = _isPointInArea(center, chart.chartArea, chart._minPadding);
+    if (!pointInArea && !inRange) {
+      return;
+    }
+    const distance = distanceMetric(position, center);
+    if (distance < minDistance) {
+      items = [{element, datasetIndex, index}];
+      minDistance = distance;
+    } else if (distance === minDistance) {
+      items.push({element, datasetIndex, index});
+    }
+  }
+  optimizedEvaluateItems(chart, axis, position, evaluationFunc);
+  return items;
+}
+function getNearestItems(chart, position, axis, intersect, useFinalPosition) {
+  if (!_isPointInArea(position, chart.chartArea, chart._minPadding)) {
+    return [];
+  }
+  return axis === 'r' && !intersect
+    ? getNearestRadialItems(chart, position, axis, useFinalPosition)
+    : getNearestCartesianItems(chart, position, axis, intersect, useFinalPosition);
+}
+function getAxisItems(chart, e, options, useFinalPosition) {
+  const position = getRelativePosition(e, chart);
+  const items = [];
+  const axis = options.axis;
+  const rangeMethod = axis === 'x' ? 'inXRange' : 'inYRange';
+  let intersectsItem = false;
+  evaluateAllVisibleItems(chart, (element, datasetIndex, index) => {
+    if (element[rangeMethod](position[axis], useFinalPosition)) {
+      items.push({element, datasetIndex, index});
+    }
+    if (element.inRange(position.x, position.y, useFinalPosition)) {
+      intersectsItem = true;
+    }
+  });
+  if (options.intersect && !intersectsItem) {
+    return [];
+  }
+  return items;
+}
+var Interaction = {
+  modes: {
+    index(chart, e, options, useFinalPosition) {
+      const position = getRelativePosition(e, chart);
+      const axis = options.axis || 'x';
+      const items = options.intersect
+        ? getIntersectItems(chart, position, axis, useFinalPosition)
+        : getNearestItems(chart, position, axis, false, useFinalPosition);
+      const elements = [];
+      if (!items.length) {
+        return [];
+      }
+      chart.getSortedVisibleDatasetMetas().forEach((meta) => {
+        const index = items[0].index;
+        const element = meta.data[index];
+        if (element && !element.skip) {
+          elements.push({element, datasetIndex: meta.index, index});
+        }
+      });
+      return elements;
+    },
+    dataset(chart, e, options, useFinalPosition) {
+      const position = getRelativePosition(e, chart);
+      const axis = options.axis || 'xy';
+      let items = options.intersect
+        ? getIntersectItems(chart, position, axis, useFinalPosition) :
+        getNearestItems(chart, position, axis, false, useFinalPosition);
+      if (items.length > 0) {
+        const datasetIndex = items[0].datasetIndex;
+        const data = chart.getDatasetMeta(datasetIndex).data;
+        items = [];
+        for (let i = 0; i < data.length; ++i) {
+          items.push({element: data[i], datasetIndex, index: i});
+        }
+      }
+      return items;
+    },
+    point(chart, e, options, useFinalPosition) {
+      const position = getRelativePosition(e, chart);
+      const axis = options.axis || 'xy';
+      return getIntersectItems(chart, position, axis, useFinalPosition);
+    },
+    nearest(chart, e, options, useFinalPosition) {
+      const position = getRelativePosition(e, chart);
+      const axis = options.axis || 'xy';
+      return getNearestItems(chart, position, axis, options.intersect, useFinalPosition);
+    },
+    x(chart, e, options, useFinalPosition) {
+      return getAxisItems(chart, e, {axis: 'x', intersect: options.intersect}, useFinalPosition);
+    },
+    y(chart, e, options, useFinalPosition) {
+      return getAxisItems(chart, e, {axis: 'y', intersect: options.intersect}, useFinalPosition);
+    }
+  }
+};
+
+const LINE_HEIGHT = new RegExp(/^(normal|(\d+(?:\.\d+)?)(px|em|%)?)$/);
+const FONT_STYLE = new RegExp(/^(normal|italic|initial|inherit|unset|(oblique( -?[0-9]?[0-9]deg)?))$/);
+function toLineHeight(value, size) {
+  const matches = ('' + value).match(LINE_HEIGHT);
+  if (!matches || matches[1] === 'normal') {
+    return size * 1.2;
+  }
+  value = +matches[2];
+  switch (matches[3]) {
+  case 'px':
+    return value;
+  case '%':
+    value /= 100;
+    break;
+  }
+  return size * value;
+}
+const numberOrZero = v => +v || 0;
+function _readValueToProps(value, props) {
+  const ret = {};
+  const objProps = isObject(props);
+  const keys = objProps ? Object.keys(props) : props;
+  const read = isObject(value)
+    ? objProps
+      ? prop => valueOrDefault(value[prop], value[props[prop]])
+      : prop => value[prop]
+    : () => value;
+  for (const prop of keys) {
+    ret[prop] = numberOrZero(read(prop));
+  }
+  return ret;
+}
+function toTRBL(value) {
+  return _readValueToProps(value, {top: 'y', right: 'x', bottom: 'y', left: 'x'});
+}
+function toTRBLCorners(value) {
+  return _readValueToProps(value, ['topLeft', 'topRight', 'bottomLeft', 'bottomRight']);
+}
+function toPadding(value) {
+  const obj = toTRBL(value);
+  obj.width = obj.left + obj.right;
+  obj.height = obj.top + obj.bottom;
+  return obj;
+}
+function toFont(options, fallback) {
+  options = options || {};
+  fallback = fallback || defaults.font;
+  let size = valueOrDefault(options.size, fallback.size);
+  if (typeof size === 'string') {
+    size = parseInt(size, 10);
+  }
+  let style = valueOrDefault(options.style, fallback.style);
+  if (style && !('' + style).match(FONT_STYLE)) {
+    console.warn('Invalid font style specified: "' + style + '"');
+    style = '';
+  }
+  const font = {
+    family: valueOrDefault(options.family, fallback.family),
+    lineHeight: toLineHeight(valueOrDefault(options.lineHeight, fallback.lineHeight), size),
+    size,
+    style,
+    weight: valueOrDefault(options.weight, fallback.weight),
+    string: ''
+  };
+  font.string = toFontString(font);
+  return font;
+}
+function resolve(inputs, context, index, info) {
+  let cacheable = true;
+  let i, ilen, value;
+  for (i = 0, ilen = inputs.length; i < ilen; ++i) {
+    value = inputs[i];
+    if (value === undefined) {
+      continue;
+    }
+    if (context !== undefined && typeof value === 'function') {
+      value = value(context);
+      cacheable = false;
+    }
+    if (index !== undefined && isArray(value)) {
+      value = value[index % value.length];
+      cacheable = false;
+    }
+    if (value !== undefined) {
+      if (info && !cacheable) {
+        info.cacheable = false;
+      }
+      return value;
+    }
+  }
+}
+function _addGrace(minmax, grace, beginAtZero) {
+  const {min, max} = minmax;
+  const change = toDimension(grace, (max - min) / 2);
+  const keepZero = (value, add) => beginAtZero && value === 0 ? 0 : value + add;
+  return {
+    min: keepZero(min, -Math.abs(change)),
+    max: keepZero(max, change)
+  };
+}
+function createContext(parentContext, context) {
+  return Object.assign(Object.create(parentContext), context);
+}
+
+const STATIC_POSITIONS = ['left', 'top', 'right', 'bottom'];
+function filterByPosition(array, position) {
+  return array.filter(v => v.pos === position);
+}
+function filterDynamicPositionByAxis(array, axis) {
+  return array.filter(v => STATIC_POSITIONS.indexOf(v.pos) === -1 && v.box.axis === axis);
+}
+function sortByWeight(array, reverse) {
+  return array.sort((a, b) => {
+    const v0 = reverse ? b : a;
+    const v1 = reverse ? a : b;
+    return v0.weight === v1.weight ?
+      v0.index - v1.index :
+      v0.weight - v1.weight;
+  });
+}
+function wrapBoxes(boxes) {
+  const layoutBoxes = [];
+  let i, ilen, box, pos, stack, stackWeight;
+  for (i = 0, ilen = (boxes || []).length; i < ilen; ++i) {
+    box = boxes[i];
+    ({position: pos, options: {stack, stackWeight = 1}} = box);
+    layoutBoxes.push({
+      index: i,
+      box,
+      pos,
+      horizontal: box.isHorizontal(),
+      weight: box.weight,
+      stack: stack && (pos + stack),
+      stackWeight
+    });
+  }
+  return layoutBoxes;
+}
+function buildStacks(layouts) {
+  const stacks = {};
+  for (const wrap of layouts) {
+    const {stack, pos, stackWeight} = wrap;
+    if (!stack || !STATIC_POSITIONS.includes(pos)) {
+      continue;
+    }
+    const _stack = stacks[stack] || (stacks[stack] = {count: 0, placed: 0, weight: 0, size: 0});
+    _stack.count++;
+    _stack.weight += stackWeight;
+  }
+  return stacks;
+}
+function setLayoutDims(layouts, params) {
+  const stacks = buildStacks(layouts);
+  const {vBoxMaxWidth, hBoxMaxHeight} = params;
+  let i, ilen, layout;
+  for (i = 0, ilen = layouts.length; i < ilen; ++i) {
+    layout = layouts[i];
+    const {fullSize} = layout.box;
+    const stack = stacks[layout.stack];
+    const factor = stack && layout.stackWeight / stack.weight;
+    if (layout.horizontal) {
+      layout.width = factor ? factor * vBoxMaxWidth : fullSize && params.availableWidth;
+      layout.height = hBoxMaxHeight;
+    } else {
+      layout.width = vBoxMaxWidth;
+      layout.height = factor ? factor * hBoxMaxHeight : fullSize && params.availableHeight;
+    }
+  }
+  return stacks;
+}
+function buildLayoutBoxes(boxes) {
+  const layoutBoxes = wrapBoxes(boxes);
+  const fullSize = sortByWeight(layoutBoxes.filter(wrap => wrap.box.fullSize), true);
+  const left = sortByWeight(filterByPosition(layoutBoxes, 'left'), true);
+  const right = sortByWeight(filterByPosition(layoutBoxes, 'right'));
+  const top = sortByWeight(filterByPosition(layoutBoxes, 'top'), true);
+  const bottom = sortByWeight(filterByPosition(layoutBoxes, 'bottom'));
+  const centerHorizontal = filterDynamicPositionByAxis(layoutBoxes, 'x');
+  const centerVertical = filterDynamicPositionByAxis(layoutBoxes, 'y');
+  return {
+    fullSize,
+    leftAndTop: left.concat(top),
+    rightAndBottom: right.concat(centerVertical).concat(bottom).concat(centerHorizontal),
+    chartArea: filterByPosition(layoutBoxes, 'chartArea'),
+    vertical: left.concat(right).concat(centerVertical),
+    horizontal: top.concat(bottom).concat(centerHorizontal)
+  };
+}
+function getCombinedMax(maxPadding, chartArea, a, b) {
+  return Math.max(maxPadding[a], chartArea[a]) + Math.max(maxPadding[b], chartArea[b]);
+}
+function updateMaxPadding(maxPadding, boxPadding) {
+  maxPadding.top = Math.max(maxPadding.top, boxPadding.top);
+  maxPadding.left = Math.max(maxPadding.left, boxPadding.left);
+  maxPadding.bottom = Math.max(maxPadding.bottom, boxPadding.bottom);
+  maxPadding.right = Math.max(maxPadding.right, boxPadding.right);
+}
+function updateDims(chartArea, params, layout, stacks) {
+  const {pos, box} = layout;
+  const maxPadding = chartArea.maxPadding;
+  if (!isObject(pos)) {
+    if (layout.size) {
+      chartArea[pos] -= layout.size;
+    }
+    const stack = stacks[layout.stack] || {size: 0, count: 1};
+    stack.size = Math.max(stack.size, layout.horizontal ? box.height : box.width);
+    layout.size = stack.size / stack.count;
+    chartArea[pos] += layout.size;
+  }
+  if (box.getPadding) {
+    updateMaxPadding(maxPadding, box.getPadding());
+  }
+  const newWidth = Math.max(0, params.outerWidth - getCombinedMax(maxPadding, chartArea, 'left', 'right'));
+  const newHeight = Math.max(0, params.outerHeight - getCombinedMax(maxPadding, chartArea, 'top', 'bottom'));
+  const widthChanged = newWidth !== chartArea.w;
+  const heightChanged = newHeight !== chartArea.h;
+  chartArea.w = newWidth;
+  chartArea.h = newHeight;
+  return layout.horizontal
+    ? {same: widthChanged, other: heightChanged}
+    : {same: heightChanged, other: widthChanged};
+}
+function handleMaxPadding(chartArea) {
+  const maxPadding = chartArea.maxPadding;
+  function updatePos(pos) {
+    const change = Math.max(maxPadding[pos] - chartArea[pos], 0);
+    chartArea[pos] += change;
+    return change;
+  }
+  chartArea.y += updatePos('top');
+  chartArea.x += updatePos('left');
+  updatePos('right');
+  updatePos('bottom');
+}
+function getMargins(horizontal, chartArea) {
+  const maxPadding = chartArea.maxPadding;
+  function marginForPositions(positions) {
+    const margin = {left: 0, top: 0, right: 0, bottom: 0};
+    positions.forEach((pos) => {
+      margin[pos] = Math.max(chartArea[pos], maxPadding[pos]);
+    });
+    return margin;
+  }
+  return horizontal
+    ? marginForPositions(['left', 'right'])
+    : marginForPositions(['top', 'bottom']);
+}
+function fitBoxes(boxes, chartArea, params, stacks) {
+  const refitBoxes = [];
+  let i, ilen, layout, box, refit, changed;
+  for (i = 0, ilen = boxes.length, refit = 0; i < ilen; ++i) {
+    layout = boxes[i];
+    box = layout.box;
+    box.update(
+      layout.width || chartArea.w,
+      layout.height || chartArea.h,
+      getMargins(layout.horizontal, chartArea)
+    );
+    const {same, other} = updateDims(chartArea, params, layout, stacks);
+    refit |= same && refitBoxes.length;
+    changed = changed || other;
+    if (!box.fullSize) {
+      refitBoxes.push(layout);
+    }
+  }
+  return refit && fitBoxes(refitBoxes, chartArea, params, stacks) || changed;
+}
+function setBoxDims(box, left, top, width, height) {
+  box.top = top;
+  box.left = left;
+  box.right = left + width;
+  box.bottom = top + height;
+  box.width = width;
+  box.height = height;
+}
+function placeBoxes(boxes, chartArea, params, stacks) {
+  const userPadding = params.padding;
+  let {x, y} = chartArea;
+  for (const layout of boxes) {
+    const box = layout.box;
+    const stack = stacks[layout.stack] || {count: 1, placed: 0, weight: 1};
+    const weight = (layout.stackWeight / stack.weight) || 1;
+    if (layout.horizontal) {
+      const width = chartArea.w * weight;
+      const height = stack.size || box.height;
+      if (defined(stack.start)) {
+        y = stack.start;
+      }
+      if (box.fullSize) {
+        setBoxDims(box, userPadding.left, y, params.outerWidth - userPadding.right - userPadding.left, height);
+      } else {
+        setBoxDims(box, chartArea.left + stack.placed, y, width, height);
+      }
+      stack.start = y;
+      stack.placed += width;
+      y = box.bottom;
+    } else {
+      const height = chartArea.h * weight;
+      const width = stack.size || box.width;
+      if (defined(stack.start)) {
+        x = stack.start;
+      }
+      if (box.fullSize) {
+        setBoxDims(box, x, userPadding.top, width, params.outerHeight - userPadding.bottom - userPadding.top);
+      } else {
+        setBoxDims(box, x, chartArea.top + stack.placed, width, height);
+      }
+      stack.start = x;
+      stack.placed += height;
+      x = box.right;
+    }
+  }
+  chartArea.x = x;
+  chartArea.y = y;
+}
+defaults.set('layout', {
+  autoPadding: true,
+  padding: {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
+  }
+});
+var layouts = {
+  addBox(chart, item) {
+    if (!chart.boxes) {
+      chart.boxes = [];
+    }
+    item.fullSize = item.fullSize || false;
+    item.position = item.position || 'top';
+    item.weight = item.weight || 0;
+    item._layers = item._layers || function() {
+      return [{
+        z: 0,
+        draw(chartArea) {
+          item.draw(chartArea);
+        }
+      }];
+    };
+    chart.boxes.push(item);
+  },
+  removeBox(chart, layoutItem) {
+    const index = chart.boxes ? chart.boxes.indexOf(layoutItem) : -1;
+    if (index !== -1) {
+      chart.boxes.splice(index, 1);
+    }
+  },
+  configure(chart, item, options) {
+    item.fullSize = options.fullSize;
+    item.position = options.position;
+    item.weight = options.weight;
+  },
+  update(chart, width, height, minPadding) {
+    if (!chart) {
+      return;
+    }
+    const padding = toPadding(chart.options.layout.padding);
+    const availableWidth = Math.max(width - padding.width, 0);
+    const availableHeight = Math.max(height - padding.height, 0);
+    const boxes = buildLayoutBoxes(chart.boxes);
+    const verticalBoxes = boxes.vertical;
+    const horizontalBoxes = boxes.horizontal;
+    each(chart.boxes, box => {
+      if (typeof box.beforeLayout === 'function') {
+        box.beforeLayout();
+      }
+    });
+    const visibleVerticalBoxCount = verticalBoxes.reduce((total, wrap) =>
+      wrap.box.options && wrap.box.options.display === false ? total : total + 1, 0) || 1;
+    const params = Object.freeze({
+      outerWidth: width,
+      outerHeight: height,
+      padding,
+      availableWidth,
+      availableHeight,
+      vBoxMaxWidth: availableWidth / 2 / visibleVerticalBoxCount,
+      hBoxMaxHeight: availableHeight / 2
+    });
+    const maxPadding = Object.assign({}, padding);
+    updateMaxPadding(maxPadding, toPadding(minPadding));
+    const chartArea = Object.assign({
+      maxPadding,
+      w: availableWidth,
+      h: availableHeight,
+      x: padding.left,
+      y: padding.top
+    }, padding);
+    const stacks = setLayoutDims(verticalBoxes.concat(horizontalBoxes), params);
+    fitBoxes(boxes.fullSize, chartArea, params, stacks);
+    fitBoxes(verticalBoxes, chartArea, params, stacks);
+    if (fitBoxes(horizontalBoxes, chartArea, params, stacks)) {
+      fitBoxes(verticalBoxes, chartArea, params, stacks);
+    }
+    handleMaxPadding(chartArea);
+    placeBoxes(boxes.leftAndTop, chartArea, params, stacks);
+    chartArea.x += chartArea.w;
+    chartArea.y += chartArea.h;
+    placeBoxes(boxes.rightAndBottom, chartArea, params, stacks);
+    chart.chartArea = {
+      left: chartArea.left,
+      top: chartArea.top,
+      right: chartArea.left + chartArea.w,
+      bottom: chartArea.top + chartArea.h,
+      height: chartArea.h,
+      width: chartArea.w,
+    };
+    each(boxes.chartArea, (layout) => {
+      const box = layout.box;
+      Object.assign(box, chart.chartArea);
+      box.update(chartArea.w, chartArea.h, {left: 0, top: 0, right: 0, bottom: 0});
+    });
+  }
+};
+
+function _createResolver(scopes, prefixes = [''], rootScopes = scopes, fallback, getTarget = () => scopes[0]) {
+  if (!defined(fallback)) {
+    fallback = _resolve('_fallback', scopes);
+  }
+  const cache = {
+    [Symbol.toStringTag]: 'Object',
+    _cacheable: true,
+    _scopes: scopes,
+    _rootScopes: rootScopes,
+    _fallback: fallback,
+    _getTarget: getTarget,
+    override: (scope) => _createResolver([scope, ...scopes], prefixes, rootScopes, fallback),
+  };
+  return new Proxy(cache, {
+    deleteProperty(target, prop) {
+      delete target[prop];
+      delete target._keys;
+      delete scopes[0][prop];
+      return true;
+    },
+    get(target, prop) {
+      return _cached(target, prop,
+        () => _resolveWithPrefixes(prop, prefixes, scopes, target));
+    },
+    getOwnPropertyDescriptor(target, prop) {
+      return Reflect.getOwnPropertyDescriptor(target._scopes[0], prop);
+    },
+    getPrototypeOf() {
+      return Reflect.getPrototypeOf(scopes[0]);
+    },
+    has(target, prop) {
+      return getKeysFromAllScopes(target).includes(prop);
+    },
+    ownKeys(target) {
+      return getKeysFromAllScopes(target);
+    },
+    set(target, prop, value) {
+      const storage = target._storage || (target._storage = getTarget());
+      target[prop] = storage[prop] = value;
+      delete target._keys;
+      return true;
+    }
+  });
+}
+function _attachContext(proxy, context, subProxy, descriptorDefaults) {
+  const cache = {
+    _cacheable: false,
+    _proxy: proxy,
+    _context: context,
+    _subProxy: subProxy,
+    _stack: new Set(),
+    _descriptors: _descriptors(proxy, descriptorDefaults),
+    setContext: (ctx) => _attachContext(proxy, ctx, subProxy, descriptorDefaults),
+    override: (scope) => _attachContext(proxy.override(scope), context, subProxy, descriptorDefaults)
+  };
+  return new Proxy(cache, {
+    deleteProperty(target, prop) {
+      delete target[prop];
+      delete proxy[prop];
+      return true;
+    },
+    get(target, prop, receiver) {
+      return _cached(target, prop,
+        () => _resolveWithContext(target, prop, receiver));
+    },
+    getOwnPropertyDescriptor(target, prop) {
+      return target._descriptors.allKeys
+        ? Reflect.has(proxy, prop) ? {enumerable: true, configurable: true} : undefined
+        : Reflect.getOwnPropertyDescriptor(proxy, prop);
+    },
+    getPrototypeOf() {
+      return Reflect.getPrototypeOf(proxy);
+    },
+    has(target, prop) {
+      return Reflect.has(proxy, prop);
+    },
+    ownKeys() {
+      return Reflect.ownKeys(proxy);
+    },
+    set(target, prop, value) {
+      proxy[prop] = value;
+      delete target[prop];
+      return true;
+    }
+  });
+}
+function _descriptors(proxy, defaults = {scriptable: true, indexable: true}) {
+  const {_scriptable = defaults.scriptable, _indexable = defaults.indexable, _allKeys = defaults.allKeys} = proxy;
+  return {
+    allKeys: _allKeys,
+    scriptable: _scriptable,
+    indexable: _indexable,
+    isScriptable: isFunction(_scriptable) ? _scriptable : () => _scriptable,
+    isIndexable: isFunction(_indexable) ? _indexable : () => _indexable
+  };
+}
+const readKey = (prefix, name) => prefix ? prefix + _capitalize(name) : name;
+const needsSubResolver = (prop, value) => isObject(value) && prop !== 'adapters' &&
+  (Object.getPrototypeOf(value) === null || value.constructor === Object);
+function _cached(target, prop, resolve) {
+  if (Object.prototype.hasOwnProperty.call(target, prop)) {
+    return target[prop];
+  }
+  const value = resolve();
+  target[prop] = value;
+  return value;
+}
+function _resolveWithContext(target, prop, receiver) {
+  const {_proxy, _context, _subProxy, _descriptors: descriptors} = target;
+  let value = _proxy[prop];
+  if (isFunction(value) && descriptors.isScriptable(prop)) {
+    value = _resolveScriptable(prop, value, target, receiver);
+  }
+  if (isArray(value) && value.length) {
+    value = _resolveArray(prop, value, target, descriptors.isIndexable);
+  }
+  if (needsSubResolver(prop, value)) {
+    value = _attachContext(value, _context, _subProxy && _subProxy[prop], descriptors);
+  }
+  return value;
+}
+function _resolveScriptable(prop, value, target, receiver) {
+  const {_proxy, _context, _subProxy, _stack} = target;
+  if (_stack.has(prop)) {
+    throw new Error('Recursion detected: ' + Array.from(_stack).join('->') + '->' + prop);
+  }
+  _stack.add(prop);
+  value = value(_context, _subProxy || receiver);
+  _stack.delete(prop);
+  if (needsSubResolver(prop, value)) {
+    value = createSubResolver(_proxy._scopes, _proxy, prop, value);
+  }
+  return value;
+}
+function _resolveArray(prop, value, target, isIndexable) {
+  const {_proxy, _context, _subProxy, _descriptors: descriptors} = target;
+  if (defined(_context.index) && isIndexable(prop)) {
+    value = value[_context.index % value.length];
+  } else if (isObject(value[0])) {
+    const arr = value;
+    const scopes = _proxy._scopes.filter(s => s !== arr);
+    value = [];
+    for (const item of arr) {
+      const resolver = createSubResolver(scopes, _proxy, prop, item);
+      value.push(_attachContext(resolver, _context, _subProxy && _subProxy[prop], descriptors));
+    }
+  }
+  return value;
+}
+function resolveFallback(fallback, prop, value) {
+  return isFunction(fallback) ? fallback(prop, value) : fallback;
+}
+const getScope = (key, parent) => key === true ? parent
+  : typeof key === 'string' ? resolveObjectKey(parent, key) : undefined;
+function addScopes(set, parentScopes, key, parentFallback, value) {
+  for (const parent of parentScopes) {
+    const scope = getScope(key, parent);
+    if (scope) {
+      set.add(scope);
+      const fallback = resolveFallback(scope._fallback, key, value);
+      if (defined(fallback) && fallback !== key && fallback !== parentFallback) {
+        return fallback;
+      }
+    } else if (scope === false && defined(parentFallback) && key !== parentFallback) {
+      return null;
+    }
+  }
+  return false;
+}
+function createSubResolver(parentScopes, resolver, prop, value) {
+  const rootScopes = resolver._rootScopes;
+  const fallback = resolveFallback(resolver._fallback, prop, value);
+  const allScopes = [...parentScopes, ...rootScopes];
+  const set = new Set();
+  set.add(value);
+  let key = addScopesFromKey(set, allScopes, prop, fallback || prop, value);
+  if (key === null) {
+    return false;
+  }
+  if (defined(fallback) && fallback !== prop) {
+    key = addScopesFromKey(set, allScopes, fallback, key, value);
+    if (key === null) {
+      return false;
+    }
+  }
+  return _createResolver(Array.from(set), [''], rootScopes, fallback,
+    () => subGetTarget(resolver, prop, value));
+}
+function addScopesFromKey(set, allScopes, key, fallback, item) {
+  while (key) {
+    key = addScopes(set, allScopes, key, fallback, item);
+  }
+  return key;
+}
+function subGetTarget(resolver, prop, value) {
+  const parent = resolver._getTarget();
+  if (!(prop in parent)) {
+    parent[prop] = {};
+  }
+  const target = parent[prop];
+  if (isArray(target) && isObject(value)) {
+    return value;
+  }
+  return target;
+}
+function _resolveWithPrefixes(prop, prefixes, scopes, proxy) {
+  let value;
+  for (const prefix of prefixes) {
+    value = _resolve(readKey(prefix, prop), scopes);
+    if (defined(value)) {
+      return needsSubResolver(prop, value)
+        ? createSubResolver(scopes, proxy, prop, value)
+        : value;
+    }
+  }
+}
+function _resolve(key, scopes) {
+  for (const scope of scopes) {
+    if (!scope) {
+      continue;
+    }
+    const value = scope[key];
+    if (defined(value)) {
+      return value;
+    }
+  }
+}
+function getKeysFromAllScopes(target) {
+  let keys = target._keys;
+  if (!keys) {
+    keys = target._keys = resolveKeysFromAllScopes(target._scopes);
+  }
+  return keys;
+}
+function resolveKeysFromAllScopes(scopes) {
+  const set = new Set();
+  for (const scope of scopes) {
+    for (const key of Object.keys(scope).filter(k => !k.startsWith('_'))) {
+      set.add(key);
+    }
+  }
+  return Array.from(set);
+}
+
+const EPSILON = Number.EPSILON || 1e-14;
+const getPoint = (points, i) => i < points.length && !points[i].skip && points[i];
+const getValueAxis = (indexAxis) => indexAxis === 'x' ? 'y' : 'x';
+function splineCurve(firstPoint, middlePoint, afterPoint, t) {
+  const previous = firstPoint.skip ? middlePoint : firstPoint;
+  const current = middlePoint;
+  const next = afterPoint.skip ? middlePoint : afterPoint;
+  const d01 = distanceBetweenPoints(current, previous);
+  const d12 = distanceBetweenPoints(next, current);
+  let s01 = d01 / (d01 + d12);
+  let s12 = d12 / (d01 + d12);
+  s01 = isNaN(s01) ? 0 : s01;
+  s12 = isNaN(s12) ? 0 : s12;
+  const fa = t * s01;
+  const fb = t * s12;
+  return {
+    previous: {
+      x: current.x - fa * (next.x - previous.x),
+      y: current.y - fa * (next.y - previous.y)
+    },
+    next: {
+      x: current.x + fb * (next.x - previous.x),
+      y: current.y + fb * (next.y - previous.y)
+    }
+  };
+}
+function monotoneAdjust(points, deltaK, mK) {
+  const pointsLen = points.length;
+  let alphaK, betaK, tauK, squaredMagnitude, pointCurrent;
+  let pointAfter = getPoint(points, 0);
+  for (let i = 0; i < pointsLen - 1; ++i) {
+    pointCurrent = pointAfter;
+    pointAfter = getPoint(points, i + 1);
+    if (!pointCurrent || !pointAfter) {
+      continue;
+    }
+    if (almostEquals(deltaK[i], 0, EPSILON)) {
+      mK[i] = mK[i + 1] = 0;
+      continue;
+    }
+    alphaK = mK[i] / deltaK[i];
+    betaK = mK[i + 1] / deltaK[i];
+    squaredMagnitude = Math.pow(alphaK, 2) + Math.pow(betaK, 2);
+    if (squaredMagnitude <= 9) {
+      continue;
+    }
+    tauK = 3 / Math.sqrt(squaredMagnitude);
+    mK[i] = alphaK * tauK * deltaK[i];
+    mK[i + 1] = betaK * tauK * deltaK[i];
+  }
+}
+function monotoneCompute(points, mK, indexAxis = 'x') {
+  const valueAxis = getValueAxis(indexAxis);
+  const pointsLen = points.length;
+  let delta, pointBefore, pointCurrent;
+  let pointAfter = getPoint(points, 0);
+  for (let i = 0; i < pointsLen; ++i) {
+    pointBefore = pointCurrent;
+    pointCurrent = pointAfter;
+    pointAfter = getPoint(points, i + 1);
+    if (!pointCurrent) {
+      continue;
+    }
+    const iPixel = pointCurrent[indexAxis];
+    const vPixel = pointCurrent[valueAxis];
+    if (pointBefore) {
+      delta = (iPixel - pointBefore[indexAxis]) / 3;
+      pointCurrent[`cp1${indexAxis}`] = iPixel - delta;
+      pointCurrent[`cp1${valueAxis}`] = vPixel - delta * mK[i];
+    }
+    if (pointAfter) {
+      delta = (pointAfter[indexAxis] - iPixel) / 3;
+      pointCurrent[`cp2${indexAxis}`] = iPixel + delta;
+      pointCurrent[`cp2${valueAxis}`] = vPixel + delta * mK[i];
+    }
+  }
+}
+function splineCurveMonotone(points, indexAxis = 'x') {
+  const valueAxis = getValueAxis(indexAxis);
+  const pointsLen = points.length;
+  const deltaK = Array(pointsLen).fill(0);
+  const mK = Array(pointsLen);
+  let i, pointBefore, pointCurrent;
+  let pointAfter = getPoint(points, 0);
+  for (i = 0; i < pointsLen; ++i) {
+    pointBefore = pointCurrent;
+    pointCurrent = pointAfter;
+    pointAfter = getPoint(points, i + 1);
+    if (!pointCurrent) {
+      continue;
+    }
+    if (pointAfter) {
+      const slopeDelta = pointAfter[indexAxis] - pointCurrent[indexAxis];
+      deltaK[i] = slopeDelta !== 0 ? (pointAfter[valueAxis] - pointCurrent[valueAxis]) / slopeDelta : 0;
+    }
+    mK[i] = !pointBefore ? deltaK[i]
+      : !pointAfter ? deltaK[i - 1]
+      : (sign(deltaK[i - 1]) !== sign(deltaK[i])) ? 0
+      : (deltaK[i - 1] + deltaK[i]) / 2;
+  }
+  monotoneAdjust(points, deltaK, mK);
+  monotoneCompute(points, mK, indexAxis);
+}
+function capControlPoint(pt, min, max) {
+  return Math.max(Math.min(pt, max), min);
+}
+function capBezierPoints(points, area) {
+  let i, ilen, point, inArea, inAreaPrev;
+  let inAreaNext = _isPointInArea(points[0], area);
+  for (i = 0, ilen = points.length; i < ilen; ++i) {
+    inAreaPrev = inArea;
+    inArea = inAreaNext;
+    inAreaNext = i < ilen - 1 && _isPointInArea(points[i + 1], area);
+    if (!inArea) {
+      continue;
+    }
+    point = points[i];
+    if (inAreaPrev) {
+      point.cp1x = capControlPoint(point.cp1x, area.left, area.right);
+      point.cp1y = capControlPoint(point.cp1y, area.top, area.bottom);
+    }
+    if (inAreaNext) {
+      point.cp2x = capControlPoint(point.cp2x, area.left, area.right);
+      point.cp2y = capControlPoint(point.cp2y, area.top, area.bottom);
+    }
+  }
+}
+function _updateBezierControlPoints(points, options, area, loop, indexAxis) {
+  let i, ilen, point, controlPoints;
+  if (options.spanGaps) {
+    points = points.filter((pt) => !pt.skip);
+  }
+  if (options.cubicInterpolationMode === 'monotone') {
+    splineCurveMonotone(points, indexAxis);
+  } else {
+    let prev = loop ? points[points.length - 1] : points[0];
+    for (i = 0, ilen = points.length; i < ilen; ++i) {
+      point = points[i];
+      controlPoints = splineCurve(
+        prev,
+        point,
+        points[Math.min(i + 1, ilen - (loop ? 0 : 1)) % ilen],
+        options.tension
+      );
+      point.cp1x = controlPoints.previous.x;
+      point.cp1y = controlPoints.previous.y;
+      point.cp2x = controlPoints.next.x;
+      point.cp2y = controlPoints.next.y;
+      prev = point;
+    }
+  }
+  if (options.capBezierPoints) {
+    capBezierPoints(points, area);
+  }
+}
+
+const atEdge = (t) => t === 0 || t === 1;
+const elasticIn = (t, s, p) => -(Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * TAU / p));
+const elasticOut = (t, s, p) => Math.pow(2, -10 * t) * Math.sin((t - s) * TAU / p) + 1;
+const effects = {
+  linear: t => t,
+  easeInQuad: t => t * t,
+  easeOutQuad: t => -t * (t - 2),
+  easeInOutQuad: t => ((t /= 0.5) < 1)
+    ? 0.5 * t * t
+    : -0.5 * ((--t) * (t - 2) - 1),
+  easeInCubic: t => t * t * t,
+  easeOutCubic: t => (t -= 1) * t * t + 1,
+  easeInOutCubic: t => ((t /= 0.5) < 1)
+    ? 0.5 * t * t * t
+    : 0.5 * ((t -= 2) * t * t + 2),
+  easeInQuart: t => t * t * t * t,
+  easeOutQuart: t => -((t -= 1) * t * t * t - 1),
+  easeInOutQuart: t => ((t /= 0.5) < 1)
+    ? 0.5 * t * t * t * t
+    : -0.5 * ((t -= 2) * t * t * t - 2),
+  easeInQuint: t => t * t * t * t * t,
+  easeOutQuint: t => (t -= 1) * t * t * t * t + 1,
+  easeInOutQuint: t => ((t /= 0.5) < 1)
+    ? 0.5 * t * t * t * t * t
+    : 0.5 * ((t -= 2) * t * t * t * t + 2),
+  easeInSine: t => -Math.cos(t * HALF_PI) + 1,
+  easeOutSine: t => Math.sin(t * HALF_PI),
+  easeInOutSine: t => -0.5 * (Math.cos(PI * t) - 1),
+  easeInExpo: t => (t === 0) ? 0 : Math.pow(2, 10 * (t - 1)),
+  easeOutExpo: t => (t === 1) ? 1 : -Math.pow(2, -10 * t) + 1,
+  easeInOutExpo: t => atEdge(t) ? t : t < 0.5
+    ? 0.5 * Math.pow(2, 10 * (t * 2 - 1))
+    : 0.5 * (-Math.pow(2, -10 * (t * 2 - 1)) + 2),
+  easeInCirc: t => (t >= 1) ? t : -(Math.sqrt(1 - t * t) - 1),
+  easeOutCirc: t => Math.sqrt(1 - (t -= 1) * t),
+  easeInOutCirc: t => ((t /= 0.5) < 1)
+    ? -0.5 * (Math.sqrt(1 - t * t) - 1)
+    : 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1),
+  easeInElastic: t => atEdge(t) ? t : elasticIn(t, 0.075, 0.3),
+  easeOutElastic: t => atEdge(t) ? t : elasticOut(t, 0.075, 0.3),
+  easeInOutElastic(t) {
+    const s = 0.1125;
+    const p = 0.45;
+    return atEdge(t) ? t :
+      t < 0.5
+        ? 0.5 * elasticIn(t * 2, s, p)
+        : 0.5 + 0.5 * elasticOut(t * 2 - 1, s, p);
+  },
+  easeInBack(t) {
+    const s = 1.70158;
+    return t * t * ((s + 1) * t - s);
+  },
+  easeOutBack(t) {
+    const s = 1.70158;
+    return (t -= 1) * t * ((s + 1) * t + s) + 1;
+  },
+  easeInOutBack(t) {
+    let s = 1.70158;
+    if ((t /= 0.5) < 1) {
+      return 0.5 * (t * t * (((s *= (1.525)) + 1) * t - s));
+    }
+    return 0.5 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2);
+  },
+  easeInBounce: t => 1 - effects.easeOutBounce(1 - t),
+  easeOutBounce(t) {
+    const m = 7.5625;
+    const d = 2.75;
+    if (t < (1 / d)) {
+      return m * t * t;
+    }
+    if (t < (2 / d)) {
+      return m * (t -= (1.5 / d)) * t + 0.75;
+    }
+    if (t < (2.5 / d)) {
+      return m * (t -= (2.25 / d)) * t + 0.9375;
+    }
+    return m * (t -= (2.625 / d)) * t + 0.984375;
+  },
+  easeInOutBounce: t => (t < 0.5)
+    ? effects.easeInBounce(t * 2) * 0.5
+    : effects.easeOutBounce(t * 2 - 1) * 0.5 + 0.5,
+};
+
+function _pointInLine(p1, p2, t, mode) {
+  return {
+    x: p1.x + t * (p2.x - p1.x),
+    y: p1.y + t * (p2.y - p1.y)
+  };
+}
+function _steppedInterpolation(p1, p2, t, mode) {
+  return {
+    x: p1.x + t * (p2.x - p1.x),
+    y: mode === 'middle' ? t < 0.5 ? p1.y : p2.y
+    : mode === 'after' ? t < 1 ? p1.y : p2.y
+    : t > 0 ? p2.y : p1.y
+  };
+}
+function _bezierInterpolation(p1, p2, t, mode) {
+  const cp1 = {x: p1.cp2x, y: p1.cp2y};
+  const cp2 = {x: p2.cp1x, y: p2.cp1y};
+  const a = _pointInLine(p1, cp1, t);
+  const b = _pointInLine(cp1, cp2, t);
+  const c = _pointInLine(cp2, p2, t);
+  const d = _pointInLine(a, b, t);
+  const e = _pointInLine(b, c, t);
+  return _pointInLine(d, e, t);
+}
+
+const intlCache = new Map();
+function getNumberFormat(locale, options) {
+  options = options || {};
+  const cacheKey = locale + JSON.stringify(options);
+  let formatter = intlCache.get(cacheKey);
+  if (!formatter) {
+    formatter = new Intl.NumberFormat(locale, options);
+    intlCache.set(cacheKey, formatter);
+  }
+  return formatter;
+}
+function formatNumber(num, locale, options) {
+  return getNumberFormat(locale, options).format(num);
+}
+
+const getRightToLeftAdapter = function(rectX, width) {
+  return {
+    x(x) {
+      return rectX + rectX + width - x;
+    },
+    setWidth(w) {
+      width = w;
+    },
+    textAlign(align) {
+      if (align === 'center') {
+        return align;
+      }
+      return align === 'right' ? 'left' : 'right';
+    },
+    xPlus(x, value) {
+      return x - value;
+    },
+    leftForLtr(x, itemWidth) {
+      return x - itemWidth;
+    },
+  };
+};
+const getLeftToRightAdapter = function() {
+  return {
+    x(x) {
+      return x;
+    },
+    setWidth(w) {
+    },
+    textAlign(align) {
+      return align;
+    },
+    xPlus(x, value) {
+      return x + value;
+    },
+    leftForLtr(x, _itemWidth) {
+      return x;
+    },
+  };
+};
+function getRtlAdapter(rtl, rectX, width) {
+  return rtl ? getRightToLeftAdapter(rectX, width) : getLeftToRightAdapter();
+}
+function overrideTextDirection(ctx, direction) {
+  let style, original;
+  if (direction === 'ltr' || direction === 'rtl') {
+    style = ctx.canvas.style;
+    original = [
+      style.getPropertyValue('direction'),
+      style.getPropertyPriority('direction'),
+    ];
+    style.setProperty('direction', direction, 'important');
+    ctx.prevTextDirection = original;
+  }
+}
+function restoreTextDirection(ctx, original) {
+  if (original !== undefined) {
+    delete ctx.prevTextDirection;
+    ctx.canvas.style.setProperty('direction', original[0], original[1]);
+  }
+}
+
+function propertyFn(property) {
+  if (property === 'angle') {
+    return {
+      between: _angleBetween,
+      compare: _angleDiff,
+      normalize: _normalizeAngle,
+    };
+  }
+  return {
+    between: _isBetween,
+    compare: (a, b) => a - b,
+    normalize: x => x
+  };
+}
+function normalizeSegment({start, end, count, loop, style}) {
+  return {
+    start: start % count,
+    end: end % count,
+    loop: loop && (end - start + 1) % count === 0,
+    style
+  };
+}
+function getSegment(segment, points, bounds) {
+  const {property, start: startBound, end: endBound} = bounds;
+  const {between, normalize} = propertyFn(property);
+  const count = points.length;
+  let {start, end, loop} = segment;
+  let i, ilen;
+  if (loop) {
+    start += count;
+    end += count;
+    for (i = 0, ilen = count; i < ilen; ++i) {
+      if (!between(normalize(points[start % count][property]), startBound, endBound)) {
+        break;
+      }
+      start--;
+      end--;
+    }
+    start %= count;
+    end %= count;
+  }
+  if (end < start) {
+    end += count;
+  }
+  return {start, end, loop, style: segment.style};
+}
+function _boundSegment(segment, points, bounds) {
+  if (!bounds) {
+    return [segment];
+  }
+  const {property, start: startBound, end: endBound} = bounds;
+  const count = points.length;
+  const {compare, between, normalize} = propertyFn(property);
+  const {start, end, loop, style} = getSegment(segment, points, bounds);
+  const result = [];
+  let inside = false;
+  let subStart = null;
+  let value, point, prevValue;
+  const startIsBefore = () => between(startBound, prevValue, value) && compare(startBound, prevValue) !== 0;
+  const endIsBefore = () => compare(endBound, value) === 0 || between(endBound, prevValue, value);
+  const shouldStart = () => inside || startIsBefore();
+  const shouldStop = () => !inside || endIsBefore();
+  for (let i = start, prev = start; i <= end; ++i) {
+    point = points[i % count];
+    if (point.skip) {
+      continue;
+    }
+    value = normalize(point[property]);
+    if (value === prevValue) {
+      continue;
+    }
+    inside = between(value, startBound, endBound);
+    if (subStart === null && shouldStart()) {
+      subStart = compare(value, startBound) === 0 ? i : prev;
+    }
+    if (subStart !== null && shouldStop()) {
+      result.push(normalizeSegment({start: subStart, end: i, loop, count, style}));
+      subStart = null;
+    }
+    prev = i;
+    prevValue = value;
+  }
+  if (subStart !== null) {
+    result.push(normalizeSegment({start: subStart, end, loop, count, style}));
+  }
+  return result;
+}
+function _boundSegments(line, bounds) {
+  const result = [];
+  const segments = line.segments;
+  for (let i = 0; i < segments.length; i++) {
+    const sub = _boundSegment(segments[i], line.points, bounds);
+    if (sub.length) {
+      result.push(...sub);
+    }
+  }
+  return result;
+}
+function findStartAndEnd(points, count, loop, spanGaps) {
+  let start = 0;
+  let end = count - 1;
+  if (loop && !spanGaps) {
+    while (start < count && !points[start].skip) {
+      start++;
+    }
+  }
+  while (start < count && points[start].skip) {
+    start++;
+  }
+  start %= count;
+  if (loop) {
+    end += start;
+  }
+  while (end > start && points[end % count].skip) {
+    end--;
+  }
+  end %= count;
+  return {start, end};
+}
+function solidSegments(points, start, max, loop) {
+  const count = points.length;
+  const result = [];
+  let last = start;
+  let prev = points[start];
+  let end;
+  for (end = start + 1; end <= max; ++end) {
+    const cur = points[end % count];
+    if (cur.skip || cur.stop) {
+      if (!prev.skip) {
+        loop = false;
+        result.push({start: start % count, end: (end - 1) % count, loop});
+        start = last = cur.stop ? end : null;
+      }
+    } else {
+      last = end;
+      if (prev.skip) {
+        start = end;
+      }
+    }
+    prev = cur;
+  }
+  if (last !== null) {
+    result.push({start: start % count, end: last % count, loop});
+  }
+  return result;
+}
+function _computeSegments(line, segmentOptions) {
+  const points = line.points;
+  const spanGaps = line.options.spanGaps;
+  const count = points.length;
+  if (!count) {
+    return [];
+  }
+  const loop = !!line._loop;
+  const {start, end} = findStartAndEnd(points, count, loop, spanGaps);
+  if (spanGaps === true) {
+    return splitByStyles(line, [{start, end, loop}], points, segmentOptions);
+  }
+  const max = end < start ? end + count : end;
+  const completeLoop = !!line._fullLoop && start === 0 && end === count - 1;
+  return splitByStyles(line, solidSegments(points, start, max, completeLoop), points, segmentOptions);
+}
+function splitByStyles(line, segments, points, segmentOptions) {
+  if (!segmentOptions || !segmentOptions.setContext || !points) {
+    return segments;
+  }
+  return doSplitByStyles(line, segments, points, segmentOptions);
+}
+function doSplitByStyles(line, segments, points, segmentOptions) {
+  const chartContext = line._chart.getContext();
+  const baseStyle = readStyle(line.options);
+  const {_datasetIndex: datasetIndex, options: {spanGaps}} = line;
+  const count = points.length;
+  const result = [];
+  let prevStyle = baseStyle;
+  let start = segments[0].start;
+  let i = start;
+  function addStyle(s, e, l, st) {
+    const dir = spanGaps ? -1 : 1;
+    if (s === e) {
+      return;
+    }
+    s += count;
+    while (points[s % count].skip) {
+      s -= dir;
+    }
+    while (points[e % count].skip) {
+      e += dir;
+    }
+    if (s % count !== e % count) {
+      result.push({start: s % count, end: e % count, loop: l, style: st});
+      prevStyle = st;
+      start = e % count;
+    }
+  }
+  for (const segment of segments) {
+    start = spanGaps ? start : segment.start;
+    let prev = points[start % count];
+    let style;
+    for (i = start + 1; i <= segment.end; i++) {
+      const pt = points[i % count];
+      style = readStyle(segmentOptions.setContext(createContext(chartContext, {
+        type: 'segment',
+        p0: prev,
+        p1: pt,
+        p0DataIndex: (i - 1) % count,
+        p1DataIndex: i % count,
+        datasetIndex
+      })));
+      if (styleChanged(style, prevStyle)) {
+        addStyle(start, i - 1, segment.loop, prevStyle);
+      }
+      prev = pt;
+      prevStyle = style;
+    }
+    if (start < i - 1) {
+      addStyle(start, i - 1, segment.loop, prevStyle);
+    }
+  }
+  return result;
+}
+function readStyle(options) {
+  return {
+    backgroundColor: options.backgroundColor,
+    borderCapStyle: options.borderCapStyle,
+    borderDash: options.borderDash,
+    borderDashOffset: options.borderDashOffset,
+    borderJoinStyle: options.borderJoinStyle,
+    borderWidth: options.borderWidth,
+    borderColor: options.borderColor
+  };
+}
+function styleChanged(style, prevStyle) {
+  return prevStyle && JSON.stringify(style) !== JSON.stringify(prevStyle);
+}
+
+var helpers = /*#__PURE__*/Object.freeze({
+__proto__: null,
+easingEffects: effects,
+color: color,
+getHoverColor: getHoverColor,
+noop: noop,
+uid: uid,
+isNullOrUndef: isNullOrUndef,
+isArray: isArray,
+isObject: isObject,
+isFinite: isNumberFinite,
+finiteOrDefault: finiteOrDefault,
+valueOrDefault: valueOrDefault,
+toPercentage: toPercentage,
+toDimension: toDimension,
+callback: callback,
+each: each,
+_elementsEqual: _elementsEqual,
+clone: clone,
+_merger: _merger,
+merge: merge,
+mergeIf: mergeIf,
+_mergerIf: _mergerIf,
+_deprecated: _deprecated,
+resolveObjectKey: resolveObjectKey,
+_capitalize: _capitalize,
+defined: defined,
+isFunction: isFunction,
+setsEqual: setsEqual,
+_isClickEvent: _isClickEvent,
+toFontString: toFontString,
+_measureText: _measureText,
+_longestText: _longestText,
+_alignPixel: _alignPixel,
+clearCanvas: clearCanvas,
+drawPoint: drawPoint,
+_isPointInArea: _isPointInArea,
+clipArea: clipArea,
+unclipArea: unclipArea,
+_steppedLineTo: _steppedLineTo,
+_bezierCurveTo: _bezierCurveTo,
+renderText: renderText,
+addRoundedRectPath: addRoundedRectPath,
+_lookup: _lookup,
+_lookupByKey: _lookupByKey,
+_rlookupByKey: _rlookupByKey,
+_filterBetween: _filterBetween,
+listenArrayEvents: listenArrayEvents,
+unlistenArrayEvents: unlistenArrayEvents,
+_arrayUnique: _arrayUnique,
+_createResolver: _createResolver,
+_attachContext: _attachContext,
+_descriptors: _descriptors,
+splineCurve: splineCurve,
+splineCurveMonotone: splineCurveMonotone,
+_updateBezierControlPoints: _updateBezierControlPoints,
+_isDomSupported: _isDomSupported,
+_getParentNode: _getParentNode,
+getStyle: getStyle,
+getRelativePosition: getRelativePosition$1,
+getMaximumSize: getMaximumSize,
+retinaScale: retinaScale,
+supportsEventListenerOptions: supportsEventListenerOptions,
+readUsedSize: readUsedSize,
+fontString: fontString,
+requestAnimFrame: requestAnimFrame,
+throttled: throttled,
+debounce: debounce,
+_toLeftRightCenter: _toLeftRightCenter,
+_alignStartEnd: _alignStartEnd,
+_textX: _textX,
+_pointInLine: _pointInLine,
+_steppedInterpolation: _steppedInterpolation,
+_bezierInterpolation: _bezierInterpolation,
+formatNumber: formatNumber,
+toLineHeight: toLineHeight,
+_readValueToProps: _readValueToProps,
+toTRBL: toTRBL,
+toTRBLCorners: toTRBLCorners,
+toPadding: toPadding,
+toFont: toFont,
+resolve: resolve,
+_addGrace: _addGrace,
+createContext: createContext,
+PI: PI,
+TAU: TAU,
+PITAU: PITAU,
+INFINITY: INFINITY,
+RAD_PER_DEG: RAD_PER_DEG,
+HALF_PI: HALF_PI,
+QUARTER_PI: QUARTER_PI,
+TWO_THIRDS_PI: TWO_THIRDS_PI,
+log10: log10,
+sign: sign,
+niceNum: niceNum,
+_factorize: _factorize,
+isNumber: isNumber,
+almostEquals: almostEquals,
+almostWhole: almostWhole,
+_setMinAndMaxByKey: _setMinAndMaxByKey,
+toRadians: toRadians,
+toDegrees: toDegrees,
+_decimalPlaces: _decimalPlaces,
+getAngleFromPoint: getAngleFromPoint,
+distanceBetweenPoints: distanceBetweenPoints,
+_angleDiff: _angleDiff,
+_normalizeAngle: _normalizeAngle,
+_angleBetween: _angleBetween,
+_limitValue: _limitValue,
+_int16Range: _int16Range,
+_isBetween: _isBetween,
+getRtlAdapter: getRtlAdapter,
+overrideTextDirection: overrideTextDirection,
+restoreTextDirection: restoreTextDirection,
+_boundSegment: _boundSegment,
+_boundSegments: _boundSegments,
+_computeSegments: _computeSegments
+});
+
+class BasePlatform {
+  acquireContext(canvas, aspectRatio) {}
+  releaseContext(context) {
+    return false;
+  }
+  addEventListener(chart, type, listener) {}
+  removeEventListener(chart, type, listener) {}
+  getDevicePixelRatio() {
+    return 1;
+  }
+  getMaximumSize(element, width, height, aspectRatio) {
+    width = Math.max(0, width || element.width);
+    height = height || element.height;
+    return {
+      width,
+      height: Math.max(0, aspectRatio ? Math.floor(width / aspectRatio) : height)
+    };
+  }
+  isAttached(canvas) {
+    return true;
+  }
+  updateConfig(config) {
+  }
+}
+
+class BasicPlatform extends BasePlatform {
+  acquireContext(item) {
+    return item && item.getContext && item.getContext('2d') || null;
+  }
+  updateConfig(config) {
+    config.options.animation = false;
+  }
+}
+
+const EXPANDO_KEY = '$chartjs';
+const EVENT_TYPES = {
+  touchstart: 'mousedown',
+  touchmove: 'mousemove',
+  touchend: 'mouseup',
+  pointerenter: 'mouseenter',
+  pointerdown: 'mousedown',
+  pointermove: 'mousemove',
+  pointerup: 'mouseup',
+  pointerleave: 'mouseout',
+  pointerout: 'mouseout'
+};
+const isNullOrEmpty = value => value === null || value === '';
+function initCanvas(canvas, aspectRatio) {
+  const style = canvas.style;
+  const renderHeight = canvas.getAttribute('height');
+  const renderWidth = canvas.getAttribute('width');
+  canvas[EXPANDO_KEY] = {
+    initial: {
+      height: renderHeight,
+      width: renderWidth,
+      style: {
+        display: style.display,
+        height: style.height,
+        width: style.width
+      }
+    }
+  };
+  style.display = style.display || 'block';
+  style.boxSizing = style.boxSizing || 'border-box';
+  if (isNullOrEmpty(renderWidth)) {
+    const displayWidth = readUsedSize(canvas, 'width');
+    if (displayWidth !== undefined) {
+      canvas.width = displayWidth;
+    }
+  }
+  if (isNullOrEmpty(renderHeight)) {
+    if (canvas.style.height === '') {
+      canvas.height = canvas.width / (aspectRatio || 2);
+    } else {
+      const displayHeight = readUsedSize(canvas, 'height');
+      if (displayHeight !== undefined) {
+        canvas.height = displayHeight;
+      }
+    }
+  }
+  return canvas;
+}
+const eventListenerOptions = supportsEventListenerOptions ? {passive: true} : false;
+function addListener(node, type, listener) {
+  node.addEventListener(type, listener, eventListenerOptions);
+}
+function removeListener(chart, type, listener) {
+  chart.canvas.removeEventListener(type, listener, eventListenerOptions);
+}
+function fromNativeEvent(event, chart) {
+  const type = EVENT_TYPES[event.type] || event.type;
+  const {x, y} = getRelativePosition$1(event, chart);
+  return {
+    type,
+    chart,
+    native: event,
+    x: x !== undefined ? x : null,
+    y: y !== undefined ? y : null,
+  };
+}
+function nodeListContains(nodeList, canvas) {
+  for (const node of nodeList) {
+    if (node === canvas || node.contains(canvas)) {
+      return true;
+    }
+  }
+}
+function createAttachObserver(chart, type, listener) {
+  const canvas = chart.canvas;
+  const observer = new MutationObserver(entries => {
+    let trigger = false;
+    for (const entry of entries) {
+      trigger = trigger || nodeListContains(entry.addedNodes, canvas);
+      trigger = trigger && !nodeListContains(entry.removedNodes, canvas);
+    }
+    if (trigger) {
+      listener();
+    }
+  });
+  observer.observe(document, {childList: true, subtree: true});
+  return observer;
+}
+function createDetachObserver(chart, type, listener) {
+  const canvas = chart.canvas;
+  const observer = new MutationObserver(entries => {
+    let trigger = false;
+    for (const entry of entries) {
+      trigger = trigger || nodeListContains(entry.removedNodes, canvas);
+      trigger = trigger && !nodeListContains(entry.addedNodes, canvas);
+    }
+    if (trigger) {
+      listener();
+    }
+  });
+  observer.observe(document, {childList: true, subtree: true});
+  return observer;
+}
+const drpListeningCharts = new Map();
+let oldDevicePixelRatio = 0;
+function onWindowResize() {
+  const dpr = window.devicePixelRatio;
+  if (dpr === oldDevicePixelRatio) {
+    return;
+  }
+  oldDevicePixelRatio = dpr;
+  drpListeningCharts.forEach((resize, chart) => {
+    if (chart.currentDevicePixelRatio !== dpr) {
+      resize();
+    }
+  });
+}
+function listenDevicePixelRatioChanges(chart, resize) {
+  if (!drpListeningCharts.size) {
+    window.addEventListener('resize', onWindowResize);
+  }
+  drpListeningCharts.set(chart, resize);
+}
+function unlistenDevicePixelRatioChanges(chart) {
+  drpListeningCharts.delete(chart);
+  if (!drpListeningCharts.size) {
+    window.removeEventListener('resize', onWindowResize);
+  }
+}
+function createResizeObserver(chart, type, listener) {
+  const canvas = chart.canvas;
+  const container = canvas && _getParentNode(canvas);
+  if (!container) {
+    return;
+  }
+  const resize = throttled((width, height) => {
+    const w = container.clientWidth;
+    listener(width, height);
+    if (w < container.clientWidth) {
+      listener();
+    }
+  }, window);
+  const observer = new ResizeObserver(entries => {
+    const entry = entries[0];
+    const width = entry.contentRect.width;
+    const height = entry.contentRect.height;
+    if (width === 0 && height === 0) {
+      return;
+    }
+    resize(width, height);
+  });
+  observer.observe(container);
+  listenDevicePixelRatioChanges(chart, resize);
+  return observer;
+}
+function releaseObserver(chart, type, observer) {
+  if (observer) {
+    observer.disconnect();
+  }
+  if (type === 'resize') {
+    unlistenDevicePixelRatioChanges(chart);
+  }
+}
+function createProxyAndListen(chart, type, listener) {
+  const canvas = chart.canvas;
+  const proxy = throttled((event) => {
+    if (chart.ctx !== null) {
+      listener(fromNativeEvent(event, chart));
+    }
+  }, chart, (args) => {
+    const event = args[0];
+    return [event, event.offsetX, event.offsetY];
+  });
+  addListener(canvas, type, proxy);
+  return proxy;
+}
+class DomPlatform extends BasePlatform {
+  acquireContext(canvas, aspectRatio) {
+    const context = canvas && canvas.getContext && canvas.getContext('2d');
+    if (context && context.canvas === canvas) {
+      initCanvas(canvas, aspectRatio);
+      return context;
+    }
+    return null;
+  }
+  releaseContext(context) {
+    const canvas = context.canvas;
+    if (!canvas[EXPANDO_KEY]) {
+      return false;
+    }
+    const initial = canvas[EXPANDO_KEY].initial;
+    ['height', 'width'].forEach((prop) => {
+      const value = initial[prop];
+      if (isNullOrUndef(value)) {
+        canvas.removeAttribute(prop);
+      } else {
+        canvas.setAttribute(prop, value);
+      }
+    });
+    const style = initial.style || {};
+    Object.keys(style).forEach((key) => {
+      canvas.style[key] = style[key];
+    });
+    canvas.width = canvas.width;
+    delete canvas[EXPANDO_KEY];
+    return true;
+  }
+  addEventListener(chart, type, listener) {
+    this.removeEventListener(chart, type);
+    const proxies = chart.$proxies || (chart.$proxies = {});
+    const handlers = {
+      attach: createAttachObserver,
+      detach: createDetachObserver,
+      resize: createResizeObserver
+    };
+    const handler = handlers[type] || createProxyAndListen;
+    proxies[type] = handler(chart, type, listener);
+  }
+  removeEventListener(chart, type) {
+    const proxies = chart.$proxies || (chart.$proxies = {});
+    const proxy = proxies[type];
+    if (!proxy) {
+      return;
+    }
+    const handlers = {
+      attach: releaseObserver,
+      detach: releaseObserver,
+      resize: releaseObserver
+    };
+    const handler = handlers[type] || removeListener;
+    handler(chart, type, proxy);
+    proxies[type] = undefined;
+  }
+  getDevicePixelRatio() {
+    return window.devicePixelRatio;
+  }
+  getMaximumSize(canvas, width, height, aspectRatio) {
+    return getMaximumSize(canvas, width, height, aspectRatio);
+  }
+  isAttached(canvas) {
+    const container = _getParentNode(canvas);
+    return !!(container && container.isConnected);
+  }
+}
+
+function _detectPlatform(canvas) {
+  if (!_isDomSupported() || (typeof OffscreenCanvas !== 'undefined' && canvas instanceof OffscreenCanvas)) {
+    return BasicPlatform;
+  }
+  return DomPlatform;
+}
+
+var platforms = /*#__PURE__*/Object.freeze({
+__proto__: null,
+_detectPlatform: _detectPlatform,
+BasePlatform: BasePlatform,
+BasicPlatform: BasicPlatform,
+DomPlatform: DomPlatform
+});
+
+const transparent = 'transparent';
+const interpolators = {
+  boolean(from, to, factor) {
+    return factor > 0.5 ? to : from;
+  },
+  color(from, to, factor) {
+    const c0 = color(from || transparent);
+    const c1 = c0.valid && color(to || transparent);
+    return c1 && c1.valid
+      ? c1.mix(c0, factor).hexString()
+      : to;
+  },
+  number(from, to, factor) {
+    return from + (to - from) * factor;
+  }
+};
+class Animation {
+  constructor(cfg, target, prop, to) {
+    const currentValue = target[prop];
+    to = resolve([cfg.to, to, currentValue, cfg.from]);
+    const from = resolve([cfg.from, currentValue, to]);
+    this._active = true;
+    this._fn = cfg.fn || interpolators[cfg.type || typeof from];
+    this._easing = effects[cfg.easing] || effects.linear;
+    this._start = Math.floor(Date.now() + (cfg.delay || 0));
+    this._duration = this._total = Math.floor(cfg.duration);
+    this._loop = !!cfg.loop;
+    this._target = target;
+    this._prop = prop;
+    this._from = from;
+    this._to = to;
+    this._promises = undefined;
+  }
+  active() {
+    return this._active;
+  }
+  update(cfg, to, date) {
+    if (this._active) {
+      this._notify(false);
+      const currentValue = this._target[this._prop];
+      const elapsed = date - this._start;
+      const remain = this._duration - elapsed;
+      this._start = date;
+      this._duration = Math.floor(Math.max(remain, cfg.duration));
+      this._total += elapsed;
+      this._loop = !!cfg.loop;
+      this._to = resolve([cfg.to, to, currentValue, cfg.from]);
+      this._from = resolve([cfg.from, currentValue, to]);
+    }
+  }
+  cancel() {
+    if (this._active) {
+      this.tick(Date.now());
+      this._active = false;
+      this._notify(false);
+    }
+  }
+  tick(date) {
+    const elapsed = date - this._start;
+    const duration = this._duration;
+    const prop = this._prop;
+    const from = this._from;
+    const loop = this._loop;
+    const to = this._to;
+    let factor;
+    this._active = from !== to && (loop || (elapsed < duration));
+    if (!this._active) {
+      this._target[prop] = to;
+      this._notify(true);
+      return;
+    }
+    if (elapsed < 0) {
+      this._target[prop] = from;
+      return;
+    }
+    factor = (elapsed / duration) % 2;
+    factor = loop && factor > 1 ? 2 - factor : factor;
+    factor = this._easing(Math.min(1, Math.max(0, factor)));
+    this._target[prop] = this._fn(from, to, factor);
+  }
+  wait() {
+    const promises = this._promises || (this._promises = []);
+    return new Promise((res, rej) => {
+      promises.push({res, rej});
+    });
+  }
+  _notify(resolved) {
+    const method = resolved ? 'res' : 'rej';
+    const promises = this._promises || [];
+    for (let i = 0; i < promises.length; i++) {
+      promises[i][method]();
+    }
+  }
+}
+
+const numbers = ['x', 'y', 'borderWidth', 'radius', 'tension'];
+const colors = ['color', 'borderColor', 'backgroundColor'];
+defaults.set('animation', {
+  delay: undefined,
+  duration: 1000,
+  easing: 'easeOutQuart',
+  fn: undefined,
+  from: undefined,
+  loop: undefined,
+  to: undefined,
+  type: undefined,
+});
+const animationOptions = Object.keys(defaults.animation);
+defaults.describe('animation', {
+  _fallback: false,
+  _indexable: false,
+  _scriptable: (name) => name !== 'onProgress' && name !== 'onComplete' && name !== 'fn',
+});
+defaults.set('animations', {
+  colors: {
+    type: 'color',
+    properties: colors
+  },
+  numbers: {
+    type: 'number',
+    properties: numbers
+  },
+});
+defaults.describe('animations', {
+  _fallback: 'animation',
+});
+defaults.set('transitions', {
+  active: {
+    animation: {
+      duration: 400
+    }
+  },
+  resize: {
+    animation: {
+      duration: 0
+    }
+  },
+  show: {
+    animations: {
+      colors: {
+        from: 'transparent'
+      },
+      visible: {
+        type: 'boolean',
+        duration: 0
+      },
+    }
+  },
+  hide: {
+    animations: {
+      colors: {
+        to: 'transparent'
+      },
+      visible: {
+        type: 'boolean',
+        easing: 'linear',
+        fn: v => v | 0
+      },
+    }
+  }
+});
+class Animations {
+  constructor(chart, config) {
+    this._chart = chart;
+    this._properties = new Map();
+    this.configure(config);
+  }
+  configure(config) {
+    if (!isObject(config)) {
+      return;
+    }
+    const animatedProps = this._properties;
+    Object.getOwnPropertyNames(config).forEach(key => {
+      const cfg = config[key];
+      if (!isObject(cfg)) {
+        return;
+      }
+      const resolved = {};
+      for (const option of animationOptions) {
+        resolved[option] = cfg[option];
+      }
+      (isArray(cfg.properties) && cfg.properties || [key]).forEach((prop) => {
+        if (prop === key || !animatedProps.has(prop)) {
+          animatedProps.set(prop, resolved);
+        }
+      });
+    });
+  }
+  _animateOptions(target, values) {
+    const newOptions = values.options;
+    const options = resolveTargetOptions(target, newOptions);
+    if (!options) {
+      return [];
+    }
+    const animations = this._createAnimations(options, newOptions);
+    if (newOptions.$shared) {
+      awaitAll(target.options.$animations, newOptions).then(() => {
+        target.options = newOptions;
+      }, () => {
+      });
+    }
+    return animations;
+  }
+  _createAnimations(target, values) {
+    const animatedProps = this._properties;
+    const animations = [];
+    const running = target.$animations || (target.$animations = {});
+    const props = Object.keys(values);
+    const date = Date.now();
+    let i;
+    for (i = props.length - 1; i >= 0; --i) {
+      const prop = props[i];
+      if (prop.charAt(0) === '$') {
+        continue;
+      }
+      if (prop === 'options') {
+        animations.push(...this._animateOptions(target, values));
+        continue;
+      }
+      const value = values[prop];
+      let animation = running[prop];
+      const cfg = animatedProps.get(prop);
+      if (animation) {
+        if (cfg && animation.active()) {
+          animation.update(cfg, value, date);
+          continue;
+        } else {
+          animation.cancel();
+        }
+      }
+      if (!cfg || !cfg.duration) {
+        target[prop] = value;
+        continue;
+      }
+      running[prop] = animation = new Animation(cfg, target, prop, value);
+      animations.push(animation);
+    }
+    return animations;
+  }
+  update(target, values) {
+    if (this._properties.size === 0) {
+      Object.assign(target, values);
+      return;
+    }
+    const animations = this._createAnimations(target, values);
+    if (animations.length) {
+      animator.add(this._chart, animations);
+      return true;
+    }
+  }
+}
+function awaitAll(animations, properties) {
+  const running = [];
+  const keys = Object.keys(properties);
+  for (let i = 0; i < keys.length; i++) {
+    const anim = animations[keys[i]];
+    if (anim && anim.active()) {
+      running.push(anim.wait());
+    }
+  }
+  return Promise.all(running);
+}
+function resolveTargetOptions(target, newOptions) {
+  if (!newOptions) {
+    return;
+  }
+  let options = target.options;
+  if (!options) {
+    target.options = newOptions;
+    return;
+  }
+  if (options.$shared) {
+    target.options = options = Object.assign({}, options, {$shared: false, $animations: {}});
+  }
+  return options;
+}
+
+function scaleClip(scale, allowedOverflow) {
+  const opts = scale && scale.options || {};
+  const reverse = opts.reverse;
+  const min = opts.min === undefined ? allowedOverflow : 0;
+  const max = opts.max === undefined ? allowedOverflow : 0;
+  return {
+    start: reverse ? max : min,
+    end: reverse ? min : max
+  };
+}
+function defaultClip(xScale, yScale, allowedOverflow) {
+  if (allowedOverflow === false) {
+    return false;
+  }
+  const x = scaleClip(xScale, allowedOverflow);
+  const y = scaleClip(yScale, allowedOverflow);
+  return {
+    top: y.end,
+    right: x.end,
+    bottom: y.start,
+    left: x.start
+  };
+}
+function toClip(value) {
+  let t, r, b, l;
+  if (isObject(value)) {
+    t = value.top;
+    r = value.right;
+    b = value.bottom;
+    l = value.left;
+  } else {
+    t = r = b = l = value;
+  }
+  return {
+    top: t,
+    right: r,
+    bottom: b,
+    left: l,
+    disabled: value === false
+  };
+}
+function getSortedDatasetIndices(chart, filterVisible) {
+  const keys = [];
+  const metasets = chart._getSortedDatasetMetas(filterVisible);
+  let i, ilen;
+  for (i = 0, ilen = metasets.length; i < ilen; ++i) {
+    keys.push(metasets[i].index);
+  }
+  return keys;
+}
+function applyStack(stack, value, dsIndex, options = {}) {
+  const keys = stack.keys;
+  const singleMode = options.mode === 'single';
+  let i, ilen, datasetIndex, otherValue;
+  if (value === null) {
+    return;
+  }
+  for (i = 0, ilen = keys.length; i < ilen; ++i) {
+    datasetIndex = +keys[i];
+    if (datasetIndex === dsIndex) {
+      if (options.all) {
+        continue;
+      }
+      break;
+    }
+    otherValue = stack.values[datasetIndex];
+    if (isNumberFinite(otherValue) && (singleMode || (value === 0 || sign(value) === sign(otherValue)))) {
+      value += otherValue;
+    }
+  }
+  return value;
+}
+function convertObjectDataToArray(data) {
+  const keys = Object.keys(data);
+  const adata = new Array(keys.length);
+  let i, ilen, key;
+  for (i = 0, ilen = keys.length; i < ilen; ++i) {
+    key = keys[i];
+    adata[i] = {
+      x: key,
+      y: data[key]
+    };
+  }
+  return adata;
+}
+function isStacked(scale, meta) {
+  const stacked = scale && scale.options.stacked;
+  return stacked || (stacked === undefined && meta.stack !== undefined);
+}
+function getStackKey(indexScale, valueScale, meta) {
+  return `${indexScale.id}.${valueScale.id}.${meta.stack || meta.type}`;
+}
+function getUserBounds(scale) {
+  const {min, max, minDefined, maxDefined} = scale.getUserBounds();
+  return {
+    min: minDefined ? min : Number.NEGATIVE_INFINITY,
+    max: maxDefined ? max : Number.POSITIVE_INFINITY
+  };
+}
+function getOrCreateStack(stacks, stackKey, indexValue) {
+  const subStack = stacks[stackKey] || (stacks[stackKey] = {});
+  return subStack[indexValue] || (subStack[indexValue] = {});
+}
+function getLastIndexInStack(stack, vScale, positive, type) {
+  for (const meta of vScale.getMatchingVisibleMetas(type).reverse()) {
+    const value = stack[meta.index];
+    if ((positive && value > 0) || (!positive && value < 0)) {
+      return meta.index;
+    }
+  }
+  return null;
+}
+function updateStacks(controller, parsed) {
+  const {chart, _cachedMeta: meta} = controller;
+  const stacks = chart._stacks || (chart._stacks = {});
+  const {iScale, vScale, index: datasetIndex} = meta;
+  const iAxis = iScale.axis;
+  const vAxis = vScale.axis;
+  const key = getStackKey(iScale, vScale, meta);
+  const ilen = parsed.length;
+  let stack;
+  for (let i = 0; i < ilen; ++i) {
+    const item = parsed[i];
+    const {[iAxis]: index, [vAxis]: value} = item;
+    const itemStacks = item._stacks || (item._stacks = {});
+    stack = itemStacks[vAxis] = getOrCreateStack(stacks, key, index);
+    stack[datasetIndex] = value;
+    stack._top = getLastIndexInStack(stack, vScale, true, meta.type);
+    stack._bottom = getLastIndexInStack(stack, vScale, false, meta.type);
+  }
+}
+function getFirstScaleId(chart, axis) {
+  const scales = chart.scales;
+  return Object.keys(scales).filter(key => scales[key].axis === axis).shift();
+}
+function createDatasetContext(parent, index) {
+  return createContext(parent,
+    {
+      active: false,
+      dataset: undefined,
+      datasetIndex: index,
+      index,
+      mode: 'default',
+      type: 'dataset'
+    }
+  );
+}
+function createDataContext(parent, index, element) {
+  return createContext(parent, {
+    active: false,
+    dataIndex: index,
+    parsed: undefined,
+    raw: undefined,
+    element,
+    index,
+    mode: 'default',
+    type: 'data'
+  });
+}
+function clearStacks(meta, items) {
+  const datasetIndex = meta.controller.index;
+  const axis = meta.vScale && meta.vScale.axis;
+  if (!axis) {
+    return;
+  }
+  items = items || meta._parsed;
+  for (const parsed of items) {
+    const stacks = parsed._stacks;
+    if (!stacks || stacks[axis] === undefined || stacks[axis][datasetIndex] === undefined) {
+      return;
+    }
+    delete stacks[axis][datasetIndex];
+  }
+}
+const isDirectUpdateMode = (mode) => mode === 'reset' || mode === 'none';
+const cloneIfNotShared = (cached, shared) => shared ? cached : Object.assign({}, cached);
+const createStack = (canStack, meta, chart) => canStack && !meta.hidden && meta._stacked
+  && {keys: getSortedDatasetIndices(chart, true), values: null};
+class DatasetController {
+  constructor(chart, datasetIndex) {
+    this.chart = chart;
+    this._ctx = chart.ctx;
+    this.index = datasetIndex;
+    this._cachedDataOpts = {};
+    this._cachedMeta = this.getMeta();
+    this._type = this._cachedMeta.type;
+    this.options = undefined;
+    this._parsing = false;
+    this._data = undefined;
+    this._objectData = undefined;
+    this._sharedOptions = undefined;
+    this._drawStart = undefined;
+    this._drawCount = undefined;
+    this.enableOptionSharing = false;
+    this.$context = undefined;
+    this._syncList = [];
+    this.initialize();
+  }
+  initialize() {
+    const meta = this._cachedMeta;
+    this.configure();
+    this.linkScales();
+    meta._stacked = isStacked(meta.vScale, meta);
+    this.addElements();
+  }
+  updateIndex(datasetIndex) {
+    if (this.index !== datasetIndex) {
+      clearStacks(this._cachedMeta);
+    }
+    this.index = datasetIndex;
+  }
+  linkScales() {
+    const chart = this.chart;
+    const meta = this._cachedMeta;
+    const dataset = this.getDataset();
+    const chooseId = (axis, x, y, r) => axis === 'x' ? x : axis === 'r' ? r : y;
+    const xid = meta.xAxisID = valueOrDefault(dataset.xAxisID, getFirstScaleId(chart, 'x'));
+    const yid = meta.yAxisID = valueOrDefault(dataset.yAxisID, getFirstScaleId(chart, 'y'));
+    const rid = meta.rAxisID = valueOrDefault(dataset.rAxisID, getFirstScaleId(chart, 'r'));
+    const indexAxis = meta.indexAxis;
+    const iid = meta.iAxisID = chooseId(indexAxis, xid, yid, rid);
+    const vid = meta.vAxisID = chooseId(indexAxis, yid, xid, rid);
+    meta.xScale = this.getScaleForId(xid);
+    meta.yScale = this.getScaleForId(yid);
+    meta.rScale = this.getScaleForId(rid);
+    meta.iScale = this.getScaleForId(iid);
+    meta.vScale = this.getScaleForId(vid);
+  }
+  getDataset() {
+    return this.chart.data.datasets[this.index];
+  }
+  getMeta() {
+    return this.chart.getDatasetMeta(this.index);
+  }
+  getScaleForId(scaleID) {
+    return this.chart.scales[scaleID];
+  }
+  _getOtherScale(scale) {
+    const meta = this._cachedMeta;
+    return scale === meta.iScale
+      ? meta.vScale
+      : meta.iScale;
+  }
+  reset() {
+    this._update('reset');
+  }
+  _destroy() {
+    const meta = this._cachedMeta;
+    if (this._data) {
+      unlistenArrayEvents(this._data, this);
+    }
+    if (meta._stacked) {
+      clearStacks(meta);
+    }
+  }
+  _dataCheck() {
+    const dataset = this.getDataset();
+    const data = dataset.data || (dataset.data = []);
+    const _data = this._data;
+    if (isObject(data)) {
+      this._data = convertObjectDataToArray(data);
+    } else if (_data !== data) {
+      if (_data) {
+        unlistenArrayEvents(_data, this);
+        const meta = this._cachedMeta;
+        clearStacks(meta);
+        meta._parsed = [];
+      }
+      if (data && Object.isExtensible(data)) {
+        listenArrayEvents(data, this);
+      }
+      this._syncList = [];
+      this._data = data;
+    }
+  }
+  addElements() {
+    const meta = this._cachedMeta;
+    this._dataCheck();
+    if (this.datasetElementType) {
+      meta.dataset = new this.datasetElementType();
+    }
+  }
+  buildOrUpdateElements(resetNewElements) {
+    const meta = this._cachedMeta;
+    const dataset = this.getDataset();
+    let stackChanged = false;
+    this._dataCheck();
+    const oldStacked = meta._stacked;
+    meta._stacked = isStacked(meta.vScale, meta);
+    if (meta.stack !== dataset.stack) {
+      stackChanged = true;
+      clearStacks(meta);
+      meta.stack = dataset.stack;
+    }
+    this._resyncElements(resetNewElements);
+    if (stackChanged || oldStacked !== meta._stacked) {
+      updateStacks(this, meta._parsed);
+    }
+  }
+  configure() {
+    const config = this.chart.config;
+    const scopeKeys = config.datasetScopeKeys(this._type);
+    const scopes = config.getOptionScopes(this.getDataset(), scopeKeys, true);
+    this.options = config.createResolver(scopes, this.getContext());
+    this._parsing = this.options.parsing;
+    this._cachedDataOpts = {};
+  }
+  parse(start, count) {
+    const {_cachedMeta: meta, _data: data} = this;
+    const {iScale, _stacked} = meta;
+    const iAxis = iScale.axis;
+    let sorted = start === 0 && count === data.length ? true : meta._sorted;
+    let prev = start > 0 && meta._parsed[start - 1];
+    let i, cur, parsed;
+    if (this._parsing === false) {
+      meta._parsed = data;
+      meta._sorted = true;
+      parsed = data;
+    } else {
+      if (isArray(data[start])) {
+        parsed = this.parseArrayData(meta, data, start, count);
+      } else if (isObject(data[start])) {
+        parsed = this.parseObjectData(meta, data, start, count);
+      } else {
+        parsed = this.parsePrimitiveData(meta, data, start, count);
+      }
+      const isNotInOrderComparedToPrev = () => cur[iAxis] === null || (prev && cur[iAxis] < prev[iAxis]);
+      for (i = 0; i < count; ++i) {
+        meta._parsed[i + start] = cur = parsed[i];
+        if (sorted) {
+          if (isNotInOrderComparedToPrev()) {
+            sorted = false;
+          }
+          prev = cur;
+        }
+      }
+      meta._sorted = sorted;
+    }
+    if (_stacked) {
+      updateStacks(this, parsed);
+    }
+  }
+  parsePrimitiveData(meta, data, start, count) {
+    const {iScale, vScale} = meta;
+    const iAxis = iScale.axis;
+    const vAxis = vScale.axis;
+    const labels = iScale.getLabels();
+    const singleScale = iScale === vScale;
+    const parsed = new Array(count);
+    let i, ilen, index;
+    for (i = 0, ilen = count; i < ilen; ++i) {
+      index = i + start;
+      parsed[i] = {
+        [iAxis]: singleScale || iScale.parse(labels[index], index),
+        [vAxis]: vScale.parse(data[index], index)
+      };
+    }
+    return parsed;
+  }
+  parseArrayData(meta, data, start, count) {
+    const {xScale, yScale} = meta;
+    const parsed = new Array(count);
+    let i, ilen, index, item;
+    for (i = 0, ilen = count; i < ilen; ++i) {
+      index = i + start;
+      item = data[index];
+      parsed[i] = {
+        x: xScale.parse(item[0], index),
+        y: yScale.parse(item[1], index)
+      };
+    }
+    return parsed;
+  }
+  parseObjectData(meta, data, start, count) {
+    const {xScale, yScale} = meta;
+    const {xAxisKey = 'x', yAxisKey = 'y'} = this._parsing;
+    const parsed = new Array(count);
+    let i, ilen, index, item;
+    for (i = 0, ilen = count; i < ilen; ++i) {
+      index = i + start;
+      item = data[index];
+      parsed[i] = {
+        x: xScale.parse(resolveObjectKey(item, xAxisKey), index),
+        y: yScale.parse(resolveObjectKey(item, yAxisKey), index)
+      };
+    }
+    return parsed;
+  }
+  getParsed(index) {
+    return this._cachedMeta._parsed[index];
+  }
+  getDataElement(index) {
+    return this._cachedMeta.data[index];
+  }
+  applyStack(scale, parsed, mode) {
+    const chart = this.chart;
+    const meta = this._cachedMeta;
+    const value = parsed[scale.axis];
+    const stack = {
+      keys: getSortedDatasetIndices(chart, true),
+      values: parsed._stacks[scale.axis]
+    };
+    return applyStack(stack, value, meta.index, {mode});
+  }
+  updateRangeFromParsed(range, scale, parsed, stack) {
+    const parsedValue = parsed[scale.axis];
+    let value = parsedValue === null ? NaN : parsedValue;
+    const values = stack && parsed._stacks[scale.axis];
+    if (stack && values) {
+      stack.values = values;
+      value = applyStack(stack, parsedValue, this._cachedMeta.index);
+    }
+    range.min = Math.min(range.min, value);
+    range.max = Math.max(range.max, value);
+  }
+  getMinMax(scale, canStack) {
+    const meta = this._cachedMeta;
+    const _parsed = meta._parsed;
+    const sorted = meta._sorted && scale === meta.iScale;
+    const ilen = _parsed.length;
+    const otherScale = this._getOtherScale(scale);
+    const stack = createStack(canStack, meta, this.chart);
+    const range = {min: Number.POSITIVE_INFINITY, max: Number.NEGATIVE_INFINITY};
+    const {min: otherMin, max: otherMax} = getUserBounds(otherScale);
+    let i, parsed;
+    function _skip() {
+      parsed = _parsed[i];
+      const otherValue = parsed[otherScale.axis];
+      return !isNumberFinite(parsed[scale.axis]) || otherMin > otherValue || otherMax < otherValue;
+    }
+    for (i = 0; i < ilen; ++i) {
+      if (_skip()) {
+        continue;
+      }
+      this.updateRangeFromParsed(range, scale, parsed, stack);
+      if (sorted) {
+        break;
+      }
+    }
+    if (sorted) {
+      for (i = ilen - 1; i >= 0; --i) {
+        if (_skip()) {
+          continue;
+        }
+        this.updateRangeFromParsed(range, scale, parsed, stack);
+        break;
+      }
+    }
+    return range;
+  }
+  getAllParsedValues(scale) {
+    const parsed = this._cachedMeta._parsed;
+    const values = [];
+    let i, ilen, value;
+    for (i = 0, ilen = parsed.length; i < ilen; ++i) {
+      value = parsed[i][scale.axis];
+      if (isNumberFinite(value)) {
+        values.push(value);
+      }
+    }
+    return values;
+  }
+  getMaxOverflow() {
+    return false;
+  }
+  getLabelAndValue(index) {
+    const meta = this._cachedMeta;
+    const iScale = meta.iScale;
+    const vScale = meta.vScale;
+    const parsed = this.getParsed(index);
+    return {
+      label: iScale ? '' + iScale.getLabelForValue(parsed[iScale.axis]) : '',
+      value: vScale ? '' + vScale.getLabelForValue(parsed[vScale.axis]) : ''
+    };
+  }
+  _update(mode) {
+    const meta = this._cachedMeta;
+    this.update(mode || 'default');
+    meta._clip = toClip(valueOrDefault(this.options.clip, defaultClip(meta.xScale, meta.yScale, this.getMaxOverflow())));
+  }
+  update(mode) {}
+  draw() {
+    const ctx = this._ctx;
+    const chart = this.chart;
+    const meta = this._cachedMeta;
+    const elements = meta.data || [];
+    const area = chart.chartArea;
+    const active = [];
+    const start = this._drawStart || 0;
+    const count = this._drawCount || (elements.length - start);
+    const drawActiveElementsOnTop = this.options.drawActiveElementsOnTop;
+    let i;
+    if (meta.dataset) {
+      meta.dataset.draw(ctx, area, start, count);
+    }
+    for (i = start; i < start + count; ++i) {
+      const element = elements[i];
+      if (element.hidden) {
+        continue;
+      }
+      if (element.active && drawActiveElementsOnTop) {
+        active.push(element);
+      } else {
+        element.draw(ctx, area);
+      }
+    }
+    for (i = 0; i < active.length; ++i) {
+      active[i].draw(ctx, area);
+    }
+  }
+  getStyle(index, active) {
+    const mode = active ? 'active' : 'default';
+    return index === undefined && this._cachedMeta.dataset
+      ? this.resolveDatasetElementOptions(mode)
+      : this.resolveDataElementOptions(index || 0, mode);
+  }
+  getContext(index, active, mode) {
+    const dataset = this.getDataset();
+    let context;
+    if (index >= 0 && index < this._cachedMeta.data.length) {
+      const element = this._cachedMeta.data[index];
+      context = element.$context ||
+        (element.$context = createDataContext(this.getContext(), index, element));
+      context.parsed = this.getParsed(index);
+      context.raw = dataset.data[index];
+      context.index = context.dataIndex = index;
+    } else {
+      context = this.$context ||
+        (this.$context = createDatasetContext(this.chart.getContext(), this.index));
+      context.dataset = dataset;
+      context.index = context.datasetIndex = this.index;
+    }
+    context.active = !!active;
+    context.mode = mode;
+    return context;
+  }
+  resolveDatasetElementOptions(mode) {
+    return this._resolveElementOptions(this.datasetElementType.id, mode);
+  }
+  resolveDataElementOptions(index, mode) {
+    return this._resolveElementOptions(this.dataElementType.id, mode, index);
+  }
+  _resolveElementOptions(elementType, mode = 'default', index) {
+    const active = mode === 'active';
+    const cache = this._cachedDataOpts;
+    const cacheKey = elementType + '-' + mode;
+    const cached = cache[cacheKey];
+    const sharing = this.enableOptionSharing && defined(index);
+    if (cached) {
+      return cloneIfNotShared(cached, sharing);
+    }
+    const config = this.chart.config;
+    const scopeKeys = config.datasetElementScopeKeys(this._type, elementType);
+    const prefixes = active ? [`${elementType}Hover`, 'hover', elementType, ''] : [elementType, ''];
+    const scopes = config.getOptionScopes(this.getDataset(), scopeKeys);
+    const names = Object.keys(defaults.elements[elementType]);
+    const context = () => this.getContext(index, active);
+    const values = config.resolveNamedOptions(scopes, names, context, prefixes);
+    if (values.$shared) {
+      values.$shared = sharing;
+      cache[cacheKey] = Object.freeze(cloneIfNotShared(values, sharing));
+    }
+    return values;
+  }
+  _resolveAnimations(index, transition, active) {
+    const chart = this.chart;
+    const cache = this._cachedDataOpts;
+    const cacheKey = `animation-${transition}`;
+    const cached = cache[cacheKey];
+    if (cached) {
+      return cached;
+    }
+    let options;
+    if (chart.options.animation !== false) {
+      const config = this.chart.config;
+      const scopeKeys = config.datasetAnimationScopeKeys(this._type, transition);
+      const scopes = config.getOptionScopes(this.getDataset(), scopeKeys);
+      options = config.createResolver(scopes, this.getContext(index, active, transition));
+    }
+    const animations = new Animations(chart, options && options.animations);
+    if (options && options._cacheable) {
+      cache[cacheKey] = Object.freeze(animations);
+    }
+    return animations;
+  }
+  getSharedOptions(options) {
+    if (!options.$shared) {
+      return;
+    }
+    return this._sharedOptions || (this._sharedOptions = Object.assign({}, options));
+  }
+  includeOptions(mode, sharedOptions) {
+    return !sharedOptions || isDirectUpdateMode(mode) || this.chart._animationsDisabled;
+  }
+  updateElement(element, index, properties, mode) {
+    if (isDirectUpdateMode(mode)) {
+      Object.assign(element, properties);
+    } else {
+      this._resolveAnimations(index, mode).update(element, properties);
+    }
+  }
+  updateSharedOptions(sharedOptions, mode, newOptions) {
+    if (sharedOptions && !isDirectUpdateMode(mode)) {
+      this._resolveAnimations(undefined, mode).update(sharedOptions, newOptions);
+    }
+  }
+  _setStyle(element, index, mode, active) {
+    element.active = active;
+    const options = this.getStyle(index, active);
+    this._resolveAnimations(index, mode, active).update(element, {
+      options: (!active && this.getSharedOptions(options)) || options
+    });
+  }
+  removeHoverStyle(element, datasetIndex, index) {
+    this._setStyle(element, index, 'active', false);
+  }
+  setHoverStyle(element, datasetIndex, index) {
+    this._setStyle(element, index, 'active', true);
+  }
+  _removeDatasetHoverStyle() {
+    const element = this._cachedMeta.dataset;
+    if (element) {
+      this._setStyle(element, undefined, 'active', false);
+    }
+  }
+  _setDatasetHoverStyle() {
+    const element = this._cachedMeta.dataset;
+    if (element) {
+      this._setStyle(element, undefined, 'active', true);
+    }
+  }
+  _resyncElements(resetNewElements) {
+    const data = this._data;
+    const elements = this._cachedMeta.data;
+    for (const [method, arg1, arg2] of this._syncList) {
+      this[method](arg1, arg2);
+    }
+    this._syncList = [];
+    const numMeta = elements.length;
+    const numData = data.length;
+    const count = Math.min(numData, numMeta);
+    if (count) {
+      this.parse(0, count);
+    }
+    if (numData > numMeta) {
+      this._insertElements(numMeta, numData - numMeta, resetNewElements);
+    } else if (numData < numMeta) {
+      this._removeElements(numData, numMeta - numData);
+    }
+  }
+  _insertElements(start, count, resetNewElements = true) {
+    const meta = this._cachedMeta;
+    const data = meta.data;
+    const end = start + count;
+    let i;
+    const move = (arr) => {
+      arr.length += count;
+      for (i = arr.length - 1; i >= end; i--) {
+        arr[i] = arr[i - count];
+      }
+    };
+    move(data);
+    for (i = start; i < end; ++i) {
+      data[i] = new this.dataElementType();
+    }
+    if (this._parsing) {
+      move(meta._parsed);
+    }
+    this.parse(start, count);
+    if (resetNewElements) {
+      this.updateElements(data, start, count, 'reset');
+    }
+  }
+  updateElements(element, start, count, mode) {}
+  _removeElements(start, count) {
+    const meta = this._cachedMeta;
+    if (this._parsing) {
+      const removed = meta._parsed.splice(start, count);
+      if (meta._stacked) {
+        clearStacks(meta, removed);
+      }
+    }
+    meta.data.splice(start, count);
+  }
+  _sync(args) {
+    if (this._parsing) {
+      this._syncList.push(args);
+    } else {
+      const [method, arg1, arg2] = args;
+      this[method](arg1, arg2);
+    }
+    this.chart._dataChanges.push([this.index, ...args]);
+  }
+  _onDataPush() {
+    const count = arguments.length;
+    this._sync(['_insertElements', this.getDataset().data.length - count, count]);
+  }
+  _onDataPop() {
+    this._sync(['_removeElements', this._cachedMeta.data.length - 1, 1]);
+  }
+  _onDataShift() {
+    this._sync(['_removeElements', 0, 1]);
+  }
+  _onDataSplice(start, count) {
+    if (count) {
+      this._sync(['_removeElements', start, count]);
+    }
+    const newCount = arguments.length - 2;
+    if (newCount) {
+      this._sync(['_insertElements', start, newCount]);
+    }
+  }
+  _onDataUnshift() {
+    this._sync(['_insertElements', 0, arguments.length]);
+  }
+}
+DatasetController.defaults = {};
+DatasetController.prototype.datasetElementType = null;
+DatasetController.prototype.dataElementType = null;
+
+class Element {
+  constructor() {
+    this.x = undefined;
+    this.y = undefined;
+    this.active = false;
+    this.options = undefined;
+    this.$animations = undefined;
+  }
+  tooltipPosition(useFinalPosition) {
+    const {x, y} = this.getProps(['x', 'y'], useFinalPosition);
+    return {x, y};
+  }
+  hasValue() {
+    return isNumber(this.x) && isNumber(this.y);
+  }
+  getProps(props, final) {
+    const anims = this.$animations;
+    if (!final || !anims) {
+      return this;
+    }
+    const ret = {};
+    props.forEach(prop => {
+      ret[prop] = anims[prop] && anims[prop].active() ? anims[prop]._to : this[prop];
+    });
+    return ret;
+  }
+}
+Element.defaults = {};
+Element.defaultRoutes = undefined;
+
+const formatters = {
+  values(value) {
+    return isArray(value) ? value : '' + value;
+  },
+  numeric(tickValue, index, ticks) {
+    if (tickValue === 0) {
+      return '0';
+    }
+    const locale = this.chart.options.locale;
+    let notation;
+    let delta = tickValue;
+    if (ticks.length > 1) {
+      const maxTick = Math.max(Math.abs(ticks[0].value), Math.abs(ticks[ticks.length - 1].value));
+      if (maxTick < 1e-4 || maxTick > 1e+15) {
+        notation = 'scientific';
+      }
+      delta = calculateDelta(tickValue, ticks);
+    }
+    const logDelta = log10(Math.abs(delta));
+    const numDecimal = Math.max(Math.min(-1 * Math.floor(logDelta), 20), 0);
+    const options = {notation, minimumFractionDigits: numDecimal, maximumFractionDigits: numDecimal};
+    Object.assign(options, this.options.ticks.format);
+    return formatNumber(tickValue, locale, options);
+  },
+  logarithmic(tickValue, index, ticks) {
+    if (tickValue === 0) {
+      return '0';
+    }
+    const remain = tickValue / (Math.pow(10, Math.floor(log10(tickValue))));
+    if (remain === 1 || remain === 2 || remain === 5) {
+      return formatters.numeric.call(this, tickValue, index, ticks);
+    }
+    return '';
+  }
+};
+function calculateDelta(tickValue, ticks) {
+  let delta = ticks.length > 3 ? ticks[2].value - ticks[1].value : ticks[1].value - ticks[0].value;
+  if (Math.abs(delta) >= 1 && tickValue !== Math.floor(tickValue)) {
+    delta = tickValue - Math.floor(tickValue);
+  }
+  return delta;
+}
+var Ticks = {formatters};
+
+defaults.set('scale', {
+  display: true,
+  offset: false,
+  reverse: false,
+  beginAtZero: false,
+  bounds: 'ticks',
+  grace: 0,
+  grid: {
+    display: true,
+    lineWidth: 1,
+    drawBorder: true,
+    drawOnChartArea: true,
+    drawTicks: true,
+    tickLength: 8,
+    tickWidth: (_ctx, options) => options.lineWidth,
+    tickColor: (_ctx, options) => options.color,
+    offset: false,
+    borderDash: [],
+    borderDashOffset: 0.0,
+    borderWidth: 1
+  },
+  title: {
+    display: false,
+    text: '',
+    padding: {
+      top: 4,
+      bottom: 4
+    }
+  },
+  ticks: {
+    minRotation: 0,
+    maxRotation: 50,
+    mirror: false,
+    textStrokeWidth: 0,
+    textStrokeColor: '',
+    padding: 3,
+    display: true,
+    autoSkip: true,
+    autoSkipPadding: 3,
+    labelOffset: 0,
+    callback: Ticks.formatters.values,
+    minor: {},
+    major: {},
+    align: 'center',
+    crossAlign: 'near',
+    showLabelBackdrop: false,
+    backdropColor: 'rgba(255, 255, 255, 0.75)',
+    backdropPadding: 2,
+  }
+});
+defaults.route('scale.ticks', 'color', '', 'color');
+defaults.route('scale.grid', 'color', '', 'borderColor');
+defaults.route('scale.grid', 'borderColor', '', 'borderColor');
+defaults.route('scale.title', 'color', '', 'color');
+defaults.describe('scale', {
+  _fallback: false,
+  _scriptable: (name) => !name.startsWith('before') && !name.startsWith('after') && name !== 'callback' && name !== 'parser',
+  _indexable: (name) => name !== 'borderDash' && name !== 'tickBorderDash',
+});
+defaults.describe('scales', {
+  _fallback: 'scale',
+});
+defaults.describe('scale.ticks', {
+  _scriptable: (name) => name !== 'backdropPadding' && name !== 'callback',
+  _indexable: (name) => name !== 'backdropPadding',
+});
+
+function autoSkip(scale, ticks) {
+  const tickOpts = scale.options.ticks;
+  const ticksLimit = tickOpts.maxTicksLimit || determineMaxTicks(scale);
+  const majorIndices = tickOpts.major.enabled ? getMajorIndices(ticks) : [];
+  const numMajorIndices = majorIndices.length;
+  const first = majorIndices[0];
+  const last = majorIndices[numMajorIndices - 1];
+  const newTicks = [];
+  if (numMajorIndices > ticksLimit) {
+    skipMajors(ticks, newTicks, majorIndices, numMajorIndices / ticksLimit);
+    return newTicks;
+  }
+  const spacing = calculateSpacing(majorIndices, ticks, ticksLimit);
+  if (numMajorIndices > 0) {
+    let i, ilen;
+    const avgMajorSpacing = numMajorIndices > 1 ? Math.round((last - first) / (numMajorIndices - 1)) : null;
+    skip(ticks, newTicks, spacing, isNullOrUndef(avgMajorSpacing) ? 0 : first - avgMajorSpacing, first);
+    for (i = 0, ilen = numMajorIndices - 1; i < ilen; i++) {
+      skip(ticks, newTicks, spacing, majorIndices[i], majorIndices[i + 1]);
+    }
+    skip(ticks, newTicks, spacing, last, isNullOrUndef(avgMajorSpacing) ? ticks.length : last + avgMajorSpacing);
+    return newTicks;
+  }
+  skip(ticks, newTicks, spacing);
+  return newTicks;
+}
+function determineMaxTicks(scale) {
+  const offset = scale.options.offset;
+  const tickLength = scale._tickSize();
+  const maxScale = scale._length / tickLength + (offset ? 0 : 1);
+  const maxChart = scale._maxLength / tickLength;
+  return Math.floor(Math.min(maxScale, maxChart));
+}
+function calculateSpacing(majorIndices, ticks, ticksLimit) {
+  const evenMajorSpacing = getEvenSpacing(majorIndices);
+  const spacing = ticks.length / ticksLimit;
+  if (!evenMajorSpacing) {
+    return Math.max(spacing, 1);
+  }
+  const factors = _factorize(evenMajorSpacing);
+  for (let i = 0, ilen = factors.length - 1; i < ilen; i++) {
+    const factor = factors[i];
+    if (factor > spacing) {
+      return factor;
+    }
+  }
+  return Math.max(spacing, 1);
+}
+function getMajorIndices(ticks) {
+  const result = [];
+  let i, ilen;
+  for (i = 0, ilen = ticks.length; i < ilen; i++) {
+    if (ticks[i].major) {
+      result.push(i);
+    }
+  }
+  return result;
+}
+function skipMajors(ticks, newTicks, majorIndices, spacing) {
+  let count = 0;
+  let next = majorIndices[0];
+  let i;
+  spacing = Math.ceil(spacing);
+  for (i = 0; i < ticks.length; i++) {
+    if (i === next) {
+      newTicks.push(ticks[i]);
+      count++;
+      next = majorIndices[count * spacing];
+    }
+  }
+}
+function skip(ticks, newTicks, spacing, majorStart, majorEnd) {
+  const start = valueOrDefault(majorStart, 0);
+  const end = Math.min(valueOrDefault(majorEnd, ticks.length), ticks.length);
+  let count = 0;
+  let length, i, next;
+  spacing = Math.ceil(spacing);
+  if (majorEnd) {
+    length = majorEnd - majorStart;
+    spacing = length / Math.floor(length / spacing);
+  }
+  next = start;
+  while (next < 0) {
+    count++;
+    next = Math.round(start + count * spacing);
+  }
+  for (i = Math.max(start, 0); i < end; i++) {
+    if (i === next) {
+      newTicks.push(ticks[i]);
+      count++;
+      next = Math.round(start + count * spacing);
+    }
+  }
+}
+function getEvenSpacing(arr) {
+  const len = arr.length;
+  let i, diff;
+  if (len < 2) {
+    return false;
+  }
+  for (diff = arr[0], i = 1; i < len; ++i) {
+    if (arr[i] - arr[i - 1] !== diff) {
+      return false;
+    }
+  }
+  return diff;
+}
+
+const reverseAlign = (align) => align === 'left' ? 'right' : align === 'right' ? 'left' : align;
+const offsetFromEdge = (scale, edge, offset) => edge === 'top' || edge === 'left' ? scale[edge] + offset : scale[edge] - offset;
+function sample(arr, numItems) {
+  const result = [];
+  const increment = arr.length / numItems;
+  const len = arr.length;
+  let i = 0;
+  for (; i < len; i += increment) {
+    result.push(arr[Math.floor(i)]);
+  }
+  return result;
+}
+function getPixelForGridLine(scale, index, offsetGridLines) {
+  const length = scale.ticks.length;
+  const validIndex = Math.min(index, length - 1);
+  const start = scale._startPixel;
+  const end = scale._endPixel;
+  const epsilon = 1e-6;
+  let lineValue = scale.getPixelForTick(validIndex);
+  let offset;
+  if (offsetGridLines) {
+    if (length === 1) {
+      offset = Math.max(lineValue - start, end - lineValue);
+    } else if (index === 0) {
+      offset = (scale.getPixelForTick(1) - lineValue) / 2;
+    } else {
+      offset = (lineValue - scale.getPixelForTick(validIndex - 1)) / 2;
+    }
+    lineValue += validIndex < index ? offset : -offset;
+    if (lineValue < start - epsilon || lineValue > end + epsilon) {
+      return;
+    }
+  }
+  return lineValue;
+}
+function garbageCollect(caches, length) {
+  each(caches, (cache) => {
+    const gc = cache.gc;
+    const gcLen = gc.length / 2;
+    let i;
+    if (gcLen > length) {
+      for (i = 0; i < gcLen; ++i) {
+        delete cache.data[gc[i]];
+      }
+      gc.splice(0, gcLen);
+    }
+  });
+}
+function getTickMarkLength(options) {
+  return options.drawTicks ? options.tickLength : 0;
+}
+function getTitleHeight(options, fallback) {
+  if (!options.display) {
+    return 0;
+  }
+  const font = toFont(options.font, fallback);
+  const padding = toPadding(options.padding);
+  const lines = isArray(options.text) ? options.text.length : 1;
+  return (lines * font.lineHeight) + padding.height;
+}
+function createScaleContext(parent, scale) {
+  return createContext(parent, {
+    scale,
+    type: 'scale'
+  });
+}
+function createTickContext(parent, index, tick) {
+  return createContext(parent, {
+    tick,
+    index,
+    type: 'tick'
+  });
+}
+function titleAlign(align, position, reverse) {
+  let ret = _toLeftRightCenter(align);
+  if ((reverse && position !== 'right') || (!reverse && position === 'right')) {
+    ret = reverseAlign(ret);
+  }
+  return ret;
+}
+function titleArgs(scale, offset, position, align) {
+  const {top, left, bottom, right, chart} = scale;
+  const {chartArea, scales} = chart;
+  let rotation = 0;
+  let maxWidth, titleX, titleY;
+  const height = bottom - top;
+  const width = right - left;
+  if (scale.isHorizontal()) {
+    titleX = _alignStartEnd(align, left, right);
+    if (isObject(position)) {
+      const positionAxisID = Object.keys(position)[0];
+      const value = position[positionAxisID];
+      titleY = scales[positionAxisID].getPixelForValue(value) + height - offset;
+    } else if (position === 'center') {
+      titleY = (chartArea.bottom + chartArea.top) / 2 + height - offset;
+    } else {
+      titleY = offsetFromEdge(scale, position, offset);
+    }
+    maxWidth = right - left;
+  } else {
+    if (isObject(position)) {
+      const positionAxisID = Object.keys(position)[0];
+      const value = position[positionAxisID];
+      titleX = scales[positionAxisID].getPixelForValue(value) - width + offset;
+    } else if (position === 'center') {
+      titleX = (chartArea.left + chartArea.right) / 2 - width + offset;
+    } else {
+      titleX = offsetFromEdge(scale, position, offset);
+    }
+    titleY = _alignStartEnd(align, bottom, top);
+    rotation = position === 'left' ? -HALF_PI : HALF_PI;
+  }
+  return {titleX, titleY, maxWidth, rotation};
+}
+class Scale extends Element {
+  constructor(cfg) {
+    super();
+    this.id = cfg.id;
+    this.type = cfg.type;
+    this.options = undefined;
+    this.ctx = cfg.ctx;
+    this.chart = cfg.chart;
+    this.top = undefined;
+    this.bottom = undefined;
+    this.left = undefined;
+    this.right = undefined;
+    this.width = undefined;
+    this.height = undefined;
+    this._margins = {
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0
+    };
+    this.maxWidth = undefined;
+    this.maxHeight = undefined;
+    this.paddingTop = undefined;
+    this.paddingBottom = undefined;
+    this.paddingLeft = undefined;
+    this.paddingRight = undefined;
+    this.axis = undefined;
+    this.labelRotation = undefined;
+    this.min = undefined;
+    this.max = undefined;
+    this._range = undefined;
+    this.ticks = [];
+    this._gridLineItems = null;
+    this._labelItems = null;
+    this._labelSizes = null;
+    this._length = 0;
+    this._maxLength = 0;
+    this._longestTextCache = {};
+    this._startPixel = undefined;
+    this._endPixel = undefined;
+    this._reversePixels = false;
+    this._userMax = undefined;
+    this._userMin = undefined;
+    this._suggestedMax = undefined;
+    this._suggestedMin = undefined;
+    this._ticksLength = 0;
+    this._borderValue = 0;
+    this._cache = {};
+    this._dataLimitsCached = false;
+    this.$context = undefined;
+  }
+  init(options) {
+    this.options = options.setContext(this.getContext());
+    this.axis = options.axis;
+    this._userMin = this.parse(options.min);
+    this._userMax = this.parse(options.max);
+    this._suggestedMin = this.parse(options.suggestedMin);
+    this._suggestedMax = this.parse(options.suggestedMax);
+  }
+  parse(raw, index) {
+    return raw;
+  }
+  getUserBounds() {
+    let {_userMin, _userMax, _suggestedMin, _suggestedMax} = this;
+    _userMin = finiteOrDefault(_userMin, Number.POSITIVE_INFINITY);
+    _userMax = finiteOrDefault(_userMax, Number.NEGATIVE_INFINITY);
+    _suggestedMin = finiteOrDefault(_suggestedMin, Number.POSITIVE_INFINITY);
+    _suggestedMax = finiteOrDefault(_suggestedMax, Number.NEGATIVE_INFINITY);
+    return {
+      min: finiteOrDefault(_userMin, _suggestedMin),
+      max: finiteOrDefault(_userMax, _suggestedMax),
+      minDefined: isNumberFinite(_userMin),
+      maxDefined: isNumberFinite(_userMax)
+    };
+  }
+  getMinMax(canStack) {
+    let {min, max, minDefined, maxDefined} = this.getUserBounds();
+    let range;
+    if (minDefined && maxDefined) {
+      return {min, max};
+    }
+    const metas = this.getMatchingVisibleMetas();
+    for (let i = 0, ilen = metas.length; i < ilen; ++i) {
+      range = metas[i].controller.getMinMax(this, canStack);
+      if (!minDefined) {
+        min = Math.min(min, range.min);
+      }
+      if (!maxDefined) {
+        max = Math.max(max, range.max);
+      }
+    }
+    min = maxDefined && min > max ? max : min;
+    max = minDefined && min > max ? min : max;
+    return {
+      min: finiteOrDefault(min, finiteOrDefault(max, min)),
+      max: finiteOrDefault(max, finiteOrDefault(min, max))
+    };
+  }
+  getPadding() {
+    return {
+      left: this.paddingLeft || 0,
+      top: this.paddingTop || 0,
+      right: this.paddingRight || 0,
+      bottom: this.paddingBottom || 0
+    };
+  }
+  getTicks() {
+    return this.ticks;
+  }
+  getLabels() {
+    const data = this.chart.data;
+    return this.options.labels || (this.isHorizontal() ? data.xLabels : data.yLabels) || data.labels || [];
+  }
+  beforeLayout() {
+    this._cache = {};
+    this._dataLimitsCached = false;
+  }
+  beforeUpdate() {
+    callback(this.options.beforeUpdate, [this]);
+  }
+  update(maxWidth, maxHeight, margins) {
+    const {beginAtZero, grace, ticks: tickOpts} = this.options;
+    const sampleSize = tickOpts.sampleSize;
+    this.beforeUpdate();
+    this.maxWidth = maxWidth;
+    this.maxHeight = maxHeight;
+    this._margins = margins = Object.assign({
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0
+    }, margins);
+    this.ticks = null;
+    this._labelSizes = null;
+    this._gridLineItems = null;
+    this._labelItems = null;
+    this.beforeSetDimensions();
+    this.setDimensions();
+    this.afterSetDimensions();
+    this._maxLength = this.isHorizontal()
+      ? this.width + margins.left + margins.right
+      : this.height + margins.top + margins.bottom;
+    if (!this._dataLimitsCached) {
+      this.beforeDataLimits();
+      this.determineDataLimits();
+      this.afterDataLimits();
+      this._range = _addGrace(this, grace, beginAtZero);
+      this._dataLimitsCached = true;
+    }
+    this.beforeBuildTicks();
+    this.ticks = this.buildTicks() || [];
+    this.afterBuildTicks();
+    const samplingEnabled = sampleSize < this.ticks.length;
+    this._convertTicksToLabels(samplingEnabled ? sample(this.ticks, sampleSize) : this.ticks);
+    this.configure();
+    this.beforeCalculateLabelRotation();
+    this.calculateLabelRotation();
+    this.afterCalculateLabelRotation();
+    if (tickOpts.display && (tickOpts.autoSkip || tickOpts.source === 'auto')) {
+      this.ticks = autoSkip(this, this.ticks);
+      this._labelSizes = null;
+    }
+    if (samplingEnabled) {
+      this._convertTicksToLabels(this.ticks);
+    }
+    this.beforeFit();
+    this.fit();
+    this.afterFit();
+    this.afterUpdate();
+  }
+  configure() {
+    let reversePixels = this.options.reverse;
+    let startPixel, endPixel;
+    if (this.isHorizontal()) {
+      startPixel = this.left;
+      endPixel = this.right;
+    } else {
+      startPixel = this.top;
+      endPixel = this.bottom;
+      reversePixels = !reversePixels;
+    }
+    this._startPixel = startPixel;
+    this._endPixel = endPixel;
+    this._reversePixels = reversePixels;
+    this._length = endPixel - startPixel;
+    this._alignToPixels = this.options.alignToPixels;
+  }
+  afterUpdate() {
+    callback(this.options.afterUpdate, [this]);
+  }
+  beforeSetDimensions() {
+    callback(this.options.beforeSetDimensions, [this]);
+  }
+  setDimensions() {
+    if (this.isHorizontal()) {
+      this.width = this.maxWidth;
+      this.left = 0;
+      this.right = this.width;
+    } else {
+      this.height = this.maxHeight;
+      this.top = 0;
+      this.bottom = this.height;
+    }
+    this.paddingLeft = 0;
+    this.paddingTop = 0;
+    this.paddingRight = 0;
+    this.paddingBottom = 0;
+  }
+  afterSetDimensions() {
+    callback(this.options.afterSetDimensions, [this]);
+  }
+  _callHooks(name) {
+    this.chart.notifyPlugins(name, this.getContext());
+    callback(this.options[name], [this]);
+  }
+  beforeDataLimits() {
+    this._callHooks('beforeDataLimits');
+  }
+  determineDataLimits() {}
+  afterDataLimits() {
+    this._callHooks('afterDataLimits');
+  }
+  beforeBuildTicks() {
+    this._callHooks('beforeBuildTicks');
+  }
+  buildTicks() {
+    return [];
+  }
+  afterBuildTicks() {
+    this._callHooks('afterBuildTicks');
+  }
+  beforeTickToLabelConversion() {
+    callback(this.options.beforeTickToLabelConversion, [this]);
+  }
+  generateTickLabels(ticks) {
+    const tickOpts = this.options.ticks;
+    let i, ilen, tick;
+    for (i = 0, ilen = ticks.length; i < ilen; i++) {
+      tick = ticks[i];
+      tick.label = callback(tickOpts.callback, [tick.value, i, ticks], this);
+    }
+  }
+  afterTickToLabelConversion() {
+    callback(this.options.afterTickToLabelConversion, [this]);
+  }
+  beforeCalculateLabelRotation() {
+    callback(this.options.beforeCalculateLabelRotation, [this]);
+  }
+  calculateLabelRotation() {
+    const options = this.options;
+    const tickOpts = options.ticks;
+    const numTicks = this.ticks.length;
+    const minRotation = tickOpts.minRotation || 0;
+    const maxRotation = tickOpts.maxRotation;
+    let labelRotation = minRotation;
+    let tickWidth, maxHeight, maxLabelDiagonal;
+    if (!this._isVisible() || !tickOpts.display || minRotation >= maxRotation || numTicks <= 1 || !this.isHorizontal()) {
+      this.labelRotation = minRotation;
+      return;
+    }
+    const labelSizes = this._getLabelSizes();
+    const maxLabelWidth = labelSizes.widest.width;
+    const maxLabelHeight = labelSizes.highest.height;
+    const maxWidth = _limitValue(this.chart.width - maxLabelWidth, 0, this.maxWidth);
+    tickWidth = options.offset ? this.maxWidth / numTicks : maxWidth / (numTicks - 1);
+    if (maxLabelWidth + 6 > tickWidth) {
+      tickWidth = maxWidth / (numTicks - (options.offset ? 0.5 : 1));
+      maxHeight = this.maxHeight - getTickMarkLength(options.grid)
+				- tickOpts.padding - getTitleHeight(options.title, this.chart.options.font);
+      maxLabelDiagonal = Math.sqrt(maxLabelWidth * maxLabelWidth + maxLabelHeight * maxLabelHeight);
+      labelRotation = toDegrees(Math.min(
+        Math.asin(_limitValue((labelSizes.highest.height + 6) / tickWidth, -1, 1)),
+        Math.asin(_limitValue(maxHeight / maxLabelDiagonal, -1, 1)) - Math.asin(_limitValue(maxLabelHeight / maxLabelDiagonal, -1, 1))
+      ));
+      labelRotation = Math.max(minRotation, Math.min(maxRotation, labelRotation));
+    }
+    this.labelRotation = labelRotation;
+  }
+  afterCalculateLabelRotation() {
+    callback(this.options.afterCalculateLabelRotation, [this]);
+  }
+  beforeFit() {
+    callback(this.options.beforeFit, [this]);
+  }
+  fit() {
+    const minSize = {
+      width: 0,
+      height: 0
+    };
+    const {chart, options: {ticks: tickOpts, title: titleOpts, grid: gridOpts}} = this;
+    const display = this._isVisible();
+    const isHorizontal = this.isHorizontal();
+    if (display) {
+      const titleHeight = getTitleHeight(titleOpts, chart.options.font);
+      if (isHorizontal) {
+        minSize.width = this.maxWidth;
+        minSize.height = getTickMarkLength(gridOpts) + titleHeight;
+      } else {
+        minSize.height = this.maxHeight;
+        minSize.width = getTickMarkLength(gridOpts) + titleHeight;
+      }
+      if (tickOpts.display && this.ticks.length) {
+        const {first, last, widest, highest} = this._getLabelSizes();
+        const tickPadding = tickOpts.padding * 2;
+        const angleRadians = toRadians(this.labelRotation);
+        const cos = Math.cos(angleRadians);
+        const sin = Math.sin(angleRadians);
+        if (isHorizontal) {
+          const labelHeight = tickOpts.mirror ? 0 : sin * widest.width + cos * highest.height;
+          minSize.height = Math.min(this.maxHeight, minSize.height + labelHeight + tickPadding);
+        } else {
+          const labelWidth = tickOpts.mirror ? 0 : cos * widest.width + sin * highest.height;
+          minSize.width = Math.min(this.maxWidth, minSize.width + labelWidth + tickPadding);
+        }
+        this._calculatePadding(first, last, sin, cos);
+      }
+    }
+    this._handleMargins();
+    if (isHorizontal) {
+      this.width = this._length = chart.width - this._margins.left - this._margins.right;
+      this.height = minSize.height;
+    } else {
+      this.width = minSize.width;
+      this.height = this._length = chart.height - this._margins.top - this._margins.bottom;
+    }
+  }
+  _calculatePadding(first, last, sin, cos) {
+    const {ticks: {align, padding}, position} = this.options;
+    const isRotated = this.labelRotation !== 0;
+    const labelsBelowTicks = position !== 'top' && this.axis === 'x';
+    if (this.isHorizontal()) {
+      const offsetLeft = this.getPixelForTick(0) - this.left;
+      const offsetRight = this.right - this.getPixelForTick(this.ticks.length - 1);
+      let paddingLeft = 0;
+      let paddingRight = 0;
+      if (isRotated) {
+        if (labelsBelowTicks) {
+          paddingLeft = cos * first.width;
+          paddingRight = sin * last.height;
+        } else {
+          paddingLeft = sin * first.height;
+          paddingRight = cos * last.width;
+        }
+      } else if (align === 'start') {
+        paddingRight = last.width;
+      } else if (align === 'end') {
+        paddingLeft = first.width;
+      } else {
+        paddingLeft = first.width / 2;
+        paddingRight = last.width / 2;
+      }
+      this.paddingLeft = Math.max((paddingLeft - offsetLeft + padding) * this.width / (this.width - offsetLeft), 0);
+      this.paddingRight = Math.max((paddingRight - offsetRight + padding) * this.width / (this.width - offsetRight), 0);
+    } else {
+      let paddingTop = last.height / 2;
+      let paddingBottom = first.height / 2;
+      if (align === 'start') {
+        paddingTop = 0;
+        paddingBottom = first.height;
+      } else if (align === 'end') {
+        paddingTop = last.height;
+        paddingBottom = 0;
+      }
+      this.paddingTop = paddingTop + padding;
+      this.paddingBottom = paddingBottom + padding;
+    }
+  }
+  _handleMargins() {
+    if (this._margins) {
+      this._margins.left = Math.max(this.paddingLeft, this._margins.left);
+      this._margins.top = Math.max(this.paddingTop, this._margins.top);
+      this._margins.right = Math.max(this.paddingRight, this._margins.right);
+      this._margins.bottom = Math.max(this.paddingBottom, this._margins.bottom);
+    }
+  }
+  afterFit() {
+    callback(this.options.afterFit, [this]);
+  }
+  isHorizontal() {
+    const {axis, position} = this.options;
+    return position === 'top' || position === 'bottom' || axis === 'x';
+  }
+  isFullSize() {
+    return this.options.fullSize;
+  }
+  _convertTicksToLabels(ticks) {
+    this.beforeTickToLabelConversion();
+    this.generateTickLabels(ticks);
+    let i, ilen;
+    for (i = 0, ilen = ticks.length; i < ilen; i++) {
+      if (isNullOrUndef(ticks[i].label)) {
+        ticks.splice(i, 1);
+        ilen--;
+        i--;
+      }
+    }
+    this.afterTickToLabelConversion();
+  }
+  _getLabelSizes() {
+    let labelSizes = this._labelSizes;
+    if (!labelSizes) {
+      const sampleSize = this.options.ticks.sampleSize;
+      let ticks = this.ticks;
+      if (sampleSize < ticks.length) {
+        ticks = sample(ticks, sampleSize);
+      }
+      this._labelSizes = labelSizes = this._computeLabelSizes(ticks, ticks.length);
+    }
+    return labelSizes;
+  }
+  _computeLabelSizes(ticks, length) {
+    const {ctx, _longestTextCache: caches} = this;
+    const widths = [];
+    const heights = [];
+    let widestLabelSize = 0;
+    let highestLabelSize = 0;
+    let i, j, jlen, label, tickFont, fontString, cache, lineHeight, width, height, nestedLabel;
+    for (i = 0; i < length; ++i) {
+      label = ticks[i].label;
+      tickFont = this._resolveTickFontOptions(i);
+      ctx.font = fontString = tickFont.string;
+      cache = caches[fontString] = caches[fontString] || {data: {}, gc: []};
+      lineHeight = tickFont.lineHeight;
+      width = height = 0;
+      if (!isNullOrUndef(label) && !isArray(label)) {
+        width = _measureText(ctx, cache.data, cache.gc, width, label);
+        height = lineHeight;
+      } else if (isArray(label)) {
+        for (j = 0, jlen = label.length; j < jlen; ++j) {
+          nestedLabel = label[j];
+          if (!isNullOrUndef(nestedLabel) && !isArray(nestedLabel)) {
+            width = _measureText(ctx, cache.data, cache.gc, width, nestedLabel);
+            height += lineHeight;
+          }
+        }
+      }
+      widths.push(width);
+      heights.push(height);
+      widestLabelSize = Math.max(width, widestLabelSize);
+      highestLabelSize = Math.max(height, highestLabelSize);
+    }
+    garbageCollect(caches, length);
+    const widest = widths.indexOf(widestLabelSize);
+    const highest = heights.indexOf(highestLabelSize);
+    const valueAt = (idx) => ({width: widths[idx] || 0, height: heights[idx] || 0});
+    return {
+      first: valueAt(0),
+      last: valueAt(length - 1),
+      widest: valueAt(widest),
+      highest: valueAt(highest),
+      widths,
+      heights,
+    };
+  }
+  getLabelForValue(value) {
+    return value;
+  }
+  getPixelForValue(value, index) {
+    return NaN;
+  }
+  getValueForPixel(pixel) {}
+  getPixelForTick(index) {
+    const ticks = this.ticks;
+    if (index < 0 || index > ticks.length - 1) {
+      return null;
+    }
+    return this.getPixelForValue(ticks[index].value);
+  }
+  getPixelForDecimal(decimal) {
+    if (this._reversePixels) {
+      decimal = 1 - decimal;
+    }
+    const pixel = this._startPixel + decimal * this._length;
+    return _int16Range(this._alignToPixels ? _alignPixel(this.chart, pixel, 0) : pixel);
+  }
+  getDecimalForPixel(pixel) {
+    const decimal = (pixel - this._startPixel) / this._length;
+    return this._reversePixels ? 1 - decimal : decimal;
+  }
+  getBasePixel() {
+    return this.getPixelForValue(this.getBaseValue());
+  }
+  getBaseValue() {
+    const {min, max} = this;
+    return min < 0 && max < 0 ? max :
+      min > 0 && max > 0 ? min :
+      0;
+  }
+  getContext(index) {
+    const ticks = this.ticks || [];
+    if (index >= 0 && index < ticks.length) {
+      const tick = ticks[index];
+      return tick.$context ||
+				(tick.$context = createTickContext(this.getContext(), index, tick));
+    }
+    return this.$context ||
+			(this.$context = createScaleContext(this.chart.getContext(), this));
+  }
+  _tickSize() {
+    const optionTicks = this.options.ticks;
+    const rot = toRadians(this.labelRotation);
+    const cos = Math.abs(Math.cos(rot));
+    const sin = Math.abs(Math.sin(rot));
+    const labelSizes = this._getLabelSizes();
+    const padding = optionTicks.autoSkipPadding || 0;
+    const w = labelSizes ? labelSizes.widest.width + padding : 0;
+    const h = labelSizes ? labelSizes.highest.height + padding : 0;
+    return this.isHorizontal()
+      ? h * cos > w * sin ? w / cos : h / sin
+      : h * sin < w * cos ? h / cos : w / sin;
+  }
+  _isVisible() {
+    const display = this.options.display;
+    if (display !== 'auto') {
+      return !!display;
+    }
+    return this.getMatchingVisibleMetas().length > 0;
+  }
+  _computeGridLineItems(chartArea) {
+    const axis = this.axis;
+    const chart = this.chart;
+    const options = this.options;
+    const {grid, position} = options;
+    const offset = grid.offset;
+    const isHorizontal = this.isHorizontal();
+    const ticks = this.ticks;
+    const ticksLength = ticks.length + (offset ? 1 : 0);
+    const tl = getTickMarkLength(grid);
+    const items = [];
+    const borderOpts = grid.setContext(this.getContext());
+    const axisWidth = borderOpts.drawBorder ? borderOpts.borderWidth : 0;
+    const axisHalfWidth = axisWidth / 2;
+    const alignBorderValue = function(pixel) {
+      return _alignPixel(chart, pixel, axisWidth);
+    };
+    let borderValue, i, lineValue, alignedLineValue;
+    let tx1, ty1, tx2, ty2, x1, y1, x2, y2;
+    if (position === 'top') {
+      borderValue = alignBorderValue(this.bottom);
+      ty1 = this.bottom - tl;
+      ty2 = borderValue - axisHalfWidth;
+      y1 = alignBorderValue(chartArea.top) + axisHalfWidth;
+      y2 = chartArea.bottom;
+    } else if (position === 'bottom') {
+      borderValue = alignBorderValue(this.top);
+      y1 = chartArea.top;
+      y2 = alignBorderValue(chartArea.bottom) - axisHalfWidth;
+      ty1 = borderValue + axisHalfWidth;
+      ty2 = this.top + tl;
+    } else if (position === 'left') {
+      borderValue = alignBorderValue(this.right);
+      tx1 = this.right - tl;
+      tx2 = borderValue - axisHalfWidth;
+      x1 = alignBorderValue(chartArea.left) + axisHalfWidth;
+      x2 = chartArea.right;
+    } else if (position === 'right') {
+      borderValue = alignBorderValue(this.left);
+      x1 = chartArea.left;
+      x2 = alignBorderValue(chartArea.right) - axisHalfWidth;
+      tx1 = borderValue + axisHalfWidth;
+      tx2 = this.left + tl;
+    } else if (axis === 'x') {
+      if (position === 'center') {
+        borderValue = alignBorderValue((chartArea.top + chartArea.bottom) / 2 + 0.5);
+      } else if (isObject(position)) {
+        const positionAxisID = Object.keys(position)[0];
+        const value = position[positionAxisID];
+        borderValue = alignBorderValue(this.chart.scales[positionAxisID].getPixelForValue(value));
+      }
+      y1 = chartArea.top;
+      y2 = chartArea.bottom;
+      ty1 = borderValue + axisHalfWidth;
+      ty2 = ty1 + tl;
+    } else if (axis === 'y') {
+      if (position === 'center') {
+        borderValue = alignBorderValue((chartArea.left + chartArea.right) / 2);
+      } else if (isObject(position)) {
+        const positionAxisID = Object.keys(position)[0];
+        const value = position[positionAxisID];
+        borderValue = alignBorderValue(this.chart.scales[positionAxisID].getPixelForValue(value));
+      }
+      tx1 = borderValue - axisHalfWidth;
+      tx2 = tx1 - tl;
+      x1 = chartArea.left;
+      x2 = chartArea.right;
+    }
+    const limit = valueOrDefault(options.ticks.maxTicksLimit, ticksLength);
+    const step = Math.max(1, Math.ceil(ticksLength / limit));
+    for (i = 0; i < ticksLength; i += step) {
+      const optsAtIndex = grid.setContext(this.getContext(i));
+      const lineWidth = optsAtIndex.lineWidth;
+      const lineColor = optsAtIndex.color;
+      const borderDash = grid.borderDash || [];
+      const borderDashOffset = optsAtIndex.borderDashOffset;
+      const tickWidth = optsAtIndex.tickWidth;
+      const tickColor = optsAtIndex.tickColor;
+      const tickBorderDash = optsAtIndex.tickBorderDash || [];
+      const tickBorderDashOffset = optsAtIndex.tickBorderDashOffset;
+      lineValue = getPixelForGridLine(this, i, offset);
+      if (lineValue === undefined) {
+        continue;
+      }
+      alignedLineValue = _alignPixel(chart, lineValue, lineWidth);
+      if (isHorizontal) {
+        tx1 = tx2 = x1 = x2 = alignedLineValue;
+      } else {
+        ty1 = ty2 = y1 = y2 = alignedLineValue;
+      }
+      items.push({
+        tx1,
+        ty1,
+        tx2,
+        ty2,
+        x1,
+        y1,
+        x2,
+        y2,
+        width: lineWidth,
+        color: lineColor,
+        borderDash,
+        borderDashOffset,
+        tickWidth,
+        tickColor,
+        tickBorderDash,
+        tickBorderDashOffset,
+      });
+    }
+    this._ticksLength = ticksLength;
+    this._borderValue = borderValue;
+    return items;
+  }
+  _computeLabelItems(chartArea) {
+    const axis = this.axis;
+    const options = this.options;
+    const {position, ticks: optionTicks} = options;
+    const isHorizontal = this.isHorizontal();
+    const ticks = this.ticks;
+    const {align, crossAlign, padding, mirror} = optionTicks;
+    const tl = getTickMarkLength(options.grid);
+    const tickAndPadding = tl + padding;
+    const hTickAndPadding = mirror ? -padding : tickAndPadding;
+    const rotation = -toRadians(this.labelRotation);
+    const items = [];
+    let i, ilen, tick, label, x, y, textAlign, pixel, font, lineHeight, lineCount, textOffset;
+    let textBaseline = 'middle';
+    if (position === 'top') {
+      y = this.bottom - hTickAndPadding;
+      textAlign = this._getXAxisLabelAlignment();
+    } else if (position === 'bottom') {
+      y = this.top + hTickAndPadding;
+      textAlign = this._getXAxisLabelAlignment();
+    } else if (position === 'left') {
+      const ret = this._getYAxisLabelAlignment(tl);
+      textAlign = ret.textAlign;
+      x = ret.x;
+    } else if (position === 'right') {
+      const ret = this._getYAxisLabelAlignment(tl);
+      textAlign = ret.textAlign;
+      x = ret.x;
+    } else if (axis === 'x') {
+      if (position === 'center') {
+        y = ((chartArea.top + chartArea.bottom) / 2) + tickAndPadding;
+      } else if (isObject(position)) {
+        const positionAxisID = Object.keys(position)[0];
+        const value = position[positionAxisID];
+        y = this.chart.scales[positionAxisID].getPixelForValue(value) + tickAndPadding;
+      }
+      textAlign = this._getXAxisLabelAlignment();
+    } else if (axis === 'y') {
+      if (position === 'center') {
+        x = ((chartArea.left + chartArea.right) / 2) - tickAndPadding;
+      } else if (isObject(position)) {
+        const positionAxisID = Object.keys(position)[0];
+        const value = position[positionAxisID];
+        x = this.chart.scales[positionAxisID].getPixelForValue(value);
+      }
+      textAlign = this._getYAxisLabelAlignment(tl).textAlign;
+    }
+    if (axis === 'y') {
+      if (align === 'start') {
+        textBaseline = 'top';
+      } else if (align === 'end') {
+        textBaseline = 'bottom';
+      }
+    }
+    const labelSizes = this._getLabelSizes();
+    for (i = 0, ilen = ticks.length; i < ilen; ++i) {
+      tick = ticks[i];
+      label = tick.label;
+      const optsAtIndex = optionTicks.setContext(this.getContext(i));
+      pixel = this.getPixelForTick(i) + optionTicks.labelOffset;
+      font = this._resolveTickFontOptions(i);
+      lineHeight = font.lineHeight;
+      lineCount = isArray(label) ? label.length : 1;
+      const halfCount = lineCount / 2;
+      const color = optsAtIndex.color;
+      const strokeColor = optsAtIndex.textStrokeColor;
+      const strokeWidth = optsAtIndex.textStrokeWidth;
+      if (isHorizontal) {
+        x = pixel;
+        if (position === 'top') {
+          if (crossAlign === 'near' || rotation !== 0) {
+            textOffset = -lineCount * lineHeight + lineHeight / 2;
+          } else if (crossAlign === 'center') {
+            textOffset = -labelSizes.highest.height / 2 - halfCount * lineHeight + lineHeight;
+          } else {
+            textOffset = -labelSizes.highest.height + lineHeight / 2;
+          }
+        } else {
+          if (crossAlign === 'near' || rotation !== 0) {
+            textOffset = lineHeight / 2;
+          } else if (crossAlign === 'center') {
+            textOffset = labelSizes.highest.height / 2 - halfCount * lineHeight;
+          } else {
+            textOffset = labelSizes.highest.height - lineCount * lineHeight;
+          }
+        }
+        if (mirror) {
+          textOffset *= -1;
+        }
+      } else {
+        y = pixel;
+        textOffset = (1 - lineCount) * lineHeight / 2;
+      }
+      let backdrop;
+      if (optsAtIndex.showLabelBackdrop) {
+        const labelPadding = toPadding(optsAtIndex.backdropPadding);
+        const height = labelSizes.heights[i];
+        const width = labelSizes.widths[i];
+        let top = y + textOffset - labelPadding.top;
+        let left = x - labelPadding.left;
+        switch (textBaseline) {
+        case 'middle':
+          top -= height / 2;
+          break;
+        case 'bottom':
+          top -= height;
+          break;
+        }
+        switch (textAlign) {
+        case 'center':
+          left -= width / 2;
+          break;
+        case 'right':
+          left -= width;
+          break;
+        }
+        backdrop = {
+          left,
+          top,
+          width: width + labelPadding.width,
+          height: height + labelPadding.height,
+          color: optsAtIndex.backdropColor,
+        };
+      }
+      items.push({
+        rotation,
+        label,
+        font,
+        color,
+        strokeColor,
+        strokeWidth,
+        textOffset,
+        textAlign,
+        textBaseline,
+        translation: [x, y],
+        backdrop,
+      });
+    }
+    return items;
+  }
+  _getXAxisLabelAlignment() {
+    const {position, ticks} = this.options;
+    const rotation = -toRadians(this.labelRotation);
+    if (rotation) {
+      return position === 'top' ? 'left' : 'right';
+    }
+    let align = 'center';
+    if (ticks.align === 'start') {
+      align = 'left';
+    } else if (ticks.align === 'end') {
+      align = 'right';
+    }
+    return align;
+  }
+  _getYAxisLabelAlignment(tl) {
+    const {position, ticks: {crossAlign, mirror, padding}} = this.options;
+    const labelSizes = this._getLabelSizes();
+    const tickAndPadding = tl + padding;
+    const widest = labelSizes.widest.width;
+    let textAlign;
+    let x;
+    if (position === 'left') {
+      if (mirror) {
+        x = this.right + padding;
+        if (crossAlign === 'near') {
+          textAlign = 'left';
+        } else if (crossAlign === 'center') {
+          textAlign = 'center';
+          x += (widest / 2);
+        } else {
+          textAlign = 'right';
+          x += widest;
+        }
+      } else {
+        x = this.right - tickAndPadding;
+        if (crossAlign === 'near') {
+          textAlign = 'right';
+        } else if (crossAlign === 'center') {
+          textAlign = 'center';
+          x -= (widest / 2);
+        } else {
+          textAlign = 'left';
+          x = this.left;
+        }
+      }
+    } else if (position === 'right') {
+      if (mirror) {
+        x = this.left + padding;
+        if (crossAlign === 'near') {
+          textAlign = 'right';
+        } else if (crossAlign === 'center') {
+          textAlign = 'center';
+          x -= (widest / 2);
+        } else {
+          textAlign = 'left';
+          x -= widest;
+        }
+      } else {
+        x = this.left + tickAndPadding;
+        if (crossAlign === 'near') {
+          textAlign = 'left';
+        } else if (crossAlign === 'center') {
+          textAlign = 'center';
+          x += widest / 2;
+        } else {
+          textAlign = 'right';
+          x = this.right;
+        }
+      }
+    } else {
+      textAlign = 'right';
+    }
+    return {textAlign, x};
+  }
+  _computeLabelArea() {
+    if (this.options.ticks.mirror) {
+      return;
+    }
+    const chart = this.chart;
+    const position = this.options.position;
+    if (position === 'left' || position === 'right') {
+      return {top: 0, left: this.left, bottom: chart.height, right: this.right};
+    } if (position === 'top' || position === 'bottom') {
+      return {top: this.top, left: 0, bottom: this.bottom, right: chart.width};
+    }
+  }
+  drawBackground() {
+    const {ctx, options: {backgroundColor}, left, top, width, height} = this;
+    if (backgroundColor) {
+      ctx.save();
+      ctx.fillStyle = backgroundColor;
+      ctx.fillRect(left, top, width, height);
+      ctx.restore();
+    }
+  }
+  getLineWidthForValue(value) {
+    const grid = this.options.grid;
+    if (!this._isVisible() || !grid.display) {
+      return 0;
+    }
+    const ticks = this.ticks;
+    const index = ticks.findIndex(t => t.value === value);
+    if (index >= 0) {
+      const opts = grid.setContext(this.getContext(index));
+      return opts.lineWidth;
+    }
+    return 0;
+  }
+  drawGrid(chartArea) {
+    const grid = this.options.grid;
+    const ctx = this.ctx;
+    const items = this._gridLineItems || (this._gridLineItems = this._computeGridLineItems(chartArea));
+    let i, ilen;
+    const drawLine = (p1, p2, style) => {
+      if (!style.width || !style.color) {
+        return;
+      }
+      ctx.save();
+      ctx.lineWidth = style.width;
+      ctx.strokeStyle = style.color;
+      ctx.setLineDash(style.borderDash || []);
+      ctx.lineDashOffset = style.borderDashOffset;
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+      ctx.restore();
+    };
+    if (grid.display) {
+      for (i = 0, ilen = items.length; i < ilen; ++i) {
+        const item = items[i];
+        if (grid.drawOnChartArea) {
+          drawLine(
+            {x: item.x1, y: item.y1},
+            {x: item.x2, y: item.y2},
+            item
+          );
+        }
+        if (grid.drawTicks) {
+          drawLine(
+            {x: item.tx1, y: item.ty1},
+            {x: item.tx2, y: item.ty2},
+            {
+              color: item.tickColor,
+              width: item.tickWidth,
+              borderDash: item.tickBorderDash,
+              borderDashOffset: item.tickBorderDashOffset
+            }
+          );
+        }
+      }
+    }
+  }
+  drawBorder() {
+    const {chart, ctx, options: {grid}} = this;
+    const borderOpts = grid.setContext(this.getContext());
+    const axisWidth = grid.drawBorder ? borderOpts.borderWidth : 0;
+    if (!axisWidth) {
+      return;
+    }
+    const lastLineWidth = grid.setContext(this.getContext(0)).lineWidth;
+    const borderValue = this._borderValue;
+    let x1, x2, y1, y2;
+    if (this.isHorizontal()) {
+      x1 = _alignPixel(chart, this.left, axisWidth) - axisWidth / 2;
+      x2 = _alignPixel(chart, this.right, lastLineWidth) + lastLineWidth / 2;
+      y1 = y2 = borderValue;
+    } else {
+      y1 = _alignPixel(chart, this.top, axisWidth) - axisWidth / 2;
+      y2 = _alignPixel(chart, this.bottom, lastLineWidth) + lastLineWidth / 2;
+      x1 = x2 = borderValue;
+    }
+    ctx.save();
+    ctx.lineWidth = borderOpts.borderWidth;
+    ctx.strokeStyle = borderOpts.borderColor;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.restore();
+  }
+  drawLabels(chartArea) {
+    const optionTicks = this.options.ticks;
+    if (!optionTicks.display) {
+      return;
+    }
+    const ctx = this.ctx;
+    const area = this._computeLabelArea();
+    if (area) {
+      clipArea(ctx, area);
+    }
+    const items = this._labelItems || (this._labelItems = this._computeLabelItems(chartArea));
+    let i, ilen;
+    for (i = 0, ilen = items.length; i < ilen; ++i) {
+      const item = items[i];
+      const tickFont = item.font;
+      const label = item.label;
+      if (item.backdrop) {
+        ctx.fillStyle = item.backdrop.color;
+        ctx.fillRect(item.backdrop.left, item.backdrop.top, item.backdrop.width, item.backdrop.height);
+      }
+      let y = item.textOffset;
+      renderText(ctx, label, 0, y, tickFont, item);
+    }
+    if (area) {
+      unclipArea(ctx);
+    }
+  }
+  drawTitle() {
+    const {ctx, options: {position, title, reverse}} = this;
+    if (!title.display) {
+      return;
+    }
+    const font = toFont(title.font);
+    const padding = toPadding(title.padding);
+    const align = title.align;
+    let offset = font.lineHeight / 2;
+    if (position === 'bottom' || position === 'center' || isObject(position)) {
+      offset += padding.bottom;
+      if (isArray(title.text)) {
+        offset += font.lineHeight * (title.text.length - 1);
+      }
+    } else {
+      offset += padding.top;
+    }
+    const {titleX, titleY, maxWidth, rotation} = titleArgs(this, offset, position, align);
+    renderText(ctx, title.text, 0, 0, font, {
+      color: title.color,
+      maxWidth,
+      rotation,
+      textAlign: titleAlign(align, position, reverse),
+      textBaseline: 'middle',
+      translation: [titleX, titleY],
+    });
+  }
+  draw(chartArea) {
+    if (!this._isVisible()) {
+      return;
+    }
+    this.drawBackground();
+    this.drawGrid(chartArea);
+    this.drawBorder();
+    this.drawTitle();
+    this.drawLabels(chartArea);
+  }
+  _layers() {
+    const opts = this.options;
+    const tz = opts.ticks && opts.ticks.z || 0;
+    const gz = valueOrDefault(opts.grid && opts.grid.z, -1);
+    if (!this._isVisible() || this.draw !== Scale.prototype.draw) {
+      return [{
+        z: tz,
+        draw: (chartArea) => {
+          this.draw(chartArea);
+        }
+      }];
+    }
+    return [{
+      z: gz,
+      draw: (chartArea) => {
+        this.drawBackground();
+        this.drawGrid(chartArea);
+        this.drawTitle();
+      }
+    }, {
+      z: gz + 1,
+      draw: () => {
+        this.drawBorder();
+      }
+    }, {
+      z: tz,
+      draw: (chartArea) => {
+        this.drawLabels(chartArea);
+      }
+    }];
+  }
+  getMatchingVisibleMetas(type) {
+    const metas = this.chart.getSortedVisibleDatasetMetas();
+    const axisID = this.axis + 'AxisID';
+    const result = [];
+    let i, ilen;
+    for (i = 0, ilen = metas.length; i < ilen; ++i) {
+      const meta = metas[i];
+      if (meta[axisID] === this.id && (!type || meta.type === type)) {
+        result.push(meta);
+      }
+    }
+    return result;
+  }
+  _resolveTickFontOptions(index) {
+    const opts = this.options.ticks.setContext(this.getContext(index));
+    return toFont(opts.font);
+  }
+  _maxDigits() {
+    const fontSize = this._resolveTickFontOptions(0).lineHeight;
+    return (this.isHorizontal() ? this.width : this.height) / fontSize;
+  }
+}
+
+class TypedRegistry {
+  constructor(type, scope, override) {
+    this.type = type;
+    this.scope = scope;
+    this.override = override;
+    this.items = Object.create(null);
+  }
+  isForType(type) {
+    return Object.prototype.isPrototypeOf.call(this.type.prototype, type.prototype);
+  }
+  register(item) {
+    const proto = Object.getPrototypeOf(item);
+    let parentScope;
+    if (isIChartComponent(proto)) {
+      parentScope = this.register(proto);
+    }
+    const items = this.items;
+    const id = item.id;
+    const scope = this.scope + '.' + id;
+    if (!id) {
+      throw new Error('class does not have id: ' + item);
+    }
+    if (id in items) {
+      return scope;
+    }
+    items[id] = item;
+    registerDefaults(item, scope, parentScope);
+    if (this.override) {
+      defaults.override(item.id, item.overrides);
+    }
+    return scope;
+  }
+  get(id) {
+    return this.items[id];
+  }
+  unregister(item) {
+    const items = this.items;
+    const id = item.id;
+    const scope = this.scope;
+    if (id in items) {
+      delete items[id];
+    }
+    if (scope && id in defaults[scope]) {
+      delete defaults[scope][id];
+      if (this.override) {
+        delete overrides[id];
+      }
+    }
+  }
+}
+function registerDefaults(item, scope, parentScope) {
+  const itemDefaults = merge(Object.create(null), [
+    parentScope ? defaults.get(parentScope) : {},
+    defaults.get(scope),
+    item.defaults
+  ]);
+  defaults.set(scope, itemDefaults);
+  if (item.defaultRoutes) {
+    routeDefaults(scope, item.defaultRoutes);
+  }
+  if (item.descriptors) {
+    defaults.describe(scope, item.descriptors);
+  }
+}
+function routeDefaults(scope, routes) {
+  Object.keys(routes).forEach(property => {
+    const propertyParts = property.split('.');
+    const sourceName = propertyParts.pop();
+    const sourceScope = [scope].concat(propertyParts).join('.');
+    const parts = routes[property].split('.');
+    const targetName = parts.pop();
+    const targetScope = parts.join('.');
+    defaults.route(sourceScope, sourceName, targetScope, targetName);
+  });
+}
+function isIChartComponent(proto) {
+  return 'id' in proto && 'defaults' in proto;
+}
+
+class Registry {
+  constructor() {
+    this.controllers = new TypedRegistry(DatasetController, 'datasets', true);
+    this.elements = new TypedRegistry(Element, 'elements');
+    this.plugins = new TypedRegistry(Object, 'plugins');
+    this.scales = new TypedRegistry(Scale, 'scales');
+    this._typedRegistries = [this.controllers, this.scales, this.elements];
+  }
+  add(...args) {
+    this._each('register', args);
+  }
+  remove(...args) {
+    this._each('unregister', args);
+  }
+  addControllers(...args) {
+    this._each('register', args, this.controllers);
+  }
+  addElements(...args) {
+    this._each('register', args, this.elements);
+  }
+  addPlugins(...args) {
+    this._each('register', args, this.plugins);
+  }
+  addScales(...args) {
+    this._each('register', args, this.scales);
+  }
+  getController(id) {
+    return this._get(id, this.controllers, 'controller');
+  }
+  getElement(id) {
+    return this._get(id, this.elements, 'element');
+  }
+  getPlugin(id) {
+    return this._get(id, this.plugins, 'plugin');
+  }
+  getScale(id) {
+    return this._get(id, this.scales, 'scale');
+  }
+  removeControllers(...args) {
+    this._each('unregister', args, this.controllers);
+  }
+  removeElements(...args) {
+    this._each('unregister', args, this.elements);
+  }
+  removePlugins(...args) {
+    this._each('unregister', args, this.plugins);
+  }
+  removeScales(...args) {
+    this._each('unregister', args, this.scales);
+  }
+  _each(method, args, typedRegistry) {
+    [...args].forEach(arg => {
+      const reg = typedRegistry || this._getRegistryForType(arg);
+      if (typedRegistry || reg.isForType(arg) || (reg === this.plugins && arg.id)) {
+        this._exec(method, reg, arg);
+      } else {
+        each(arg, item => {
+          const itemReg = typedRegistry || this._getRegistryForType(item);
+          this._exec(method, itemReg, item);
+        });
+      }
+    });
+  }
+  _exec(method, registry, component) {
+    const camelMethod = _capitalize(method);
+    callback(component['before' + camelMethod], [], component);
+    registry[method](component);
+    callback(component['after' + camelMethod], [], component);
+  }
+  _getRegistryForType(type) {
+    for (let i = 0; i < this._typedRegistries.length; i++) {
+      const reg = this._typedRegistries[i];
+      if (reg.isForType(type)) {
+        return reg;
+      }
+    }
+    return this.plugins;
+  }
+  _get(id, typedRegistry, type) {
+    const item = typedRegistry.get(id);
+    if (item === undefined) {
+      throw new Error('"' + id + '" is not a registered ' + type + '.');
+    }
+    return item;
+  }
+}
+var registry = new Registry();
+
+class PluginService {
+  constructor() {
+    this._init = [];
+  }
+  notify(chart, hook, args, filter) {
+    if (hook === 'beforeInit') {
+      this._init = this._createDescriptors(chart, true);
+      this._notify(this._init, chart, 'install');
+    }
+    const descriptors = filter ? this._descriptors(chart).filter(filter) : this._descriptors(chart);
+    const result = this._notify(descriptors, chart, hook, args);
+    if (hook === 'afterDestroy') {
+      this._notify(descriptors, chart, 'stop');
+      this._notify(this._init, chart, 'uninstall');
+    }
+    return result;
+  }
+  _notify(descriptors, chart, hook, args) {
+    args = args || {};
+    for (const descriptor of descriptors) {
+      const plugin = descriptor.plugin;
+      const method = plugin[hook];
+      const params = [chart, args, descriptor.options];
+      if (callback(method, params, plugin) === false && args.cancelable) {
+        return false;
+      }
+    }
+    return true;
+  }
+  invalidate() {
+    if (!isNullOrUndef(this._cache)) {
+      this._oldCache = this._cache;
+      this._cache = undefined;
+    }
+  }
+  _descriptors(chart) {
+    if (this._cache) {
+      return this._cache;
+    }
+    const descriptors = this._cache = this._createDescriptors(chart);
+    this._notifyStateChanges(chart);
+    return descriptors;
+  }
+  _createDescriptors(chart, all) {
+    const config = chart && chart.config;
+    const options = valueOrDefault(config.options && config.options.plugins, {});
+    const plugins = allPlugins(config);
+    return options === false && !all ? [] : createDescriptors(chart, plugins, options, all);
+  }
+  _notifyStateChanges(chart) {
+    const previousDescriptors = this._oldCache || [];
+    const descriptors = this._cache;
+    const diff = (a, b) => a.filter(x => !b.some(y => x.plugin.id === y.plugin.id));
+    this._notify(diff(previousDescriptors, descriptors), chart, 'stop');
+    this._notify(diff(descriptors, previousDescriptors), chart, 'start');
+  }
+}
+function allPlugins(config) {
+  const plugins = [];
+  const keys = Object.keys(registry.plugins.items);
+  for (let i = 0; i < keys.length; i++) {
+    plugins.push(registry.getPlugin(keys[i]));
+  }
+  const local = config.plugins || [];
+  for (let i = 0; i < local.length; i++) {
+    const plugin = local[i];
+    if (plugins.indexOf(plugin) === -1) {
+      plugins.push(plugin);
+    }
+  }
+  return plugins;
+}
+function getOpts(options, all) {
+  if (!all && options === false) {
+    return null;
+  }
+  if (options === true) {
+    return {};
+  }
+  return options;
+}
+function createDescriptors(chart, plugins, options, all) {
+  const result = [];
+  const context = chart.getContext();
+  for (let i = 0; i < plugins.length; i++) {
+    const plugin = plugins[i];
+    const id = plugin.id;
+    const opts = getOpts(options[id], all);
+    if (opts === null) {
+      continue;
+    }
+    result.push({
+      plugin,
+      options: pluginOpts(chart.config, plugin, opts, context)
+    });
+  }
+  return result;
+}
+function pluginOpts(config, plugin, opts, context) {
+  const keys = config.pluginScopeKeys(plugin);
+  const scopes = config.getOptionScopes(opts, keys);
+  return config.createResolver(scopes, context, [''], {scriptable: false, indexable: false, allKeys: true});
+}
+
+function getIndexAxis(type, options) {
+  const datasetDefaults = defaults.datasets[type] || {};
+  const datasetOptions = (options.datasets || {})[type] || {};
+  return datasetOptions.indexAxis || options.indexAxis || datasetDefaults.indexAxis || 'x';
+}
+function getAxisFromDefaultScaleID(id, indexAxis) {
+  let axis = id;
+  if (id === '_index_') {
+    axis = indexAxis;
+  } else if (id === '_value_') {
+    axis = indexAxis === 'x' ? 'y' : 'x';
+  }
+  return axis;
+}
+function getDefaultScaleIDFromAxis(axis, indexAxis) {
+  return axis === indexAxis ? '_index_' : '_value_';
+}
+function axisFromPosition(position) {
+  if (position === 'top' || position === 'bottom') {
+    return 'x';
+  }
+  if (position === 'left' || position === 'right') {
+    return 'y';
+  }
+}
+function determineAxis(id, scaleOptions) {
+  if (id === 'x' || id === 'y') {
+    return id;
+  }
+  return scaleOptions.axis || axisFromPosition(scaleOptions.position) || id.charAt(0).toLowerCase();
+}
+function mergeScaleConfig(config, options) {
+  const chartDefaults = overrides[config.type] || {scales: {}};
+  const configScales = options.scales || {};
+  const chartIndexAxis = getIndexAxis(config.type, options);
+  const firstIDs = Object.create(null);
+  const scales = Object.create(null);
+  Object.keys(configScales).forEach(id => {
+    const scaleConf = configScales[id];
+    if (!isObject(scaleConf)) {
+      return console.error(`Invalid scale configuration for scale: ${id}`);
+    }
+    if (scaleConf._proxy) {
+      return console.warn(`Ignoring resolver passed as options for scale: ${id}`);
+    }
+    const axis = determineAxis(id, scaleConf);
+    const defaultId = getDefaultScaleIDFromAxis(axis, chartIndexAxis);
+    const defaultScaleOptions = chartDefaults.scales || {};
+    firstIDs[axis] = firstIDs[axis] || id;
+    scales[id] = mergeIf(Object.create(null), [{axis}, scaleConf, defaultScaleOptions[axis], defaultScaleOptions[defaultId]]);
+  });
+  config.data.datasets.forEach(dataset => {
+    const type = dataset.type || config.type;
+    const indexAxis = dataset.indexAxis || getIndexAxis(type, options);
+    const datasetDefaults = overrides[type] || {};
+    const defaultScaleOptions = datasetDefaults.scales || {};
+    Object.keys(defaultScaleOptions).forEach(defaultID => {
+      const axis = getAxisFromDefaultScaleID(defaultID, indexAxis);
+      const id = dataset[axis + 'AxisID'] || firstIDs[axis] || axis;
+      scales[id] = scales[id] || Object.create(null);
+      mergeIf(scales[id], [{axis}, configScales[id], defaultScaleOptions[defaultID]]);
+    });
+  });
+  Object.keys(scales).forEach(key => {
+    const scale = scales[key];
+    mergeIf(scale, [defaults.scales[scale.type], defaults.scale]);
+  });
+  return scales;
+}
+function initOptions(config) {
+  const options = config.options || (config.options = {});
+  options.plugins = valueOrDefault(options.plugins, {});
+  options.scales = mergeScaleConfig(config, options);
+}
+function initData(data) {
+  data = data || {};
+  data.datasets = data.datasets || [];
+  data.labels = data.labels || [];
+  return data;
+}
+function initConfig(config) {
+  config = config || {};
+  config.data = initData(config.data);
+  initOptions(config);
+  return config;
+}
+const keyCache = new Map();
+const keysCached = new Set();
+function cachedKeys(cacheKey, generate) {
+  let keys = keyCache.get(cacheKey);
+  if (!keys) {
+    keys = generate();
+    keyCache.set(cacheKey, keys);
+    keysCached.add(keys);
+  }
+  return keys;
+}
+const addIfFound = (set, obj, key) => {
+  const opts = resolveObjectKey(obj, key);
+  if (opts !== undefined) {
+    set.add(opts);
+  }
+};
+class Config {
+  constructor(config) {
+    this._config = initConfig(config);
+    this._scopeCache = new Map();
+    this._resolverCache = new Map();
+  }
+  get platform() {
+    return this._config.platform;
+  }
+  get type() {
+    return this._config.type;
+  }
+  set type(type) {
+    this._config.type = type;
+  }
+  get data() {
+    return this._config.data;
+  }
+  set data(data) {
+    this._config.data = initData(data);
+  }
+  get options() {
+    return this._config.options;
+  }
+  set options(options) {
+    this._config.options = options;
+  }
+  get plugins() {
+    return this._config.plugins;
+  }
+  update() {
+    const config = this._config;
+    this.clearCache();
+    initOptions(config);
+  }
+  clearCache() {
+    this._scopeCache.clear();
+    this._resolverCache.clear();
+  }
+  datasetScopeKeys(datasetType) {
+    return cachedKeys(datasetType,
+      () => [[
+        `datasets.${datasetType}`,
+        ''
+      ]]);
+  }
+  datasetAnimationScopeKeys(datasetType, transition) {
+    return cachedKeys(`${datasetType}.transition.${transition}`,
+      () => [
+        [
+          `datasets.${datasetType}.transitions.${transition}`,
+          `transitions.${transition}`,
+        ],
+        [
+          `datasets.${datasetType}`,
+          ''
+        ]
+      ]);
+  }
+  datasetElementScopeKeys(datasetType, elementType) {
+    return cachedKeys(`${datasetType}-${elementType}`,
+      () => [[
+        `datasets.${datasetType}.elements.${elementType}`,
+        `datasets.${datasetType}`,
+        `elements.${elementType}`,
+        ''
+      ]]);
+  }
+  pluginScopeKeys(plugin) {
+    const id = plugin.id;
+    const type = this.type;
+    return cachedKeys(`${type}-plugin-${id}`,
+      () => [[
+        `plugins.${id}`,
+        ...plugin.additionalOptionScopes || [],
+      ]]);
+  }
+  _cachedScopes(mainScope, resetCache) {
+    const _scopeCache = this._scopeCache;
+    let cache = _scopeCache.get(mainScope);
+    if (!cache || resetCache) {
+      cache = new Map();
+      _scopeCache.set(mainScope, cache);
+    }
+    return cache;
+  }
+  getOptionScopes(mainScope, keyLists, resetCache) {
+    const {options, type} = this;
+    const cache = this._cachedScopes(mainScope, resetCache);
+    const cached = cache.get(keyLists);
+    if (cached) {
+      return cached;
+    }
+    const scopes = new Set();
+    keyLists.forEach(keys => {
+      if (mainScope) {
+        scopes.add(mainScope);
+        keys.forEach(key => addIfFound(scopes, mainScope, key));
+      }
+      keys.forEach(key => addIfFound(scopes, options, key));
+      keys.forEach(key => addIfFound(scopes, overrides[type] || {}, key));
+      keys.forEach(key => addIfFound(scopes, defaults, key));
+      keys.forEach(key => addIfFound(scopes, descriptors, key));
+    });
+    const array = Array.from(scopes);
+    if (array.length === 0) {
+      array.push(Object.create(null));
+    }
+    if (keysCached.has(keyLists)) {
+      cache.set(keyLists, array);
+    }
+    return array;
+  }
+  chartOptionScopes() {
+    const {options, type} = this;
+    return [
+      options,
+      overrides[type] || {},
+      defaults.datasets[type] || {},
+      {type},
+      defaults,
+      descriptors
+    ];
+  }
+  resolveNamedOptions(scopes, names, context, prefixes = ['']) {
+    const result = {$shared: true};
+    const {resolver, subPrefixes} = getResolver(this._resolverCache, scopes, prefixes);
+    let options = resolver;
+    if (needContext(resolver, names)) {
+      result.$shared = false;
+      context = isFunction(context) ? context() : context;
+      const subResolver = this.createResolver(scopes, context, subPrefixes);
+      options = _attachContext(resolver, context, subResolver);
+    }
+    for (const prop of names) {
+      result[prop] = options[prop];
+    }
+    return result;
+  }
+  createResolver(scopes, context, prefixes = [''], descriptorDefaults) {
+    const {resolver} = getResolver(this._resolverCache, scopes, prefixes);
+    return isObject(context)
+      ? _attachContext(resolver, context, undefined, descriptorDefaults)
+      : resolver;
+  }
+}
+function getResolver(resolverCache, scopes, prefixes) {
+  let cache = resolverCache.get(scopes);
+  if (!cache) {
+    cache = new Map();
+    resolverCache.set(scopes, cache);
+  }
+  const cacheKey = prefixes.join();
+  let cached = cache.get(cacheKey);
+  if (!cached) {
+    const resolver = _createResolver(scopes, prefixes);
+    cached = {
+      resolver,
+      subPrefixes: prefixes.filter(p => !p.toLowerCase().includes('hover'))
+    };
+    cache.set(cacheKey, cached);
+  }
+  return cached;
+}
+const hasFunction = value => isObject(value)
+  && Object.getOwnPropertyNames(value).reduce((acc, key) => acc || isFunction(value[key]), false);
+function needContext(proxy, names) {
+  const {isScriptable, isIndexable} = _descriptors(proxy);
+  for (const prop of names) {
+    const scriptable = isScriptable(prop);
+    const indexable = isIndexable(prop);
+    const value = (indexable || scriptable) && proxy[prop];
+    if ((scriptable && (isFunction(value) || hasFunction(value)))
+      || (indexable && isArray(value))) {
+      return true;
+    }
+  }
+  return false;
+}
+
+var version = "3.7.1";
+
+const KNOWN_POSITIONS = ['top', 'bottom', 'left', 'right', 'chartArea'];
+function positionIsHorizontal(position, axis) {
+  return position === 'top' || position === 'bottom' || (KNOWN_POSITIONS.indexOf(position) === -1 && axis === 'x');
+}
+function compare2Level(l1, l2) {
+  return function(a, b) {
+    return a[l1] === b[l1]
+      ? a[l2] - b[l2]
+      : a[l1] - b[l1];
+  };
+}
+function onAnimationsComplete(context) {
+  const chart = context.chart;
+  const animationOptions = chart.options.animation;
+  chart.notifyPlugins('afterRender');
+  callback(animationOptions && animationOptions.onComplete, [context], chart);
+}
+function onAnimationProgress(context) {
+  const chart = context.chart;
+  const animationOptions = chart.options.animation;
+  callback(animationOptions && animationOptions.onProgress, [context], chart);
+}
+function getCanvas(item) {
+  if (_isDomSupported() && typeof item === 'string') {
+    item = document.getElementById(item);
+  } else if (item && item.length) {
+    item = item[0];
+  }
+  if (item && item.canvas) {
+    item = item.canvas;
+  }
+  return item;
+}
+const instances = {};
+const getChart = (key) => {
+  const canvas = getCanvas(key);
+  return Object.values(instances).filter((c) => c.canvas === canvas).pop();
+};
+function moveNumericKeys(obj, start, move) {
+  const keys = Object.keys(obj);
+  for (const key of keys) {
+    const intKey = +key;
+    if (intKey >= start) {
+      const value = obj[key];
+      delete obj[key];
+      if (move > 0 || intKey > start) {
+        obj[intKey + move] = value;
+      }
+    }
+  }
+}
+function determineLastEvent(e, lastEvent, inChartArea, isClick) {
+  if (!inChartArea || e.type === 'mouseout') {
+    return null;
+  }
+  if (isClick) {
+    return lastEvent;
+  }
+  return e;
+}
+class Chart {
+  constructor(item, userConfig) {
+    const config = this.config = new Config(userConfig);
+    const initialCanvas = getCanvas(item);
+    const existingChart = getChart(initialCanvas);
+    if (existingChart) {
+      throw new Error(
+        'Canvas is already in use. Chart with ID \'' + existingChart.id + '\'' +
+				' must be destroyed before the canvas can be reused.'
+      );
+    }
+    const options = config.createResolver(config.chartOptionScopes(), this.getContext());
+    this.platform = new (config.platform || _detectPlatform(initialCanvas))();
+    this.platform.updateConfig(config);
+    const context = this.platform.acquireContext(initialCanvas, options.aspectRatio);
+    const canvas = context && context.canvas;
+    const height = canvas && canvas.height;
+    const width = canvas && canvas.width;
+    this.id = uid();
+    this.ctx = context;
+    this.canvas = canvas;
+    this.width = width;
+    this.height = height;
+    this._options = options;
+    this._aspectRatio = this.aspectRatio;
+    this._layers = [];
+    this._metasets = [];
+    this._stacks = undefined;
+    this.boxes = [];
+    this.currentDevicePixelRatio = undefined;
+    this.chartArea = undefined;
+    this._active = [];
+    this._lastEvent = undefined;
+    this._listeners = {};
+    this._responsiveListeners = undefined;
+    this._sortedMetasets = [];
+    this.scales = {};
+    this._plugins = new PluginService();
+    this.$proxies = {};
+    this._hiddenIndices = {};
+    this.attached = false;
+    this._animationsDisabled = undefined;
+    this.$context = undefined;
+    this._doResize = debounce(mode => this.update(mode), options.resizeDelay || 0);
+    this._dataChanges = [];
+    instances[this.id] = this;
+    if (!context || !canvas) {
+      console.error("Failed to create chart: can't acquire context from the given item");
+      return;
+    }
+    animator.listen(this, 'complete', onAnimationsComplete);
+    animator.listen(this, 'progress', onAnimationProgress);
+    this._initialize();
+    if (this.attached) {
+      this.update();
+    }
+  }
+  get aspectRatio() {
+    const {options: {aspectRatio, maintainAspectRatio}, width, height, _aspectRatio} = this;
+    if (!isNullOrUndef(aspectRatio)) {
+      return aspectRatio;
+    }
+    if (maintainAspectRatio && _aspectRatio) {
+      return _aspectRatio;
+    }
+    return height ? width / height : null;
+  }
+  get data() {
+    return this.config.data;
+  }
+  set data(data) {
+    this.config.data = data;
+  }
+  get options() {
+    return this._options;
+  }
+  set options(options) {
+    this.config.options = options;
+  }
+  _initialize() {
+    this.notifyPlugins('beforeInit');
+    if (this.options.responsive) {
+      this.resize();
+    } else {
+      retinaScale(this, this.options.devicePixelRatio);
+    }
+    this.bindEvents();
+    this.notifyPlugins('afterInit');
+    return this;
+  }
+  clear() {
+    clearCanvas(this.canvas, this.ctx);
+    return this;
+  }
+  stop() {
+    animator.stop(this);
+    return this;
+  }
+  resize(width, height) {
+    if (!animator.running(this)) {
+      this._resize(width, height);
+    } else {
+      this._resizeBeforeDraw = {width, height};
+    }
+  }
+  _resize(width, height) {
+    const options = this.options;
+    const canvas = this.canvas;
+    const aspectRatio = options.maintainAspectRatio && this.aspectRatio;
+    const newSize = this.platform.getMaximumSize(canvas, width, height, aspectRatio);
+    const newRatio = options.devicePixelRatio || this.platform.getDevicePixelRatio();
+    const mode = this.width ? 'resize' : 'attach';
+    this.width = newSize.width;
+    this.height = newSize.height;
+    this._aspectRatio = this.aspectRatio;
+    if (!retinaScale(this, newRatio, true)) {
+      return;
+    }
+    this.notifyPlugins('resize', {size: newSize});
+    callback(options.onResize, [this, newSize], this);
+    if (this.attached) {
+      if (this._doResize(mode)) {
+        this.render();
+      }
+    }
+  }
+  ensureScalesHaveIDs() {
+    const options = this.options;
+    const scalesOptions = options.scales || {};
+    each(scalesOptions, (axisOptions, axisID) => {
+      axisOptions.id = axisID;
+    });
+  }
+  buildOrUpdateScales() {
+    const options = this.options;
+    const scaleOpts = options.scales;
+    const scales = this.scales;
+    const updated = Object.keys(scales).reduce((obj, id) => {
+      obj[id] = false;
+      return obj;
+    }, {});
+    let items = [];
+    if (scaleOpts) {
+      items = items.concat(
+        Object.keys(scaleOpts).map((id) => {
+          const scaleOptions = scaleOpts[id];
+          const axis = determineAxis(id, scaleOptions);
+          const isRadial = axis === 'r';
+          const isHorizontal = axis === 'x';
+          return {
+            options: scaleOptions,
+            dposition: isRadial ? 'chartArea' : isHorizontal ? 'bottom' : 'left',
+            dtype: isRadial ? 'radialLinear' : isHorizontal ? 'category' : 'linear'
+          };
+        })
+      );
+    }
+    each(items, (item) => {
+      const scaleOptions = item.options;
+      const id = scaleOptions.id;
+      const axis = determineAxis(id, scaleOptions);
+      const scaleType = valueOrDefault(scaleOptions.type, item.dtype);
+      if (scaleOptions.position === undefined || positionIsHorizontal(scaleOptions.position, axis) !== positionIsHorizontal(item.dposition)) {
+        scaleOptions.position = item.dposition;
+      }
+      updated[id] = true;
+      let scale = null;
+      if (id in scales && scales[id].type === scaleType) {
+        scale = scales[id];
+      } else {
+        const scaleClass = registry.getScale(scaleType);
+        scale = new scaleClass({
+          id,
+          type: scaleType,
+          ctx: this.ctx,
+          chart: this
+        });
+        scales[scale.id] = scale;
+      }
+      scale.init(scaleOptions, options);
+    });
+    each(updated, (hasUpdated, id) => {
+      if (!hasUpdated) {
+        delete scales[id];
+      }
+    });
+    each(scales, (scale) => {
+      layouts.configure(this, scale, scale.options);
+      layouts.addBox(this, scale);
+    });
+  }
+  _updateMetasets() {
+    const metasets = this._metasets;
+    const numData = this.data.datasets.length;
+    const numMeta = metasets.length;
+    metasets.sort((a, b) => a.index - b.index);
+    if (numMeta > numData) {
+      for (let i = numData; i < numMeta; ++i) {
+        this._destroyDatasetMeta(i);
+      }
+      metasets.splice(numData, numMeta - numData);
+    }
+    this._sortedMetasets = metasets.slice(0).sort(compare2Level('order', 'index'));
+  }
+  _removeUnreferencedMetasets() {
+    const {_metasets: metasets, data: {datasets}} = this;
+    if (metasets.length > datasets.length) {
+      delete this._stacks;
+    }
+    metasets.forEach((meta, index) => {
+      if (datasets.filter(x => x === meta._dataset).length === 0) {
+        this._destroyDatasetMeta(index);
+      }
+    });
+  }
+  buildOrUpdateControllers() {
+    const newControllers = [];
+    const datasets = this.data.datasets;
+    let i, ilen;
+    this._removeUnreferencedMetasets();
+    for (i = 0, ilen = datasets.length; i < ilen; i++) {
+      const dataset = datasets[i];
+      let meta = this.getDatasetMeta(i);
+      const type = dataset.type || this.config.type;
+      if (meta.type && meta.type !== type) {
+        this._destroyDatasetMeta(i);
+        meta = this.getDatasetMeta(i);
+      }
+      meta.type = type;
+      meta.indexAxis = dataset.indexAxis || getIndexAxis(type, this.options);
+      meta.order = dataset.order || 0;
+      meta.index = i;
+      meta.label = '' + dataset.label;
+      meta.visible = this.isDatasetVisible(i);
+      if (meta.controller) {
+        meta.controller.updateIndex(i);
+        meta.controller.linkScales();
+      } else {
+        const ControllerClass = registry.getController(type);
+        const {datasetElementType, dataElementType} = defaults.datasets[type];
+        Object.assign(ControllerClass.prototype, {
+          dataElementType: registry.getElement(dataElementType),
+          datasetElementType: datasetElementType && registry.getElement(datasetElementType)
+        });
+        meta.controller = new ControllerClass(this, i);
+        newControllers.push(meta.controller);
+      }
+    }
+    this._updateMetasets();
+    return newControllers;
+  }
+  _resetElements() {
+    each(this.data.datasets, (dataset, datasetIndex) => {
+      this.getDatasetMeta(datasetIndex).controller.reset();
+    }, this);
+  }
+  reset() {
+    this._resetElements();
+    this.notifyPlugins('reset');
+  }
+  update(mode) {
+    const config = this.config;
+    config.update();
+    const options = this._options = config.createResolver(config.chartOptionScopes(), this.getContext());
+    const animsDisabled = this._animationsDisabled = !options.animation;
+    this._updateScales();
+    this._checkEventBindings();
+    this._updateHiddenIndices();
+    this._plugins.invalidate();
+    if (this.notifyPlugins('beforeUpdate', {mode, cancelable: true}) === false) {
+      return;
+    }
+    const newControllers = this.buildOrUpdateControllers();
+    this.notifyPlugins('beforeElementsUpdate');
+    let minPadding = 0;
+    for (let i = 0, ilen = this.data.datasets.length; i < ilen; i++) {
+      const {controller} = this.getDatasetMeta(i);
+      const reset = !animsDisabled && newControllers.indexOf(controller) === -1;
+      controller.buildOrUpdateElements(reset);
+      minPadding = Math.max(+controller.getMaxOverflow(), minPadding);
+    }
+    minPadding = this._minPadding = options.layout.autoPadding ? minPadding : 0;
+    this._updateLayout(minPadding);
+    if (!animsDisabled) {
+      each(newControllers, (controller) => {
+        controller.reset();
+      });
+    }
+    this._updateDatasets(mode);
+    this.notifyPlugins('afterUpdate', {mode});
+    this._layers.sort(compare2Level('z', '_idx'));
+    const {_active, _lastEvent} = this;
+    if (_lastEvent) {
+      this._eventHandler(_lastEvent, true);
+    } else if (_active.length) {
+      this._updateHoverStyles(_active, _active, true);
+    }
+    this.render();
+  }
+  _updateScales() {
+    each(this.scales, (scale) => {
+      layouts.removeBox(this, scale);
+    });
+    this.ensureScalesHaveIDs();
+    this.buildOrUpdateScales();
+  }
+  _checkEventBindings() {
+    const options = this.options;
+    const existingEvents = new Set(Object.keys(this._listeners));
+    const newEvents = new Set(options.events);
+    if (!setsEqual(existingEvents, newEvents) || !!this._responsiveListeners !== options.responsive) {
+      this.unbindEvents();
+      this.bindEvents();
+    }
+  }
+  _updateHiddenIndices() {
+    const {_hiddenIndices} = this;
+    const changes = this._getUniformDataChanges() || [];
+    for (const {method, start, count} of changes) {
+      const move = method === '_removeElements' ? -count : count;
+      moveNumericKeys(_hiddenIndices, start, move);
+    }
+  }
+  _getUniformDataChanges() {
+    const _dataChanges = this._dataChanges;
+    if (!_dataChanges || !_dataChanges.length) {
+      return;
+    }
+    this._dataChanges = [];
+    const datasetCount = this.data.datasets.length;
+    const makeSet = (idx) => new Set(
+      _dataChanges
+        .filter(c => c[0] === idx)
+        .map((c, i) => i + ',' + c.splice(1).join(','))
+    );
+    const changeSet = makeSet(0);
+    for (let i = 1; i < datasetCount; i++) {
+      if (!setsEqual(changeSet, makeSet(i))) {
+        return;
+      }
+    }
+    return Array.from(changeSet)
+      .map(c => c.split(','))
+      .map(a => ({method: a[1], start: +a[2], count: +a[3]}));
+  }
+  _updateLayout(minPadding) {
+    if (this.notifyPlugins('beforeLayout', {cancelable: true}) === false) {
+      return;
+    }
+    layouts.update(this, this.width, this.height, minPadding);
+    const area = this.chartArea;
+    const noArea = area.width <= 0 || area.height <= 0;
+    this._layers = [];
+    each(this.boxes, (box) => {
+      if (noArea && box.position === 'chartArea') {
+        return;
+      }
+      if (box.configure) {
+        box.configure();
+      }
+      this._layers.push(...box._layers());
+    }, this);
+    this._layers.forEach((item, index) => {
+      item._idx = index;
+    });
+    this.notifyPlugins('afterLayout');
+  }
+  _updateDatasets(mode) {
+    if (this.notifyPlugins('beforeDatasetsUpdate', {mode, cancelable: true}) === false) {
+      return;
+    }
+    for (let i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
+      this.getDatasetMeta(i).controller.configure();
+    }
+    for (let i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
+      this._updateDataset(i, isFunction(mode) ? mode({datasetIndex: i}) : mode);
+    }
+    this.notifyPlugins('afterDatasetsUpdate', {mode});
+  }
+  _updateDataset(index, mode) {
+    const meta = this.getDatasetMeta(index);
+    const args = {meta, index, mode, cancelable: true};
+    if (this.notifyPlugins('beforeDatasetUpdate', args) === false) {
+      return;
+    }
+    meta.controller._update(mode);
+    args.cancelable = false;
+    this.notifyPlugins('afterDatasetUpdate', args);
+  }
+  render() {
+    if (this.notifyPlugins('beforeRender', {cancelable: true}) === false) {
+      return;
+    }
+    if (animator.has(this)) {
+      if (this.attached && !animator.running(this)) {
+        animator.start(this);
+      }
+    } else {
+      this.draw();
+      onAnimationsComplete({chart: this});
+    }
+  }
+  draw() {
+    let i;
+    if (this._resizeBeforeDraw) {
+      const {width, height} = this._resizeBeforeDraw;
+      this._resize(width, height);
+      this._resizeBeforeDraw = null;
+    }
+    this.clear();
+    if (this.width <= 0 || this.height <= 0) {
+      return;
+    }
+    if (this.notifyPlugins('beforeDraw', {cancelable: true}) === false) {
+      return;
+    }
+    const layers = this._layers;
+    for (i = 0; i < layers.length && layers[i].z <= 0; ++i) {
+      layers[i].draw(this.chartArea);
+    }
+    this._drawDatasets();
+    for (; i < layers.length; ++i) {
+      layers[i].draw(this.chartArea);
+    }
+    this.notifyPlugins('afterDraw');
+  }
+  _getSortedDatasetMetas(filterVisible) {
+    const metasets = this._sortedMetasets;
+    const result = [];
+    let i, ilen;
+    for (i = 0, ilen = metasets.length; i < ilen; ++i) {
+      const meta = metasets[i];
+      if (!filterVisible || meta.visible) {
+        result.push(meta);
+      }
+    }
+    return result;
+  }
+  getSortedVisibleDatasetMetas() {
+    return this._getSortedDatasetMetas(true);
+  }
+  _drawDatasets() {
+    if (this.notifyPlugins('beforeDatasetsDraw', {cancelable: true}) === false) {
+      return;
+    }
+    const metasets = this.getSortedVisibleDatasetMetas();
+    for (let i = metasets.length - 1; i >= 0; --i) {
+      this._drawDataset(metasets[i]);
+    }
+    this.notifyPlugins('afterDatasetsDraw');
+  }
+  _drawDataset(meta) {
+    const ctx = this.ctx;
+    const clip = meta._clip;
+    const useClip = !clip.disabled;
+    const area = this.chartArea;
+    const args = {
+      meta,
+      index: meta.index,
+      cancelable: true
+    };
+    if (this.notifyPlugins('beforeDatasetDraw', args) === false) {
+      return;
+    }
+    if (useClip) {
+      clipArea(ctx, {
+        left: clip.left === false ? 0 : area.left - clip.left,
+        right: clip.right === false ? this.width : area.right + clip.right,
+        top: clip.top === false ? 0 : area.top - clip.top,
+        bottom: clip.bottom === false ? this.height : area.bottom + clip.bottom
+      });
+    }
+    meta.controller.draw();
+    if (useClip) {
+      unclipArea(ctx);
+    }
+    args.cancelable = false;
+    this.notifyPlugins('afterDatasetDraw', args);
+  }
+  getElementsAtEventForMode(e, mode, options, useFinalPosition) {
+    const method = Interaction.modes[mode];
+    if (typeof method === 'function') {
+      return method(this, e, options, useFinalPosition);
+    }
+    return [];
+  }
+  getDatasetMeta(datasetIndex) {
+    const dataset = this.data.datasets[datasetIndex];
+    const metasets = this._metasets;
+    let meta = metasets.filter(x => x && x._dataset === dataset).pop();
+    if (!meta) {
+      meta = {
+        type: null,
+        data: [],
+        dataset: null,
+        controller: null,
+        hidden: null,
+        xAxisID: null,
+        yAxisID: null,
+        order: dataset && dataset.order || 0,
+        index: datasetIndex,
+        _dataset: dataset,
+        _parsed: [],
+        _sorted: false
+      };
+      metasets.push(meta);
+    }
+    return meta;
+  }
+  getContext() {
+    return this.$context || (this.$context = createContext(null, {chart: this, type: 'chart'}));
+  }
+  getVisibleDatasetCount() {
+    return this.getSortedVisibleDatasetMetas().length;
+  }
+  isDatasetVisible(datasetIndex) {
+    const dataset = this.data.datasets[datasetIndex];
+    if (!dataset) {
+      return false;
+    }
+    const meta = this.getDatasetMeta(datasetIndex);
+    return typeof meta.hidden === 'boolean' ? !meta.hidden : !dataset.hidden;
+  }
+  setDatasetVisibility(datasetIndex, visible) {
+    const meta = this.getDatasetMeta(datasetIndex);
+    meta.hidden = !visible;
+  }
+  toggleDataVisibility(index) {
+    this._hiddenIndices[index] = !this._hiddenIndices[index];
+  }
+  getDataVisibility(index) {
+    return !this._hiddenIndices[index];
+  }
+  _updateVisibility(datasetIndex, dataIndex, visible) {
+    const mode = visible ? 'show' : 'hide';
+    const meta = this.getDatasetMeta(datasetIndex);
+    const anims = meta.controller._resolveAnimations(undefined, mode);
+    if (defined(dataIndex)) {
+      meta.data[dataIndex].hidden = !visible;
+      this.update();
+    } else {
+      this.setDatasetVisibility(datasetIndex, visible);
+      anims.update(meta, {visible});
+      this.update((ctx) => ctx.datasetIndex === datasetIndex ? mode : undefined);
+    }
+  }
+  hide(datasetIndex, dataIndex) {
+    this._updateVisibility(datasetIndex, dataIndex, false);
+  }
+  show(datasetIndex, dataIndex) {
+    this._updateVisibility(datasetIndex, dataIndex, true);
+  }
+  _destroyDatasetMeta(datasetIndex) {
+    const meta = this._metasets[datasetIndex];
+    if (meta && meta.controller) {
+      meta.controller._destroy();
+    }
+    delete this._metasets[datasetIndex];
+  }
+  _stop() {
+    let i, ilen;
+    this.stop();
+    animator.remove(this);
+    for (i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
+      this._destroyDatasetMeta(i);
+    }
+  }
+  destroy() {
+    this.notifyPlugins('beforeDestroy');
+    const {canvas, ctx} = this;
+    this._stop();
+    this.config.clearCache();
+    if (canvas) {
+      this.unbindEvents();
+      clearCanvas(canvas, ctx);
+      this.platform.releaseContext(ctx);
+      this.canvas = null;
+      this.ctx = null;
+    }
+    this.notifyPlugins('destroy');
+    delete instances[this.id];
+    this.notifyPlugins('afterDestroy');
+  }
+  toBase64Image(...args) {
+    return this.canvas.toDataURL(...args);
+  }
+  bindEvents() {
+    this.bindUserEvents();
+    if (this.options.responsive) {
+      this.bindResponsiveEvents();
+    } else {
+      this.attached = true;
+    }
+  }
+  bindUserEvents() {
+    const listeners = this._listeners;
+    const platform = this.platform;
+    const _add = (type, listener) => {
+      platform.addEventListener(this, type, listener);
+      listeners[type] = listener;
+    };
+    const listener = (e, x, y) => {
+      e.offsetX = x;
+      e.offsetY = y;
+      this._eventHandler(e);
+    };
+    each(this.options.events, (type) => _add(type, listener));
+  }
+  bindResponsiveEvents() {
+    if (!this._responsiveListeners) {
+      this._responsiveListeners = {};
+    }
+    const listeners = this._responsiveListeners;
+    const platform = this.platform;
+    const _add = (type, listener) => {
+      platform.addEventListener(this, type, listener);
+      listeners[type] = listener;
+    };
+    const _remove = (type, listener) => {
+      if (listeners[type]) {
+        platform.removeEventListener(this, type, listener);
+        delete listeners[type];
+      }
+    };
+    const listener = (width, height) => {
+      if (this.canvas) {
+        this.resize(width, height);
+      }
+    };
+    let detached;
+    const attached = () => {
+      _remove('attach', attached);
+      this.attached = true;
+      this.resize();
+      _add('resize', listener);
+      _add('detach', detached);
+    };
+    detached = () => {
+      this.attached = false;
+      _remove('resize', listener);
+      this._stop();
+      this._resize(0, 0);
+      _add('attach', attached);
+    };
+    if (platform.isAttached(this.canvas)) {
+      attached();
+    } else {
+      detached();
+    }
+  }
+  unbindEvents() {
+    each(this._listeners, (listener, type) => {
+      this.platform.removeEventListener(this, type, listener);
+    });
+    this._listeners = {};
+    each(this._responsiveListeners, (listener, type) => {
+      this.platform.removeEventListener(this, type, listener);
+    });
+    this._responsiveListeners = undefined;
+  }
+  updateHoverStyle(items, mode, enabled) {
+    const prefix = enabled ? 'set' : 'remove';
+    let meta, item, i, ilen;
+    if (mode === 'dataset') {
+      meta = this.getDatasetMeta(items[0].datasetIndex);
+      meta.controller['_' + prefix + 'DatasetHoverStyle']();
+    }
+    for (i = 0, ilen = items.length; i < ilen; ++i) {
+      item = items[i];
+      const controller = item && this.getDatasetMeta(item.datasetIndex).controller;
+      if (controller) {
+        controller[prefix + 'HoverStyle'](item.element, item.datasetIndex, item.index);
+      }
+    }
+  }
+  getActiveElements() {
+    return this._active || [];
+  }
+  setActiveElements(activeElements) {
+    const lastActive = this._active || [];
+    const active = activeElements.map(({datasetIndex, index}) => {
+      const meta = this.getDatasetMeta(datasetIndex);
+      if (!meta) {
+        throw new Error('No dataset found at index ' + datasetIndex);
+      }
+      return {
+        datasetIndex,
+        element: meta.data[index],
+        index,
+      };
+    });
+    const changed = !_elementsEqual(active, lastActive);
+    if (changed) {
+      this._active = active;
+      this._lastEvent = null;
+      this._updateHoverStyles(active, lastActive);
+    }
+  }
+  notifyPlugins(hook, args, filter) {
+    return this._plugins.notify(this, hook, args, filter);
+  }
+  _updateHoverStyles(active, lastActive, replay) {
+    const hoverOptions = this.options.hover;
+    const diff = (a, b) => a.filter(x => !b.some(y => x.datasetIndex === y.datasetIndex && x.index === y.index));
+    const deactivated = diff(lastActive, active);
+    const activated = replay ? active : diff(active, lastActive);
+    if (deactivated.length) {
+      this.updateHoverStyle(deactivated, hoverOptions.mode, false);
+    }
+    if (activated.length && hoverOptions.mode) {
+      this.updateHoverStyle(activated, hoverOptions.mode, true);
+    }
+  }
+  _eventHandler(e, replay) {
+    const args = {
+      event: e,
+      replay,
+      cancelable: true,
+      inChartArea: _isPointInArea(e, this.chartArea, this._minPadding)
+    };
+    const eventFilter = (plugin) => (plugin.options.events || this.options.events).includes(e.native.type);
+    if (this.notifyPlugins('beforeEvent', args, eventFilter) === false) {
+      return;
+    }
+    const changed = this._handleEvent(e, replay, args.inChartArea);
+    args.cancelable = false;
+    this.notifyPlugins('afterEvent', args, eventFilter);
+    if (changed || args.changed) {
+      this.render();
+    }
+    return this;
+  }
+  _handleEvent(e, replay, inChartArea) {
+    const {_active: lastActive = [], options} = this;
+    const useFinalPosition = replay;
+    const active = this._getActiveElements(e, lastActive, inChartArea, useFinalPosition);
+    const isClick = _isClickEvent(e);
+    const lastEvent = determineLastEvent(e, this._lastEvent, inChartArea, isClick);
+    if (inChartArea) {
+      this._lastEvent = null;
+      callback(options.onHover, [e, active, this], this);
+      if (isClick) {
+        callback(options.onClick, [e, active, this], this);
+      }
+    }
+    const changed = !_elementsEqual(active, lastActive);
+    if (changed || replay) {
+      this._active = active;
+      this._updateHoverStyles(active, lastActive, replay);
+    }
+    this._lastEvent = lastEvent;
+    return changed;
+  }
+  _getActiveElements(e, lastActive, inChartArea, useFinalPosition) {
+    if (e.type === 'mouseout') {
+      return [];
+    }
+    if (!inChartArea) {
+      return lastActive;
+    }
+    const hoverOptions = this.options.hover;
+    return this.getElementsAtEventForMode(e, hoverOptions.mode, hoverOptions, useFinalPosition);
+  }
+}
+const invalidatePlugins = () => each(Chart.instances, (chart) => chart._plugins.invalidate());
+const enumerable = true;
+Object.defineProperties(Chart, {
+  defaults: {
+    enumerable,
+    value: defaults
+  },
+  instances: {
+    enumerable,
+    value: instances
+  },
+  overrides: {
+    enumerable,
+    value: overrides
+  },
+  registry: {
+    enumerable,
+    value: registry
+  },
+  version: {
+    enumerable,
+    value: version
+  },
+  getChart: {
+    enumerable,
+    value: getChart
+  },
+  register: {
+    enumerable,
+    value: (...items) => {
+      registry.add(...items);
+      invalidatePlugins();
+    }
+  },
+  unregister: {
+    enumerable,
+    value: (...items) => {
+      registry.remove(...items);
+      invalidatePlugins();
+    }
+  }
+});
+
+function abstract() {
+  throw new Error('This method is not implemented: Check that a complete date adapter is provided.');
+}
+class DateAdapter {
+  constructor(options) {
+    this.options = options || {};
+  }
+  formats() {
+    return abstract();
+  }
+  parse(value, format) {
+    return abstract();
+  }
+  format(timestamp, format) {
+    return abstract();
+  }
+  add(timestamp, amount, unit) {
+    return abstract();
+  }
+  diff(a, b, unit) {
+    return abstract();
+  }
+  startOf(timestamp, unit, weekday) {
+    return abstract();
+  }
+  endOf(timestamp, unit) {
+    return abstract();
+  }
+}
+DateAdapter.override = function(members) {
+  Object.assign(DateAdapter.prototype, members);
+};
+var _adapters = {
+  _date: DateAdapter
+};
+
+function getAllScaleValues(scale, type) {
+  if (!scale._cache.$bar) {
+    const visibleMetas = scale.getMatchingVisibleMetas(type);
+    let values = [];
+    for (let i = 0, ilen = visibleMetas.length; i < ilen; i++) {
+      values = values.concat(visibleMetas[i].controller.getAllParsedValues(scale));
+    }
+    scale._cache.$bar = _arrayUnique(values.sort((a, b) => a - b));
+  }
+  return scale._cache.$bar;
+}
+function computeMinSampleSize(meta) {
+  const scale = meta.iScale;
+  const values = getAllScaleValues(scale, meta.type);
+  let min = scale._length;
+  let i, ilen, curr, prev;
+  const updateMinAndPrev = () => {
+    if (curr === 32767 || curr === -32768) {
+      return;
+    }
+    if (defined(prev)) {
+      min = Math.min(min, Math.abs(curr - prev) || min);
+    }
+    prev = curr;
+  };
+  for (i = 0, ilen = values.length; i < ilen; ++i) {
+    curr = scale.getPixelForValue(values[i]);
+    updateMinAndPrev();
+  }
+  prev = undefined;
+  for (i = 0, ilen = scale.ticks.length; i < ilen; ++i) {
+    curr = scale.getPixelForTick(i);
+    updateMinAndPrev();
+  }
+  return min;
+}
+function computeFitCategoryTraits(index, ruler, options, stackCount) {
+  const thickness = options.barThickness;
+  let size, ratio;
+  if (isNullOrUndef(thickness)) {
+    size = ruler.min * options.categoryPercentage;
+    ratio = options.barPercentage;
+  } else {
+    size = thickness * stackCount;
+    ratio = 1;
+  }
+  return {
+    chunk: size / stackCount,
+    ratio,
+    start: ruler.pixels[index] - (size / 2)
+  };
+}
+function computeFlexCategoryTraits(index, ruler, options, stackCount) {
+  const pixels = ruler.pixels;
+  const curr = pixels[index];
+  let prev = index > 0 ? pixels[index - 1] : null;
+  let next = index < pixels.length - 1 ? pixels[index + 1] : null;
+  const percent = options.categoryPercentage;
+  if (prev === null) {
+    prev = curr - (next === null ? ruler.end - ruler.start : next - curr);
+  }
+  if (next === null) {
+    next = curr + curr - prev;
+  }
+  const start = curr - (curr - Math.min(prev, next)) / 2 * percent;
+  const size = Math.abs(next - prev) / 2 * percent;
+  return {
+    chunk: size / stackCount,
+    ratio: options.barPercentage,
+    start
+  };
+}
+function parseFloatBar(entry, item, vScale, i) {
+  const startValue = vScale.parse(entry[0], i);
+  const endValue = vScale.parse(entry[1], i);
+  const min = Math.min(startValue, endValue);
+  const max = Math.max(startValue, endValue);
+  let barStart = min;
+  let barEnd = max;
+  if (Math.abs(min) > Math.abs(max)) {
+    barStart = max;
+    barEnd = min;
+  }
+  item[vScale.axis] = barEnd;
+  item._custom = {
+    barStart,
+    barEnd,
+    start: startValue,
+    end: endValue,
+    min,
+    max
+  };
+}
+function parseValue(entry, item, vScale, i) {
+  if (isArray(entry)) {
+    parseFloatBar(entry, item, vScale, i);
+  } else {
+    item[vScale.axis] = vScale.parse(entry, i);
+  }
+  return item;
+}
+function parseArrayOrPrimitive(meta, data, start, count) {
+  const iScale = meta.iScale;
+  const vScale = meta.vScale;
+  const labels = iScale.getLabels();
+  const singleScale = iScale === vScale;
+  const parsed = [];
+  let i, ilen, item, entry;
+  for (i = start, ilen = start + count; i < ilen; ++i) {
+    entry = data[i];
+    item = {};
+    item[iScale.axis] = singleScale || iScale.parse(labels[i], i);
+    parsed.push(parseValue(entry, item, vScale, i));
+  }
+  return parsed;
+}
+function isFloatBar(custom) {
+  return custom && custom.barStart !== undefined && custom.barEnd !== undefined;
+}
+function barSign(size, vScale, actualBase) {
+  if (size !== 0) {
+    return sign(size);
+  }
+  return (vScale.isHorizontal() ? 1 : -1) * (vScale.min >= actualBase ? 1 : -1);
+}
+function borderProps(properties) {
+  let reverse, start, end, top, bottom;
+  if (properties.horizontal) {
+    reverse = properties.base > properties.x;
+    start = 'left';
+    end = 'right';
+  } else {
+    reverse = properties.base < properties.y;
+    start = 'bottom';
+    end = 'top';
+  }
+  if (reverse) {
+    top = 'end';
+    bottom = 'start';
+  } else {
+    top = 'start';
+    bottom = 'end';
+  }
+  return {start, end, reverse, top, bottom};
+}
+function setBorderSkipped(properties, options, stack, index) {
+  let edge = options.borderSkipped;
+  const res = {};
+  if (!edge) {
+    properties.borderSkipped = res;
+    return;
+  }
+  const {start, end, reverse, top, bottom} = borderProps(properties);
+  if (edge === 'middle' && stack) {
+    properties.enableBorderRadius = true;
+    if ((stack._top || 0) === index) {
+      edge = top;
+    } else if ((stack._bottom || 0) === index) {
+      edge = bottom;
+    } else {
+      res[parseEdge(bottom, start, end, reverse)] = true;
+      edge = top;
+    }
+  }
+  res[parseEdge(edge, start, end, reverse)] = true;
+  properties.borderSkipped = res;
+}
+function parseEdge(edge, a, b, reverse) {
+  if (reverse) {
+    edge = swap(edge, a, b);
+    edge = startEnd(edge, b, a);
+  } else {
+    edge = startEnd(edge, a, b);
+  }
+  return edge;
+}
+function swap(orig, v1, v2) {
+  return orig === v1 ? v2 : orig === v2 ? v1 : orig;
+}
+function startEnd(v, start, end) {
+  return v === 'start' ? start : v === 'end' ? end : v;
+}
+function setInflateAmount(properties, {inflateAmount}, ratio) {
+  properties.inflateAmount = inflateAmount === 'auto'
+    ? ratio === 1 ? 0.33 : 0
+    : inflateAmount;
+}
+class BarController extends DatasetController {
+  parsePrimitiveData(meta, data, start, count) {
+    return parseArrayOrPrimitive(meta, data, start, count);
+  }
+  parseArrayData(meta, data, start, count) {
+    return parseArrayOrPrimitive(meta, data, start, count);
+  }
+  parseObjectData(meta, data, start, count) {
+    const {iScale, vScale} = meta;
+    const {xAxisKey = 'x', yAxisKey = 'y'} = this._parsing;
+    const iAxisKey = iScale.axis === 'x' ? xAxisKey : yAxisKey;
+    const vAxisKey = vScale.axis === 'x' ? xAxisKey : yAxisKey;
+    const parsed = [];
+    let i, ilen, item, obj;
+    for (i = start, ilen = start + count; i < ilen; ++i) {
+      obj = data[i];
+      item = {};
+      item[iScale.axis] = iScale.parse(resolveObjectKey(obj, iAxisKey), i);
+      parsed.push(parseValue(resolveObjectKey(obj, vAxisKey), item, vScale, i));
+    }
+    return parsed;
+  }
+  updateRangeFromParsed(range, scale, parsed, stack) {
+    super.updateRangeFromParsed(range, scale, parsed, stack);
+    const custom = parsed._custom;
+    if (custom && scale === this._cachedMeta.vScale) {
+      range.min = Math.min(range.min, custom.min);
+      range.max = Math.max(range.max, custom.max);
+    }
+  }
+  getMaxOverflow() {
+    return 0;
+  }
+  getLabelAndValue(index) {
+    const meta = this._cachedMeta;
+    const {iScale, vScale} = meta;
+    const parsed = this.getParsed(index);
+    const custom = parsed._custom;
+    const value = isFloatBar(custom)
+      ? '[' + custom.start + ', ' + custom.end + ']'
+      : '' + vScale.getLabelForValue(parsed[vScale.axis]);
+    return {
+      label: '' + iScale.getLabelForValue(parsed[iScale.axis]),
+      value
+    };
+  }
+  initialize() {
+    this.enableOptionSharing = true;
+    super.initialize();
+    const meta = this._cachedMeta;
+    meta.stack = this.getDataset().stack;
+  }
+  update(mode) {
+    const meta = this._cachedMeta;
+    this.updateElements(meta.data, 0, meta.data.length, mode);
+  }
+  updateElements(bars, start, count, mode) {
+    const reset = mode === 'reset';
+    const {index, _cachedMeta: {vScale}} = this;
+    const base = vScale.getBasePixel();
+    const horizontal = vScale.isHorizontal();
+    const ruler = this._getRuler();
+    const firstOpts = this.resolveDataElementOptions(start, mode);
+    const sharedOptions = this.getSharedOptions(firstOpts);
+    const includeOptions = this.includeOptions(mode, sharedOptions);
+    this.updateSharedOptions(sharedOptions, mode, firstOpts);
+    for (let i = start; i < start + count; i++) {
+      const parsed = this.getParsed(i);
+      const vpixels = reset || isNullOrUndef(parsed[vScale.axis]) ? {base, head: base} : this._calculateBarValuePixels(i);
+      const ipixels = this._calculateBarIndexPixels(i, ruler);
+      const stack = (parsed._stacks || {})[vScale.axis];
+      const properties = {
+        horizontal,
+        base: vpixels.base,
+        enableBorderRadius: !stack || isFloatBar(parsed._custom) || (index === stack._top || index === stack._bottom),
+        x: horizontal ? vpixels.head : ipixels.center,
+        y: horizontal ? ipixels.center : vpixels.head,
+        height: horizontal ? ipixels.size : Math.abs(vpixels.size),
+        width: horizontal ? Math.abs(vpixels.size) : ipixels.size
+      };
+      if (includeOptions) {
+        properties.options = sharedOptions || this.resolveDataElementOptions(i, bars[i].active ? 'active' : mode);
+      }
+      const options = properties.options || bars[i].options;
+      setBorderSkipped(properties, options, stack, index);
+      setInflateAmount(properties, options, ruler.ratio);
+      this.updateElement(bars[i], i, properties, mode);
+    }
+  }
+  _getStacks(last, dataIndex) {
+    const meta = this._cachedMeta;
+    const iScale = meta.iScale;
+    const metasets = iScale.getMatchingVisibleMetas(this._type);
+    const stacked = iScale.options.stacked;
+    const ilen = metasets.length;
+    const stacks = [];
+    let i, item;
+    for (i = 0; i < ilen; ++i) {
+      item = metasets[i];
+      if (!item.controller.options.grouped) {
+        continue;
+      }
+      if (typeof dataIndex !== 'undefined') {
+        const val = item.controller.getParsed(dataIndex)[
+          item.controller._cachedMeta.vScale.axis
+        ];
+        if (isNullOrUndef(val) || isNaN(val)) {
+          continue;
+        }
+      }
+      if (stacked === false || stacks.indexOf(item.stack) === -1 ||
+				(stacked === undefined && item.stack === undefined)) {
+        stacks.push(item.stack);
+      }
+      if (item.index === last) {
+        break;
+      }
+    }
+    if (!stacks.length) {
+      stacks.push(undefined);
+    }
+    return stacks;
+  }
+  _getStackCount(index) {
+    return this._getStacks(undefined, index).length;
+  }
+  _getStackIndex(datasetIndex, name, dataIndex) {
+    const stacks = this._getStacks(datasetIndex, dataIndex);
+    const index = (name !== undefined)
+      ? stacks.indexOf(name)
+      : -1;
+    return (index === -1)
+      ? stacks.length - 1
+      : index;
+  }
+  _getRuler() {
+    const opts = this.options;
+    const meta = this._cachedMeta;
+    const iScale = meta.iScale;
+    const pixels = [];
+    let i, ilen;
+    for (i = 0, ilen = meta.data.length; i < ilen; ++i) {
+      pixels.push(iScale.getPixelForValue(this.getParsed(i)[iScale.axis], i));
+    }
+    const barThickness = opts.barThickness;
+    const min = barThickness || computeMinSampleSize(meta);
+    return {
+      min,
+      pixels,
+      start: iScale._startPixel,
+      end: iScale._endPixel,
+      stackCount: this._getStackCount(),
+      scale: iScale,
+      grouped: opts.grouped,
+      ratio: barThickness ? 1 : opts.categoryPercentage * opts.barPercentage
+    };
+  }
+  _calculateBarValuePixels(index) {
+    const {_cachedMeta: {vScale, _stacked}, options: {base: baseValue, minBarLength}} = this;
+    const actualBase = baseValue || 0;
+    const parsed = this.getParsed(index);
+    const custom = parsed._custom;
+    const floating = isFloatBar(custom);
+    let value = parsed[vScale.axis];
+    let start = 0;
+    let length = _stacked ? this.applyStack(vScale, parsed, _stacked) : value;
+    let head, size;
+    if (length !== value) {
+      start = length - value;
+      length = value;
+    }
+    if (floating) {
+      value = custom.barStart;
+      length = custom.barEnd - custom.barStart;
+      if (value !== 0 && sign(value) !== sign(custom.barEnd)) {
+        start = 0;
+      }
+      start += value;
+    }
+    const startValue = !isNullOrUndef(baseValue) && !floating ? baseValue : start;
+    let base = vScale.getPixelForValue(startValue);
+    if (this.chart.getDataVisibility(index)) {
+      head = vScale.getPixelForValue(start + length);
+    } else {
+      head = base;
+    }
+    size = head - base;
+    if (Math.abs(size) < minBarLength) {
+      size = barSign(size, vScale, actualBase) * minBarLength;
+      if (value === actualBase) {
+        base -= size / 2;
+      }
+      head = base + size;
+    }
+    if (base === vScale.getPixelForValue(actualBase)) {
+      const halfGrid = sign(size) * vScale.getLineWidthForValue(actualBase) / 2;
+      base += halfGrid;
+      size -= halfGrid;
+    }
+    return {
+      size,
+      base,
+      head,
+      center: head + size / 2
+    };
+  }
+  _calculateBarIndexPixels(index, ruler) {
+    const scale = ruler.scale;
+    const options = this.options;
+    const skipNull = options.skipNull;
+    const maxBarThickness = valueOrDefault(options.maxBarThickness, Infinity);
+    let center, size;
+    if (ruler.grouped) {
+      const stackCount = skipNull ? this._getStackCount(index) : ruler.stackCount;
+      const range = options.barThickness === 'flex'
+        ? computeFlexCategoryTraits(index, ruler, options, stackCount)
+        : computeFitCategoryTraits(index, ruler, options, stackCount);
+      const stackIndex = this._getStackIndex(this.index, this._cachedMeta.stack, skipNull ? index : undefined);
+      center = range.start + (range.chunk * stackIndex) + (range.chunk / 2);
+      size = Math.min(maxBarThickness, range.chunk * range.ratio);
+    } else {
+      center = scale.getPixelForValue(this.getParsed(index)[scale.axis], index);
+      size = Math.min(maxBarThickness, ruler.min * ruler.ratio);
+    }
+    return {
+      base: center - size / 2,
+      head: center + size / 2,
+      center,
+      size
+    };
+  }
+  draw() {
+    const meta = this._cachedMeta;
+    const vScale = meta.vScale;
+    const rects = meta.data;
+    const ilen = rects.length;
+    let i = 0;
+    for (; i < ilen; ++i) {
+      if (this.getParsed(i)[vScale.axis] !== null) {
+        rects[i].draw(this._ctx);
+      }
+    }
+  }
+}
+BarController.id = 'bar';
+BarController.defaults = {
+  datasetElementType: false,
+  dataElementType: 'bar',
+  categoryPercentage: 0.8,
+  barPercentage: 0.9,
+  grouped: true,
+  animations: {
+    numbers: {
+      type: 'number',
+      properties: ['x', 'y', 'base', 'width', 'height']
+    }
+  }
+};
+BarController.overrides = {
+  scales: {
+    _index_: {
+      type: 'category',
+      offset: true,
+      grid: {
+        offset: true
+      }
+    },
+    _value_: {
+      type: 'linear',
+      beginAtZero: true,
+    }
+  }
+};
+
+class BubbleController extends DatasetController {
+  initialize() {
+    this.enableOptionSharing = true;
+    super.initialize();
+  }
+  parsePrimitiveData(meta, data, start, count) {
+    const parsed = super.parsePrimitiveData(meta, data, start, count);
+    for (let i = 0; i < parsed.length; i++) {
+      parsed[i]._custom = this.resolveDataElementOptions(i + start).radius;
+    }
+    return parsed;
+  }
+  parseArrayData(meta, data, start, count) {
+    const parsed = super.parseArrayData(meta, data, start, count);
+    for (let i = 0; i < parsed.length; i++) {
+      const item = data[start + i];
+      parsed[i]._custom = valueOrDefault(item[2], this.resolveDataElementOptions(i + start).radius);
+    }
+    return parsed;
+  }
+  parseObjectData(meta, data, start, count) {
+    const parsed = super.parseObjectData(meta, data, start, count);
+    for (let i = 0; i < parsed.length; i++) {
+      const item = data[start + i];
+      parsed[i]._custom = valueOrDefault(item && item.r && +item.r, this.resolveDataElementOptions(i + start).radius);
+    }
+    return parsed;
+  }
+  getMaxOverflow() {
+    const data = this._cachedMeta.data;
+    let max = 0;
+    for (let i = data.length - 1; i >= 0; --i) {
+      max = Math.max(max, data[i].size(this.resolveDataElementOptions(i)) / 2);
+    }
+    return max > 0 && max;
+  }
+  getLabelAndValue(index) {
+    const meta = this._cachedMeta;
+    const {xScale, yScale} = meta;
+    const parsed = this.getParsed(index);
+    const x = xScale.getLabelForValue(parsed.x);
+    const y = yScale.getLabelForValue(parsed.y);
+    const r = parsed._custom;
+    return {
+      label: meta.label,
+      value: '(' + x + ', ' + y + (r ? ', ' + r : '') + ')'
+    };
+  }
+  update(mode) {
+    const points = this._cachedMeta.data;
+    this.updateElements(points, 0, points.length, mode);
+  }
+  updateElements(points, start, count, mode) {
+    const reset = mode === 'reset';
+    const {iScale, vScale} = this._cachedMeta;
+    const firstOpts = this.resolveDataElementOptions(start, mode);
+    const sharedOptions = this.getSharedOptions(firstOpts);
+    const includeOptions = this.includeOptions(mode, sharedOptions);
+    const iAxis = iScale.axis;
+    const vAxis = vScale.axis;
+    for (let i = start; i < start + count; i++) {
+      const point = points[i];
+      const parsed = !reset && this.getParsed(i);
+      const properties = {};
+      const iPixel = properties[iAxis] = reset ? iScale.getPixelForDecimal(0.5) : iScale.getPixelForValue(parsed[iAxis]);
+      const vPixel = properties[vAxis] = reset ? vScale.getBasePixel() : vScale.getPixelForValue(parsed[vAxis]);
+      properties.skip = isNaN(iPixel) || isNaN(vPixel);
+      if (includeOptions) {
+        properties.options = this.resolveDataElementOptions(i, point.active ? 'active' : mode);
+        if (reset) {
+          properties.options.radius = 0;
+        }
+      }
+      this.updateElement(point, i, properties, mode);
+    }
+    this.updateSharedOptions(sharedOptions, mode, firstOpts);
+  }
+  resolveDataElementOptions(index, mode) {
+    const parsed = this.getParsed(index);
+    let values = super.resolveDataElementOptions(index, mode);
+    if (values.$shared) {
+      values = Object.assign({}, values, {$shared: false});
+    }
+    const radius = values.radius;
+    if (mode !== 'active') {
+      values.radius = 0;
+    }
+    values.radius += valueOrDefault(parsed && parsed._custom, radius);
+    return values;
+  }
+}
+BubbleController.id = 'bubble';
+BubbleController.defaults = {
+  datasetElementType: false,
+  dataElementType: 'point',
+  animations: {
+    numbers: {
+      type: 'number',
+      properties: ['x', 'y', 'borderWidth', 'radius']
+    }
+  }
+};
+BubbleController.overrides = {
+  scales: {
+    x: {
+      type: 'linear'
+    },
+    y: {
+      type: 'linear'
+    }
+  },
+  plugins: {
+    tooltip: {
+      callbacks: {
+        title() {
+          return '';
+        }
+      }
+    }
+  }
+};
+
+function getRatioAndOffset(rotation, circumference, cutout) {
+  let ratioX = 1;
+  let ratioY = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+  if (circumference < TAU) {
+    const startAngle = rotation;
+    const endAngle = startAngle + circumference;
+    const startX = Math.cos(startAngle);
+    const startY = Math.sin(startAngle);
+    const endX = Math.cos(endAngle);
+    const endY = Math.sin(endAngle);
+    const calcMax = (angle, a, b) => _angleBetween(angle, startAngle, endAngle, true) ? 1 : Math.max(a, a * cutout, b, b * cutout);
+    const calcMin = (angle, a, b) => _angleBetween(angle, startAngle, endAngle, true) ? -1 : Math.min(a, a * cutout, b, b * cutout);
+    const maxX = calcMax(0, startX, endX);
+    const maxY = calcMax(HALF_PI, startY, endY);
+    const minX = calcMin(PI, startX, endX);
+    const minY = calcMin(PI + HALF_PI, startY, endY);
+    ratioX = (maxX - minX) / 2;
+    ratioY = (maxY - minY) / 2;
+    offsetX = -(maxX + minX) / 2;
+    offsetY = -(maxY + minY) / 2;
+  }
+  return {ratioX, ratioY, offsetX, offsetY};
+}
+class DoughnutController extends DatasetController {
+  constructor(chart, datasetIndex) {
+    super(chart, datasetIndex);
+    this.enableOptionSharing = true;
+    this.innerRadius = undefined;
+    this.outerRadius = undefined;
+    this.offsetX = undefined;
+    this.offsetY = undefined;
+  }
+  linkScales() {}
+  parse(start, count) {
+    const data = this.getDataset().data;
+    const meta = this._cachedMeta;
+    if (this._parsing === false) {
+      meta._parsed = data;
+    } else {
+      let getter = (i) => +data[i];
+      if (isObject(data[start])) {
+        const {key = 'value'} = this._parsing;
+        getter = (i) => +resolveObjectKey(data[i], key);
+      }
+      let i, ilen;
+      for (i = start, ilen = start + count; i < ilen; ++i) {
+        meta._parsed[i] = getter(i);
+      }
+    }
+  }
+  _getRotation() {
+    return toRadians(this.options.rotation - 90);
+  }
+  _getCircumference() {
+    return toRadians(this.options.circumference);
+  }
+  _getRotationExtents() {
+    let min = TAU;
+    let max = -TAU;
+    for (let i = 0; i < this.chart.data.datasets.length; ++i) {
+      if (this.chart.isDatasetVisible(i)) {
+        const controller = this.chart.getDatasetMeta(i).controller;
+        const rotation = controller._getRotation();
+        const circumference = controller._getCircumference();
+        min = Math.min(min, rotation);
+        max = Math.max(max, rotation + circumference);
+      }
+    }
+    return {
+      rotation: min,
+      circumference: max - min,
+    };
+  }
+  update(mode) {
+    const chart = this.chart;
+    const {chartArea} = chart;
+    const meta = this._cachedMeta;
+    const arcs = meta.data;
+    const spacing = this.getMaxBorderWidth() + this.getMaxOffset(arcs) + this.options.spacing;
+    const maxSize = Math.max((Math.min(chartArea.width, chartArea.height) - spacing) / 2, 0);
+    const cutout = Math.min(toPercentage(this.options.cutout, maxSize), 1);
+    const chartWeight = this._getRingWeight(this.index);
+    const {circumference, rotation} = this._getRotationExtents();
+    const {ratioX, ratioY, offsetX, offsetY} = getRatioAndOffset(rotation, circumference, cutout);
+    const maxWidth = (chartArea.width - spacing) / ratioX;
+    const maxHeight = (chartArea.height - spacing) / ratioY;
+    const maxRadius = Math.max(Math.min(maxWidth, maxHeight) / 2, 0);
+    const outerRadius = toDimension(this.options.radius, maxRadius);
+    const innerRadius = Math.max(outerRadius * cutout, 0);
+    const radiusLength = (outerRadius - innerRadius) / this._getVisibleDatasetWeightTotal();
+    this.offsetX = offsetX * outerRadius;
+    this.offsetY = offsetY * outerRadius;
+    meta.total = this.calculateTotal();
+    this.outerRadius = outerRadius - radiusLength * this._getRingWeightOffset(this.index);
+    this.innerRadius = Math.max(this.outerRadius - radiusLength * chartWeight, 0);
+    this.updateElements(arcs, 0, arcs.length, mode);
+  }
+  _circumference(i, reset) {
+    const opts = this.options;
+    const meta = this._cachedMeta;
+    const circumference = this._getCircumference();
+    if ((reset && opts.animation.animateRotate) || !this.chart.getDataVisibility(i) || meta._parsed[i] === null || meta.data[i].hidden) {
+      return 0;
+    }
+    return this.calculateCircumference(meta._parsed[i] * circumference / TAU);
+  }
+  updateElements(arcs, start, count, mode) {
+    const reset = mode === 'reset';
+    const chart = this.chart;
+    const chartArea = chart.chartArea;
+    const opts = chart.options;
+    const animationOpts = opts.animation;
+    const centerX = (chartArea.left + chartArea.right) / 2;
+    const centerY = (chartArea.top + chartArea.bottom) / 2;
+    const animateScale = reset && animationOpts.animateScale;
+    const innerRadius = animateScale ? 0 : this.innerRadius;
+    const outerRadius = animateScale ? 0 : this.outerRadius;
+    const firstOpts = this.resolveDataElementOptions(start, mode);
+    const sharedOptions = this.getSharedOptions(firstOpts);
+    const includeOptions = this.includeOptions(mode, sharedOptions);
+    let startAngle = this._getRotation();
+    let i;
+    for (i = 0; i < start; ++i) {
+      startAngle += this._circumference(i, reset);
+    }
+    for (i = start; i < start + count; ++i) {
+      const circumference = this._circumference(i, reset);
+      const arc = arcs[i];
+      const properties = {
+        x: centerX + this.offsetX,
+        y: centerY + this.offsetY,
+        startAngle,
+        endAngle: startAngle + circumference,
+        circumference,
+        outerRadius,
+        innerRadius
+      };
+      if (includeOptions) {
+        properties.options = sharedOptions || this.resolveDataElementOptions(i, arc.active ? 'active' : mode);
+      }
+      startAngle += circumference;
+      this.updateElement(arc, i, properties, mode);
+    }
+    this.updateSharedOptions(sharedOptions, mode, firstOpts);
+  }
+  calculateTotal() {
+    const meta = this._cachedMeta;
+    const metaData = meta.data;
+    let total = 0;
+    let i;
+    for (i = 0; i < metaData.length; i++) {
+      const value = meta._parsed[i];
+      if (value !== null && !isNaN(value) && this.chart.getDataVisibility(i) && !metaData[i].hidden) {
+        total += Math.abs(value);
+      }
+    }
+    return total;
+  }
+  calculateCircumference(value) {
+    const total = this._cachedMeta.total;
+    if (total > 0 && !isNaN(value)) {
+      return TAU * (Math.abs(value) / total);
+    }
+    return 0;
+  }
+  getLabelAndValue(index) {
+    const meta = this._cachedMeta;
+    const chart = this.chart;
+    const labels = chart.data.labels || [];
+    const value = formatNumber(meta._parsed[index], chart.options.locale);
+    return {
+      label: labels[index] || '',
+      value,
+    };
+  }
+  getMaxBorderWidth(arcs) {
+    let max = 0;
+    const chart = this.chart;
+    let i, ilen, meta, controller, options;
+    if (!arcs) {
+      for (i = 0, ilen = chart.data.datasets.length; i < ilen; ++i) {
+        if (chart.isDatasetVisible(i)) {
+          meta = chart.getDatasetMeta(i);
+          arcs = meta.data;
+          controller = meta.controller;
+          break;
+        }
+      }
+    }
+    if (!arcs) {
+      return 0;
+    }
+    for (i = 0, ilen = arcs.length; i < ilen; ++i) {
+      options = controller.resolveDataElementOptions(i);
+      if (options.borderAlign !== 'inner') {
+        max = Math.max(max, options.borderWidth || 0, options.hoverBorderWidth || 0);
+      }
+    }
+    return max;
+  }
+  getMaxOffset(arcs) {
+    let max = 0;
+    for (let i = 0, ilen = arcs.length; i < ilen; ++i) {
+      const options = this.resolveDataElementOptions(i);
+      max = Math.max(max, options.offset || 0, options.hoverOffset || 0);
+    }
+    return max;
+  }
+  _getRingWeightOffset(datasetIndex) {
+    let ringWeightOffset = 0;
+    for (let i = 0; i < datasetIndex; ++i) {
+      if (this.chart.isDatasetVisible(i)) {
+        ringWeightOffset += this._getRingWeight(i);
+      }
+    }
+    return ringWeightOffset;
+  }
+  _getRingWeight(datasetIndex) {
+    return Math.max(valueOrDefault(this.chart.data.datasets[datasetIndex].weight, 1), 0);
+  }
+  _getVisibleDatasetWeightTotal() {
+    return this._getRingWeightOffset(this.chart.data.datasets.length) || 1;
+  }
+}
+DoughnutController.id = 'doughnut';
+DoughnutController.defaults = {
+  datasetElementType: false,
+  dataElementType: 'arc',
+  animation: {
+    animateRotate: true,
+    animateScale: false
+  },
+  animations: {
+    numbers: {
+      type: 'number',
+      properties: ['circumference', 'endAngle', 'innerRadius', 'outerRadius', 'startAngle', 'x', 'y', 'offset', 'borderWidth', 'spacing']
+    },
+  },
+  cutout: '50%',
+  rotation: 0,
+  circumference: 360,
+  radius: '100%',
+  spacing: 0,
+  indexAxis: 'r',
+};
+DoughnutController.descriptors = {
+  _scriptable: (name) => name !== 'spacing',
+  _indexable: (name) => name !== 'spacing',
+};
+DoughnutController.overrides = {
+  aspectRatio: 1,
+  plugins: {
+    legend: {
+      labels: {
+        generateLabels(chart) {
+          const data = chart.data;
+          if (data.labels.length && data.datasets.length) {
+            const {labels: {pointStyle}} = chart.legend.options;
+            return data.labels.map((label, i) => {
+              const meta = chart.getDatasetMeta(0);
+              const style = meta.controller.getStyle(i);
+              return {
+                text: label,
+                fillStyle: style.backgroundColor,
+                strokeStyle: style.borderColor,
+                lineWidth: style.borderWidth,
+                pointStyle: pointStyle,
+                hidden: !chart.getDataVisibility(i),
+                index: i
+              };
+            });
+          }
+          return [];
+        }
+      },
+      onClick(e, legendItem, legend) {
+        legend.chart.toggleDataVisibility(legendItem.index);
+        legend.chart.update();
+      }
+    },
+    tooltip: {
+      callbacks: {
+        title() {
+          return '';
+        },
+        label(tooltipItem) {
+          let dataLabel = tooltipItem.label;
+          const value = ': ' + tooltipItem.formattedValue;
+          if (isArray(dataLabel)) {
+            dataLabel = dataLabel.slice();
+            dataLabel[0] += value;
+          } else {
+            dataLabel += value;
+          }
+          return dataLabel;
+        }
+      }
+    }
+  }
+};
+
+class LineController extends DatasetController {
+  initialize() {
+    this.enableOptionSharing = true;
+    super.initialize();
+  }
+  update(mode) {
+    const meta = this._cachedMeta;
+    const {dataset: line, data: points = [], _dataset} = meta;
+    const animationsDisabled = this.chart._animationsDisabled;
+    let {start, count} = getStartAndCountOfVisiblePoints(meta, points, animationsDisabled);
+    this._drawStart = start;
+    this._drawCount = count;
+    if (scaleRangesChanged(meta)) {
+      start = 0;
+      count = points.length;
+    }
+    line._chart = this.chart;
+    line._datasetIndex = this.index;
+    line._decimated = !!_dataset._decimated;
+    line.points = points;
+    const options = this.resolveDatasetElementOptions(mode);
+    if (!this.options.showLine) {
+      options.borderWidth = 0;
+    }
+    options.segment = this.options.segment;
+    this.updateElement(line, undefined, {
+      animated: !animationsDisabled,
+      options
+    }, mode);
+    this.updateElements(points, start, count, mode);
+  }
+  updateElements(points, start, count, mode) {
+    const reset = mode === 'reset';
+    const {iScale, vScale, _stacked, _dataset} = this._cachedMeta;
+    const firstOpts = this.resolveDataElementOptions(start, mode);
+    const sharedOptions = this.getSharedOptions(firstOpts);
+    const includeOptions = this.includeOptions(mode, sharedOptions);
+    const iAxis = iScale.axis;
+    const vAxis = vScale.axis;
+    const {spanGaps, segment} = this.options;
+    const maxGapLength = isNumber(spanGaps) ? spanGaps : Number.POSITIVE_INFINITY;
+    const directUpdate = this.chart._animationsDisabled || reset || mode === 'none';
+    let prevParsed = start > 0 && this.getParsed(start - 1);
+    for (let i = start; i < start + count; ++i) {
+      const point = points[i];
+      const parsed = this.getParsed(i);
+      const properties = directUpdate ? point : {};
+      const nullData = isNullOrUndef(parsed[vAxis]);
+      const iPixel = properties[iAxis] = iScale.getPixelForValue(parsed[iAxis], i);
+      const vPixel = properties[vAxis] = reset || nullData ? vScale.getBasePixel() : vScale.getPixelForValue(_stacked ? this.applyStack(vScale, parsed, _stacked) : parsed[vAxis], i);
+      properties.skip = isNaN(iPixel) || isNaN(vPixel) || nullData;
+      properties.stop = i > 0 && (parsed[iAxis] - prevParsed[iAxis]) > maxGapLength;
+      if (segment) {
+        properties.parsed = parsed;
+        properties.raw = _dataset.data[i];
+      }
+      if (includeOptions) {
+        properties.options = sharedOptions || this.resolveDataElementOptions(i, point.active ? 'active' : mode);
+      }
+      if (!directUpdate) {
+        this.updateElement(point, i, properties, mode);
+      }
+      prevParsed = parsed;
+    }
+    this.updateSharedOptions(sharedOptions, mode, firstOpts);
+  }
+  getMaxOverflow() {
+    const meta = this._cachedMeta;
+    const dataset = meta.dataset;
+    const border = dataset.options && dataset.options.borderWidth || 0;
+    const data = meta.data || [];
+    if (!data.length) {
+      return border;
+    }
+    const firstPoint = data[0].size(this.resolveDataElementOptions(0));
+    const lastPoint = data[data.length - 1].size(this.resolveDataElementOptions(data.length - 1));
+    return Math.max(border, firstPoint, lastPoint) / 2;
+  }
+  draw() {
+    const meta = this._cachedMeta;
+    meta.dataset.updateControlPoints(this.chart.chartArea, meta.iScale.axis);
+    super.draw();
+  }
+}
+LineController.id = 'line';
+LineController.defaults = {
+  datasetElementType: 'line',
+  dataElementType: 'point',
+  showLine: true,
+  spanGaps: false,
+};
+LineController.overrides = {
+  scales: {
+    _index_: {
+      type: 'category',
+    },
+    _value_: {
+      type: 'linear',
+    },
+  }
+};
+function getStartAndCountOfVisiblePoints(meta, points, animationsDisabled) {
+  const pointCount = points.length;
+  let start = 0;
+  let count = pointCount;
+  if (meta._sorted) {
+    const {iScale, _parsed} = meta;
+    const axis = iScale.axis;
+    const {min, max, minDefined, maxDefined} = iScale.getUserBounds();
+    if (minDefined) {
+      start = _limitValue(Math.min(
+        _lookupByKey(_parsed, iScale.axis, min).lo,
+        animationsDisabled ? pointCount : _lookupByKey(points, axis, iScale.getPixelForValue(min)).lo),
+      0, pointCount - 1);
+    }
+    if (maxDefined) {
+      count = _limitValue(Math.max(
+        _lookupByKey(_parsed, iScale.axis, max).hi + 1,
+        animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max)).hi + 1),
+      start, pointCount) - start;
+    } else {
+      count = pointCount - start;
+    }
+  }
+  return {start, count};
+}
+function scaleRangesChanged(meta) {
+  const {xScale, yScale, _scaleRanges} = meta;
+  const newRanges = {
+    xmin: xScale.min,
+    xmax: xScale.max,
+    ymin: yScale.min,
+    ymax: yScale.max
+  };
+  if (!_scaleRanges) {
+    meta._scaleRanges = newRanges;
+    return true;
+  }
+  const changed = _scaleRanges.xmin !== xScale.min
+		|| _scaleRanges.xmax !== xScale.max
+		|| _scaleRanges.ymin !== yScale.min
+		|| _scaleRanges.ymax !== yScale.max;
+  Object.assign(_scaleRanges, newRanges);
+  return changed;
+}
+
+class PolarAreaController extends DatasetController {
+  constructor(chart, datasetIndex) {
+    super(chart, datasetIndex);
+    this.innerRadius = undefined;
+    this.outerRadius = undefined;
+  }
+  getLabelAndValue(index) {
+    const meta = this._cachedMeta;
+    const chart = this.chart;
+    const labels = chart.data.labels || [];
+    const value = formatNumber(meta._parsed[index].r, chart.options.locale);
+    return {
+      label: labels[index] || '',
+      value,
+    };
+  }
+  update(mode) {
+    const arcs = this._cachedMeta.data;
+    this._updateRadius();
+    this.updateElements(arcs, 0, arcs.length, mode);
+  }
+  _updateRadius() {
+    const chart = this.chart;
+    const chartArea = chart.chartArea;
+    const opts = chart.options;
+    const minSize = Math.min(chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+    const outerRadius = Math.max(minSize / 2, 0);
+    const innerRadius = Math.max(opts.cutoutPercentage ? (outerRadius / 100) * (opts.cutoutPercentage) : 1, 0);
+    const radiusLength = (outerRadius - innerRadius) / chart.getVisibleDatasetCount();
+    this.outerRadius = outerRadius - (radiusLength * this.index);
+    this.innerRadius = this.outerRadius - radiusLength;
+  }
+  updateElements(arcs, start, count, mode) {
+    const reset = mode === 'reset';
+    const chart = this.chart;
+    const dataset = this.getDataset();
+    const opts = chart.options;
+    const animationOpts = opts.animation;
+    const scale = this._cachedMeta.rScale;
+    const centerX = scale.xCenter;
+    const centerY = scale.yCenter;
+    const datasetStartAngle = scale.getIndexAngle(0) - 0.5 * PI;
+    let angle = datasetStartAngle;
+    let i;
+    const defaultAngle = 360 / this.countVisibleElements();
+    for (i = 0; i < start; ++i) {
+      angle += this._computeAngle(i, mode, defaultAngle);
+    }
+    for (i = start; i < start + count; i++) {
+      const arc = arcs[i];
+      let startAngle = angle;
+      let endAngle = angle + this._computeAngle(i, mode, defaultAngle);
+      let outerRadius = chart.getDataVisibility(i) ? scale.getDistanceFromCenterForValue(dataset.data[i]) : 0;
+      angle = endAngle;
+      if (reset) {
+        if (animationOpts.animateScale) {
+          outerRadius = 0;
+        }
+        if (animationOpts.animateRotate) {
+          startAngle = endAngle = datasetStartAngle;
+        }
+      }
+      const properties = {
+        x: centerX,
+        y: centerY,
+        innerRadius: 0,
+        outerRadius,
+        startAngle,
+        endAngle,
+        options: this.resolveDataElementOptions(i, arc.active ? 'active' : mode)
+      };
+      this.updateElement(arc, i, properties, mode);
+    }
+  }
+  countVisibleElements() {
+    const dataset = this.getDataset();
+    const meta = this._cachedMeta;
+    let count = 0;
+    meta.data.forEach((element, index) => {
+      if (!isNaN(dataset.data[index]) && this.chart.getDataVisibility(index)) {
+        count++;
+      }
+    });
+    return count;
+  }
+  _computeAngle(index, mode, defaultAngle) {
+    return this.chart.getDataVisibility(index)
+      ? toRadians(this.resolveDataElementOptions(index, mode).angle || defaultAngle)
+      : 0;
+  }
+}
+PolarAreaController.id = 'polarArea';
+PolarAreaController.defaults = {
+  dataElementType: 'arc',
+  animation: {
+    animateRotate: true,
+    animateScale: true
+  },
+  animations: {
+    numbers: {
+      type: 'number',
+      properties: ['x', 'y', 'startAngle', 'endAngle', 'innerRadius', 'outerRadius']
+    },
+  },
+  indexAxis: 'r',
+  startAngle: 0,
+};
+PolarAreaController.overrides = {
+  aspectRatio: 1,
+  plugins: {
+    legend: {
+      labels: {
+        generateLabels(chart) {
+          const data = chart.data;
+          if (data.labels.length && data.datasets.length) {
+            const {labels: {pointStyle}} = chart.legend.options;
+            return data.labels.map((label, i) => {
+              const meta = chart.getDatasetMeta(0);
+              const style = meta.controller.getStyle(i);
+              return {
+                text: label,
+                fillStyle: style.backgroundColor,
+                strokeStyle: style.borderColor,
+                lineWidth: style.borderWidth,
+                pointStyle: pointStyle,
+                hidden: !chart.getDataVisibility(i),
+                index: i
+              };
+            });
+          }
+          return [];
+        }
+      },
+      onClick(e, legendItem, legend) {
+        legend.chart.toggleDataVisibility(legendItem.index);
+        legend.chart.update();
+      }
+    },
+    tooltip: {
+      callbacks: {
+        title() {
+          return '';
+        },
+        label(context) {
+          return context.chart.data.labels[context.dataIndex] + ': ' + context.formattedValue;
+        }
+      }
+    }
+  },
+  scales: {
+    r: {
+      type: 'radialLinear',
+      angleLines: {
+        display: false
+      },
+      beginAtZero: true,
+      grid: {
+        circular: true
+      },
+      pointLabels: {
+        display: false
+      },
+      startAngle: 0
+    }
+  }
+};
+
+class PieController extends DoughnutController {
+}
+PieController.id = 'pie';
+PieController.defaults = {
+  cutout: 0,
+  rotation: 0,
+  circumference: 360,
+  radius: '100%'
+};
+
+class RadarController extends DatasetController {
+  getLabelAndValue(index) {
+    const vScale = this._cachedMeta.vScale;
+    const parsed = this.getParsed(index);
+    return {
+      label: vScale.getLabels()[index],
+      value: '' + vScale.getLabelForValue(parsed[vScale.axis])
+    };
+  }
+  update(mode) {
+    const meta = this._cachedMeta;
+    const line = meta.dataset;
+    const points = meta.data || [];
+    const labels = meta.iScale.getLabels();
+    line.points = points;
+    if (mode !== 'resize') {
+      const options = this.resolveDatasetElementOptions(mode);
+      if (!this.options.showLine) {
+        options.borderWidth = 0;
+      }
+      const properties = {
+        _loop: true,
+        _fullLoop: labels.length === points.length,
+        options
+      };
+      this.updateElement(line, undefined, properties, mode);
+    }
+    this.updateElements(points, 0, points.length, mode);
+  }
+  updateElements(points, start, count, mode) {
+    const dataset = this.getDataset();
+    const scale = this._cachedMeta.rScale;
+    const reset = mode === 'reset';
+    for (let i = start; i < start + count; i++) {
+      const point = points[i];
+      const options = this.resolveDataElementOptions(i, point.active ? 'active' : mode);
+      const pointPosition = scale.getPointPositionForValue(i, dataset.data[i]);
+      const x = reset ? scale.xCenter : pointPosition.x;
+      const y = reset ? scale.yCenter : pointPosition.y;
+      const properties = {
+        x,
+        y,
+        angle: pointPosition.angle,
+        skip: isNaN(x) || isNaN(y),
+        options
+      };
+      this.updateElement(point, i, properties, mode);
+    }
+  }
+}
+RadarController.id = 'radar';
+RadarController.defaults = {
+  datasetElementType: 'line',
+  dataElementType: 'point',
+  indexAxis: 'r',
+  showLine: true,
+  elements: {
+    line: {
+      fill: 'start'
+    }
+  },
+};
+RadarController.overrides = {
+  aspectRatio: 1,
+  scales: {
+    r: {
+      type: 'radialLinear',
+    }
+  }
+};
+
+class ScatterController extends LineController {
+}
+ScatterController.id = 'scatter';
+ScatterController.defaults = {
+  showLine: false,
+  fill: false
+};
+ScatterController.overrides = {
+  interaction: {
+    mode: 'point'
+  },
+  plugins: {
+    tooltip: {
+      callbacks: {
+        title() {
+          return '';
+        },
+        label(item) {
+          return '(' + item.label + ', ' + item.formattedValue + ')';
+        }
+      }
+    }
+  },
+  scales: {
+    x: {
+      type: 'linear'
+    },
+    y: {
+      type: 'linear'
+    }
+  }
+};
+
+var controllers = /*#__PURE__*/Object.freeze({
+__proto__: null,
+BarController: BarController,
+BubbleController: BubbleController,
+DoughnutController: DoughnutController,
+LineController: LineController,
+PolarAreaController: PolarAreaController,
+PieController: PieController,
+RadarController: RadarController,
+ScatterController: ScatterController
+});
+
+function clipArc(ctx, element, endAngle) {
+  const {startAngle, pixelMargin, x, y, outerRadius, innerRadius} = element;
+  let angleMargin = pixelMargin / outerRadius;
+  ctx.beginPath();
+  ctx.arc(x, y, outerRadius, startAngle - angleMargin, endAngle + angleMargin);
+  if (innerRadius > pixelMargin) {
+    angleMargin = pixelMargin / innerRadius;
+    ctx.arc(x, y, innerRadius, endAngle + angleMargin, startAngle - angleMargin, true);
+  } else {
+    ctx.arc(x, y, pixelMargin, endAngle + HALF_PI, startAngle - HALF_PI);
+  }
+  ctx.closePath();
+  ctx.clip();
+}
+function toRadiusCorners(value) {
+  return _readValueToProps(value, ['outerStart', 'outerEnd', 'innerStart', 'innerEnd']);
+}
+function parseBorderRadius$1(arc, innerRadius, outerRadius, angleDelta) {
+  const o = toRadiusCorners(arc.options.borderRadius);
+  const halfThickness = (outerRadius - innerRadius) / 2;
+  const innerLimit = Math.min(halfThickness, angleDelta * innerRadius / 2);
+  const computeOuterLimit = (val) => {
+    const outerArcLimit = (outerRadius - Math.min(halfThickness, val)) * angleDelta / 2;
+    return _limitValue(val, 0, Math.min(halfThickness, outerArcLimit));
+  };
+  return {
+    outerStart: computeOuterLimit(o.outerStart),
+    outerEnd: computeOuterLimit(o.outerEnd),
+    innerStart: _limitValue(o.innerStart, 0, innerLimit),
+    innerEnd: _limitValue(o.innerEnd, 0, innerLimit),
+  };
+}
+function rThetaToXY(r, theta, x, y) {
+  return {
+    x: x + r * Math.cos(theta),
+    y: y + r * Math.sin(theta),
+  };
+}
+function pathArc(ctx, element, offset, spacing, end) {
+  const {x, y, startAngle: start, pixelMargin, innerRadius: innerR} = element;
+  const outerRadius = Math.max(element.outerRadius + spacing + offset - pixelMargin, 0);
+  const innerRadius = innerR > 0 ? innerR + spacing + offset + pixelMargin : 0;
+  let spacingOffset = 0;
+  const alpha = end - start;
+  if (spacing) {
+    const noSpacingInnerRadius = innerR > 0 ? innerR - spacing : 0;
+    const noSpacingOuterRadius = outerRadius > 0 ? outerRadius - spacing : 0;
+    const avNogSpacingRadius = (noSpacingInnerRadius + noSpacingOuterRadius) / 2;
+    const adjustedAngle = avNogSpacingRadius !== 0 ? (alpha * avNogSpacingRadius) / (avNogSpacingRadius + spacing) : alpha;
+    spacingOffset = (alpha - adjustedAngle) / 2;
+  }
+  const beta = Math.max(0.001, alpha * outerRadius - offset / PI) / outerRadius;
+  const angleOffset = (alpha - beta) / 2;
+  const startAngle = start + angleOffset + spacingOffset;
+  const endAngle = end - angleOffset - spacingOffset;
+  const {outerStart, outerEnd, innerStart, innerEnd} = parseBorderRadius$1(element, innerRadius, outerRadius, endAngle - startAngle);
+  const outerStartAdjustedRadius = outerRadius - outerStart;
+  const outerEndAdjustedRadius = outerRadius - outerEnd;
+  const outerStartAdjustedAngle = startAngle + outerStart / outerStartAdjustedRadius;
+  const outerEndAdjustedAngle = endAngle - outerEnd / outerEndAdjustedRadius;
+  const innerStartAdjustedRadius = innerRadius + innerStart;
+  const innerEndAdjustedRadius = innerRadius + innerEnd;
+  const innerStartAdjustedAngle = startAngle + innerStart / innerStartAdjustedRadius;
+  const innerEndAdjustedAngle = endAngle - innerEnd / innerEndAdjustedRadius;
+  ctx.beginPath();
+  ctx.arc(x, y, outerRadius, outerStartAdjustedAngle, outerEndAdjustedAngle);
+  if (outerEnd > 0) {
+    const pCenter = rThetaToXY(outerEndAdjustedRadius, outerEndAdjustedAngle, x, y);
+    ctx.arc(pCenter.x, pCenter.y, outerEnd, outerEndAdjustedAngle, endAngle + HALF_PI);
+  }
+  const p4 = rThetaToXY(innerEndAdjustedRadius, endAngle, x, y);
+  ctx.lineTo(p4.x, p4.y);
+  if (innerEnd > 0) {
+    const pCenter = rThetaToXY(innerEndAdjustedRadius, innerEndAdjustedAngle, x, y);
+    ctx.arc(pCenter.x, pCenter.y, innerEnd, endAngle + HALF_PI, innerEndAdjustedAngle + Math.PI);
+  }
+  ctx.arc(x, y, innerRadius, endAngle - (innerEnd / innerRadius), startAngle + (innerStart / innerRadius), true);
+  if (innerStart > 0) {
+    const pCenter = rThetaToXY(innerStartAdjustedRadius, innerStartAdjustedAngle, x, y);
+    ctx.arc(pCenter.x, pCenter.y, innerStart, innerStartAdjustedAngle + Math.PI, startAngle - HALF_PI);
+  }
+  const p8 = rThetaToXY(outerStartAdjustedRadius, startAngle, x, y);
+  ctx.lineTo(p8.x, p8.y);
+  if (outerStart > 0) {
+    const pCenter = rThetaToXY(outerStartAdjustedRadius, outerStartAdjustedAngle, x, y);
+    ctx.arc(pCenter.x, pCenter.y, outerStart, startAngle - HALF_PI, outerStartAdjustedAngle);
+  }
+  ctx.closePath();
+}
+function drawArc(ctx, element, offset, spacing) {
+  const {fullCircles, startAngle, circumference} = element;
+  let endAngle = element.endAngle;
+  if (fullCircles) {
+    pathArc(ctx, element, offset, spacing, startAngle + TAU);
+    for (let i = 0; i < fullCircles; ++i) {
+      ctx.fill();
+    }
+    if (!isNaN(circumference)) {
+      endAngle = startAngle + circumference % TAU;
+      if (circumference % TAU === 0) {
+        endAngle += TAU;
+      }
+    }
+  }
+  pathArc(ctx, element, offset, spacing, endAngle);
+  ctx.fill();
+  return endAngle;
+}
+function drawFullCircleBorders(ctx, element, inner) {
+  const {x, y, startAngle, pixelMargin, fullCircles} = element;
+  const outerRadius = Math.max(element.outerRadius - pixelMargin, 0);
+  const innerRadius = element.innerRadius + pixelMargin;
+  let i;
+  if (inner) {
+    clipArc(ctx, element, startAngle + TAU);
+  }
+  ctx.beginPath();
+  ctx.arc(x, y, innerRadius, startAngle + TAU, startAngle, true);
+  for (i = 0; i < fullCircles; ++i) {
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  ctx.arc(x, y, outerRadius, startAngle, startAngle + TAU);
+  for (i = 0; i < fullCircles; ++i) {
+    ctx.stroke();
+  }
+}
+function drawBorder(ctx, element, offset, spacing, endAngle) {
+  const {options} = element;
+  const {borderWidth, borderJoinStyle} = options;
+  const inner = options.borderAlign === 'inner';
+  if (!borderWidth) {
+    return;
+  }
+  if (inner) {
+    ctx.lineWidth = borderWidth * 2;
+    ctx.lineJoin = borderJoinStyle || 'round';
+  } else {
+    ctx.lineWidth = borderWidth;
+    ctx.lineJoin = borderJoinStyle || 'bevel';
+  }
+  if (element.fullCircles) {
+    drawFullCircleBorders(ctx, element, inner);
+  }
+  if (inner) {
+    clipArc(ctx, element, endAngle);
+  }
+  pathArc(ctx, element, offset, spacing, endAngle);
+  ctx.stroke();
+}
+class ArcElement extends Element {
+  constructor(cfg) {
+    super();
+    this.options = undefined;
+    this.circumference = undefined;
+    this.startAngle = undefined;
+    this.endAngle = undefined;
+    this.innerRadius = undefined;
+    this.outerRadius = undefined;
+    this.pixelMargin = 0;
+    this.fullCircles = 0;
+    if (cfg) {
+      Object.assign(this, cfg);
+    }
+  }
+  inRange(chartX, chartY, useFinalPosition) {
+    const point = this.getProps(['x', 'y'], useFinalPosition);
+    const {angle, distance} = getAngleFromPoint(point, {x: chartX, y: chartY});
+    const {startAngle, endAngle, innerRadius, outerRadius, circumference} = this.getProps([
+      'startAngle',
+      'endAngle',
+      'innerRadius',
+      'outerRadius',
+      'circumference'
+    ], useFinalPosition);
+    const rAdjust = this.options.spacing / 2;
+    const _circumference = valueOrDefault(circumference, endAngle - startAngle);
+    const betweenAngles = _circumference >= TAU || _angleBetween(angle, startAngle, endAngle);
+    const withinRadius = _isBetween(distance, innerRadius + rAdjust, outerRadius + rAdjust);
+    return (betweenAngles && withinRadius);
+  }
+  getCenterPoint(useFinalPosition) {
+    const {x, y, startAngle, endAngle, innerRadius, outerRadius} = this.getProps([
+      'x',
+      'y',
+      'startAngle',
+      'endAngle',
+      'innerRadius',
+      'outerRadius',
+      'circumference',
+    ], useFinalPosition);
+    const {offset, spacing} = this.options;
+    const halfAngle = (startAngle + endAngle) / 2;
+    const halfRadius = (innerRadius + outerRadius + spacing + offset) / 2;
+    return {
+      x: x + Math.cos(halfAngle) * halfRadius,
+      y: y + Math.sin(halfAngle) * halfRadius
+    };
+  }
+  tooltipPosition(useFinalPosition) {
+    return this.getCenterPoint(useFinalPosition);
+  }
+  draw(ctx) {
+    const {options, circumference} = this;
+    const offset = (options.offset || 0) / 2;
+    const spacing = (options.spacing || 0) / 2;
+    this.pixelMargin = (options.borderAlign === 'inner') ? 0.33 : 0;
+    this.fullCircles = circumference > TAU ? Math.floor(circumference / TAU) : 0;
+    if (circumference === 0 || this.innerRadius < 0 || this.outerRadius < 0) {
+      return;
+    }
+    ctx.save();
+    let radiusOffset = 0;
+    if (offset) {
+      radiusOffset = offset / 2;
+      const halfAngle = (this.startAngle + this.endAngle) / 2;
+      ctx.translate(Math.cos(halfAngle) * radiusOffset, Math.sin(halfAngle) * radiusOffset);
+      if (this.circumference >= PI) {
+        radiusOffset = offset;
+      }
+    }
+    ctx.fillStyle = options.backgroundColor;
+    ctx.strokeStyle = options.borderColor;
+    const endAngle = drawArc(ctx, this, radiusOffset, spacing);
+    drawBorder(ctx, this, radiusOffset, spacing, endAngle);
+    ctx.restore();
+  }
+}
+ArcElement.id = 'arc';
+ArcElement.defaults = {
+  borderAlign: 'center',
+  borderColor: '#fff',
+  borderJoinStyle: undefined,
+  borderRadius: 0,
+  borderWidth: 2,
+  offset: 0,
+  spacing: 0,
+  angle: undefined,
+};
+ArcElement.defaultRoutes = {
+  backgroundColor: 'backgroundColor'
+};
+
+function setStyle(ctx, options, style = options) {
+  ctx.lineCap = valueOrDefault(style.borderCapStyle, options.borderCapStyle);
+  ctx.setLineDash(valueOrDefault(style.borderDash, options.borderDash));
+  ctx.lineDashOffset = valueOrDefault(style.borderDashOffset, options.borderDashOffset);
+  ctx.lineJoin = valueOrDefault(style.borderJoinStyle, options.borderJoinStyle);
+  ctx.lineWidth = valueOrDefault(style.borderWidth, options.borderWidth);
+  ctx.strokeStyle = valueOrDefault(style.borderColor, options.borderColor);
+}
+function lineTo(ctx, previous, target) {
+  ctx.lineTo(target.x, target.y);
+}
+function getLineMethod(options) {
+  if (options.stepped) {
+    return _steppedLineTo;
+  }
+  if (options.tension || options.cubicInterpolationMode === 'monotone') {
+    return _bezierCurveTo;
+  }
+  return lineTo;
+}
+function pathVars(points, segment, params = {}) {
+  const count = points.length;
+  const {start: paramsStart = 0, end: paramsEnd = count - 1} = params;
+  const {start: segmentStart, end: segmentEnd} = segment;
+  const start = Math.max(paramsStart, segmentStart);
+  const end = Math.min(paramsEnd, segmentEnd);
+  const outside = paramsStart < segmentStart && paramsEnd < segmentStart || paramsStart > segmentEnd && paramsEnd > segmentEnd;
+  return {
+    count,
+    start,
+    loop: segment.loop,
+    ilen: end < start && !outside ? count + end - start : end - start
+  };
+}
+function pathSegment(ctx, line, segment, params) {
+  const {points, options} = line;
+  const {count, start, loop, ilen} = pathVars(points, segment, params);
+  const lineMethod = getLineMethod(options);
+  let {move = true, reverse} = params || {};
+  let i, point, prev;
+  for (i = 0; i <= ilen; ++i) {
+    point = points[(start + (reverse ? ilen - i : i)) % count];
+    if (point.skip) {
+      continue;
+    } else if (move) {
+      ctx.moveTo(point.x, point.y);
+      move = false;
+    } else {
+      lineMethod(ctx, prev, point, reverse, options.stepped);
+    }
+    prev = point;
+  }
+  if (loop) {
+    point = points[(start + (reverse ? ilen : 0)) % count];
+    lineMethod(ctx, prev, point, reverse, options.stepped);
+  }
+  return !!loop;
+}
+function fastPathSegment(ctx, line, segment, params) {
+  const points = line.points;
+  const {count, start, ilen} = pathVars(points, segment, params);
+  const {move = true, reverse} = params || {};
+  let avgX = 0;
+  let countX = 0;
+  let i, point, prevX, minY, maxY, lastY;
+  const pointIndex = (index) => (start + (reverse ? ilen - index : index)) % count;
+  const drawX = () => {
+    if (minY !== maxY) {
+      ctx.lineTo(avgX, maxY);
+      ctx.lineTo(avgX, minY);
+      ctx.lineTo(avgX, lastY);
+    }
+  };
+  if (move) {
+    point = points[pointIndex(0)];
+    ctx.moveTo(point.x, point.y);
+  }
+  for (i = 0; i <= ilen; ++i) {
+    point = points[pointIndex(i)];
+    if (point.skip) {
+      continue;
+    }
+    const x = point.x;
+    const y = point.y;
+    const truncX = x | 0;
+    if (truncX === prevX) {
+      if (y < minY) {
+        minY = y;
+      } else if (y > maxY) {
+        maxY = y;
+      }
+      avgX = (countX * avgX + x) / ++countX;
+    } else {
+      drawX();
+      ctx.lineTo(x, y);
+      prevX = truncX;
+      countX = 0;
+      minY = maxY = y;
+    }
+    lastY = y;
+  }
+  drawX();
+}
+function _getSegmentMethod(line) {
+  const opts = line.options;
+  const borderDash = opts.borderDash && opts.borderDash.length;
+  const useFastPath = !line._decimated && !line._loop && !opts.tension && opts.cubicInterpolationMode !== 'monotone' && !opts.stepped && !borderDash;
+  return useFastPath ? fastPathSegment : pathSegment;
+}
+function _getInterpolationMethod(options) {
+  if (options.stepped) {
+    return _steppedInterpolation;
+  }
+  if (options.tension || options.cubicInterpolationMode === 'monotone') {
+    return _bezierInterpolation;
+  }
+  return _pointInLine;
+}
+function strokePathWithCache(ctx, line, start, count) {
+  let path = line._path;
+  if (!path) {
+    path = line._path = new Path2D();
+    if (line.path(path, start, count)) {
+      path.closePath();
+    }
+  }
+  setStyle(ctx, line.options);
+  ctx.stroke(path);
+}
+function strokePathDirect(ctx, line, start, count) {
+  const {segments, options} = line;
+  const segmentMethod = _getSegmentMethod(line);
+  for (const segment of segments) {
+    setStyle(ctx, options, segment.style);
+    ctx.beginPath();
+    if (segmentMethod(ctx, line, segment, {start, end: start + count - 1})) {
+      ctx.closePath();
+    }
+    ctx.stroke();
+  }
+}
+const usePath2D = typeof Path2D === 'function';
+function draw(ctx, line, start, count) {
+  if (usePath2D && !line.options.segment) {
+    strokePathWithCache(ctx, line, start, count);
+  } else {
+    strokePathDirect(ctx, line, start, count);
+  }
+}
+class LineElement extends Element {
+  constructor(cfg) {
+    super();
+    this.animated = true;
+    this.options = undefined;
+    this._chart = undefined;
+    this._loop = undefined;
+    this._fullLoop = undefined;
+    this._path = undefined;
+    this._points = undefined;
+    this._segments = undefined;
+    this._decimated = false;
+    this._pointsUpdated = false;
+    this._datasetIndex = undefined;
+    if (cfg) {
+      Object.assign(this, cfg);
+    }
+  }
+  updateControlPoints(chartArea, indexAxis) {
+    const options = this.options;
+    if ((options.tension || options.cubicInterpolationMode === 'monotone') && !options.stepped && !this._pointsUpdated) {
+      const loop = options.spanGaps ? this._loop : this._fullLoop;
+      _updateBezierControlPoints(this._points, options, chartArea, loop, indexAxis);
+      this._pointsUpdated = true;
+    }
+  }
+  set points(points) {
+    this._points = points;
+    delete this._segments;
+    delete this._path;
+    this._pointsUpdated = false;
+  }
+  get points() {
+    return this._points;
+  }
+  get segments() {
+    return this._segments || (this._segments = _computeSegments(this, this.options.segment));
+  }
+  first() {
+    const segments = this.segments;
+    const points = this.points;
+    return segments.length && points[segments[0].start];
+  }
+  last() {
+    const segments = this.segments;
+    const points = this.points;
+    const count = segments.length;
+    return count && points[segments[count - 1].end];
+  }
+  interpolate(point, property) {
+    const options = this.options;
+    const value = point[property];
+    const points = this.points;
+    const segments = _boundSegments(this, {property, start: value, end: value});
+    if (!segments.length) {
+      return;
+    }
+    const result = [];
+    const _interpolate = _getInterpolationMethod(options);
+    let i, ilen;
+    for (i = 0, ilen = segments.length; i < ilen; ++i) {
+      const {start, end} = segments[i];
+      const p1 = points[start];
+      const p2 = points[end];
+      if (p1 === p2) {
+        result.push(p1);
+        continue;
+      }
+      const t = Math.abs((value - p1[property]) / (p2[property] - p1[property]));
+      const interpolated = _interpolate(p1, p2, t, options.stepped);
+      interpolated[property] = point[property];
+      result.push(interpolated);
+    }
+    return result.length === 1 ? result[0] : result;
+  }
+  pathSegment(ctx, segment, params) {
+    const segmentMethod = _getSegmentMethod(this);
+    return segmentMethod(ctx, this, segment, params);
+  }
+  path(ctx, start, count) {
+    const segments = this.segments;
+    const segmentMethod = _getSegmentMethod(this);
+    let loop = this._loop;
+    start = start || 0;
+    count = count || (this.points.length - start);
+    for (const segment of segments) {
+      loop &= segmentMethod(ctx, this, segment, {start, end: start + count - 1});
+    }
+    return !!loop;
+  }
+  draw(ctx, chartArea, start, count) {
+    const options = this.options || {};
+    const points = this.points || [];
+    if (points.length && options.borderWidth) {
+      ctx.save();
+      draw(ctx, this, start, count);
+      ctx.restore();
+    }
+    if (this.animated) {
+      this._pointsUpdated = false;
+      this._path = undefined;
+    }
+  }
+}
+LineElement.id = 'line';
+LineElement.defaults = {
+  borderCapStyle: 'butt',
+  borderDash: [],
+  borderDashOffset: 0,
+  borderJoinStyle: 'miter',
+  borderWidth: 3,
+  capBezierPoints: true,
+  cubicInterpolationMode: 'default',
+  fill: false,
+  spanGaps: false,
+  stepped: false,
+  tension: 0,
+};
+LineElement.defaultRoutes = {
+  backgroundColor: 'backgroundColor',
+  borderColor: 'borderColor'
+};
+LineElement.descriptors = {
+  _scriptable: true,
+  _indexable: (name) => name !== 'borderDash' && name !== 'fill',
+};
+
+function inRange$1(el, pos, axis, useFinalPosition) {
+  const options = el.options;
+  const {[axis]: value} = el.getProps([axis], useFinalPosition);
+  return (Math.abs(pos - value) < options.radius + options.hitRadius);
+}
+class PointElement extends Element {
+  constructor(cfg) {
+    super();
+    this.options = undefined;
+    this.parsed = undefined;
+    this.skip = undefined;
+    this.stop = undefined;
+    if (cfg) {
+      Object.assign(this, cfg);
+    }
+  }
+  inRange(mouseX, mouseY, useFinalPosition) {
+    const options = this.options;
+    const {x, y} = this.getProps(['x', 'y'], useFinalPosition);
+    return ((Math.pow(mouseX - x, 2) + Math.pow(mouseY - y, 2)) < Math.pow(options.hitRadius + options.radius, 2));
+  }
+  inXRange(mouseX, useFinalPosition) {
+    return inRange$1(this, mouseX, 'x', useFinalPosition);
+  }
+  inYRange(mouseY, useFinalPosition) {
+    return inRange$1(this, mouseY, 'y', useFinalPosition);
+  }
+  getCenterPoint(useFinalPosition) {
+    const {x, y} = this.getProps(['x', 'y'], useFinalPosition);
+    return {x, y};
+  }
+  size(options) {
+    options = options || this.options || {};
+    let radius = options.radius || 0;
+    radius = Math.max(radius, radius && options.hoverRadius || 0);
+    const borderWidth = radius && options.borderWidth || 0;
+    return (radius + borderWidth) * 2;
+  }
+  draw(ctx, area) {
+    const options = this.options;
+    if (this.skip || options.radius < 0.1 || !_isPointInArea(this, area, this.size(options) / 2)) {
+      return;
+    }
+    ctx.strokeStyle = options.borderColor;
+    ctx.lineWidth = options.borderWidth;
+    ctx.fillStyle = options.backgroundColor;
+    drawPoint(ctx, options, this.x, this.y);
+  }
+  getRange() {
+    const options = this.options || {};
+    return options.radius + options.hitRadius;
+  }
+}
+PointElement.id = 'point';
+PointElement.defaults = {
+  borderWidth: 1,
+  hitRadius: 1,
+  hoverBorderWidth: 1,
+  hoverRadius: 4,
+  pointStyle: 'circle',
+  radius: 3,
+  rotation: 0
+};
+PointElement.defaultRoutes = {
+  backgroundColor: 'backgroundColor',
+  borderColor: 'borderColor'
+};
+
+function getBarBounds(bar, useFinalPosition) {
+  const {x, y, base, width, height} = bar.getProps(['x', 'y', 'base', 'width', 'height'], useFinalPosition);
+  let left, right, top, bottom, half;
+  if (bar.horizontal) {
+    half = height / 2;
+    left = Math.min(x, base);
+    right = Math.max(x, base);
+    top = y - half;
+    bottom = y + half;
+  } else {
+    half = width / 2;
+    left = x - half;
+    right = x + half;
+    top = Math.min(y, base);
+    bottom = Math.max(y, base);
+  }
+  return {left, top, right, bottom};
+}
+function skipOrLimit(skip, value, min, max) {
+  return skip ? 0 : _limitValue(value, min, max);
+}
+function parseBorderWidth(bar, maxW, maxH) {
+  const value = bar.options.borderWidth;
+  const skip = bar.borderSkipped;
+  const o = toTRBL(value);
+  return {
+    t: skipOrLimit(skip.top, o.top, 0, maxH),
+    r: skipOrLimit(skip.right, o.right, 0, maxW),
+    b: skipOrLimit(skip.bottom, o.bottom, 0, maxH),
+    l: skipOrLimit(skip.left, o.left, 0, maxW)
+  };
+}
+function parseBorderRadius(bar, maxW, maxH) {
+  const {enableBorderRadius} = bar.getProps(['enableBorderRadius']);
+  const value = bar.options.borderRadius;
+  const o = toTRBLCorners(value);
+  const maxR = Math.min(maxW, maxH);
+  const skip = bar.borderSkipped;
+  const enableBorder = enableBorderRadius || isObject(value);
+  return {
+    topLeft: skipOrLimit(!enableBorder || skip.top || skip.left, o.topLeft, 0, maxR),
+    topRight: skipOrLimit(!enableBorder || skip.top || skip.right, o.topRight, 0, maxR),
+    bottomLeft: skipOrLimit(!enableBorder || skip.bottom || skip.left, o.bottomLeft, 0, maxR),
+    bottomRight: skipOrLimit(!enableBorder || skip.bottom || skip.right, o.bottomRight, 0, maxR)
+  };
+}
+function boundingRects(bar) {
+  const bounds = getBarBounds(bar);
+  const width = bounds.right - bounds.left;
+  const height = bounds.bottom - bounds.top;
+  const border = parseBorderWidth(bar, width / 2, height / 2);
+  const radius = parseBorderRadius(bar, width / 2, height / 2);
+  return {
+    outer: {
+      x: bounds.left,
+      y: bounds.top,
+      w: width,
+      h: height,
+      radius
+    },
+    inner: {
+      x: bounds.left + border.l,
+      y: bounds.top + border.t,
+      w: width - border.l - border.r,
+      h: height - border.t - border.b,
+      radius: {
+        topLeft: Math.max(0, radius.topLeft - Math.max(border.t, border.l)),
+        topRight: Math.max(0, radius.topRight - Math.max(border.t, border.r)),
+        bottomLeft: Math.max(0, radius.bottomLeft - Math.max(border.b, border.l)),
+        bottomRight: Math.max(0, radius.bottomRight - Math.max(border.b, border.r)),
+      }
+    }
+  };
+}
+function inRange(bar, x, y, useFinalPosition) {
+  const skipX = x === null;
+  const skipY = y === null;
+  const skipBoth = skipX && skipY;
+  const bounds = bar && !skipBoth && getBarBounds(bar, useFinalPosition);
+  return bounds
+		&& (skipX || _isBetween(x, bounds.left, bounds.right))
+		&& (skipY || _isBetween(y, bounds.top, bounds.bottom));
+}
+function hasRadius(radius) {
+  return radius.topLeft || radius.topRight || radius.bottomLeft || radius.bottomRight;
+}
+function addNormalRectPath(ctx, rect) {
+  ctx.rect(rect.x, rect.y, rect.w, rect.h);
+}
+function inflateRect(rect, amount, refRect = {}) {
+  const x = rect.x !== refRect.x ? -amount : 0;
+  const y = rect.y !== refRect.y ? -amount : 0;
+  const w = (rect.x + rect.w !== refRect.x + refRect.w ? amount : 0) - x;
+  const h = (rect.y + rect.h !== refRect.y + refRect.h ? amount : 0) - y;
+  return {
+    x: rect.x + x,
+    y: rect.y + y,
+    w: rect.w + w,
+    h: rect.h + h,
+    radius: rect.radius
+  };
+}
+class BarElement extends Element {
+  constructor(cfg) {
+    super();
+    this.options = undefined;
+    this.horizontal = undefined;
+    this.base = undefined;
+    this.width = undefined;
+    this.height = undefined;
+    this.inflateAmount = undefined;
+    if (cfg) {
+      Object.assign(this, cfg);
+    }
+  }
+  draw(ctx) {
+    const {inflateAmount, options: {borderColor, backgroundColor}} = this;
+    const {inner, outer} = boundingRects(this);
+    const addRectPath = hasRadius(outer.radius) ? addRoundedRectPath : addNormalRectPath;
+    ctx.save();
+    if (outer.w !== inner.w || outer.h !== inner.h) {
+      ctx.beginPath();
+      addRectPath(ctx, inflateRect(outer, inflateAmount, inner));
+      ctx.clip();
+      addRectPath(ctx, inflateRect(inner, -inflateAmount, outer));
+      ctx.fillStyle = borderColor;
+      ctx.fill('evenodd');
+    }
+    ctx.beginPath();
+    addRectPath(ctx, inflateRect(inner, inflateAmount));
+    ctx.fillStyle = backgroundColor;
+    ctx.fill();
+    ctx.restore();
+  }
+  inRange(mouseX, mouseY, useFinalPosition) {
+    return inRange(this, mouseX, mouseY, useFinalPosition);
+  }
+  inXRange(mouseX, useFinalPosition) {
+    return inRange(this, mouseX, null, useFinalPosition);
+  }
+  inYRange(mouseY, useFinalPosition) {
+    return inRange(this, null, mouseY, useFinalPosition);
+  }
+  getCenterPoint(useFinalPosition) {
+    const {x, y, base, horizontal} = this.getProps(['x', 'y', 'base', 'horizontal'], useFinalPosition);
+    return {
+      x: horizontal ? (x + base) / 2 : x,
+      y: horizontal ? y : (y + base) / 2
+    };
+  }
+  getRange(axis) {
+    return axis === 'x' ? this.width / 2 : this.height / 2;
+  }
+}
+BarElement.id = 'bar';
+BarElement.defaults = {
+  borderSkipped: 'start',
+  borderWidth: 0,
+  borderRadius: 0,
+  inflateAmount: 'auto',
+  pointStyle: undefined
+};
+BarElement.defaultRoutes = {
+  backgroundColor: 'backgroundColor',
+  borderColor: 'borderColor'
+};
+
+var elements = /*#__PURE__*/Object.freeze({
+__proto__: null,
+ArcElement: ArcElement,
+LineElement: LineElement,
+PointElement: PointElement,
+BarElement: BarElement
+});
+
+function lttbDecimation(data, start, count, availableWidth, options) {
+  const samples = options.samples || availableWidth;
+  if (samples >= count) {
+    return data.slice(start, start + count);
+  }
+  const decimated = [];
+  const bucketWidth = (count - 2) / (samples - 2);
+  let sampledIndex = 0;
+  const endIndex = start + count - 1;
+  let a = start;
+  let i, maxAreaPoint, maxArea, area, nextA;
+  decimated[sampledIndex++] = data[a];
+  for (i = 0; i < samples - 2; i++) {
+    let avgX = 0;
+    let avgY = 0;
+    let j;
+    const avgRangeStart = Math.floor((i + 1) * bucketWidth) + 1 + start;
+    const avgRangeEnd = Math.min(Math.floor((i + 2) * bucketWidth) + 1, count) + start;
+    const avgRangeLength = avgRangeEnd - avgRangeStart;
+    for (j = avgRangeStart; j < avgRangeEnd; j++) {
+      avgX += data[j].x;
+      avgY += data[j].y;
+    }
+    avgX /= avgRangeLength;
+    avgY /= avgRangeLength;
+    const rangeOffs = Math.floor(i * bucketWidth) + 1 + start;
+    const rangeTo = Math.min(Math.floor((i + 1) * bucketWidth) + 1, count) + start;
+    const {x: pointAx, y: pointAy} = data[a];
+    maxArea = area = -1;
+    for (j = rangeOffs; j < rangeTo; j++) {
+      area = 0.5 * Math.abs(
+        (pointAx - avgX) * (data[j].y - pointAy) -
+        (pointAx - data[j].x) * (avgY - pointAy)
+      );
+      if (area > maxArea) {
+        maxArea = area;
+        maxAreaPoint = data[j];
+        nextA = j;
+      }
+    }
+    decimated[sampledIndex++] = maxAreaPoint;
+    a = nextA;
+  }
+  decimated[sampledIndex++] = data[endIndex];
+  return decimated;
+}
+function minMaxDecimation(data, start, count, availableWidth) {
+  let avgX = 0;
+  let countX = 0;
+  let i, point, x, y, prevX, minIndex, maxIndex, startIndex, minY, maxY;
+  const decimated = [];
+  const endIndex = start + count - 1;
+  const xMin = data[start].x;
+  const xMax = data[endIndex].x;
+  const dx = xMax - xMin;
+  for (i = start; i < start + count; ++i) {
+    point = data[i];
+    x = (point.x - xMin) / dx * availableWidth;
+    y = point.y;
+    const truncX = x | 0;
+    if (truncX === prevX) {
+      if (y < minY) {
+        minY = y;
+        minIndex = i;
+      } else if (y > maxY) {
+        maxY = y;
+        maxIndex = i;
+      }
+      avgX = (countX * avgX + point.x) / ++countX;
+    } else {
+      const lastIndex = i - 1;
+      if (!isNullOrUndef(minIndex) && !isNullOrUndef(maxIndex)) {
+        const intermediateIndex1 = Math.min(minIndex, maxIndex);
+        const intermediateIndex2 = Math.max(minIndex, maxIndex);
+        if (intermediateIndex1 !== startIndex && intermediateIndex1 !== lastIndex) {
+          decimated.push({
+            ...data[intermediateIndex1],
+            x: avgX,
+          });
+        }
+        if (intermediateIndex2 !== startIndex && intermediateIndex2 !== lastIndex) {
+          decimated.push({
+            ...data[intermediateIndex2],
+            x: avgX
+          });
+        }
+      }
+      if (i > 0 && lastIndex !== startIndex) {
+        decimated.push(data[lastIndex]);
+      }
+      decimated.push(point);
+      prevX = truncX;
+      countX = 0;
+      minY = maxY = y;
+      minIndex = maxIndex = startIndex = i;
+    }
+  }
+  return decimated;
+}
+function cleanDecimatedDataset(dataset) {
+  if (dataset._decimated) {
+    const data = dataset._data;
+    delete dataset._decimated;
+    delete dataset._data;
+    Object.defineProperty(dataset, 'data', {value: data});
+  }
+}
+function cleanDecimatedData(chart) {
+  chart.data.datasets.forEach((dataset) => {
+    cleanDecimatedDataset(dataset);
+  });
+}
+function getStartAndCountOfVisiblePointsSimplified(meta, points) {
+  const pointCount = points.length;
+  let start = 0;
+  let count;
+  const {iScale} = meta;
+  const {min, max, minDefined, maxDefined} = iScale.getUserBounds();
+  if (minDefined) {
+    start = _limitValue(_lookupByKey(points, iScale.axis, min).lo, 0, pointCount - 1);
+  }
+  if (maxDefined) {
+    count = _limitValue(_lookupByKey(points, iScale.axis, max).hi + 1, start, pointCount) - start;
+  } else {
+    count = pointCount - start;
+  }
+  return {start, count};
+}
+var plugin_decimation = {
+  id: 'decimation',
+  defaults: {
+    algorithm: 'min-max',
+    enabled: false,
+  },
+  beforeElementsUpdate: (chart, args, options) => {
+    if (!options.enabled) {
+      cleanDecimatedData(chart);
+      return;
+    }
+    const availableWidth = chart.width;
+    chart.data.datasets.forEach((dataset, datasetIndex) => {
+      const {_data, indexAxis} = dataset;
+      const meta = chart.getDatasetMeta(datasetIndex);
+      const data = _data || dataset.data;
+      if (resolve([indexAxis, chart.options.indexAxis]) === 'y') {
+        return;
+      }
+      if (meta.type !== 'line') {
+        return;
+      }
+      const xAxis = chart.scales[meta.xAxisID];
+      if (xAxis.type !== 'linear' && xAxis.type !== 'time') {
+        return;
+      }
+      if (chart.options.parsing) {
+        return;
+      }
+      let {start, count} = getStartAndCountOfVisiblePointsSimplified(meta, data);
+      const threshold = options.threshold || 4 * availableWidth;
+      if (count <= threshold) {
+        cleanDecimatedDataset(dataset);
+        return;
+      }
+      if (isNullOrUndef(_data)) {
+        dataset._data = data;
+        delete dataset.data;
+        Object.defineProperty(dataset, 'data', {
+          configurable: true,
+          enumerable: true,
+          get: function() {
+            return this._decimated;
+          },
+          set: function(d) {
+            this._data = d;
+          }
+        });
+      }
+      let decimated;
+      switch (options.algorithm) {
+      case 'lttb':
+        decimated = lttbDecimation(data, start, count, availableWidth, options);
+        break;
+      case 'min-max':
+        decimated = minMaxDecimation(data, start, count, availableWidth);
+        break;
+      default:
+        throw new Error(`Unsupported decimation algorithm '${options.algorithm}'`);
+      }
+      dataset._decimated = decimated;
+    });
+  },
+  destroy(chart) {
+    cleanDecimatedData(chart);
+  }
+};
+
+function getLineByIndex(chart, index) {
+  const meta = chart.getDatasetMeta(index);
+  const visible = meta && chart.isDatasetVisible(index);
+  return visible ? meta.dataset : null;
+}
+function parseFillOption(line) {
+  const options = line.options;
+  const fillOption = options.fill;
+  let fill = valueOrDefault(fillOption && fillOption.target, fillOption);
+  if (fill === undefined) {
+    fill = !!options.backgroundColor;
+  }
+  if (fill === false || fill === null) {
+    return false;
+  }
+  if (fill === true) {
+    return 'origin';
+  }
+  return fill;
+}
+function decodeFill(line, index, count) {
+  const fill = parseFillOption(line);
+  if (isObject(fill)) {
+    return isNaN(fill.value) ? false : fill;
+  }
+  let target = parseFloat(fill);
+  if (isNumberFinite(target) && Math.floor(target) === target) {
+    if (fill[0] === '-' || fill[0] === '+') {
+      target = index + target;
+    }
+    if (target === index || target < 0 || target >= count) {
+      return false;
+    }
+    return target;
+  }
+  return ['origin', 'start', 'end', 'stack', 'shape'].indexOf(fill) >= 0 && fill;
+}
+function computeLinearBoundary(source) {
+  const {scale = {}, fill} = source;
+  let target = null;
+  let horizontal;
+  if (fill === 'start') {
+    target = scale.bottom;
+  } else if (fill === 'end') {
+    target = scale.top;
+  } else if (isObject(fill)) {
+    target = scale.getPixelForValue(fill.value);
+  } else if (scale.getBasePixel) {
+    target = scale.getBasePixel();
+  }
+  if (isNumberFinite(target)) {
+    horizontal = scale.isHorizontal();
+    return {
+      x: horizontal ? target : null,
+      y: horizontal ? null : target
+    };
+  }
+  return null;
+}
+class simpleArc {
+  constructor(opts) {
+    this.x = opts.x;
+    this.y = opts.y;
+    this.radius = opts.radius;
+  }
+  pathSegment(ctx, bounds, opts) {
+    const {x, y, radius} = this;
+    bounds = bounds || {start: 0, end: TAU};
+    ctx.arc(x, y, radius, bounds.end, bounds.start, true);
+    return !opts.bounds;
+  }
+  interpolate(point) {
+    const {x, y, radius} = this;
+    const angle = point.angle;
+    return {
+      x: x + Math.cos(angle) * radius,
+      y: y + Math.sin(angle) * radius,
+      angle
+    };
+  }
+}
+function computeCircularBoundary(source) {
+  const {scale, fill} = source;
+  const options = scale.options;
+  const length = scale.getLabels().length;
+  const target = [];
+  const start = options.reverse ? scale.max : scale.min;
+  const end = options.reverse ? scale.min : scale.max;
+  let i, center, value;
+  if (fill === 'start') {
+    value = start;
+  } else if (fill === 'end') {
+    value = end;
+  } else if (isObject(fill)) {
+    value = fill.value;
+  } else {
+    value = scale.getBaseValue();
+  }
+  if (options.grid.circular) {
+    center = scale.getPointPositionForValue(0, start);
+    return new simpleArc({
+      x: center.x,
+      y: center.y,
+      radius: scale.getDistanceFromCenterForValue(value)
+    });
+  }
+  for (i = 0; i < length; ++i) {
+    target.push(scale.getPointPositionForValue(i, value));
+  }
+  return target;
+}
+function computeBoundary(source) {
+  const scale = source.scale || {};
+  if (scale.getPointPositionForValue) {
+    return computeCircularBoundary(source);
+  }
+  return computeLinearBoundary(source);
+}
+function findSegmentEnd(start, end, points) {
+  for (;end > start; end--) {
+    const point = points[end];
+    if (!isNaN(point.x) && !isNaN(point.y)) {
+      break;
+    }
+  }
+  return end;
+}
+function pointsFromSegments(boundary, line) {
+  const {x = null, y = null} = boundary || {};
+  const linePoints = line.points;
+  const points = [];
+  line.segments.forEach(({start, end}) => {
+    end = findSegmentEnd(start, end, linePoints);
+    const first = linePoints[start];
+    const last = linePoints[end];
+    if (y !== null) {
+      points.push({x: first.x, y});
+      points.push({x: last.x, y});
+    } else if (x !== null) {
+      points.push({x, y: first.y});
+      points.push({x, y: last.y});
+    }
+  });
+  return points;
+}
+function buildStackLine(source) {
+  const {scale, index, line} = source;
+  const points = [];
+  const segments = line.segments;
+  const sourcePoints = line.points;
+  const linesBelow = getLinesBelow(scale, index);
+  linesBelow.push(createBoundaryLine({x: null, y: scale.bottom}, line));
+  for (let i = 0; i < segments.length; i++) {
+    const segment = segments[i];
+    for (let j = segment.start; j <= segment.end; j++) {
+      addPointsBelow(points, sourcePoints[j], linesBelow);
+    }
+  }
+  return new LineElement({points, options: {}});
+}
+function getLinesBelow(scale, index) {
+  const below = [];
+  const metas = scale.getMatchingVisibleMetas('line');
+  for (let i = 0; i < metas.length; i++) {
+    const meta = metas[i];
+    if (meta.index === index) {
+      break;
+    }
+    if (!meta.hidden) {
+      below.unshift(meta.dataset);
+    }
+  }
+  return below;
+}
+function addPointsBelow(points, sourcePoint, linesBelow) {
+  const postponed = [];
+  for (let j = 0; j < linesBelow.length; j++) {
+    const line = linesBelow[j];
+    const {first, last, point} = findPoint(line, sourcePoint, 'x');
+    if (!point || (first && last)) {
+      continue;
+    }
+    if (first) {
+      postponed.unshift(point);
+    } else {
+      points.push(point);
+      if (!last) {
+        break;
+      }
+    }
+  }
+  points.push(...postponed);
+}
+function findPoint(line, sourcePoint, property) {
+  const point = line.interpolate(sourcePoint, property);
+  if (!point) {
+    return {};
+  }
+  const pointValue = point[property];
+  const segments = line.segments;
+  const linePoints = line.points;
+  let first = false;
+  let last = false;
+  for (let i = 0; i < segments.length; i++) {
+    const segment = segments[i];
+    const firstValue = linePoints[segment.start][property];
+    const lastValue = linePoints[segment.end][property];
+    if (_isBetween(pointValue, firstValue, lastValue)) {
+      first = pointValue === firstValue;
+      last = pointValue === lastValue;
+      break;
+    }
+  }
+  return {first, last, point};
+}
+function getTarget(source) {
+  const {chart, fill, line} = source;
+  if (isNumberFinite(fill)) {
+    return getLineByIndex(chart, fill);
+  }
+  if (fill === 'stack') {
+    return buildStackLine(source);
+  }
+  if (fill === 'shape') {
+    return true;
+  }
+  const boundary = computeBoundary(source);
+  if (boundary instanceof simpleArc) {
+    return boundary;
+  }
+  return createBoundaryLine(boundary, line);
+}
+function createBoundaryLine(boundary, line) {
+  let points = [];
+  let _loop = false;
+  if (isArray(boundary)) {
+    _loop = true;
+    points = boundary;
+  } else {
+    points = pointsFromSegments(boundary, line);
+  }
+  return points.length ? new LineElement({
+    points,
+    options: {tension: 0},
+    _loop,
+    _fullLoop: _loop
+  }) : null;
+}
+function resolveTarget(sources, index, propagate) {
+  const source = sources[index];
+  let fill = source.fill;
+  const visited = [index];
+  let target;
+  if (!propagate) {
+    return fill;
+  }
+  while (fill !== false && visited.indexOf(fill) === -1) {
+    if (!isNumberFinite(fill)) {
+      return fill;
+    }
+    target = sources[fill];
+    if (!target) {
+      return false;
+    }
+    if (target.visible) {
+      return fill;
+    }
+    visited.push(fill);
+    fill = target.fill;
+  }
+  return false;
+}
+function _clip(ctx, target, clipY) {
+  const {segments, points} = target;
+  let first = true;
+  let lineLoop = false;
+  ctx.beginPath();
+  for (const segment of segments) {
+    const {start, end} = segment;
+    const firstPoint = points[start];
+    const lastPoint = points[findSegmentEnd(start, end, points)];
+    if (first) {
+      ctx.moveTo(firstPoint.x, firstPoint.y);
+      first = false;
+    } else {
+      ctx.lineTo(firstPoint.x, clipY);
+      ctx.lineTo(firstPoint.x, firstPoint.y);
+    }
+    lineLoop = !!target.pathSegment(ctx, segment, {move: lineLoop});
+    if (lineLoop) {
+      ctx.closePath();
+    } else {
+      ctx.lineTo(lastPoint.x, clipY);
+    }
+  }
+  ctx.lineTo(target.first().x, clipY);
+  ctx.closePath();
+  ctx.clip();
+}
+function getBounds(property, first, last, loop) {
+  if (loop) {
+    return;
+  }
+  let start = first[property];
+  let end = last[property];
+  if (property === 'angle') {
+    start = _normalizeAngle(start);
+    end = _normalizeAngle(end);
+  }
+  return {property, start, end};
+}
+function _getEdge(a, b, prop, fn) {
+  if (a && b) {
+    return fn(a[prop], b[prop]);
+  }
+  return a ? a[prop] : b ? b[prop] : 0;
+}
+function _segments(line, target, property) {
+  const segments = line.segments;
+  const points = line.points;
+  const tpoints = target.points;
+  const parts = [];
+  for (const segment of segments) {
+    let {start, end} = segment;
+    end = findSegmentEnd(start, end, points);
+    const bounds = getBounds(property, points[start], points[end], segment.loop);
+    if (!target.segments) {
+      parts.push({
+        source: segment,
+        target: bounds,
+        start: points[start],
+        end: points[end]
+      });
+      continue;
+    }
+    const targetSegments = _boundSegments(target, bounds);
+    for (const tgt of targetSegments) {
+      const subBounds = getBounds(property, tpoints[tgt.start], tpoints[tgt.end], tgt.loop);
+      const fillSources = _boundSegment(segment, points, subBounds);
+      for (const fillSource of fillSources) {
+        parts.push({
+          source: fillSource,
+          target: tgt,
+          start: {
+            [property]: _getEdge(bounds, subBounds, 'start', Math.max)
+          },
+          end: {
+            [property]: _getEdge(bounds, subBounds, 'end', Math.min)
+          }
+        });
+      }
+    }
+  }
+  return parts;
+}
+function clipBounds(ctx, scale, bounds) {
+  const {top, bottom} = scale.chart.chartArea;
+  const {property, start, end} = bounds || {};
+  if (property === 'x') {
+    ctx.beginPath();
+    ctx.rect(start, top, end - start, bottom - top);
+    ctx.clip();
+  }
+}
+function interpolatedLineTo(ctx, target, point, property) {
+  const interpolatedPoint = target.interpolate(point, property);
+  if (interpolatedPoint) {
+    ctx.lineTo(interpolatedPoint.x, interpolatedPoint.y);
+  }
+}
+function _fill(ctx, cfg) {
+  const {line, target, property, color, scale} = cfg;
+  const segments = _segments(line, target, property);
+  for (const {source: src, target: tgt, start, end} of segments) {
+    const {style: {backgroundColor = color} = {}} = src;
+    const notShape = target !== true;
+    ctx.save();
+    ctx.fillStyle = backgroundColor;
+    clipBounds(ctx, scale, notShape && getBounds(property, start, end));
+    ctx.beginPath();
+    const lineLoop = !!line.pathSegment(ctx, src);
+    let loop;
+    if (notShape) {
+      if (lineLoop) {
+        ctx.closePath();
+      } else {
+        interpolatedLineTo(ctx, target, end, property);
+      }
+      const targetLoop = !!target.pathSegment(ctx, tgt, {move: lineLoop, reverse: true});
+      loop = lineLoop && targetLoop;
+      if (!loop) {
+        interpolatedLineTo(ctx, target, start, property);
+      }
+    }
+    ctx.closePath();
+    ctx.fill(loop ? 'evenodd' : 'nonzero');
+    ctx.restore();
+  }
+}
+function doFill(ctx, cfg) {
+  const {line, target, above, below, area, scale} = cfg;
+  const property = line._loop ? 'angle' : cfg.axis;
+  ctx.save();
+  if (property === 'x' && below !== above) {
+    _clip(ctx, target, area.top);
+    _fill(ctx, {line, target, color: above, scale, property});
+    ctx.restore();
+    ctx.save();
+    _clip(ctx, target, area.bottom);
+  }
+  _fill(ctx, {line, target, color: below, scale, property});
+  ctx.restore();
+}
+function drawfill(ctx, source, area) {
+  const target = getTarget(source);
+  const {line, scale, axis} = source;
+  const lineOpts = line.options;
+  const fillOption = lineOpts.fill;
+  const color = lineOpts.backgroundColor;
+  const {above = color, below = color} = fillOption || {};
+  if (target && line.points.length) {
+    clipArea(ctx, area);
+    doFill(ctx, {line, target, above, below, area, scale, axis});
+    unclipArea(ctx);
+  }
+}
+var plugin_filler = {
+  id: 'filler',
+  afterDatasetsUpdate(chart, _args, options) {
+    const count = (chart.data.datasets || []).length;
+    const sources = [];
+    let meta, i, line, source;
+    for (i = 0; i < count; ++i) {
+      meta = chart.getDatasetMeta(i);
+      line = meta.dataset;
+      source = null;
+      if (line && line.options && line instanceof LineElement) {
+        source = {
+          visible: chart.isDatasetVisible(i),
+          index: i,
+          fill: decodeFill(line, i, count),
+          chart,
+          axis: meta.controller.options.indexAxis,
+          scale: meta.vScale,
+          line,
+        };
+      }
+      meta.$filler = source;
+      sources.push(source);
+    }
+    for (i = 0; i < count; ++i) {
+      source = sources[i];
+      if (!source || source.fill === false) {
+        continue;
+      }
+      source.fill = resolveTarget(sources, i, options.propagate);
+    }
+  },
+  beforeDraw(chart, _args, options) {
+    const draw = options.drawTime === 'beforeDraw';
+    const metasets = chart.getSortedVisibleDatasetMetas();
+    const area = chart.chartArea;
+    for (let i = metasets.length - 1; i >= 0; --i) {
+      const source = metasets[i].$filler;
+      if (!source) {
+        continue;
+      }
+      source.line.updateControlPoints(area, source.axis);
+      if (draw) {
+        drawfill(chart.ctx, source, area);
+      }
+    }
+  },
+  beforeDatasetsDraw(chart, _args, options) {
+    if (options.drawTime !== 'beforeDatasetsDraw') {
+      return;
+    }
+    const metasets = chart.getSortedVisibleDatasetMetas();
+    for (let i = metasets.length - 1; i >= 0; --i) {
+      const source = metasets[i].$filler;
+      if (source) {
+        drawfill(chart.ctx, source, chart.chartArea);
+      }
+    }
+  },
+  beforeDatasetDraw(chart, args, options) {
+    const source = args.meta.$filler;
+    if (!source || source.fill === false || options.drawTime !== 'beforeDatasetDraw') {
+      return;
+    }
+    drawfill(chart.ctx, source, chart.chartArea);
+  },
+  defaults: {
+    propagate: true,
+    drawTime: 'beforeDatasetDraw'
+  }
+};
+
+const getBoxSize = (labelOpts, fontSize) => {
+  let {boxHeight = fontSize, boxWidth = fontSize} = labelOpts;
+  if (labelOpts.usePointStyle) {
+    boxHeight = Math.min(boxHeight, fontSize);
+    boxWidth = Math.min(boxWidth, fontSize);
+  }
+  return {
+    boxWidth,
+    boxHeight,
+    itemHeight: Math.max(fontSize, boxHeight)
+  };
+};
+const itemsEqual = (a, b) => a !== null && b !== null && a.datasetIndex === b.datasetIndex && a.index === b.index;
+class Legend extends Element {
+  constructor(config) {
+    super();
+    this._added = false;
+    this.legendHitBoxes = [];
+    this._hoveredItem = null;
+    this.doughnutMode = false;
+    this.chart = config.chart;
+    this.options = config.options;
+    this.ctx = config.ctx;
+    this.legendItems = undefined;
+    this.columnSizes = undefined;
+    this.lineWidths = undefined;
+    this.maxHeight = undefined;
+    this.maxWidth = undefined;
+    this.top = undefined;
+    this.bottom = undefined;
+    this.left = undefined;
+    this.right = undefined;
+    this.height = undefined;
+    this.width = undefined;
+    this._margins = undefined;
+    this.position = undefined;
+    this.weight = undefined;
+    this.fullSize = undefined;
+  }
+  update(maxWidth, maxHeight, margins) {
+    this.maxWidth = maxWidth;
+    this.maxHeight = maxHeight;
+    this._margins = margins;
+    this.setDimensions();
+    this.buildLabels();
+    this.fit();
+  }
+  setDimensions() {
+    if (this.isHorizontal()) {
+      this.width = this.maxWidth;
+      this.left = this._margins.left;
+      this.right = this.width;
+    } else {
+      this.height = this.maxHeight;
+      this.top = this._margins.top;
+      this.bottom = this.height;
+    }
+  }
+  buildLabels() {
+    const labelOpts = this.options.labels || {};
+    let legendItems = callback(labelOpts.generateLabels, [this.chart], this) || [];
+    if (labelOpts.filter) {
+      legendItems = legendItems.filter((item) => labelOpts.filter(item, this.chart.data));
+    }
+    if (labelOpts.sort) {
+      legendItems = legendItems.sort((a, b) => labelOpts.sort(a, b, this.chart.data));
+    }
+    if (this.options.reverse) {
+      legendItems.reverse();
+    }
+    this.legendItems = legendItems;
+  }
+  fit() {
+    const {options, ctx} = this;
+    if (!options.display) {
+      this.width = this.height = 0;
+      return;
+    }
+    const labelOpts = options.labels;
+    const labelFont = toFont(labelOpts.font);
+    const fontSize = labelFont.size;
+    const titleHeight = this._computeTitleHeight();
+    const {boxWidth, itemHeight} = getBoxSize(labelOpts, fontSize);
+    let width, height;
+    ctx.font = labelFont.string;
+    if (this.isHorizontal()) {
+      width = this.maxWidth;
+      height = this._fitRows(titleHeight, fontSize, boxWidth, itemHeight) + 10;
+    } else {
+      height = this.maxHeight;
+      width = this._fitCols(titleHeight, fontSize, boxWidth, itemHeight) + 10;
+    }
+    this.width = Math.min(width, options.maxWidth || this.maxWidth);
+    this.height = Math.min(height, options.maxHeight || this.maxHeight);
+  }
+  _fitRows(titleHeight, fontSize, boxWidth, itemHeight) {
+    const {ctx, maxWidth, options: {labels: {padding}}} = this;
+    const hitboxes = this.legendHitBoxes = [];
+    const lineWidths = this.lineWidths = [0];
+    const lineHeight = itemHeight + padding;
+    let totalHeight = titleHeight;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    let row = -1;
+    let top = -lineHeight;
+    this.legendItems.forEach((legendItem, i) => {
+      const itemWidth = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
+      if (i === 0 || lineWidths[lineWidths.length - 1] + itemWidth + 2 * padding > maxWidth) {
+        totalHeight += lineHeight;
+        lineWidths[lineWidths.length - (i > 0 ? 0 : 1)] = 0;
+        top += lineHeight;
+        row++;
+      }
+      hitboxes[i] = {left: 0, top, row, width: itemWidth, height: itemHeight};
+      lineWidths[lineWidths.length - 1] += itemWidth + padding;
+    });
+    return totalHeight;
+  }
+  _fitCols(titleHeight, fontSize, boxWidth, itemHeight) {
+    const {ctx, maxHeight, options: {labels: {padding}}} = this;
+    const hitboxes = this.legendHitBoxes = [];
+    const columnSizes = this.columnSizes = [];
+    const heightLimit = maxHeight - titleHeight;
+    let totalWidth = padding;
+    let currentColWidth = 0;
+    let currentColHeight = 0;
+    let left = 0;
+    let col = 0;
+    this.legendItems.forEach((legendItem, i) => {
+      const itemWidth = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
+      if (i > 0 && currentColHeight + itemHeight + 2 * padding > heightLimit) {
+        totalWidth += currentColWidth + padding;
+        columnSizes.push({width: currentColWidth, height: currentColHeight});
+        left += currentColWidth + padding;
+        col++;
+        currentColWidth = currentColHeight = 0;
+      }
+      hitboxes[i] = {left, top: currentColHeight, col, width: itemWidth, height: itemHeight};
+      currentColWidth = Math.max(currentColWidth, itemWidth);
+      currentColHeight += itemHeight + padding;
+    });
+    totalWidth += currentColWidth;
+    columnSizes.push({width: currentColWidth, height: currentColHeight});
+    return totalWidth;
+  }
+  adjustHitBoxes() {
+    if (!this.options.display) {
+      return;
+    }
+    const titleHeight = this._computeTitleHeight();
+    const {legendHitBoxes: hitboxes, options: {align, labels: {padding}, rtl}} = this;
+    const rtlHelper = getRtlAdapter(rtl, this.left, this.width);
+    if (this.isHorizontal()) {
+      let row = 0;
+      let left = _alignStartEnd(align, this.left + padding, this.right - this.lineWidths[row]);
+      for (const hitbox of hitboxes) {
+        if (row !== hitbox.row) {
+          row = hitbox.row;
+          left = _alignStartEnd(align, this.left + padding, this.right - this.lineWidths[row]);
+        }
+        hitbox.top += this.top + titleHeight + padding;
+        hitbox.left = rtlHelper.leftForLtr(rtlHelper.x(left), hitbox.width);
+        left += hitbox.width + padding;
+      }
+    } else {
+      let col = 0;
+      let top = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - this.columnSizes[col].height);
+      for (const hitbox of hitboxes) {
+        if (hitbox.col !== col) {
+          col = hitbox.col;
+          top = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - this.columnSizes[col].height);
+        }
+        hitbox.top = top;
+        hitbox.left += this.left + padding;
+        hitbox.left = rtlHelper.leftForLtr(rtlHelper.x(hitbox.left), hitbox.width);
+        top += hitbox.height + padding;
+      }
+    }
+  }
+  isHorizontal() {
+    return this.options.position === 'top' || this.options.position === 'bottom';
+  }
+  draw() {
+    if (this.options.display) {
+      const ctx = this.ctx;
+      clipArea(ctx, this);
+      this._draw();
+      unclipArea(ctx);
+    }
+  }
+  _draw() {
+    const {options: opts, columnSizes, lineWidths, ctx} = this;
+    const {align, labels: labelOpts} = opts;
+    const defaultColor = defaults.color;
+    const rtlHelper = getRtlAdapter(opts.rtl, this.left, this.width);
+    const labelFont = toFont(labelOpts.font);
+    const {color: fontColor, padding} = labelOpts;
+    const fontSize = labelFont.size;
+    const halfFontSize = fontSize / 2;
+    let cursor;
+    this.drawTitle();
+    ctx.textAlign = rtlHelper.textAlign('left');
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 0.5;
+    ctx.font = labelFont.string;
+    const {boxWidth, boxHeight, itemHeight} = getBoxSize(labelOpts, fontSize);
+    const drawLegendBox = function(x, y, legendItem) {
+      if (isNaN(boxWidth) || boxWidth <= 0 || isNaN(boxHeight) || boxHeight < 0) {
+        return;
+      }
+      ctx.save();
+      const lineWidth = valueOrDefault(legendItem.lineWidth, 1);
+      ctx.fillStyle = valueOrDefault(legendItem.fillStyle, defaultColor);
+      ctx.lineCap = valueOrDefault(legendItem.lineCap, 'butt');
+      ctx.lineDashOffset = valueOrDefault(legendItem.lineDashOffset, 0);
+      ctx.lineJoin = valueOrDefault(legendItem.lineJoin, 'miter');
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = valueOrDefault(legendItem.strokeStyle, defaultColor);
+      ctx.setLineDash(valueOrDefault(legendItem.lineDash, []));
+      if (labelOpts.usePointStyle) {
+        const drawOptions = {
+          radius: boxWidth * Math.SQRT2 / 2,
+          pointStyle: legendItem.pointStyle,
+          rotation: legendItem.rotation,
+          borderWidth: lineWidth
+        };
+        const centerX = rtlHelper.xPlus(x, boxWidth / 2);
+        const centerY = y + halfFontSize;
+        drawPoint(ctx, drawOptions, centerX, centerY);
+      } else {
+        const yBoxTop = y + Math.max((fontSize - boxHeight) / 2, 0);
+        const xBoxLeft = rtlHelper.leftForLtr(x, boxWidth);
+        const borderRadius = toTRBLCorners(legendItem.borderRadius);
+        ctx.beginPath();
+        if (Object.values(borderRadius).some(v => v !== 0)) {
+          addRoundedRectPath(ctx, {
+            x: xBoxLeft,
+            y: yBoxTop,
+            w: boxWidth,
+            h: boxHeight,
+            radius: borderRadius,
+          });
+        } else {
+          ctx.rect(xBoxLeft, yBoxTop, boxWidth, boxHeight);
+        }
+        ctx.fill();
+        if (lineWidth !== 0) {
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+    };
+    const fillText = function(x, y, legendItem) {
+      renderText(ctx, legendItem.text, x, y + (itemHeight / 2), labelFont, {
+        strikethrough: legendItem.hidden,
+        textAlign: rtlHelper.textAlign(legendItem.textAlign)
+      });
+    };
+    const isHorizontal = this.isHorizontal();
+    const titleHeight = this._computeTitleHeight();
+    if (isHorizontal) {
+      cursor = {
+        x: _alignStartEnd(align, this.left + padding, this.right - lineWidths[0]),
+        y: this.top + padding + titleHeight,
+        line: 0
+      };
+    } else {
+      cursor = {
+        x: this.left + padding,
+        y: _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - columnSizes[0].height),
+        line: 0
+      };
+    }
+    overrideTextDirection(this.ctx, opts.textDirection);
+    const lineHeight = itemHeight + padding;
+    this.legendItems.forEach((legendItem, i) => {
+      ctx.strokeStyle = legendItem.fontColor || fontColor;
+      ctx.fillStyle = legendItem.fontColor || fontColor;
+      const textWidth = ctx.measureText(legendItem.text).width;
+      const textAlign = rtlHelper.textAlign(legendItem.textAlign || (legendItem.textAlign = labelOpts.textAlign));
+      const width = boxWidth + halfFontSize + textWidth;
+      let x = cursor.x;
+      let y = cursor.y;
+      rtlHelper.setWidth(this.width);
+      if (isHorizontal) {
+        if (i > 0 && x + width + padding > this.right) {
+          y = cursor.y += lineHeight;
+          cursor.line++;
+          x = cursor.x = _alignStartEnd(align, this.left + padding, this.right - lineWidths[cursor.line]);
+        }
+      } else if (i > 0 && y + lineHeight > this.bottom) {
+        x = cursor.x = x + columnSizes[cursor.line].width + padding;
+        cursor.line++;
+        y = cursor.y = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - columnSizes[cursor.line].height);
+      }
+      const realX = rtlHelper.x(x);
+      drawLegendBox(realX, y, legendItem);
+      x = _textX(textAlign, x + boxWidth + halfFontSize, isHorizontal ? x + width : this.right, opts.rtl);
+      fillText(rtlHelper.x(x), y, legendItem);
+      if (isHorizontal) {
+        cursor.x += width + padding;
+      } else {
+        cursor.y += lineHeight;
+      }
+    });
+    restoreTextDirection(this.ctx, opts.textDirection);
+  }
+  drawTitle() {
+    const opts = this.options;
+    const titleOpts = opts.title;
+    const titleFont = toFont(titleOpts.font);
+    const titlePadding = toPadding(titleOpts.padding);
+    if (!titleOpts.display) {
+      return;
+    }
+    const rtlHelper = getRtlAdapter(opts.rtl, this.left, this.width);
+    const ctx = this.ctx;
+    const position = titleOpts.position;
+    const halfFontSize = titleFont.size / 2;
+    const topPaddingPlusHalfFontSize = titlePadding.top + halfFontSize;
+    let y;
+    let left = this.left;
+    let maxWidth = this.width;
+    if (this.isHorizontal()) {
+      maxWidth = Math.max(...this.lineWidths);
+      y = this.top + topPaddingPlusHalfFontSize;
+      left = _alignStartEnd(opts.align, left, this.right - maxWidth);
+    } else {
+      const maxHeight = this.columnSizes.reduce((acc, size) => Math.max(acc, size.height), 0);
+      y = topPaddingPlusHalfFontSize + _alignStartEnd(opts.align, this.top, this.bottom - maxHeight - opts.labels.padding - this._computeTitleHeight());
+    }
+    const x = _alignStartEnd(position, left, left + maxWidth);
+    ctx.textAlign = rtlHelper.textAlign(_toLeftRightCenter(position));
+    ctx.textBaseline = 'middle';
+    ctx.strokeStyle = titleOpts.color;
+    ctx.fillStyle = titleOpts.color;
+    ctx.font = titleFont.string;
+    renderText(ctx, titleOpts.text, x, y, titleFont);
+  }
+  _computeTitleHeight() {
+    const titleOpts = this.options.title;
+    const titleFont = toFont(titleOpts.font);
+    const titlePadding = toPadding(titleOpts.padding);
+    return titleOpts.display ? titleFont.lineHeight + titlePadding.height : 0;
+  }
+  _getLegendItemAt(x, y) {
+    let i, hitBox, lh;
+    if (_isBetween(x, this.left, this.right)
+      && _isBetween(y, this.top, this.bottom)) {
+      lh = this.legendHitBoxes;
+      for (i = 0; i < lh.length; ++i) {
+        hitBox = lh[i];
+        if (_isBetween(x, hitBox.left, hitBox.left + hitBox.width)
+          && _isBetween(y, hitBox.top, hitBox.top + hitBox.height)) {
+          return this.legendItems[i];
+        }
+      }
+    }
+    return null;
+  }
+  handleEvent(e) {
+    const opts = this.options;
+    if (!isListened(e.type, opts)) {
+      return;
+    }
+    const hoveredItem = this._getLegendItemAt(e.x, e.y);
+    if (e.type === 'mousemove') {
+      const previous = this._hoveredItem;
+      const sameItem = itemsEqual(previous, hoveredItem);
+      if (previous && !sameItem) {
+        callback(opts.onLeave, [e, previous, this], this);
+      }
+      this._hoveredItem = hoveredItem;
+      if (hoveredItem && !sameItem) {
+        callback(opts.onHover, [e, hoveredItem, this], this);
+      }
+    } else if (hoveredItem) {
+      callback(opts.onClick, [e, hoveredItem, this], this);
+    }
+  }
+}
+function isListened(type, opts) {
+  if (type === 'mousemove' && (opts.onHover || opts.onLeave)) {
+    return true;
+  }
+  if (opts.onClick && (type === 'click' || type === 'mouseup')) {
+    return true;
+  }
+  return false;
+}
+var plugin_legend = {
+  id: 'legend',
+  _element: Legend,
+  start(chart, _args, options) {
+    const legend = chart.legend = new Legend({ctx: chart.ctx, options, chart});
+    layouts.configure(chart, legend, options);
+    layouts.addBox(chart, legend);
+  },
+  stop(chart) {
+    layouts.removeBox(chart, chart.legend);
+    delete chart.legend;
+  },
+  beforeUpdate(chart, _args, options) {
+    const legend = chart.legend;
+    layouts.configure(chart, legend, options);
+    legend.options = options;
+  },
+  afterUpdate(chart) {
+    const legend = chart.legend;
+    legend.buildLabels();
+    legend.adjustHitBoxes();
+  },
+  afterEvent(chart, args) {
+    if (!args.replay) {
+      chart.legend.handleEvent(args.event);
+    }
+  },
+  defaults: {
+    display: true,
+    position: 'top',
+    align: 'center',
+    fullSize: true,
+    reverse: false,
+    weight: 1000,
+    onClick(e, legendItem, legend) {
+      const index = legendItem.datasetIndex;
+      const ci = legend.chart;
+      if (ci.isDatasetVisible(index)) {
+        ci.hide(index);
+        legendItem.hidden = true;
+      } else {
+        ci.show(index);
+        legendItem.hidden = false;
+      }
+    },
+    onHover: null,
+    onLeave: null,
+    labels: {
+      color: (ctx) => ctx.chart.options.color,
+      boxWidth: 40,
+      padding: 10,
+      generateLabels(chart) {
+        const datasets = chart.data.datasets;
+        const {labels: {usePointStyle, pointStyle, textAlign, color}} = chart.legend.options;
+        return chart._getSortedDatasetMetas().map((meta) => {
+          const style = meta.controller.getStyle(usePointStyle ? 0 : undefined);
+          const borderWidth = toPadding(style.borderWidth);
+          return {
+            text: datasets[meta.index].label,
+            fillStyle: style.backgroundColor,
+            fontColor: color,
+            hidden: !meta.visible,
+            lineCap: style.borderCapStyle,
+            lineDash: style.borderDash,
+            lineDashOffset: style.borderDashOffset,
+            lineJoin: style.borderJoinStyle,
+            lineWidth: (borderWidth.width + borderWidth.height) / 4,
+            strokeStyle: style.borderColor,
+            pointStyle: pointStyle || style.pointStyle,
+            rotation: style.rotation,
+            textAlign: textAlign || style.textAlign,
+            borderRadius: 0,
+            datasetIndex: meta.index
+          };
+        }, this);
+      }
+    },
+    title: {
+      color: (ctx) => ctx.chart.options.color,
+      display: false,
+      position: 'center',
+      text: '',
+    }
+  },
+  descriptors: {
+    _scriptable: (name) => !name.startsWith('on'),
+    labels: {
+      _scriptable: (name) => !['generateLabels', 'filter', 'sort'].includes(name),
+    }
+  },
+};
+
+class Title extends Element {
+  constructor(config) {
+    super();
+    this.chart = config.chart;
+    this.options = config.options;
+    this.ctx = config.ctx;
+    this._padding = undefined;
+    this.top = undefined;
+    this.bottom = undefined;
+    this.left = undefined;
+    this.right = undefined;
+    this.width = undefined;
+    this.height = undefined;
+    this.position = undefined;
+    this.weight = undefined;
+    this.fullSize = undefined;
+  }
+  update(maxWidth, maxHeight) {
+    const opts = this.options;
+    this.left = 0;
+    this.top = 0;
+    if (!opts.display) {
+      this.width = this.height = this.right = this.bottom = 0;
+      return;
+    }
+    this.width = this.right = maxWidth;
+    this.height = this.bottom = maxHeight;
+    const lineCount = isArray(opts.text) ? opts.text.length : 1;
+    this._padding = toPadding(opts.padding);
+    const textSize = lineCount * toFont(opts.font).lineHeight + this._padding.height;
+    if (this.isHorizontal()) {
+      this.height = textSize;
+    } else {
+      this.width = textSize;
+    }
+  }
+  isHorizontal() {
+    const pos = this.options.position;
+    return pos === 'top' || pos === 'bottom';
+  }
+  _drawArgs(offset) {
+    const {top, left, bottom, right, options} = this;
+    const align = options.align;
+    let rotation = 0;
+    let maxWidth, titleX, titleY;
+    if (this.isHorizontal()) {
+      titleX = _alignStartEnd(align, left, right);
+      titleY = top + offset;
+      maxWidth = right - left;
+    } else {
+      if (options.position === 'left') {
+        titleX = left + offset;
+        titleY = _alignStartEnd(align, bottom, top);
+        rotation = PI * -0.5;
+      } else {
+        titleX = right - offset;
+        titleY = _alignStartEnd(align, top, bottom);
+        rotation = PI * 0.5;
+      }
+      maxWidth = bottom - top;
+    }
+    return {titleX, titleY, maxWidth, rotation};
+  }
+  draw() {
+    const ctx = this.ctx;
+    const opts = this.options;
+    if (!opts.display) {
+      return;
+    }
+    const fontOpts = toFont(opts.font);
+    const lineHeight = fontOpts.lineHeight;
+    const offset = lineHeight / 2 + this._padding.top;
+    const {titleX, titleY, maxWidth, rotation} = this._drawArgs(offset);
+    renderText(ctx, opts.text, 0, 0, fontOpts, {
+      color: opts.color,
+      maxWidth,
+      rotation,
+      textAlign: _toLeftRightCenter(opts.align),
+      textBaseline: 'middle',
+      translation: [titleX, titleY],
+    });
+  }
+}
+function createTitle(chart, titleOpts) {
+  const title = new Title({
+    ctx: chart.ctx,
+    options: titleOpts,
+    chart
+  });
+  layouts.configure(chart, title, titleOpts);
+  layouts.addBox(chart, title);
+  chart.titleBlock = title;
+}
+var plugin_title = {
+  id: 'title',
+  _element: Title,
+  start(chart, _args, options) {
+    createTitle(chart, options);
+  },
+  stop(chart) {
+    const titleBlock = chart.titleBlock;
+    layouts.removeBox(chart, titleBlock);
+    delete chart.titleBlock;
+  },
+  beforeUpdate(chart, _args, options) {
+    const title = chart.titleBlock;
+    layouts.configure(chart, title, options);
+    title.options = options;
+  },
+  defaults: {
+    align: 'center',
+    display: false,
+    font: {
+      weight: 'bold',
+    },
+    fullSize: true,
+    padding: 10,
+    position: 'top',
+    text: '',
+    weight: 2000
+  },
+  defaultRoutes: {
+    color: 'color'
+  },
+  descriptors: {
+    _scriptable: true,
+    _indexable: false,
+  },
+};
+
+const map = new WeakMap();
+var plugin_subtitle = {
+  id: 'subtitle',
+  start(chart, _args, options) {
+    const title = new Title({
+      ctx: chart.ctx,
+      options,
+      chart
+    });
+    layouts.configure(chart, title, options);
+    layouts.addBox(chart, title);
+    map.set(chart, title);
+  },
+  stop(chart) {
+    layouts.removeBox(chart, map.get(chart));
+    map.delete(chart);
+  },
+  beforeUpdate(chart, _args, options) {
+    const title = map.get(chart);
+    layouts.configure(chart, title, options);
+    title.options = options;
+  },
+  defaults: {
+    align: 'center',
+    display: false,
+    font: {
+      weight: 'normal',
+    },
+    fullSize: true,
+    padding: 0,
+    position: 'top',
+    text: '',
+    weight: 1500
+  },
+  defaultRoutes: {
+    color: 'color'
+  },
+  descriptors: {
+    _scriptable: true,
+    _indexable: false,
+  },
+};
+
+const positioners = {
+  average(items) {
+    if (!items.length) {
+      return false;
+    }
+    let i, len;
+    let x = 0;
+    let y = 0;
+    let count = 0;
+    for (i = 0, len = items.length; i < len; ++i) {
+      const el = items[i].element;
+      if (el && el.hasValue()) {
+        const pos = el.tooltipPosition();
+        x += pos.x;
+        y += pos.y;
+        ++count;
+      }
+    }
+    return {
+      x: x / count,
+      y: y / count
+    };
+  },
+  nearest(items, eventPosition) {
+    if (!items.length) {
+      return false;
+    }
+    let x = eventPosition.x;
+    let y = eventPosition.y;
+    let minDistance = Number.POSITIVE_INFINITY;
+    let i, len, nearestElement;
+    for (i = 0, len = items.length; i < len; ++i) {
+      const el = items[i].element;
+      if (el && el.hasValue()) {
+        const center = el.getCenterPoint();
+        const d = distanceBetweenPoints(eventPosition, center);
+        if (d < minDistance) {
+          minDistance = d;
+          nearestElement = el;
+        }
+      }
+    }
+    if (nearestElement) {
+      const tp = nearestElement.tooltipPosition();
+      x = tp.x;
+      y = tp.y;
+    }
+    return {
+      x,
+      y
+    };
+  }
+};
+function pushOrConcat(base, toPush) {
+  if (toPush) {
+    if (isArray(toPush)) {
+      Array.prototype.push.apply(base, toPush);
+    } else {
+      base.push(toPush);
+    }
+  }
+  return base;
+}
+function splitNewlines(str) {
+  if ((typeof str === 'string' || str instanceof String) && str.indexOf('\n') > -1) {
+    return str.split('\n');
+  }
+  return str;
+}
+function createTooltipItem(chart, item) {
+  const {element, datasetIndex, index} = item;
+  const controller = chart.getDatasetMeta(datasetIndex).controller;
+  const {label, value} = controller.getLabelAndValue(index);
+  return {
+    chart,
+    label,
+    parsed: controller.getParsed(index),
+    raw: chart.data.datasets[datasetIndex].data[index],
+    formattedValue: value,
+    dataset: controller.getDataset(),
+    dataIndex: index,
+    datasetIndex,
+    element
+  };
+}
+function getTooltipSize(tooltip, options) {
+  const ctx = tooltip.chart.ctx;
+  const {body, footer, title} = tooltip;
+  const {boxWidth, boxHeight} = options;
+  const bodyFont = toFont(options.bodyFont);
+  const titleFont = toFont(options.titleFont);
+  const footerFont = toFont(options.footerFont);
+  const titleLineCount = title.length;
+  const footerLineCount = footer.length;
+  const bodyLineItemCount = body.length;
+  const padding = toPadding(options.padding);
+  let height = padding.height;
+  let width = 0;
+  let combinedBodyLength = body.reduce((count, bodyItem) => count + bodyItem.before.length + bodyItem.lines.length + bodyItem.after.length, 0);
+  combinedBodyLength += tooltip.beforeBody.length + tooltip.afterBody.length;
+  if (titleLineCount) {
+    height += titleLineCount * titleFont.lineHeight
+			+ (titleLineCount - 1) * options.titleSpacing
+			+ options.titleMarginBottom;
+  }
+  if (combinedBodyLength) {
+    const bodyLineHeight = options.displayColors ? Math.max(boxHeight, bodyFont.lineHeight) : bodyFont.lineHeight;
+    height += bodyLineItemCount * bodyLineHeight
+			+ (combinedBodyLength - bodyLineItemCount) * bodyFont.lineHeight
+			+ (combinedBodyLength - 1) * options.bodySpacing;
+  }
+  if (footerLineCount) {
+    height += options.footerMarginTop
+			+ footerLineCount * footerFont.lineHeight
+			+ (footerLineCount - 1) * options.footerSpacing;
+  }
+  let widthPadding = 0;
+  const maxLineWidth = function(line) {
+    width = Math.max(width, ctx.measureText(line).width + widthPadding);
+  };
+  ctx.save();
+  ctx.font = titleFont.string;
+  each(tooltip.title, maxLineWidth);
+  ctx.font = bodyFont.string;
+  each(tooltip.beforeBody.concat(tooltip.afterBody), maxLineWidth);
+  widthPadding = options.displayColors ? (boxWidth + 2 + options.boxPadding) : 0;
+  each(body, (bodyItem) => {
+    each(bodyItem.before, maxLineWidth);
+    each(bodyItem.lines, maxLineWidth);
+    each(bodyItem.after, maxLineWidth);
+  });
+  widthPadding = 0;
+  ctx.font = footerFont.string;
+  each(tooltip.footer, maxLineWidth);
+  ctx.restore();
+  width += padding.width;
+  return {width, height};
+}
+function determineYAlign(chart, size) {
+  const {y, height} = size;
+  if (y < height / 2) {
+    return 'top';
+  } else if (y > (chart.height - height / 2)) {
+    return 'bottom';
+  }
+  return 'center';
+}
+function doesNotFitWithAlign(xAlign, chart, options, size) {
+  const {x, width} = size;
+  const caret = options.caretSize + options.caretPadding;
+  if (xAlign === 'left' && x + width + caret > chart.width) {
+    return true;
+  }
+  if (xAlign === 'right' && x - width - caret < 0) {
+    return true;
+  }
+}
+function determineXAlign(chart, options, size, yAlign) {
+  const {x, width} = size;
+  const {width: chartWidth, chartArea: {left, right}} = chart;
+  let xAlign = 'center';
+  if (yAlign === 'center') {
+    xAlign = x <= (left + right) / 2 ? 'left' : 'right';
+  } else if (x <= width / 2) {
+    xAlign = 'left';
+  } else if (x >= chartWidth - width / 2) {
+    xAlign = 'right';
+  }
+  if (doesNotFitWithAlign(xAlign, chart, options, size)) {
+    xAlign = 'center';
+  }
+  return xAlign;
+}
+function determineAlignment(chart, options, size) {
+  const yAlign = size.yAlign || options.yAlign || determineYAlign(chart, size);
+  return {
+    xAlign: size.xAlign || options.xAlign || determineXAlign(chart, options, size, yAlign),
+    yAlign
+  };
+}
+function alignX(size, xAlign) {
+  let {x, width} = size;
+  if (xAlign === 'right') {
+    x -= width;
+  } else if (xAlign === 'center') {
+    x -= (width / 2);
+  }
+  return x;
+}
+function alignY(size, yAlign, paddingAndSize) {
+  let {y, height} = size;
+  if (yAlign === 'top') {
+    y += paddingAndSize;
+  } else if (yAlign === 'bottom') {
+    y -= height + paddingAndSize;
+  } else {
+    y -= (height / 2);
+  }
+  return y;
+}
+function getBackgroundPoint(options, size, alignment, chart) {
+  const {caretSize, caretPadding, cornerRadius} = options;
+  const {xAlign, yAlign} = alignment;
+  const paddingAndSize = caretSize + caretPadding;
+  const {topLeft, topRight, bottomLeft, bottomRight} = toTRBLCorners(cornerRadius);
+  let x = alignX(size, xAlign);
+  const y = alignY(size, yAlign, paddingAndSize);
+  if (yAlign === 'center') {
+    if (xAlign === 'left') {
+      x += paddingAndSize;
+    } else if (xAlign === 'right') {
+      x -= paddingAndSize;
+    }
+  } else if (xAlign === 'left') {
+    x -= Math.max(topLeft, bottomLeft) + caretSize;
+  } else if (xAlign === 'right') {
+    x += Math.max(topRight, bottomRight) + caretSize;
+  }
+  return {
+    x: _limitValue(x, 0, chart.width - size.width),
+    y: _limitValue(y, 0, chart.height - size.height)
+  };
+}
+function getAlignedX(tooltip, align, options) {
+  const padding = toPadding(options.padding);
+  return align === 'center'
+    ? tooltip.x + tooltip.width / 2
+    : align === 'right'
+      ? tooltip.x + tooltip.width - padding.right
+      : tooltip.x + padding.left;
+}
+function getBeforeAfterBodyLines(callback) {
+  return pushOrConcat([], splitNewlines(callback));
+}
+function createTooltipContext(parent, tooltip, tooltipItems) {
+  return createContext(parent, {
+    tooltip,
+    tooltipItems,
+    type: 'tooltip'
+  });
+}
+function overrideCallbacks(callbacks, context) {
+  const override = context && context.dataset && context.dataset.tooltip && context.dataset.tooltip.callbacks;
+  return override ? callbacks.override(override) : callbacks;
+}
+class Tooltip extends Element {
+  constructor(config) {
+    super();
+    this.opacity = 0;
+    this._active = [];
+    this._eventPosition = undefined;
+    this._size = undefined;
+    this._cachedAnimations = undefined;
+    this._tooltipItems = [];
+    this.$animations = undefined;
+    this.$context = undefined;
+    this.chart = config.chart || config._chart;
+    this._chart = this.chart;
+    this.options = config.options;
+    this.dataPoints = undefined;
+    this.title = undefined;
+    this.beforeBody = undefined;
+    this.body = undefined;
+    this.afterBody = undefined;
+    this.footer = undefined;
+    this.xAlign = undefined;
+    this.yAlign = undefined;
+    this.x = undefined;
+    this.y = undefined;
+    this.height = undefined;
+    this.width = undefined;
+    this.caretX = undefined;
+    this.caretY = undefined;
+    this.labelColors = undefined;
+    this.labelPointStyles = undefined;
+    this.labelTextColors = undefined;
+  }
+  initialize(options) {
+    this.options = options;
+    this._cachedAnimations = undefined;
+    this.$context = undefined;
+  }
+  _resolveAnimations() {
+    const cached = this._cachedAnimations;
+    if (cached) {
+      return cached;
+    }
+    const chart = this.chart;
+    const options = this.options.setContext(this.getContext());
+    const opts = options.enabled && chart.options.animation && options.animations;
+    const animations = new Animations(this.chart, opts);
+    if (opts._cacheable) {
+      this._cachedAnimations = Object.freeze(animations);
+    }
+    return animations;
+  }
+  getContext() {
+    return this.$context ||
+			(this.$context = createTooltipContext(this.chart.getContext(), this, this._tooltipItems));
+  }
+  getTitle(context, options) {
+    const {callbacks} = options;
+    const beforeTitle = callbacks.beforeTitle.apply(this, [context]);
+    const title = callbacks.title.apply(this, [context]);
+    const afterTitle = callbacks.afterTitle.apply(this, [context]);
+    let lines = [];
+    lines = pushOrConcat(lines, splitNewlines(beforeTitle));
+    lines = pushOrConcat(lines, splitNewlines(title));
+    lines = pushOrConcat(lines, splitNewlines(afterTitle));
+    return lines;
+  }
+  getBeforeBody(tooltipItems, options) {
+    return getBeforeAfterBodyLines(options.callbacks.beforeBody.apply(this, [tooltipItems]));
+  }
+  getBody(tooltipItems, options) {
+    const {callbacks} = options;
+    const bodyItems = [];
+    each(tooltipItems, (context) => {
+      const bodyItem = {
+        before: [],
+        lines: [],
+        after: []
+      };
+      const scoped = overrideCallbacks(callbacks, context);
+      pushOrConcat(bodyItem.before, splitNewlines(scoped.beforeLabel.call(this, context)));
+      pushOrConcat(bodyItem.lines, scoped.label.call(this, context));
+      pushOrConcat(bodyItem.after, splitNewlines(scoped.afterLabel.call(this, context)));
+      bodyItems.push(bodyItem);
+    });
+    return bodyItems;
+  }
+  getAfterBody(tooltipItems, options) {
+    return getBeforeAfterBodyLines(options.callbacks.afterBody.apply(this, [tooltipItems]));
+  }
+  getFooter(tooltipItems, options) {
+    const {callbacks} = options;
+    const beforeFooter = callbacks.beforeFooter.apply(this, [tooltipItems]);
+    const footer = callbacks.footer.apply(this, [tooltipItems]);
+    const afterFooter = callbacks.afterFooter.apply(this, [tooltipItems]);
+    let lines = [];
+    lines = pushOrConcat(lines, splitNewlines(beforeFooter));
+    lines = pushOrConcat(lines, splitNewlines(footer));
+    lines = pushOrConcat(lines, splitNewlines(afterFooter));
+    return lines;
+  }
+  _createItems(options) {
+    const active = this._active;
+    const data = this.chart.data;
+    const labelColors = [];
+    const labelPointStyles = [];
+    const labelTextColors = [];
+    let tooltipItems = [];
+    let i, len;
+    for (i = 0, len = active.length; i < len; ++i) {
+      tooltipItems.push(createTooltipItem(this.chart, active[i]));
+    }
+    if (options.filter) {
+      tooltipItems = tooltipItems.filter((element, index, array) => options.filter(element, index, array, data));
+    }
+    if (options.itemSort) {
+      tooltipItems = tooltipItems.sort((a, b) => options.itemSort(a, b, data));
+    }
+    each(tooltipItems, (context) => {
+      const scoped = overrideCallbacks(options.callbacks, context);
+      labelColors.push(scoped.labelColor.call(this, context));
+      labelPointStyles.push(scoped.labelPointStyle.call(this, context));
+      labelTextColors.push(scoped.labelTextColor.call(this, context));
+    });
+    this.labelColors = labelColors;
+    this.labelPointStyles = labelPointStyles;
+    this.labelTextColors = labelTextColors;
+    this.dataPoints = tooltipItems;
+    return tooltipItems;
+  }
+  update(changed, replay) {
+    const options = this.options.setContext(this.getContext());
+    const active = this._active;
+    let properties;
+    let tooltipItems = [];
+    if (!active.length) {
+      if (this.opacity !== 0) {
+        properties = {
+          opacity: 0
+        };
+      }
+    } else {
+      const position = positioners[options.position].call(this, active, this._eventPosition);
+      tooltipItems = this._createItems(options);
+      this.title = this.getTitle(tooltipItems, options);
+      this.beforeBody = this.getBeforeBody(tooltipItems, options);
+      this.body = this.getBody(tooltipItems, options);
+      this.afterBody = this.getAfterBody(tooltipItems, options);
+      this.footer = this.getFooter(tooltipItems, options);
+      const size = this._size = getTooltipSize(this, options);
+      const positionAndSize = Object.assign({}, position, size);
+      const alignment = determineAlignment(this.chart, options, positionAndSize);
+      const backgroundPoint = getBackgroundPoint(options, positionAndSize, alignment, this.chart);
+      this.xAlign = alignment.xAlign;
+      this.yAlign = alignment.yAlign;
+      properties = {
+        opacity: 1,
+        x: backgroundPoint.x,
+        y: backgroundPoint.y,
+        width: size.width,
+        height: size.height,
+        caretX: position.x,
+        caretY: position.y
+      };
+    }
+    this._tooltipItems = tooltipItems;
+    this.$context = undefined;
+    if (properties) {
+      this._resolveAnimations().update(this, properties);
+    }
+    if (changed && options.external) {
+      options.external.call(this, {chart: this.chart, tooltip: this, replay});
+    }
+  }
+  drawCaret(tooltipPoint, ctx, size, options) {
+    const caretPosition = this.getCaretPosition(tooltipPoint, size, options);
+    ctx.lineTo(caretPosition.x1, caretPosition.y1);
+    ctx.lineTo(caretPosition.x2, caretPosition.y2);
+    ctx.lineTo(caretPosition.x3, caretPosition.y3);
+  }
+  getCaretPosition(tooltipPoint, size, options) {
+    const {xAlign, yAlign} = this;
+    const {caretSize, cornerRadius} = options;
+    const {topLeft, topRight, bottomLeft, bottomRight} = toTRBLCorners(cornerRadius);
+    const {x: ptX, y: ptY} = tooltipPoint;
+    const {width, height} = size;
+    let x1, x2, x3, y1, y2, y3;
+    if (yAlign === 'center') {
+      y2 = ptY + (height / 2);
+      if (xAlign === 'left') {
+        x1 = ptX;
+        x2 = x1 - caretSize;
+        y1 = y2 + caretSize;
+        y3 = y2 - caretSize;
+      } else {
+        x1 = ptX + width;
+        x2 = x1 + caretSize;
+        y1 = y2 - caretSize;
+        y3 = y2 + caretSize;
+      }
+      x3 = x1;
+    } else {
+      if (xAlign === 'left') {
+        x2 = ptX + Math.max(topLeft, bottomLeft) + (caretSize);
+      } else if (xAlign === 'right') {
+        x2 = ptX + width - Math.max(topRight, bottomRight) - caretSize;
+      } else {
+        x2 = this.caretX;
+      }
+      if (yAlign === 'top') {
+        y1 = ptY;
+        y2 = y1 - caretSize;
+        x1 = x2 - caretSize;
+        x3 = x2 + caretSize;
+      } else {
+        y1 = ptY + height;
+        y2 = y1 + caretSize;
+        x1 = x2 + caretSize;
+        x3 = x2 - caretSize;
+      }
+      y3 = y1;
+    }
+    return {x1, x2, x3, y1, y2, y3};
+  }
+  drawTitle(pt, ctx, options) {
+    const title = this.title;
+    const length = title.length;
+    let titleFont, titleSpacing, i;
+    if (length) {
+      const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
+      pt.x = getAlignedX(this, options.titleAlign, options);
+      ctx.textAlign = rtlHelper.textAlign(options.titleAlign);
+      ctx.textBaseline = 'middle';
+      titleFont = toFont(options.titleFont);
+      titleSpacing = options.titleSpacing;
+      ctx.fillStyle = options.titleColor;
+      ctx.font = titleFont.string;
+      for (i = 0; i < length; ++i) {
+        ctx.fillText(title[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+        pt.y += titleFont.lineHeight + titleSpacing;
+        if (i + 1 === length) {
+          pt.y += options.titleMarginBottom - titleSpacing;
+        }
+      }
+    }
+  }
+  _drawColorBox(ctx, pt, i, rtlHelper, options) {
+    const labelColors = this.labelColors[i];
+    const labelPointStyle = this.labelPointStyles[i];
+    const {boxHeight, boxWidth, boxPadding} = options;
+    const bodyFont = toFont(options.bodyFont);
+    const colorX = getAlignedX(this, 'left', options);
+    const rtlColorX = rtlHelper.x(colorX);
+    const yOffSet = boxHeight < bodyFont.lineHeight ? (bodyFont.lineHeight - boxHeight) / 2 : 0;
+    const colorY = pt.y + yOffSet;
+    if (options.usePointStyle) {
+      const drawOptions = {
+        radius: Math.min(boxWidth, boxHeight) / 2,
+        pointStyle: labelPointStyle.pointStyle,
+        rotation: labelPointStyle.rotation,
+        borderWidth: 1
+      };
+      const centerX = rtlHelper.leftForLtr(rtlColorX, boxWidth) + boxWidth / 2;
+      const centerY = colorY + boxHeight / 2;
+      ctx.strokeStyle = options.multiKeyBackground;
+      ctx.fillStyle = options.multiKeyBackground;
+      drawPoint(ctx, drawOptions, centerX, centerY);
+      ctx.strokeStyle = labelColors.borderColor;
+      ctx.fillStyle = labelColors.backgroundColor;
+      drawPoint(ctx, drawOptions, centerX, centerY);
+    } else {
+      ctx.lineWidth = labelColors.borderWidth || 1;
+      ctx.strokeStyle = labelColors.borderColor;
+      ctx.setLineDash(labelColors.borderDash || []);
+      ctx.lineDashOffset = labelColors.borderDashOffset || 0;
+      const outerX = rtlHelper.leftForLtr(rtlColorX, boxWidth - boxPadding);
+      const innerX = rtlHelper.leftForLtr(rtlHelper.xPlus(rtlColorX, 1), boxWidth - boxPadding - 2);
+      const borderRadius = toTRBLCorners(labelColors.borderRadius);
+      if (Object.values(borderRadius).some(v => v !== 0)) {
+        ctx.beginPath();
+        ctx.fillStyle = options.multiKeyBackground;
+        addRoundedRectPath(ctx, {
+          x: outerX,
+          y: colorY,
+          w: boxWidth,
+          h: boxHeight,
+          radius: borderRadius,
+        });
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = labelColors.backgroundColor;
+        ctx.beginPath();
+        addRoundedRectPath(ctx, {
+          x: innerX,
+          y: colorY + 1,
+          w: boxWidth - 2,
+          h: boxHeight - 2,
+          radius: borderRadius,
+        });
+        ctx.fill();
+      } else {
+        ctx.fillStyle = options.multiKeyBackground;
+        ctx.fillRect(outerX, colorY, boxWidth, boxHeight);
+        ctx.strokeRect(outerX, colorY, boxWidth, boxHeight);
+        ctx.fillStyle = labelColors.backgroundColor;
+        ctx.fillRect(innerX, colorY + 1, boxWidth - 2, boxHeight - 2);
+      }
+    }
+    ctx.fillStyle = this.labelTextColors[i];
+  }
+  drawBody(pt, ctx, options) {
+    const {body} = this;
+    const {bodySpacing, bodyAlign, displayColors, boxHeight, boxWidth, boxPadding} = options;
+    const bodyFont = toFont(options.bodyFont);
+    let bodyLineHeight = bodyFont.lineHeight;
+    let xLinePadding = 0;
+    const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
+    const fillLineOfText = function(line) {
+      ctx.fillText(line, rtlHelper.x(pt.x + xLinePadding), pt.y + bodyLineHeight / 2);
+      pt.y += bodyLineHeight + bodySpacing;
+    };
+    const bodyAlignForCalculation = rtlHelper.textAlign(bodyAlign);
+    let bodyItem, textColor, lines, i, j, ilen, jlen;
+    ctx.textAlign = bodyAlign;
+    ctx.textBaseline = 'middle';
+    ctx.font = bodyFont.string;
+    pt.x = getAlignedX(this, bodyAlignForCalculation, options);
+    ctx.fillStyle = options.bodyColor;
+    each(this.beforeBody, fillLineOfText);
+    xLinePadding = displayColors && bodyAlignForCalculation !== 'right'
+      ? bodyAlign === 'center' ? (boxWidth / 2 + boxPadding) : (boxWidth + 2 + boxPadding)
+      : 0;
+    for (i = 0, ilen = body.length; i < ilen; ++i) {
+      bodyItem = body[i];
+      textColor = this.labelTextColors[i];
+      ctx.fillStyle = textColor;
+      each(bodyItem.before, fillLineOfText);
+      lines = bodyItem.lines;
+      if (displayColors && lines.length) {
+        this._drawColorBox(ctx, pt, i, rtlHelper, options);
+        bodyLineHeight = Math.max(bodyFont.lineHeight, boxHeight);
+      }
+      for (j = 0, jlen = lines.length; j < jlen; ++j) {
+        fillLineOfText(lines[j]);
+        bodyLineHeight = bodyFont.lineHeight;
+      }
+      each(bodyItem.after, fillLineOfText);
+    }
+    xLinePadding = 0;
+    bodyLineHeight = bodyFont.lineHeight;
+    each(this.afterBody, fillLineOfText);
+    pt.y -= bodySpacing;
+  }
+  drawFooter(pt, ctx, options) {
+    const footer = this.footer;
+    const length = footer.length;
+    let footerFont, i;
+    if (length) {
+      const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
+      pt.x = getAlignedX(this, options.footerAlign, options);
+      pt.y += options.footerMarginTop;
+      ctx.textAlign = rtlHelper.textAlign(options.footerAlign);
+      ctx.textBaseline = 'middle';
+      footerFont = toFont(options.footerFont);
+      ctx.fillStyle = options.footerColor;
+      ctx.font = footerFont.string;
+      for (i = 0; i < length; ++i) {
+        ctx.fillText(footer[i], rtlHelper.x(pt.x), pt.y + footerFont.lineHeight / 2);
+        pt.y += footerFont.lineHeight + options.footerSpacing;
+      }
+    }
+  }
+  drawBackground(pt, ctx, tooltipSize, options) {
+    const {xAlign, yAlign} = this;
+    const {x, y} = pt;
+    const {width, height} = tooltipSize;
+    const {topLeft, topRight, bottomLeft, bottomRight} = toTRBLCorners(options.cornerRadius);
+    ctx.fillStyle = options.backgroundColor;
+    ctx.strokeStyle = options.borderColor;
+    ctx.lineWidth = options.borderWidth;
+    ctx.beginPath();
+    ctx.moveTo(x + topLeft, y);
+    if (yAlign === 'top') {
+      this.drawCaret(pt, ctx, tooltipSize, options);
+    }
+    ctx.lineTo(x + width - topRight, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + topRight);
+    if (yAlign === 'center' && xAlign === 'right') {
+      this.drawCaret(pt, ctx, tooltipSize, options);
+    }
+    ctx.lineTo(x + width, y + height - bottomRight);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - bottomRight, y + height);
+    if (yAlign === 'bottom') {
+      this.drawCaret(pt, ctx, tooltipSize, options);
+    }
+    ctx.lineTo(x + bottomLeft, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - bottomLeft);
+    if (yAlign === 'center' && xAlign === 'left') {
+      this.drawCaret(pt, ctx, tooltipSize, options);
+    }
+    ctx.lineTo(x, y + topLeft);
+    ctx.quadraticCurveTo(x, y, x + topLeft, y);
+    ctx.closePath();
+    ctx.fill();
+    if (options.borderWidth > 0) {
+      ctx.stroke();
+    }
+  }
+  _updateAnimationTarget(options) {
+    const chart = this.chart;
+    const anims = this.$animations;
+    const animX = anims && anims.x;
+    const animY = anims && anims.y;
+    if (animX || animY) {
+      const position = positioners[options.position].call(this, this._active, this._eventPosition);
+      if (!position) {
+        return;
+      }
+      const size = this._size = getTooltipSize(this, options);
+      const positionAndSize = Object.assign({}, position, this._size);
+      const alignment = determineAlignment(chart, options, positionAndSize);
+      const point = getBackgroundPoint(options, positionAndSize, alignment, chart);
+      if (animX._to !== point.x || animY._to !== point.y) {
+        this.xAlign = alignment.xAlign;
+        this.yAlign = alignment.yAlign;
+        this.width = size.width;
+        this.height = size.height;
+        this.caretX = position.x;
+        this.caretY = position.y;
+        this._resolveAnimations().update(this, point);
+      }
+    }
+  }
+  draw(ctx) {
+    const options = this.options.setContext(this.getContext());
+    let opacity = this.opacity;
+    if (!opacity) {
+      return;
+    }
+    this._updateAnimationTarget(options);
+    const tooltipSize = {
+      width: this.width,
+      height: this.height
+    };
+    const pt = {
+      x: this.x,
+      y: this.y
+    };
+    opacity = Math.abs(opacity) < 1e-3 ? 0 : opacity;
+    const padding = toPadding(options.padding);
+    const hasTooltipContent = this.title.length || this.beforeBody.length || this.body.length || this.afterBody.length || this.footer.length;
+    if (options.enabled && hasTooltipContent) {
+      ctx.save();
+      ctx.globalAlpha = opacity;
+      this.drawBackground(pt, ctx, tooltipSize, options);
+      overrideTextDirection(ctx, options.textDirection);
+      pt.y += padding.top;
+      this.drawTitle(pt, ctx, options);
+      this.drawBody(pt, ctx, options);
+      this.drawFooter(pt, ctx, options);
+      restoreTextDirection(ctx, options.textDirection);
+      ctx.restore();
+    }
+  }
+  getActiveElements() {
+    return this._active || [];
+  }
+  setActiveElements(activeElements, eventPosition) {
+    const lastActive = this._active;
+    const active = activeElements.map(({datasetIndex, index}) => {
+      const meta = this.chart.getDatasetMeta(datasetIndex);
+      if (!meta) {
+        throw new Error('Cannot find a dataset at index ' + datasetIndex);
+      }
+      return {
+        datasetIndex,
+        element: meta.data[index],
+        index,
+      };
+    });
+    const changed = !_elementsEqual(lastActive, active);
+    const positionChanged = this._positionChanged(active, eventPosition);
+    if (changed || positionChanged) {
+      this._active = active;
+      this._eventPosition = eventPosition;
+      this._ignoreReplayEvents = true;
+      this.update(true);
+    }
+  }
+  handleEvent(e, replay, inChartArea = true) {
+    if (replay && this._ignoreReplayEvents) {
+      return false;
+    }
+    this._ignoreReplayEvents = false;
+    const options = this.options;
+    const lastActive = this._active || [];
+    const active = this._getActiveElements(e, lastActive, replay, inChartArea);
+    const positionChanged = this._positionChanged(active, e);
+    const changed = replay || !_elementsEqual(active, lastActive) || positionChanged;
+    if (changed) {
+      this._active = active;
+      if (options.enabled || options.external) {
+        this._eventPosition = {
+          x: e.x,
+          y: e.y
+        };
+        this.update(true, replay);
+      }
+    }
+    return changed;
+  }
+  _getActiveElements(e, lastActive, replay, inChartArea) {
+    const options = this.options;
+    if (e.type === 'mouseout') {
+      return [];
+    }
+    if (!inChartArea) {
+      return lastActive;
+    }
+    const active = this.chart.getElementsAtEventForMode(e, options.mode, options, replay);
+    if (options.reverse) {
+      active.reverse();
+    }
+    return active;
+  }
+  _positionChanged(active, e) {
+    const {caretX, caretY, options} = this;
+    const position = positioners[options.position].call(this, active, e);
+    return position !== false && (caretX !== position.x || caretY !== position.y);
+  }
+}
+Tooltip.positioners = positioners;
+var plugin_tooltip = {
+  id: 'tooltip',
+  _element: Tooltip,
+  positioners,
+  afterInit(chart, _args, options) {
+    if (options) {
+      chart.tooltip = new Tooltip({chart, options});
+    }
+  },
+  beforeUpdate(chart, _args, options) {
+    if (chart.tooltip) {
+      chart.tooltip.initialize(options);
+    }
+  },
+  reset(chart, _args, options) {
+    if (chart.tooltip) {
+      chart.tooltip.initialize(options);
+    }
+  },
+  afterDraw(chart) {
+    const tooltip = chart.tooltip;
+    const args = {
+      tooltip
+    };
+    if (chart.notifyPlugins('beforeTooltipDraw', args) === false) {
+      return;
+    }
+    if (tooltip) {
+      tooltip.draw(chart.ctx);
+    }
+    chart.notifyPlugins('afterTooltipDraw', args);
+  },
+  afterEvent(chart, args) {
+    if (chart.tooltip) {
+      const useFinalPosition = args.replay;
+      if (chart.tooltip.handleEvent(args.event, useFinalPosition, args.inChartArea)) {
+        args.changed = true;
+      }
+    }
+  },
+  defaults: {
+    enabled: true,
+    external: null,
+    position: 'average',
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    titleColor: '#fff',
+    titleFont: {
+      weight: 'bold',
+    },
+    titleSpacing: 2,
+    titleMarginBottom: 6,
+    titleAlign: 'left',
+    bodyColor: '#fff',
+    bodySpacing: 2,
+    bodyFont: {
+    },
+    bodyAlign: 'left',
+    footerColor: '#fff',
+    footerSpacing: 2,
+    footerMarginTop: 6,
+    footerFont: {
+      weight: 'bold',
+    },
+    footerAlign: 'left',
+    padding: 6,
+    caretPadding: 2,
+    caretSize: 5,
+    cornerRadius: 6,
+    boxHeight: (ctx, opts) => opts.bodyFont.size,
+    boxWidth: (ctx, opts) => opts.bodyFont.size,
+    multiKeyBackground: '#fff',
+    displayColors: true,
+    boxPadding: 0,
+    borderColor: 'rgba(0,0,0,0)',
+    borderWidth: 0,
+    animation: {
+      duration: 400,
+      easing: 'easeOutQuart',
+    },
+    animations: {
+      numbers: {
+        type: 'number',
+        properties: ['x', 'y', 'width', 'height', 'caretX', 'caretY'],
+      },
+      opacity: {
+        easing: 'linear',
+        duration: 200
+      }
+    },
+    callbacks: {
+      beforeTitle: noop,
+      title(tooltipItems) {
+        if (tooltipItems.length > 0) {
+          const item = tooltipItems[0];
+          const labels = item.chart.data.labels;
+          const labelCount = labels ? labels.length : 0;
+          if (this && this.options && this.options.mode === 'dataset') {
+            return item.dataset.label || '';
+          } else if (item.label) {
+            return item.label;
+          } else if (labelCount > 0 && item.dataIndex < labelCount) {
+            return labels[item.dataIndex];
+          }
+        }
+        return '';
+      },
+      afterTitle: noop,
+      beforeBody: noop,
+      beforeLabel: noop,
+      label(tooltipItem) {
+        if (this && this.options && this.options.mode === 'dataset') {
+          return tooltipItem.label + ': ' + tooltipItem.formattedValue || tooltipItem.formattedValue;
+        }
+        let label = tooltipItem.dataset.label || '';
+        if (label) {
+          label += ': ';
+        }
+        const value = tooltipItem.formattedValue;
+        if (!isNullOrUndef(value)) {
+          label += value;
+        }
+        return label;
+      },
+      labelColor(tooltipItem) {
+        const meta = tooltipItem.chart.getDatasetMeta(tooltipItem.datasetIndex);
+        const options = meta.controller.getStyle(tooltipItem.dataIndex);
+        return {
+          borderColor: options.borderColor,
+          backgroundColor: options.backgroundColor,
+          borderWidth: options.borderWidth,
+          borderDash: options.borderDash,
+          borderDashOffset: options.borderDashOffset,
+          borderRadius: 0,
+        };
+      },
+      labelTextColor() {
+        return this.options.bodyColor;
+      },
+      labelPointStyle(tooltipItem) {
+        const meta = tooltipItem.chart.getDatasetMeta(tooltipItem.datasetIndex);
+        const options = meta.controller.getStyle(tooltipItem.dataIndex);
+        return {
+          pointStyle: options.pointStyle,
+          rotation: options.rotation,
+        };
+      },
+      afterLabel: noop,
+      afterBody: noop,
+      beforeFooter: noop,
+      footer: noop,
+      afterFooter: noop
+    }
+  },
+  defaultRoutes: {
+    bodyFont: 'font',
+    footerFont: 'font',
+    titleFont: 'font'
+  },
+  descriptors: {
+    _scriptable: (name) => name !== 'filter' && name !== 'itemSort' && name !== 'external',
+    _indexable: false,
+    callbacks: {
+      _scriptable: false,
+      _indexable: false,
+    },
+    animation: {
+      _fallback: false
+    },
+    animations: {
+      _fallback: 'animation'
+    }
+  },
+  additionalOptionScopes: ['interaction']
+};
+
+var plugins = /*#__PURE__*/Object.freeze({
+__proto__: null,
+Decimation: plugin_decimation,
+Filler: plugin_filler,
+Legend: plugin_legend,
+SubTitle: plugin_subtitle,
+Title: plugin_title,
+Tooltip: plugin_tooltip
+});
+
+const addIfString = (labels, raw, index, addedLabels) => {
+  if (typeof raw === 'string') {
+    index = labels.push(raw) - 1;
+    addedLabels.unshift({index, label: raw});
+  } else if (isNaN(raw)) {
+    index = null;
+  }
+  return index;
+};
+function findOrAddLabel(labels, raw, index, addedLabels) {
+  const first = labels.indexOf(raw);
+  if (first === -1) {
+    return addIfString(labels, raw, index, addedLabels);
+  }
+  const last = labels.lastIndexOf(raw);
+  return first !== last ? index : first;
+}
+const validIndex = (index, max) => index === null ? null : _limitValue(Math.round(index), 0, max);
+class CategoryScale extends Scale {
+  constructor(cfg) {
+    super(cfg);
+    this._startValue = undefined;
+    this._valueRange = 0;
+    this._addedLabels = [];
+  }
+  init(scaleOptions) {
+    const added = this._addedLabels;
+    if (added.length) {
+      const labels = this.getLabels();
+      for (const {index, label} of added) {
+        if (labels[index] === label) {
+          labels.splice(index, 1);
+        }
+      }
+      this._addedLabels = [];
+    }
+    super.init(scaleOptions);
+  }
+  parse(raw, index) {
+    if (isNullOrUndef(raw)) {
+      return null;
+    }
+    const labels = this.getLabels();
+    index = isFinite(index) && labels[index] === raw ? index
+      : findOrAddLabel(labels, raw, valueOrDefault(index, raw), this._addedLabels);
+    return validIndex(index, labels.length - 1);
+  }
+  determineDataLimits() {
+    const {minDefined, maxDefined} = this.getUserBounds();
+    let {min, max} = this.getMinMax(true);
+    if (this.options.bounds === 'ticks') {
+      if (!minDefined) {
+        min = 0;
+      }
+      if (!maxDefined) {
+        max = this.getLabels().length - 1;
+      }
+    }
+    this.min = min;
+    this.max = max;
+  }
+  buildTicks() {
+    const min = this.min;
+    const max = this.max;
+    const offset = this.options.offset;
+    const ticks = [];
+    let labels = this.getLabels();
+    labels = (min === 0 && max === labels.length - 1) ? labels : labels.slice(min, max + 1);
+    this._valueRange = Math.max(labels.length - (offset ? 0 : 1), 1);
+    this._startValue = this.min - (offset ? 0.5 : 0);
+    for (let value = min; value <= max; value++) {
+      ticks.push({value});
+    }
+    return ticks;
+  }
+  getLabelForValue(value) {
+    const labels = this.getLabels();
+    if (value >= 0 && value < labels.length) {
+      return labels[value];
+    }
+    return value;
+  }
+  configure() {
+    super.configure();
+    if (!this.isHorizontal()) {
+      this._reversePixels = !this._reversePixels;
+    }
+  }
+  getPixelForValue(value) {
+    if (typeof value !== 'number') {
+      value = this.parse(value);
+    }
+    return value === null ? NaN : this.getPixelForDecimal((value - this._startValue) / this._valueRange);
+  }
+  getPixelForTick(index) {
+    const ticks = this.ticks;
+    if (index < 0 || index > ticks.length - 1) {
+      return null;
+    }
+    return this.getPixelForValue(ticks[index].value);
+  }
+  getValueForPixel(pixel) {
+    return Math.round(this._startValue + this.getDecimalForPixel(pixel) * this._valueRange);
+  }
+  getBasePixel() {
+    return this.bottom;
+  }
+}
+CategoryScale.id = 'category';
+CategoryScale.defaults = {
+  ticks: {
+    callback: CategoryScale.prototype.getLabelForValue
+  }
+};
+
+function generateTicks$1(generationOptions, dataRange) {
+  const ticks = [];
+  const MIN_SPACING = 1e-14;
+  const {bounds, step, min, max, precision, count, maxTicks, maxDigits, includeBounds} = generationOptions;
+  const unit = step || 1;
+  const maxSpaces = maxTicks - 1;
+  const {min: rmin, max: rmax} = dataRange;
+  const minDefined = !isNullOrUndef(min);
+  const maxDefined = !isNullOrUndef(max);
+  const countDefined = !isNullOrUndef(count);
+  const minSpacing = (rmax - rmin) / (maxDigits + 1);
+  let spacing = niceNum((rmax - rmin) / maxSpaces / unit) * unit;
+  let factor, niceMin, niceMax, numSpaces;
+  if (spacing < MIN_SPACING && !minDefined && !maxDefined) {
+    return [{value: rmin}, {value: rmax}];
+  }
+  numSpaces = Math.ceil(rmax / spacing) - Math.floor(rmin / spacing);
+  if (numSpaces > maxSpaces) {
+    spacing = niceNum(numSpaces * spacing / maxSpaces / unit) * unit;
+  }
+  if (!isNullOrUndef(precision)) {
+    factor = Math.pow(10, precision);
+    spacing = Math.ceil(spacing * factor) / factor;
+  }
+  if (bounds === 'ticks') {
+    niceMin = Math.floor(rmin / spacing) * spacing;
+    niceMax = Math.ceil(rmax / spacing) * spacing;
+  } else {
+    niceMin = rmin;
+    niceMax = rmax;
+  }
+  if (minDefined && maxDefined && step && almostWhole((max - min) / step, spacing / 1000)) {
+    numSpaces = Math.round(Math.min((max - min) / spacing, maxTicks));
+    spacing = (max - min) / numSpaces;
+    niceMin = min;
+    niceMax = max;
+  } else if (countDefined) {
+    niceMin = minDefined ? min : niceMin;
+    niceMax = maxDefined ? max : niceMax;
+    numSpaces = count - 1;
+    spacing = (niceMax - niceMin) / numSpaces;
+  } else {
+    numSpaces = (niceMax - niceMin) / spacing;
+    if (almostEquals(numSpaces, Math.round(numSpaces), spacing / 1000)) {
+      numSpaces = Math.round(numSpaces);
+    } else {
+      numSpaces = Math.ceil(numSpaces);
+    }
+  }
+  const decimalPlaces = Math.max(
+    _decimalPlaces(spacing),
+    _decimalPlaces(niceMin)
+  );
+  factor = Math.pow(10, isNullOrUndef(precision) ? decimalPlaces : precision);
+  niceMin = Math.round(niceMin * factor) / factor;
+  niceMax = Math.round(niceMax * factor) / factor;
+  let j = 0;
+  if (minDefined) {
+    if (includeBounds && niceMin !== min) {
+      ticks.push({value: min});
+      if (niceMin < min) {
+        j++;
+      }
+      if (almostEquals(Math.round((niceMin + j * spacing) * factor) / factor, min, relativeLabelSize(min, minSpacing, generationOptions))) {
+        j++;
+      }
+    } else if (niceMin < min) {
+      j++;
+    }
+  }
+  for (; j < numSpaces; ++j) {
+    ticks.push({value: Math.round((niceMin + j * spacing) * factor) / factor});
+  }
+  if (maxDefined && includeBounds && niceMax !== max) {
+    if (ticks.length && almostEquals(ticks[ticks.length - 1].value, max, relativeLabelSize(max, minSpacing, generationOptions))) {
+      ticks[ticks.length - 1].value = max;
+    } else {
+      ticks.push({value: max});
+    }
+  } else if (!maxDefined || niceMax === max) {
+    ticks.push({value: niceMax});
+  }
+  return ticks;
+}
+function relativeLabelSize(value, minSpacing, {horizontal, minRotation}) {
+  const rad = toRadians(minRotation);
+  const ratio = (horizontal ? Math.sin(rad) : Math.cos(rad)) || 0.001;
+  const length = 0.75 * minSpacing * ('' + value).length;
+  return Math.min(minSpacing / ratio, length);
+}
+class LinearScaleBase extends Scale {
+  constructor(cfg) {
+    super(cfg);
+    this.start = undefined;
+    this.end = undefined;
+    this._startValue = undefined;
+    this._endValue = undefined;
+    this._valueRange = 0;
+  }
+  parse(raw, index) {
+    if (isNullOrUndef(raw)) {
+      return null;
+    }
+    if ((typeof raw === 'number' || raw instanceof Number) && !isFinite(+raw)) {
+      return null;
+    }
+    return +raw;
+  }
+  handleTickRangeOptions() {
+    const {beginAtZero} = this.options;
+    const {minDefined, maxDefined} = this.getUserBounds();
+    let {min, max} = this;
+    const setMin = v => (min = minDefined ? min : v);
+    const setMax = v => (max = maxDefined ? max : v);
+    if (beginAtZero) {
+      const minSign = sign(min);
+      const maxSign = sign(max);
+      if (minSign < 0 && maxSign < 0) {
+        setMax(0);
+      } else if (minSign > 0 && maxSign > 0) {
+        setMin(0);
+      }
+    }
+    if (min === max) {
+      let offset = 1;
+      if (max >= Number.MAX_SAFE_INTEGER || min <= Number.MIN_SAFE_INTEGER) {
+        offset = Math.abs(max * 0.05);
+      }
+      setMax(max + offset);
+      if (!beginAtZero) {
+        setMin(min - offset);
+      }
+    }
+    this.min = min;
+    this.max = max;
+  }
+  getTickLimit() {
+    const tickOpts = this.options.ticks;
+    let {maxTicksLimit, stepSize} = tickOpts;
+    let maxTicks;
+    if (stepSize) {
+      maxTicks = Math.ceil(this.max / stepSize) - Math.floor(this.min / stepSize) + 1;
+      if (maxTicks > 1000) {
+        console.warn(`scales.${this.id}.ticks.stepSize: ${stepSize} would result generating up to ${maxTicks} ticks. Limiting to 1000.`);
+        maxTicks = 1000;
+      }
+    } else {
+      maxTicks = this.computeTickLimit();
+      maxTicksLimit = maxTicksLimit || 11;
+    }
+    if (maxTicksLimit) {
+      maxTicks = Math.min(maxTicksLimit, maxTicks);
+    }
+    return maxTicks;
+  }
+  computeTickLimit() {
+    return Number.POSITIVE_INFINITY;
+  }
+  buildTicks() {
+    const opts = this.options;
+    const tickOpts = opts.ticks;
+    let maxTicks = this.getTickLimit();
+    maxTicks = Math.max(2, maxTicks);
+    const numericGeneratorOptions = {
+      maxTicks,
+      bounds: opts.bounds,
+      min: opts.min,
+      max: opts.max,
+      precision: tickOpts.precision,
+      step: tickOpts.stepSize,
+      count: tickOpts.count,
+      maxDigits: this._maxDigits(),
+      horizontal: this.isHorizontal(),
+      minRotation: tickOpts.minRotation || 0,
+      includeBounds: tickOpts.includeBounds !== false
+    };
+    const dataRange = this._range || this;
+    const ticks = generateTicks$1(numericGeneratorOptions, dataRange);
+    if (opts.bounds === 'ticks') {
+      _setMinAndMaxByKey(ticks, this, 'value');
+    }
+    if (opts.reverse) {
+      ticks.reverse();
+      this.start = this.max;
+      this.end = this.min;
+    } else {
+      this.start = this.min;
+      this.end = this.max;
+    }
+    return ticks;
+  }
+  configure() {
+    const ticks = this.ticks;
+    let start = this.min;
+    let end = this.max;
+    super.configure();
+    if (this.options.offset && ticks.length) {
+      const offset = (end - start) / Math.max(ticks.length - 1, 1) / 2;
+      start -= offset;
+      end += offset;
+    }
+    this._startValue = start;
+    this._endValue = end;
+    this._valueRange = end - start;
+  }
+  getLabelForValue(value) {
+    return formatNumber(value, this.chart.options.locale, this.options.ticks.format);
+  }
+}
+
+class LinearScale extends LinearScaleBase {
+  determineDataLimits() {
+    const {min, max} = this.getMinMax(true);
+    this.min = isNumberFinite(min) ? min : 0;
+    this.max = isNumberFinite(max) ? max : 1;
+    this.handleTickRangeOptions();
+  }
+  computeTickLimit() {
+    const horizontal = this.isHorizontal();
+    const length = horizontal ? this.width : this.height;
+    const minRotation = toRadians(this.options.ticks.minRotation);
+    const ratio = (horizontal ? Math.sin(minRotation) : Math.cos(minRotation)) || 0.001;
+    const tickFont = this._resolveTickFontOptions(0);
+    return Math.ceil(length / Math.min(40, tickFont.lineHeight / ratio));
+  }
+  getPixelForValue(value) {
+    return value === null ? NaN : this.getPixelForDecimal((value - this._startValue) / this._valueRange);
+  }
+  getValueForPixel(pixel) {
+    return this._startValue + this.getDecimalForPixel(pixel) * this._valueRange;
+  }
+}
+LinearScale.id = 'linear';
+LinearScale.defaults = {
+  ticks: {
+    callback: Ticks.formatters.numeric
+  }
+};
+
+function isMajor(tickVal) {
+  const remain = tickVal / (Math.pow(10, Math.floor(log10(tickVal))));
+  return remain === 1;
+}
+function generateTicks(generationOptions, dataRange) {
+  const endExp = Math.floor(log10(dataRange.max));
+  const endSignificand = Math.ceil(dataRange.max / Math.pow(10, endExp));
+  const ticks = [];
+  let tickVal = finiteOrDefault(generationOptions.min, Math.pow(10, Math.floor(log10(dataRange.min))));
+  let exp = Math.floor(log10(tickVal));
+  let significand = Math.floor(tickVal / Math.pow(10, exp));
+  let precision = exp < 0 ? Math.pow(10, Math.abs(exp)) : 1;
+  do {
+    ticks.push({value: tickVal, major: isMajor(tickVal)});
+    ++significand;
+    if (significand === 10) {
+      significand = 1;
+      ++exp;
+      precision = exp >= 0 ? 1 : precision;
+    }
+    tickVal = Math.round(significand * Math.pow(10, exp) * precision) / precision;
+  } while (exp < endExp || (exp === endExp && significand < endSignificand));
+  const lastTick = finiteOrDefault(generationOptions.max, tickVal);
+  ticks.push({value: lastTick, major: isMajor(tickVal)});
+  return ticks;
+}
+class LogarithmicScale extends Scale {
+  constructor(cfg) {
+    super(cfg);
+    this.start = undefined;
+    this.end = undefined;
+    this._startValue = undefined;
+    this._valueRange = 0;
+  }
+  parse(raw, index) {
+    const value = LinearScaleBase.prototype.parse.apply(this, [raw, index]);
+    if (value === 0) {
+      this._zero = true;
+      return undefined;
+    }
+    return isNumberFinite(value) && value > 0 ? value : null;
+  }
+  determineDataLimits() {
+    const {min, max} = this.getMinMax(true);
+    this.min = isNumberFinite(min) ? Math.max(0, min) : null;
+    this.max = isNumberFinite(max) ? Math.max(0, max) : null;
+    if (this.options.beginAtZero) {
+      this._zero = true;
+    }
+    this.handleTickRangeOptions();
+  }
+  handleTickRangeOptions() {
+    const {minDefined, maxDefined} = this.getUserBounds();
+    let min = this.min;
+    let max = this.max;
+    const setMin = v => (min = minDefined ? min : v);
+    const setMax = v => (max = maxDefined ? max : v);
+    const exp = (v, m) => Math.pow(10, Math.floor(log10(v)) + m);
+    if (min === max) {
+      if (min <= 0) {
+        setMin(1);
+        setMax(10);
+      } else {
+        setMin(exp(min, -1));
+        setMax(exp(max, +1));
+      }
+    }
+    if (min <= 0) {
+      setMin(exp(max, -1));
+    }
+    if (max <= 0) {
+      setMax(exp(min, +1));
+    }
+    if (this._zero && this.min !== this._suggestedMin && min === exp(this.min, 0)) {
+      setMin(exp(min, -1));
+    }
+    this.min = min;
+    this.max = max;
+  }
+  buildTicks() {
+    const opts = this.options;
+    const generationOptions = {
+      min: this._userMin,
+      max: this._userMax
+    };
+    const ticks = generateTicks(generationOptions, this);
+    if (opts.bounds === 'ticks') {
+      _setMinAndMaxByKey(ticks, this, 'value');
+    }
+    if (opts.reverse) {
+      ticks.reverse();
+      this.start = this.max;
+      this.end = this.min;
+    } else {
+      this.start = this.min;
+      this.end = this.max;
+    }
+    return ticks;
+  }
+  getLabelForValue(value) {
+    return value === undefined
+      ? '0'
+      : formatNumber(value, this.chart.options.locale, this.options.ticks.format);
+  }
+  configure() {
+    const start = this.min;
+    super.configure();
+    this._startValue = log10(start);
+    this._valueRange = log10(this.max) - log10(start);
+  }
+  getPixelForValue(value) {
+    if (value === undefined || value === 0) {
+      value = this.min;
+    }
+    if (value === null || isNaN(value)) {
+      return NaN;
+    }
+    return this.getPixelForDecimal(value === this.min
+      ? 0
+      : (log10(value) - this._startValue) / this._valueRange);
+  }
+  getValueForPixel(pixel) {
+    const decimal = this.getDecimalForPixel(pixel);
+    return Math.pow(10, this._startValue + decimal * this._valueRange);
+  }
+}
+LogarithmicScale.id = 'logarithmic';
+LogarithmicScale.defaults = {
+  ticks: {
+    callback: Ticks.formatters.logarithmic,
+    major: {
+      enabled: true
+    }
+  }
+};
+
+function getTickBackdropHeight(opts) {
+  const tickOpts = opts.ticks;
+  if (tickOpts.display && opts.display) {
+    const padding = toPadding(tickOpts.backdropPadding);
+    return valueOrDefault(tickOpts.font && tickOpts.font.size, defaults.font.size) + padding.height;
+  }
+  return 0;
+}
+function measureLabelSize(ctx, font, label) {
+  label = isArray(label) ? label : [label];
+  return {
+    w: _longestText(ctx, font.string, label),
+    h: label.length * font.lineHeight
+  };
+}
+function determineLimits(angle, pos, size, min, max) {
+  if (angle === min || angle === max) {
+    return {
+      start: pos - (size / 2),
+      end: pos + (size / 2)
+    };
+  } else if (angle < min || angle > max) {
+    return {
+      start: pos - size,
+      end: pos
+    };
+  }
+  return {
+    start: pos,
+    end: pos + size
+  };
+}
+function fitWithPointLabels(scale) {
+  const orig = {
+    l: scale.left + scale._padding.left,
+    r: scale.right - scale._padding.right,
+    t: scale.top + scale._padding.top,
+    b: scale.bottom - scale._padding.bottom
+  };
+  const limits = Object.assign({}, orig);
+  const labelSizes = [];
+  const padding = [];
+  const valueCount = scale._pointLabels.length;
+  const pointLabelOpts = scale.options.pointLabels;
+  const additionalAngle = pointLabelOpts.centerPointLabels ? PI / valueCount : 0;
+  for (let i = 0; i < valueCount; i++) {
+    const opts = pointLabelOpts.setContext(scale.getPointLabelContext(i));
+    padding[i] = opts.padding;
+    const pointPosition = scale.getPointPosition(i, scale.drawingArea + padding[i], additionalAngle);
+    const plFont = toFont(opts.font);
+    const textSize = measureLabelSize(scale.ctx, plFont, scale._pointLabels[i]);
+    labelSizes[i] = textSize;
+    const angleRadians = _normalizeAngle(scale.getIndexAngle(i) + additionalAngle);
+    const angle = Math.round(toDegrees(angleRadians));
+    const hLimits = determineLimits(angle, pointPosition.x, textSize.w, 0, 180);
+    const vLimits = determineLimits(angle, pointPosition.y, textSize.h, 90, 270);
+    updateLimits(limits, orig, angleRadians, hLimits, vLimits);
+  }
+  scale.setCenterPoint(
+    orig.l - limits.l,
+    limits.r - orig.r,
+    orig.t - limits.t,
+    limits.b - orig.b
+  );
+  scale._pointLabelItems = buildPointLabelItems(scale, labelSizes, padding);
+}
+function updateLimits(limits, orig, angle, hLimits, vLimits) {
+  const sin = Math.abs(Math.sin(angle));
+  const cos = Math.abs(Math.cos(angle));
+  let x = 0;
+  let y = 0;
+  if (hLimits.start < orig.l) {
+    x = (orig.l - hLimits.start) / sin;
+    limits.l = Math.min(limits.l, orig.l - x);
+  } else if (hLimits.end > orig.r) {
+    x = (hLimits.end - orig.r) / sin;
+    limits.r = Math.max(limits.r, orig.r + x);
+  }
+  if (vLimits.start < orig.t) {
+    y = (orig.t - vLimits.start) / cos;
+    limits.t = Math.min(limits.t, orig.t - y);
+  } else if (vLimits.end > orig.b) {
+    y = (vLimits.end - orig.b) / cos;
+    limits.b = Math.max(limits.b, orig.b + y);
+  }
+}
+function buildPointLabelItems(scale, labelSizes, padding) {
+  const items = [];
+  const valueCount = scale._pointLabels.length;
+  const opts = scale.options;
+  const extra = getTickBackdropHeight(opts) / 2;
+  const outerDistance = scale.drawingArea;
+  const additionalAngle = opts.pointLabels.centerPointLabels ? PI / valueCount : 0;
+  for (let i = 0; i < valueCount; i++) {
+    const pointLabelPosition = scale.getPointPosition(i, outerDistance + extra + padding[i], additionalAngle);
+    const angle = Math.round(toDegrees(_normalizeAngle(pointLabelPosition.angle + HALF_PI)));
+    const size = labelSizes[i];
+    const y = yForAngle(pointLabelPosition.y, size.h, angle);
+    const textAlign = getTextAlignForAngle(angle);
+    const left = leftForTextAlign(pointLabelPosition.x, size.w, textAlign);
+    items.push({
+      x: pointLabelPosition.x,
+      y,
+      textAlign,
+      left,
+      top: y,
+      right: left + size.w,
+      bottom: y + size.h
+    });
+  }
+  return items;
+}
+function getTextAlignForAngle(angle) {
+  if (angle === 0 || angle === 180) {
+    return 'center';
+  } else if (angle < 180) {
+    return 'left';
+  }
+  return 'right';
+}
+function leftForTextAlign(x, w, align) {
+  if (align === 'right') {
+    x -= w;
+  } else if (align === 'center') {
+    x -= (w / 2);
+  }
+  return x;
+}
+function yForAngle(y, h, angle) {
+  if (angle === 90 || angle === 270) {
+    y -= (h / 2);
+  } else if (angle > 270 || angle < 90) {
+    y -= h;
+  }
+  return y;
+}
+function drawPointLabels(scale, labelCount) {
+  const {ctx, options: {pointLabels}} = scale;
+  for (let i = labelCount - 1; i >= 0; i--) {
+    const optsAtIndex = pointLabels.setContext(scale.getPointLabelContext(i));
+    const plFont = toFont(optsAtIndex.font);
+    const {x, y, textAlign, left, top, right, bottom} = scale._pointLabelItems[i];
+    const {backdropColor} = optsAtIndex;
+    if (!isNullOrUndef(backdropColor)) {
+      const padding = toPadding(optsAtIndex.backdropPadding);
+      ctx.fillStyle = backdropColor;
+      ctx.fillRect(left - padding.left, top - padding.top, right - left + padding.width, bottom - top + padding.height);
+    }
+    renderText(
+      ctx,
+      scale._pointLabels[i],
+      x,
+      y + (plFont.lineHeight / 2),
+      plFont,
+      {
+        color: optsAtIndex.color,
+        textAlign: textAlign,
+        textBaseline: 'middle'
+      }
+    );
+  }
+}
+function pathRadiusLine(scale, radius, circular, labelCount) {
+  const {ctx} = scale;
+  if (circular) {
+    ctx.arc(scale.xCenter, scale.yCenter, radius, 0, TAU);
+  } else {
+    let pointPosition = scale.getPointPosition(0, radius);
+    ctx.moveTo(pointPosition.x, pointPosition.y);
+    for (let i = 1; i < labelCount; i++) {
+      pointPosition = scale.getPointPosition(i, radius);
+      ctx.lineTo(pointPosition.x, pointPosition.y);
+    }
+  }
+}
+function drawRadiusLine(scale, gridLineOpts, radius, labelCount) {
+  const ctx = scale.ctx;
+  const circular = gridLineOpts.circular;
+  const {color, lineWidth} = gridLineOpts;
+  if ((!circular && !labelCount) || !color || !lineWidth || radius < 0) {
+    return;
+  }
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+  ctx.setLineDash(gridLineOpts.borderDash);
+  ctx.lineDashOffset = gridLineOpts.borderDashOffset;
+  ctx.beginPath();
+  pathRadiusLine(scale, radius, circular, labelCount);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.restore();
+}
+function createPointLabelContext(parent, index, label) {
+  return createContext(parent, {
+    label,
+    index,
+    type: 'pointLabel'
+  });
+}
+class RadialLinearScale extends LinearScaleBase {
+  constructor(cfg) {
+    super(cfg);
+    this.xCenter = undefined;
+    this.yCenter = undefined;
+    this.drawingArea = undefined;
+    this._pointLabels = [];
+    this._pointLabelItems = [];
+  }
+  setDimensions() {
+    const padding = this._padding = toPadding(getTickBackdropHeight(this.options) / 2);
+    const w = this.width = this.maxWidth - padding.width;
+    const h = this.height = this.maxHeight - padding.height;
+    this.xCenter = Math.floor(this.left + w / 2 + padding.left);
+    this.yCenter = Math.floor(this.top + h / 2 + padding.top);
+    this.drawingArea = Math.floor(Math.min(w, h) / 2);
+  }
+  determineDataLimits() {
+    const {min, max} = this.getMinMax(false);
+    this.min = isNumberFinite(min) && !isNaN(min) ? min : 0;
+    this.max = isNumberFinite(max) && !isNaN(max) ? max : 0;
+    this.handleTickRangeOptions();
+  }
+  computeTickLimit() {
+    return Math.ceil(this.drawingArea / getTickBackdropHeight(this.options));
+  }
+  generateTickLabels(ticks) {
+    LinearScaleBase.prototype.generateTickLabels.call(this, ticks);
+    this._pointLabels = this.getLabels()
+      .map((value, index) => {
+        const label = callback(this.options.pointLabels.callback, [value, index], this);
+        return label || label === 0 ? label : '';
+      })
+      .filter((v, i) => this.chart.getDataVisibility(i));
+  }
+  fit() {
+    const opts = this.options;
+    if (opts.display && opts.pointLabels.display) {
+      fitWithPointLabels(this);
+    } else {
+      this.setCenterPoint(0, 0, 0, 0);
+    }
+  }
+  setCenterPoint(leftMovement, rightMovement, topMovement, bottomMovement) {
+    this.xCenter += Math.floor((leftMovement - rightMovement) / 2);
+    this.yCenter += Math.floor((topMovement - bottomMovement) / 2);
+    this.drawingArea -= Math.min(this.drawingArea / 2, Math.max(leftMovement, rightMovement, topMovement, bottomMovement));
+  }
+  getIndexAngle(index) {
+    const angleMultiplier = TAU / (this._pointLabels.length || 1);
+    const startAngle = this.options.startAngle || 0;
+    return _normalizeAngle(index * angleMultiplier + toRadians(startAngle));
+  }
+  getDistanceFromCenterForValue(value) {
+    if (isNullOrUndef(value)) {
+      return NaN;
+    }
+    const scalingFactor = this.drawingArea / (this.max - this.min);
+    if (this.options.reverse) {
+      return (this.max - value) * scalingFactor;
+    }
+    return (value - this.min) * scalingFactor;
+  }
+  getValueForDistanceFromCenter(distance) {
+    if (isNullOrUndef(distance)) {
+      return NaN;
+    }
+    const scaledDistance = distance / (this.drawingArea / (this.max - this.min));
+    return this.options.reverse ? this.max - scaledDistance : this.min + scaledDistance;
+  }
+  getPointLabelContext(index) {
+    const pointLabels = this._pointLabels || [];
+    if (index >= 0 && index < pointLabels.length) {
+      const pointLabel = pointLabels[index];
+      return createPointLabelContext(this.getContext(), index, pointLabel);
+    }
+  }
+  getPointPosition(index, distanceFromCenter, additionalAngle = 0) {
+    const angle = this.getIndexAngle(index) - HALF_PI + additionalAngle;
+    return {
+      x: Math.cos(angle) * distanceFromCenter + this.xCenter,
+      y: Math.sin(angle) * distanceFromCenter + this.yCenter,
+      angle
+    };
+  }
+  getPointPositionForValue(index, value) {
+    return this.getPointPosition(index, this.getDistanceFromCenterForValue(value));
+  }
+  getBasePosition(index) {
+    return this.getPointPositionForValue(index || 0, this.getBaseValue());
+  }
+  getPointLabelPosition(index) {
+    const {left, top, right, bottom} = this._pointLabelItems[index];
+    return {
+      left,
+      top,
+      right,
+      bottom,
+    };
+  }
+  drawBackground() {
+    const {backgroundColor, grid: {circular}} = this.options;
+    if (backgroundColor) {
+      const ctx = this.ctx;
+      ctx.save();
+      ctx.beginPath();
+      pathRadiusLine(this, this.getDistanceFromCenterForValue(this._endValue), circular, this._pointLabels.length);
+      ctx.closePath();
+      ctx.fillStyle = backgroundColor;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  drawGrid() {
+    const ctx = this.ctx;
+    const opts = this.options;
+    const {angleLines, grid} = opts;
+    const labelCount = this._pointLabels.length;
+    let i, offset, position;
+    if (opts.pointLabels.display) {
+      drawPointLabels(this, labelCount);
+    }
+    if (grid.display) {
+      this.ticks.forEach((tick, index) => {
+        if (index !== 0) {
+          offset = this.getDistanceFromCenterForValue(tick.value);
+          const optsAtIndex = grid.setContext(this.getContext(index - 1));
+          drawRadiusLine(this, optsAtIndex, offset, labelCount);
+        }
+      });
+    }
+    if (angleLines.display) {
+      ctx.save();
+      for (i = labelCount - 1; i >= 0; i--) {
+        const optsAtIndex = angleLines.setContext(this.getPointLabelContext(i));
+        const {color, lineWidth} = optsAtIndex;
+        if (!lineWidth || !color) {
+          continue;
+        }
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = color;
+        ctx.setLineDash(optsAtIndex.borderDash);
+        ctx.lineDashOffset = optsAtIndex.borderDashOffset;
+        offset = this.getDistanceFromCenterForValue(opts.ticks.reverse ? this.min : this.max);
+        position = this.getPointPosition(i, offset);
+        ctx.beginPath();
+        ctx.moveTo(this.xCenter, this.yCenter);
+        ctx.lineTo(position.x, position.y);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+  drawBorder() {}
+  drawLabels() {
+    const ctx = this.ctx;
+    const opts = this.options;
+    const tickOpts = opts.ticks;
+    if (!tickOpts.display) {
+      return;
+    }
+    const startAngle = this.getIndexAngle(0);
+    let offset, width;
+    ctx.save();
+    ctx.translate(this.xCenter, this.yCenter);
+    ctx.rotate(startAngle);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    this.ticks.forEach((tick, index) => {
+      if (index === 0 && !opts.reverse) {
+        return;
+      }
+      const optsAtIndex = tickOpts.setContext(this.getContext(index));
+      const tickFont = toFont(optsAtIndex.font);
+      offset = this.getDistanceFromCenterForValue(this.ticks[index].value);
+      if (optsAtIndex.showLabelBackdrop) {
+        ctx.font = tickFont.string;
+        width = ctx.measureText(tick.label).width;
+        ctx.fillStyle = optsAtIndex.backdropColor;
+        const padding = toPadding(optsAtIndex.backdropPadding);
+        ctx.fillRect(
+          -width / 2 - padding.left,
+          -offset - tickFont.size / 2 - padding.top,
+          width + padding.width,
+          tickFont.size + padding.height
+        );
+      }
+      renderText(ctx, tick.label, 0, -offset, tickFont, {
+        color: optsAtIndex.color,
+      });
+    });
+    ctx.restore();
+  }
+  drawTitle() {}
+}
+RadialLinearScale.id = 'radialLinear';
+RadialLinearScale.defaults = {
+  display: true,
+  animate: true,
+  position: 'chartArea',
+  angleLines: {
+    display: true,
+    lineWidth: 1,
+    borderDash: [],
+    borderDashOffset: 0.0
+  },
+  grid: {
+    circular: false
+  },
+  startAngle: 0,
+  ticks: {
+    showLabelBackdrop: true,
+    callback: Ticks.formatters.numeric
+  },
+  pointLabels: {
+    backdropColor: undefined,
+    backdropPadding: 2,
+    display: true,
+    font: {
+      size: 10
+    },
+    callback(label) {
+      return label;
+    },
+    padding: 5,
+    centerPointLabels: false
+  }
+};
+RadialLinearScale.defaultRoutes = {
+  'angleLines.color': 'borderColor',
+  'pointLabels.color': 'color',
+  'ticks.color': 'color'
+};
+RadialLinearScale.descriptors = {
+  angleLines: {
+    _fallback: 'grid'
+  }
+};
+
+const INTERVALS = {
+  millisecond: {common: true, size: 1, steps: 1000},
+  second: {common: true, size: 1000, steps: 60},
+  minute: {common: true, size: 60000, steps: 60},
+  hour: {common: true, size: 3600000, steps: 24},
+  day: {common: true, size: 86400000, steps: 30},
+  week: {common: false, size: 604800000, steps: 4},
+  month: {common: true, size: 2.628e9, steps: 12},
+  quarter: {common: false, size: 7.884e9, steps: 4},
+  year: {common: true, size: 3.154e10}
+};
+const UNITS = (Object.keys(INTERVALS));
+function sorter(a, b) {
+  return a - b;
+}
+function parse(scale, input) {
+  if (isNullOrUndef(input)) {
+    return null;
+  }
+  const adapter = scale._adapter;
+  const {parser, round, isoWeekday} = scale._parseOpts;
+  let value = input;
+  if (typeof parser === 'function') {
+    value = parser(value);
+  }
+  if (!isNumberFinite(value)) {
+    value = typeof parser === 'string'
+      ? adapter.parse(value, parser)
+      : adapter.parse(value);
+  }
+  if (value === null) {
+    return null;
+  }
+  if (round) {
+    value = round === 'week' && (isNumber(isoWeekday) || isoWeekday === true)
+      ? adapter.startOf(value, 'isoWeek', isoWeekday)
+      : adapter.startOf(value, round);
+  }
+  return +value;
+}
+function determineUnitForAutoTicks(minUnit, min, max, capacity) {
+  const ilen = UNITS.length;
+  for (let i = UNITS.indexOf(minUnit); i < ilen - 1; ++i) {
+    const interval = INTERVALS[UNITS[i]];
+    const factor = interval.steps ? interval.steps : Number.MAX_SAFE_INTEGER;
+    if (interval.common && Math.ceil((max - min) / (factor * interval.size)) <= capacity) {
+      return UNITS[i];
+    }
+  }
+  return UNITS[ilen - 1];
+}
+function determineUnitForFormatting(scale, numTicks, minUnit, min, max) {
+  for (let i = UNITS.length - 1; i >= UNITS.indexOf(minUnit); i--) {
+    const unit = UNITS[i];
+    if (INTERVALS[unit].common && scale._adapter.diff(max, min, unit) >= numTicks - 1) {
+      return unit;
+    }
+  }
+  return UNITS[minUnit ? UNITS.indexOf(minUnit) : 0];
+}
+function determineMajorUnit(unit) {
+  for (let i = UNITS.indexOf(unit) + 1, ilen = UNITS.length; i < ilen; ++i) {
+    if (INTERVALS[UNITS[i]].common) {
+      return UNITS[i];
+    }
+  }
+}
+function addTick(ticks, time, timestamps) {
+  if (!timestamps) {
+    ticks[time] = true;
+  } else if (timestamps.length) {
+    const {lo, hi} = _lookup(timestamps, time);
+    const timestamp = timestamps[lo] >= time ? timestamps[lo] : timestamps[hi];
+    ticks[timestamp] = true;
+  }
+}
+function setMajorTicks(scale, ticks, map, majorUnit) {
+  const adapter = scale._adapter;
+  const first = +adapter.startOf(ticks[0].value, majorUnit);
+  const last = ticks[ticks.length - 1].value;
+  let major, index;
+  for (major = first; major <= last; major = +adapter.add(major, 1, majorUnit)) {
+    index = map[major];
+    if (index >= 0) {
+      ticks[index].major = true;
+    }
+  }
+  return ticks;
+}
+function ticksFromTimestamps(scale, values, majorUnit) {
+  const ticks = [];
+  const map = {};
+  const ilen = values.length;
+  let i, value;
+  for (i = 0; i < ilen; ++i) {
+    value = values[i];
+    map[value] = i;
+    ticks.push({
+      value,
+      major: false
+    });
+  }
+  return (ilen === 0 || !majorUnit) ? ticks : setMajorTicks(scale, ticks, map, majorUnit);
+}
+class TimeScale extends Scale {
+  constructor(props) {
+    super(props);
+    this._cache = {
+      data: [],
+      labels: [],
+      all: []
+    };
+    this._unit = 'day';
+    this._majorUnit = undefined;
+    this._offsets = {};
+    this._normalized = false;
+    this._parseOpts = undefined;
+  }
+  init(scaleOpts, opts) {
+    const time = scaleOpts.time || (scaleOpts.time = {});
+    const adapter = this._adapter = new _adapters._date(scaleOpts.adapters.date);
+    mergeIf(time.displayFormats, adapter.formats());
+    this._parseOpts = {
+      parser: time.parser,
+      round: time.round,
+      isoWeekday: time.isoWeekday
+    };
+    super.init(scaleOpts);
+    this._normalized = opts.normalized;
+  }
+  parse(raw, index) {
+    if (raw === undefined) {
+      return null;
+    }
+    return parse(this, raw);
+  }
+  beforeLayout() {
+    super.beforeLayout();
+    this._cache = {
+      data: [],
+      labels: [],
+      all: []
+    };
+  }
+  determineDataLimits() {
+    const options = this.options;
+    const adapter = this._adapter;
+    const unit = options.time.unit || 'day';
+    let {min, max, minDefined, maxDefined} = this.getUserBounds();
+    function _applyBounds(bounds) {
+      if (!minDefined && !isNaN(bounds.min)) {
+        min = Math.min(min, bounds.min);
+      }
+      if (!maxDefined && !isNaN(bounds.max)) {
+        max = Math.max(max, bounds.max);
+      }
+    }
+    if (!minDefined || !maxDefined) {
+      _applyBounds(this._getLabelBounds());
+      if (options.bounds !== 'ticks' || options.ticks.source !== 'labels') {
+        _applyBounds(this.getMinMax(false));
+      }
+    }
+    min = isNumberFinite(min) && !isNaN(min) ? min : +adapter.startOf(Date.now(), unit);
+    max = isNumberFinite(max) && !isNaN(max) ? max : +adapter.endOf(Date.now(), unit) + 1;
+    this.min = Math.min(min, max - 1);
+    this.max = Math.max(min + 1, max);
+  }
+  _getLabelBounds() {
+    const arr = this.getLabelTimestamps();
+    let min = Number.POSITIVE_INFINITY;
+    let max = Number.NEGATIVE_INFINITY;
+    if (arr.length) {
+      min = arr[0];
+      max = arr[arr.length - 1];
+    }
+    return {min, max};
+  }
+  buildTicks() {
+    const options = this.options;
+    const timeOpts = options.time;
+    const tickOpts = options.ticks;
+    const timestamps = tickOpts.source === 'labels' ? this.getLabelTimestamps() : this._generate();
+    if (options.bounds === 'ticks' && timestamps.length) {
+      this.min = this._userMin || timestamps[0];
+      this.max = this._userMax || timestamps[timestamps.length - 1];
+    }
+    const min = this.min;
+    const max = this.max;
+    const ticks = _filterBetween(timestamps, min, max);
+    this._unit = timeOpts.unit || (tickOpts.autoSkip
+      ? determineUnitForAutoTicks(timeOpts.minUnit, this.min, this.max, this._getLabelCapacity(min))
+      : determineUnitForFormatting(this, ticks.length, timeOpts.minUnit, this.min, this.max));
+    this._majorUnit = !tickOpts.major.enabled || this._unit === 'year' ? undefined
+      : determineMajorUnit(this._unit);
+    this.initOffsets(timestamps);
+    if (options.reverse) {
+      ticks.reverse();
+    }
+    return ticksFromTimestamps(this, ticks, this._majorUnit);
+  }
+  initOffsets(timestamps) {
+    let start = 0;
+    let end = 0;
+    let first, last;
+    if (this.options.offset && timestamps.length) {
+      first = this.getDecimalForValue(timestamps[0]);
+      if (timestamps.length === 1) {
+        start = 1 - first;
+      } else {
+        start = (this.getDecimalForValue(timestamps[1]) - first) / 2;
+      }
+      last = this.getDecimalForValue(timestamps[timestamps.length - 1]);
+      if (timestamps.length === 1) {
+        end = last;
+      } else {
+        end = (last - this.getDecimalForValue(timestamps[timestamps.length - 2])) / 2;
+      }
+    }
+    const limit = timestamps.length < 3 ? 0.5 : 0.25;
+    start = _limitValue(start, 0, limit);
+    end = _limitValue(end, 0, limit);
+    this._offsets = {start, end, factor: 1 / (start + 1 + end)};
+  }
+  _generate() {
+    const adapter = this._adapter;
+    const min = this.min;
+    const max = this.max;
+    const options = this.options;
+    const timeOpts = options.time;
+    const minor = timeOpts.unit || determineUnitForAutoTicks(timeOpts.minUnit, min, max, this._getLabelCapacity(min));
+    const stepSize = valueOrDefault(timeOpts.stepSize, 1);
+    const weekday = minor === 'week' ? timeOpts.isoWeekday : false;
+    const hasWeekday = isNumber(weekday) || weekday === true;
+    const ticks = {};
+    let first = min;
+    let time, count;
+    if (hasWeekday) {
+      first = +adapter.startOf(first, 'isoWeek', weekday);
+    }
+    first = +adapter.startOf(first, hasWeekday ? 'day' : minor);
+    if (adapter.diff(max, min, minor) > 100000 * stepSize) {
+      throw new Error(min + ' and ' + max + ' are too far apart with stepSize of ' + stepSize + ' ' + minor);
+    }
+    const timestamps = options.ticks.source === 'data' && this.getDataTimestamps();
+    for (time = first, count = 0; time < max; time = +adapter.add(time, stepSize, minor), count++) {
+      addTick(ticks, time, timestamps);
+    }
+    if (time === max || options.bounds === 'ticks' || count === 1) {
+      addTick(ticks, time, timestamps);
+    }
+    return Object.keys(ticks).sort((a, b) => a - b).map(x => +x);
+  }
+  getLabelForValue(value) {
+    const adapter = this._adapter;
+    const timeOpts = this.options.time;
+    if (timeOpts.tooltipFormat) {
+      return adapter.format(value, timeOpts.tooltipFormat);
+    }
+    return adapter.format(value, timeOpts.displayFormats.datetime);
+  }
+  _tickFormatFunction(time, index, ticks, format) {
+    const options = this.options;
+    const formats = options.time.displayFormats;
+    const unit = this._unit;
+    const majorUnit = this._majorUnit;
+    const minorFormat = unit && formats[unit];
+    const majorFormat = majorUnit && formats[majorUnit];
+    const tick = ticks[index];
+    const major = majorUnit && majorFormat && tick && tick.major;
+    const label = this._adapter.format(time, format || (major ? majorFormat : minorFormat));
+    const formatter = options.ticks.callback;
+    return formatter ? callback(formatter, [label, index, ticks], this) : label;
+  }
+  generateTickLabels(ticks) {
+    let i, ilen, tick;
+    for (i = 0, ilen = ticks.length; i < ilen; ++i) {
+      tick = ticks[i];
+      tick.label = this._tickFormatFunction(tick.value, i, ticks);
+    }
+  }
+  getDecimalForValue(value) {
+    return value === null ? NaN : (value - this.min) / (this.max - this.min);
+  }
+  getPixelForValue(value) {
+    const offsets = this._offsets;
+    const pos = this.getDecimalForValue(value);
+    return this.getPixelForDecimal((offsets.start + pos) * offsets.factor);
+  }
+  getValueForPixel(pixel) {
+    const offsets = this._offsets;
+    const pos = this.getDecimalForPixel(pixel) / offsets.factor - offsets.end;
+    return this.min + pos * (this.max - this.min);
+  }
+  _getLabelSize(label) {
+    const ticksOpts = this.options.ticks;
+    const tickLabelWidth = this.ctx.measureText(label).width;
+    const angle = toRadians(this.isHorizontal() ? ticksOpts.maxRotation : ticksOpts.minRotation);
+    const cosRotation = Math.cos(angle);
+    const sinRotation = Math.sin(angle);
+    const tickFontSize = this._resolveTickFontOptions(0).size;
+    return {
+      w: (tickLabelWidth * cosRotation) + (tickFontSize * sinRotation),
+      h: (tickLabelWidth * sinRotation) + (tickFontSize * cosRotation)
+    };
+  }
+  _getLabelCapacity(exampleTime) {
+    const timeOpts = this.options.time;
+    const displayFormats = timeOpts.displayFormats;
+    const format = displayFormats[timeOpts.unit] || displayFormats.millisecond;
+    const exampleLabel = this._tickFormatFunction(exampleTime, 0, ticksFromTimestamps(this, [exampleTime], this._majorUnit), format);
+    const size = this._getLabelSize(exampleLabel);
+    const capacity = Math.floor(this.isHorizontal() ? this.width / size.w : this.height / size.h) - 1;
+    return capacity > 0 ? capacity : 1;
+  }
+  getDataTimestamps() {
+    let timestamps = this._cache.data || [];
+    let i, ilen;
+    if (timestamps.length) {
+      return timestamps;
+    }
+    const metas = this.getMatchingVisibleMetas();
+    if (this._normalized && metas.length) {
+      return (this._cache.data = metas[0].controller.getAllParsedValues(this));
+    }
+    for (i = 0, ilen = metas.length; i < ilen; ++i) {
+      timestamps = timestamps.concat(metas[i].controller.getAllParsedValues(this));
+    }
+    return (this._cache.data = this.normalize(timestamps));
+  }
+  getLabelTimestamps() {
+    const timestamps = this._cache.labels || [];
+    let i, ilen;
+    if (timestamps.length) {
+      return timestamps;
+    }
+    const labels = this.getLabels();
+    for (i = 0, ilen = labels.length; i < ilen; ++i) {
+      timestamps.push(parse(this, labels[i]));
+    }
+    return (this._cache.labels = this._normalized ? timestamps : this.normalize(timestamps));
+  }
+  normalize(values) {
+    return _arrayUnique(values.sort(sorter));
+  }
+}
+TimeScale.id = 'time';
+TimeScale.defaults = {
+  bounds: 'data',
+  adapters: {},
+  time: {
+    parser: false,
+    unit: false,
+    round: false,
+    isoWeekday: false,
+    minUnit: 'millisecond',
+    displayFormats: {}
+  },
+  ticks: {
+    source: 'auto',
+    major: {
+      enabled: false
+    }
+  }
+};
+
+function interpolate(table, val, reverse) {
+  let lo = 0;
+  let hi = table.length - 1;
+  let prevSource, nextSource, prevTarget, nextTarget;
+  if (reverse) {
+    if (val >= table[lo].pos && val <= table[hi].pos) {
+      ({lo, hi} = _lookupByKey(table, 'pos', val));
+    }
+    ({pos: prevSource, time: prevTarget} = table[lo]);
+    ({pos: nextSource, time: nextTarget} = table[hi]);
+  } else {
+    if (val >= table[lo].time && val <= table[hi].time) {
+      ({lo, hi} = _lookupByKey(table, 'time', val));
+    }
+    ({time: prevSource, pos: prevTarget} = table[lo]);
+    ({time: nextSource, pos: nextTarget} = table[hi]);
+  }
+  const span = nextSource - prevSource;
+  return span ? prevTarget + (nextTarget - prevTarget) * (val - prevSource) / span : prevTarget;
+}
+class TimeSeriesScale extends TimeScale {
+  constructor(props) {
+    super(props);
+    this._table = [];
+    this._minPos = undefined;
+    this._tableRange = undefined;
+  }
+  initOffsets() {
+    const timestamps = this._getTimestampsForTable();
+    const table = this._table = this.buildLookupTable(timestamps);
+    this._minPos = interpolate(table, this.min);
+    this._tableRange = interpolate(table, this.max) - this._minPos;
+    super.initOffsets(timestamps);
+  }
+  buildLookupTable(timestamps) {
+    const {min, max} = this;
+    const items = [];
+    const table = [];
+    let i, ilen, prev, curr, next;
+    for (i = 0, ilen = timestamps.length; i < ilen; ++i) {
+      curr = timestamps[i];
+      if (curr >= min && curr <= max) {
+        items.push(curr);
+      }
+    }
+    if (items.length < 2) {
+      return [
+        {time: min, pos: 0},
+        {time: max, pos: 1}
+      ];
+    }
+    for (i = 0, ilen = items.length; i < ilen; ++i) {
+      next = items[i + 1];
+      prev = items[i - 1];
+      curr = items[i];
+      if (Math.round((next + prev) / 2) !== curr) {
+        table.push({time: curr, pos: i / (ilen - 1)});
+      }
+    }
+    return table;
+  }
+  _getTimestampsForTable() {
+    let timestamps = this._cache.all || [];
+    if (timestamps.length) {
+      return timestamps;
+    }
+    const data = this.getDataTimestamps();
+    const label = this.getLabelTimestamps();
+    if (data.length && label.length) {
+      timestamps = this.normalize(data.concat(label));
+    } else {
+      timestamps = data.length ? data : label;
+    }
+    timestamps = this._cache.all = timestamps;
+    return timestamps;
+  }
+  getDecimalForValue(value) {
+    return (interpolate(this._table, value) - this._minPos) / this._tableRange;
+  }
+  getValueForPixel(pixel) {
+    const offsets = this._offsets;
+    const decimal = this.getDecimalForPixel(pixel) / offsets.factor - offsets.end;
+    return interpolate(this._table, decimal * this._tableRange + this._minPos, true);
+  }
+}
+TimeSeriesScale.id = 'timeseries';
+TimeSeriesScale.defaults = TimeScale.defaults;
+
+var scales = /*#__PURE__*/Object.freeze({
+__proto__: null,
+CategoryScale: CategoryScale,
+LinearScale: LinearScale,
+LogarithmicScale: LogarithmicScale,
+RadialLinearScale: RadialLinearScale,
+TimeScale: TimeScale,
+TimeSeriesScale: TimeSeriesScale
+});
+
+Chart.register(controllers, scales, elements, plugins);
+Chart.helpers = {...helpers};
+Chart._adapters = _adapters;
+Chart.Animation = Animation;
+Chart.Animations = Animations;
+Chart.animator = animator;
+Chart.controllers = registry.controllers.items;
+Chart.DatasetController = DatasetController;
+Chart.Element = Element;
+Chart.elements = elements;
+Chart.Interaction = Interaction;
+Chart.layouts = layouts;
+Chart.platforms = platforms;
+Chart.Scale = Scale;
+Chart.Ticks = Ticks;
+Object.assign(Chart, controllers, scales, elements, plugins, platforms);
+Chart.Chart = Chart;
+if (typeof window !== 'undefined') {
+  window.Chart = Chart;
+}
+
+return Chart;
+
+}));
+
+},{}],3:[function(require,module,exports){
 //! moment.js
 //! version : 2.29.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -5670,6 +20004,239 @@
 
 })));
 
-},{}],2:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 const moment = require('moment');
-},{"moment":1}]},{},[2]);
+const chart = require('chart.js');
+const animated = require('./node_modules/animated-numbers/dist/animated-numbers.js');
+
+
+const data = {
+    tasks: [
+        {
+            name: "Go to the gym",
+            date: "2022-03-14",
+            priority: 5,
+            status: true
+        },
+        {
+            name: "Meeting with client",
+            date: "2022-03-14",
+            priority: 8,
+            status: true
+        },
+        {
+            name: "Read materials for homework",
+            date: "2022-03-14",
+            priority: 6,
+            status: true
+        },
+        {
+            name: "Do test",
+            date: "2022-03-14",
+            priority: 5,
+            status: false
+        },
+        {
+            name: "Go to the pool",
+            date: "2022-03-15",
+            priority: 5,
+            status: false
+        },
+        {
+            name: "Go to the salon",
+            date: "2022-03-15",
+            priority: 3,
+            status: true
+        },
+        {
+            name: "Run advertasing campaigns",
+            date: "2022-03-15",
+            priority: 10,
+            status: true
+        },
+        {
+            name: "Go to the gym",
+            date: "2022-03-16",
+            priority: 5,
+            status: false
+        },
+        {
+            name: "Pack for the road",
+            date: "2022-03-16",
+            priority: 9,
+            status: true
+        },
+        {
+            name: "Issue bills",
+            date: "2022-03-16",
+            priority: 7,
+            status: true
+        },
+        {
+            name: "Clean up",
+            date: "2022-03-16",
+            priority: 6,
+            status: true
+        },
+        {
+            name: "Go to Murmansk",
+            date: "2022-03-17",
+            priority: 10,
+            status: true
+        },
+        {
+            name: "Issue bills",
+            date: "2022-03-17",
+            priority: 4,
+            status: false
+        },
+        {
+            name: "Call to gym",
+            date: "2022-03-17",
+            priority: 2,
+            status: false
+        },
+        {
+            name: "English class",
+            date: "2022-03-17",
+            priority: 7,
+            status: true
+        },
+        {
+            name: "Do JS practical task",
+            date: "2022-03-18",
+            priority: 8,
+            status: true
+        },
+        {
+            name: "Issue bills",
+            date: "2022-03-18",
+            priority: 5,
+            status: true
+        },
+        {
+            name: "Go to Kirovsk",
+            date: "2022-03-19",
+            priority: 8,
+            status: false
+        },
+        {
+            name: "Rent equipment",
+            date: "2022-03-19",
+            priority: 8,
+            status: false
+        },
+        {
+            name: "Meetinf IT GIRLS",
+            date: "2022-03-19",
+            priority: 7,
+            status: false
+        },
+        {
+            name: "Pay for the course",
+            date: "2022-03-20",
+            priority: 10,
+            status: true
+        },
+        {
+            name: "Edit menu",
+            date: "2022-03-20",
+            priority: 4,
+            status: false
+        }
+    ]
+}
+
+const dates = data.tasks.map((task) => task.date)
+const unicDates = dates.filter((date, i) => dates.indexOf(date) === i);
+const textDates = unicDates.map((date) => moment(date).format('dddd'))
+const amountTasks = data.tasks.reduce(function(accumulator, task) {
+    const day = moment(task.date).format('dddd')
+    if (accumulator[day]) {
+        accumulator[day] += 1;
+    } else {
+        accumulator[day] = 1;
+    }
+    return accumulator;
+}, {});
+
+const doneTasks = data.tasks.reduce(function(accumulator, task) {
+    const day = moment(task.date).format('dddd');
+
+    if (!accumulator[day]) {
+        accumulator[day] = {
+            true: 0,
+            false: 0
+        };
+    }
+
+    accumulator[day][task.status] += 1
+    return accumulator;
+}, {});
+
+console.log(doneTasks)
+
+
+const weekCanvas = document.getElementById("weekChart");
+const doneCanvas = document.getElementById("doneChart");
+
+
+
+var lineChart = new Chart(weekCanvas, {
+    type: 'line',
+    data: {
+        datasets: [{
+        label: "Weekly Activity",
+          data: amountTasks,
+          fill: true,
+          borderColor: 'rgb(75, 192, 192)',
+          pointStyle: 'circle',
+      pointRadius: 10,
+      pointHoverRadius: 15
+        }]
+      },
+      options: {
+      scales: {
+        y: { 
+          min: 0,
+          max: 6
+        }
+      }
+}});
+
+
+
+const mixedChart = new Chart(doneCanvas, {
+    data: {
+        datasets: [{
+            type: 'bar',
+            label: 'Done',
+            data: Object.values(doneTasks).map((item) => item.true),
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)'
+        }, {
+            type: 'bar',
+            label: 'In process',
+            data: Object.values(doneTasks).map((item) => item.false),
+            borderColor: 'rgb(54, 162, 235)'
+        }],
+        labels: Object.keys(doneTasks)
+    },
+    options: {
+        ticks: {
+            min: 0,
+            stepSize: 1,
+            max: 5
+          },
+        scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true
+            }
+          }
+    }
+});
+
+},{"./node_modules/animated-numbers/dist/animated-numbers.js":1,"chart.js":2,"moment":3}]},{},[4]);

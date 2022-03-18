@@ -9,6 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.29.1"
+    "animated-numbers": "^1.1.7",
+    "beefy": "^2.1.8",
+    "browserify": "^17.0.0",
+    "chart.js": "^3.7.1",
+    "highlight.js": "^11.5.0",
+    "moment": "^2.29.1",
+    "watchify": "^4.0.0"
   }
 }
