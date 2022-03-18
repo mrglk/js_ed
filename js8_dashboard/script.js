@@ -166,15 +166,10 @@ const doneTasks = data.tasks.reduce(function(accumulator, task) {
     return accumulator;
 }, {});
 
-console.log(doneTasks)
-
-
 const weekCanvas = document.getElementById("weekChart");
 const doneCanvas = document.getElementById("doneChart");
 
-
-
-var lineChart = new Chart(weekCanvas, {
+const lineChart = new Chart(weekCanvas, {
     type: 'line',
     data: {
         datasets: [{
@@ -195,8 +190,6 @@ var lineChart = new Chart(weekCanvas, {
         }
       }
 }});
-
-
 
 const mixedChart = new Chart(doneCanvas, {
     data: {
@@ -230,3 +223,12 @@ const mixedChart = new Chart(doneCanvas, {
           }
     }
 });
+
+const textAllTasks = document.getElementById('textAllTasks');
+textAllTasks.textContent = `${data.tasks.length}`;
+
+const textDoneTasks = document.getElementById('textDoneTasks');
+textDoneTasks.textContent = `${Object.values(doneTasks).reduce((accumulator, task) => accumulator + task.true, 0)}`;
+
+const textNotDoneTasks = document.getElementById('textNotDoneTasks');
+textNotDoneTasks.textContent = `${Object.values(doneTasks).reduce((accumulator, task) => accumulator + task.false, 0)}`;
