@@ -12,9 +12,14 @@ let petForm = document.querySelector(".petForm");
 petForm.addEventListener("submit", function(e) {
     e.preventDefault()
     let petName = document.querySelector(".petName").value;
+
     let petBreed = document.querySelector(".petBreed").value;
+    // let n = document.getElementById(".petBreed").options.selectedIndex;
+    // let petBreed = document.getElementById(".petBreed").options[n].text;
+
     let food = document.getElementsByName("petFood");
     let sex = document.getElementsByName("sex");
+    // let sex = document.querySelector("input[name='sex']:checked").value;
     let petFood = [];
     let petSex;
 
