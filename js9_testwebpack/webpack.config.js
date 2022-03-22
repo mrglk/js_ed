@@ -15,7 +15,7 @@ module.exports = {
     },
     output: { //точка выхода , аналог bandle.js из browserify
       path: path.resolve(__dirname, 'dist'),// всегда должен быть абсолютный путь (от корневой папки) в нашем случае npm_webpack - название папки в которой лежит проект path: './dist/' - нет. сейчас вызываем методо path.resolve и передаем ему два параметра __dirname - ссылка на текущую папку, так и пишется и dist - относительный путь до папки в которую будем все сохранять
-      filename: 'main.js',
+      filename: '[name].[contenthash].js',
       assetModuleFilename: 'assets/[hash][ext][query]',
       clean: true,
     },
@@ -54,6 +54,16 @@ module.exports = {
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
           type: "asset/resource",
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
         },
       ]
     }
