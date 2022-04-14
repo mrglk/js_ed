@@ -9,7 +9,6 @@ class LikeButton extends React.Component {
             liked: false
         };
     }
-
     render() {
         if (this.state.liked) {
             return 'Мне это понравилось.';
