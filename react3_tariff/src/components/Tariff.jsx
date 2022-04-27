@@ -1,4 +1,4 @@
-import styles from "./Tariff.css";
+import styles from "./Tariff.module.scss";
 
 function Tariff(props) {
   return (

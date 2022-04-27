@@ -1,6 +1,6 @@
 import styles from './App.css';
 import Tariff from './components/Tariff';
-import Tariffs from './tariffs.json'
+import Tariffs from './tariffs.json';
 // import blue from "./components/blue.css";
 // import green from "./components/green.css";
 

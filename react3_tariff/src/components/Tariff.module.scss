@@ -8,18 +8,17 @@
 
 .Tariff_highlight {
   position: relative;
-  bottom: 10px;
+  bottom: 5px;
   width: 210px;
   box-shadow: 0px 5px 10px 8px rgba(34, 60, 80, 0.2);
-  margin-bottom: 15px;
-}
 
-.Tariff_highlight .Tariff__header {
-  padding: 5px 0;
-}
+  .Tariff__header {
+    padding: 5px 0;
+  }
 
-.Tariff_highlight .Tariff__volume {
-  padding: 15px 0px;
+  .Tariff__volume {
+    padding: 10px 0px;
+  }
 }
 
 .Tariff__header {
