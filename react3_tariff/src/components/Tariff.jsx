@@ -3,15 +3,10 @@ import styles from "./Tariff.css";
 function Tariff(props) {
   return (
     <div
-      className={
-        styles.Tariff + " " + (props.isHighlight && styles.Tariff_highlight)
-      }>
-      <div
-        className={
-          styles.Tariff__header +
-          " " +
-          (props.isHighlight && styles.Tariff__header_highlight)
-        }>
+      className={`${styles.Tariff} ${
+        props.isHighlight && styles.Tariff_highlight
+      }`}>
+      <div className={styles.Tariff__header}>
         <h3>{props.name}</h3>
       </div>
       <div className={styles.Tariff__priceWrapper}>
@@ -22,12 +17,7 @@ function Tariff(props) {
       <div className={styles.Tariff__mgb}>
         <span>{props.mgb}</span>
       </div>
-      <div
-        className={
-          styles.Tariff__volume +
-          " " +
-          (props.isHighlight && styles.Tariff__volume_highlight)
-        }>
+      <div className={styles.Tariff__volume}>
         <span>
           Объем включенного <br></br>трафика не ограничен
         </span>

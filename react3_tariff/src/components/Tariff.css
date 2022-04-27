@@ -14,14 +14,18 @@
   margin-bottom: 15px;
 }
 
+.Tariff_highlight .Tariff__header {
+  padding: 5px 0;
+}
+
+.Tariff_highlight .Tariff__volume {
+  padding: 15px 0px;
+}
+
 .Tariff__header {
   background-color: rgb(98, 97, 97);
   color: white;
   margin-bottom: 1px;
-}
-
-.Tariff__header_highlight {
-  padding: 5px 0;
 }
 
 .Tariff__priceWrapper {
@@ -52,8 +56,4 @@
   background-color: #e0e0e0;
   font-size: 13px;
   padding: 10px 0px;
-}
-
-.Tariff__volume_highlight {
-  padding: 15px 0px;
 }
