@@ -1,0 +1,59 @@
+.Tariff {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  text-align: center;
+  margin: 1px;
+}
+
+.Tariff_highlight {
+  position: relative;
+  bottom: 10px;
+  width: 210px;
+  box-shadow: 0px 5px 10px 8px rgba(34, 60, 80, 0.2);
+  margin-bottom: 15px;
+}
+
+.Tariff__header {
+  background-color: rgb(98, 97, 97);
+  color: white;
+  margin-bottom: 1px;
+}
+
+.Tariff__header_highlight {
+  padding: 5px 0;
+}
+
+.Tariff__priceWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(135, 135, 135);
+  padding: 20px 0px;
+  color: white;
+}
+
+.Tariff__price {
+  margin: 5px;
+  font-size: 50px;
+}
+
+.Tariff__month {
+  align-self: flex-end;
+  font-size: 13px;
+}
+
+.Tariff__mgb {
+  background-color: rgb(239, 239, 239);
+  font-size: 13px;
+  padding: 10px 0px;
+}
+
+.Tariff__volume {
+  background-color: #e0e0e0;
+  font-size: 13px;
+  padding: 10px 0px;
+}
+
+.Tariff__volume_highlight {
+  padding: 15px 0px;
+}

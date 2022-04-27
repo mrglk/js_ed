@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Безлимитный 300",
+    "price": 300,
+    "mgb": "До 10 Мбит/сек",
+    "isHighlight": false
+  },
+  {
+    "name": "Безлимитный 450",
+    "price": 450,
+    "mgb": "До 50 Мбит/сек",
+    "isHighlight": false
+  },
+  {
+    "name": "Безлимитный 550",
+    "price": 550,
+    "mgb": "До 100 Мбит/сек",
+    "isHighlight": true
+  },
+  {
+    "name": "Безлимитный 1000",
+    "price": 1000,
+    "mgb": "До 200 Мбит/сек",
+    "isHighlight": false
+  }
+]

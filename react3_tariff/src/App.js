@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.css';
+import Tariff from './components/Tariff';
+import Tariffs from './tariffs.json'
+// import blue from "./components/blue.css";
+// import green from "./components/green.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.App}>
+      {
+      Tariffs.map((tariff) =>
+    <Tariff name={tariff.name} price={tariff.price} mgb={tariff.mgb} isHighlight={tariff.isHighlight}></Tariff>)
+    }
     </div>
   );
 }
