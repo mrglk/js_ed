@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from './App.css';
 import Tariff from './components/Tariff';
 import Tariffs from './tariffs.json';
@@ -8,6 +9,8 @@ import black from "./components/black.css";
 
 function App() {
   const themes = [blue, green, red, black]
+  const [selected, setSelected] = useState();
+
   return (
     <div className={styles.App}>
       {
@@ -17,8 +20,9 @@ function App() {
             name={tariff.name}
             price={tariff.price}
             mgb={tariff.mgb} 
-            isHighlight={tariff.isHighlight} 
             theme={themes[i]} 
+            selected={selected === i}
+            onClick={() => setSelected(i)}
           />
         )
       }

@@ -15,7 +15,7 @@
     "name": "Безлимитный 550",
     "price": 550,
     "mgb": "До 100 Мбит/сек",
-    "isHighlight": true
+    "isHighlight": false
   },
   {
     "name": "Безлимитный 1000",

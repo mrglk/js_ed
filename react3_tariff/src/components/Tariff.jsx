@@ -1,13 +1,14 @@
+// import { useState } from "react";
 import styles from "./Tariff.module.scss";
 import * as cx from "classnames";
 
 function Tariff(props) {
   const classTariff = cx(styles.Tariff, {
-    [styles.Tariff_highlight]: props.isHighlight,
+    [styles.Tariff_highlight]: props.selected,
   });
 
   return (
-    <div className={classTariff}>
+    <div className={classTariff} onClick={props.onClick}>
       <div className={cx(styles.Tariff__header, props.theme.Tariff__header)}>
         <h3>{props.name}</h3>
       </div>
